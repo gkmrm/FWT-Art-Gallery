@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@config/*": ["src/config/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"],
+      "@App/*": ["src/App/*"],
+      "@models/*": ["src/store/models/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@icons/*": ["src/assets/icons/*"],
+      "@store/*": ["src/store/*"]
+    }
+  }
+}
