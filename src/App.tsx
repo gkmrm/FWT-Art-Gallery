@@ -1,7 +1,8 @@
 import React from 'react';
+import css from 'scss/scss';
 
 function App() {
-  return <div></div>;
+  return <div />;
 }
 
 export default App;
