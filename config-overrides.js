@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable */
 const { alias, configPaths } = require('react-app-rewire-alias');
 
 module.exports = (config) => {
