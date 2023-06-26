@@ -1,0 +1,21 @@
+name: CI
+on:
+  pull_request:
+    branches: 
+      - main
+jobs:
+  build:
+ 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: npm install
+        run: npm i
+
+      - name: Сommunication installation with remote repo
+        run: git remote set-url origin https://git:${{ secrets.ACCESS_TOKEN }}@github.com/${FWT-Art-Gallery}.git
+        
+      - name: Deploy for GH-Pages  
+        run: npm run deploy
+
