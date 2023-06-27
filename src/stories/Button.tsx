@@ -1,4 +1,6 @@
 import React from 'react';
+
+import classnames from 'classnames';
 import './button.css';
 
 interface ButtonProps {
@@ -37,11 +39,12 @@ export const Button = ({
   const mode = primary
     ? 'storybook-button--primary'
     : 'storybook-button--secondary';
+
   return (
     <button
       type='button'
-      className={['storybook-button', `storybook-button--${size}`, mode].join(
-        ' '
+      className={classnames(
+        ['storybook-button', `storybook-button--${size}`, mode].join(' ')
       )}
       style={{ backgroundColor }}
       {...props}
