@@ -1,0 +1,22 @@
+@import './variables';
+
+@mixin paintingsGridMax {
+  @media screen and (min-width: $breakPointMax) {
+    grid-template-columns: repeat(3, minmax(392px, 1fr));
+    @content;
+  }
+}
+
+@mixin paintingsGridTab {
+  @media screen and (min-width: $breakPointTab) {
+    grid-template-columns: repeat(2, minmax(352px, 1fr));
+    @content;
+  }
+}
+
+@mixin paintingsGridMobile {
+  @media screen and (min-width: $breakPointMob) {
+    grid-template-columns: minmax(280px, 1fr);
+    @content;
+  }
+}
