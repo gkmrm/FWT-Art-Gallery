@@ -7,10 +7,7 @@
       "@config/*": ["src/config/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
-
-      "@models/*": ["src/store/models/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@icons/*": ["src/assets/icons/*"],
       "@store/*": ["src/store/*"]
     }
   }
