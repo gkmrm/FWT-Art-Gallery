@@ -55,7 +55,11 @@
       }
     ],
     "import/extensions": "off",
-    "react/jsx-filename-extension": [1, { "extensions": ["tsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": ["tsx"] }],
+    "react/function-component-definition": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "import/no-extraneous-dependencies": 0
   },
   "settings": {
     "react": {
