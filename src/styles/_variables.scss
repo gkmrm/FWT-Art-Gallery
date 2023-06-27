@@ -1,0 +1,72 @@
+// H heading
+$h1TextSize: 60px;
+$h1TextWeight: 500;
+
+$h2TextSize: 48px;
+$h2TextWeight: 500;
+
+$h3TextSize: 32px;
+$h3TextWeight: 600;
+
+$h4TextSize: 16px;
+$h4TextWeight: 500;
+
+$h5TextSize: 16px;
+$h5TextWeight: 700;
+
+$h6TextSize: 12px;
+$h6TextWeight: 500;
+
+// Paragraph base
+$pTextSize: 16px;
+$pTextWeightLight: 300;
+$pTextWeightMid: 500;
+
+// Paragraph small
+$pTextSmallSize: 12px;
+$pTextSmallWeightLight: 300;
+$pTextSmallWeightMid: 500;
+
+// Paragraph tiny
+$pTextTinySize: 8px;
+$pTextTinyWight: 500;
+
+// Button
+$buttonTextSize: 12px;
+$buttonTextWeight: 700;
+
+// Input
+$inputTextSize: 12px;
+$inputTextWeight: 700;
+
+// Caption
+$capTextSize: 16px;
+$capTextWeight: 500;
+
+$capTextMidSize: 12px;
+$capTextMidWeight: 500;
+
+$capTextSmallSize: 18px;
+$capTextSMallWeight: 700;
+
+// Colors
+// Primary colors
+$primaryWhite: #ffffff;
+$primaryBlack: #121212;
+$primaryLightGray: #dedede;
+$primaryDarkGrey: #575757;
+
+// Secondary colors
+$secondaryWhite: #fcfcfc;
+$secondaryDark: #1a1818;
+$secondaryGrey: #9c9c9c;
+
+// Accent colors
+$accentRed: #9b4b4b;
+$accentGold: #ab8956;
+$accentError: #ae2917;
+
+// BreakPoints
+$breakPointMax: 1439px;
+$breakPointTAb: 767px;
+$breakPointMob: 320px;
