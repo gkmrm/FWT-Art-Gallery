@@ -25,3 +25,24 @@
   font-weight: 600;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./InterWOFF/Inter-Light_1.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./InterWOFF/Inter-Medium_1.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('.//InterWOFF/Inter-Bold_1.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
