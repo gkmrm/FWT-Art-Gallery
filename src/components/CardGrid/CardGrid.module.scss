@@ -1,0 +1,16 @@
+@import './../../styles/mixins';
+
+.CardGrid {
+  display: grid;
+  margin: 0 auto;
+
+  @include paintingsGridMobile {
+    gap: 20px;
+  }
+  @include paintingsGridTab {
+    gap: 24px;
+  }
+  @include paintingsGridMax {
+    gap: 32px;
+  }
+}
