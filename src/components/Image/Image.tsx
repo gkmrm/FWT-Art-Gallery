@@ -1,6 +1,10 @@
 import React from 'react';
 
+import cn from 'classnames/bind';
+
 import styles from './Image.module.scss';
+
+const cx = cn.bind(styles);
 
 export type ImageProps = {
   src: string;
@@ -9,10 +13,11 @@ export type ImageProps = {
   webp2x?: string;
   original?: string;
   alt: string;
+  className?: string;
 } & React.HTMLAttributes<HTMLPictureElement>;
 
-// Временное решение, справлю, storybook не подтягивает сам -->
-const BASE_API_URL = 'https://internship-front.framework.team/';
+// Временное решение, исправлю, storybook не подтягивает сам -->
+const BASE_API_URL = 'https://internship-front.framework.team';
 
 const Image: React.FC<ImageProps> = ({
   src,
@@ -21,6 +26,7 @@ const Image: React.FC<ImageProps> = ({
   webp2x,
   original,
   alt,
+  className,
 }) => (
   <picture>
     {webp && (
@@ -51,7 +57,11 @@ const Image: React.FC<ImageProps> = ({
         type='image/jpeg'
       />
     )}
-    <img className={styles.Image} src={`${BASE_API_URL}${src}`} alt={alt} />
+    <img
+      className={cx('Image', className)}
+      src={`${BASE_API_URL}${src}`}
+      alt={alt}
+    />
   </picture>
 );
 
