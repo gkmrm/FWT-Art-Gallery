@@ -1,0 +1,218 @@
+@import './../../styles/variables';
+@import './../../styles/mixins';
+
+.Button {
+  box-sizing: border-box;
+  @include flexCenter;
+  gap: 12px;
+
+  &_default {
+    background-color: $primaryBlack;
+    padding: 16px 0 16px 0;
+    border-radius: 25px;
+    width: 200px;
+
+    &:hover {
+      box-shadow: 0px 4px 10px 0px #00000040;
+    }
+    &:focus {
+      background-color: #232323;
+      box-shadow: 0px 4px 10px 0px #00000040;
+    }
+
+    &_dark {
+      background-color: $accentGold;
+
+      &:hover {
+        box-shadow: 0px 4px 10px 0px #ab895640;
+      }
+      &:focus {
+        background-color: #ba9052;
+        box-shadow: 0px 4px 10px 0px #ab895640;
+      }
+    }
+
+    &_disabled {
+      @include disabledOpacity05;
+    }
+  }
+
+  &_text {
+    text-decoration: underline;
+    background-color: transparent;
+    color: $primaryDarkGrey;
+    text-underline-offset: 4px;
+    height: 16px;
+
+    &:hover,
+    :focus {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+
+      &:hover,
+      :focus {
+        color: $primaryWhite;
+      }
+
+      &.Button_text_disabled {
+        color: $secondaryGrey;
+      }
+    }
+
+    &_disabled {
+      color: $primaryLightGrey;
+      @include disabledOpacity05;
+    }
+  }
+
+  &_functional {
+    @include flexCenter;
+    color: $primaryDarkGrey;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    background-color: $secondaryWhite;
+
+    &:hover,
+    :focus {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+
+      &:hover,
+      :focus {
+        color: $primaryWhite;
+      }
+    }
+
+    &_disabled {
+      color: $primaryLightGrey;
+      @include disabledOpacity05;
+    }
+  }
+
+  &_up {
+    @include flexCenter;
+    border-radius: 50%;
+    border: 1px solid $primaryLightGrey;
+    color: $primaryDarkGrey;
+    padding: 18px;
+    width: 60px;
+    height: 60px;
+
+    &:hover {
+      background-color: $primaryWhite;
+    }
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+      border: none;
+
+      &:hover {
+        background-color: #242222;
+      }
+    }
+  }
+  // ИСПОЛЬЗОВАТЬ В КОМПОНЕНТЕ TOGGLE THEME
+  &_iconTheme {
+    @include flexCenter;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: $primaryDarkGrey;
+    background-color: $secondaryWhite;
+
+    &:hover,
+    :focus {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+      &:hover,
+      :focus {
+        color: $primaryWhite;
+      }
+    }
+  }
+}
+
+// &_iconFunctional {
+// color: $primaryDarkGrey;
+// border-radius: 4px;
+// width: 28px;
+// height: 28px;
+// background-color: $secondaryWhite;
+
+// &:hover,
+// :focus {
+//   color: $primaryBlack;
+// }
+
+// &_dark {
+//   color: $primaryLightGrey;
+//   background-color: $secondaryDark;
+
+//   &:hover,
+//   :focus {
+//     color: $primaryWhite;
+//   }
+// }
+
+// &_disabled {
+//   color: $primaryLightGrey;
+//   @include disabledOpacity05;
+// }
+// }
+
+// &_iconUp {
+// border-radius: 50%;
+// border: 1px solid $primaryLightGrey;
+// color: $primaryDarkGrey;
+// padding: 18px;
+// width: 60px;
+// height: 60px;
+
+// &:hover {
+//   background-color: $primaryWhite;
+// }
+// &_dark {
+//   color: $primaryLightGrey;
+//   background-color: $secondaryDark;
+//   border: none;
+
+//   &:hover {
+//     background-color: #242222;
+//   }
+// }
+// }
+
+// &_iconTheme {
+//   border-radius: 50%;
+//   width: 40px;
+//   height: 40px;
+//   color: $primaryDarkGrey;
+//   background-color: $secondaryWhite;
+
+//   &:hover,
+//   :focus {
+//     color: $primaryBlack;
+//   }
+
+//   &_dark {
+//     color: $primaryLightGrey;
+//     background-color: $secondaryDark;
+//     &:hover,
+//     :focus {
+//       color: $primaryWhite;
+//     }
+//   }
+// }
+// }
