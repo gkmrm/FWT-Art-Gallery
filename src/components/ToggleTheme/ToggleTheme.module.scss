@@ -1,0 +1,28 @@
+@import './../../styles/_variables';
+@import './../../styles/_mixins';
+
+.Toggle {
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  @include flexCenter;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: $primaryDarkGrey;
+  background-color: $secondaryWhite;
+
+  &:hover,
+  :focus {
+    color: $primaryBlack;
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+    background-color: $secondaryDark;
+    &:hover,
+    :focus {
+      color: $primaryWhite;
+    }
+  }
+}
