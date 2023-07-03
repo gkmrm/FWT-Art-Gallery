@@ -20,7 +20,6 @@ module.exports = {
               loader: 'css-loader',
               options: {},
             },
-            // snipped for brevity
           ],
         },
       },
