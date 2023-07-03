@@ -3,8 +3,18 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Image from './Image';
 
 const meta: Meta<typeof Image> = {
-  title: 'Project/Image',
+  title: 'Project/ui/Image',
   component: Image,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `A component created for the "Card" component to display the picture correctly inside the Card
+
+        Accepts source references for all formats transferred from Api pictures`,
+      },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Image>;
