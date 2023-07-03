@@ -1,7 +1,14 @@
-@import './../../styles/variables';
+@import './../../styles/_variables';
 @import './../../styles/mixins';
 
 .Button {
+  font-family: $SecondFontFamily;
+  font-size: $buttonTextSize;
+  font-weight: $buttonTextWeight;
+  text-transform: uppercase;
+  color: $primaryWhite;
+  border: none;
+  padding: 0;
   box-sizing: border-box;
   @include flexCenter;
   gap: 12px;
@@ -31,7 +38,6 @@
         box-shadow: 0px 4px 10px 0px #ab895640;
       }
     }
-
     &_disabled {
       @include disabledOpacity05;
     }
@@ -68,7 +74,7 @@
     }
   }
 
-  &_functional {
+  &_icon {
     @include flexCenter;
     color: $primaryDarkGrey;
     border-radius: 4px;
@@ -92,127 +98,7 @@
     }
 
     &_disabled {
-      color: $primaryLightGrey;
       @include disabledOpacity05;
     }
   }
-
-  &_up {
-    @include flexCenter;
-    border-radius: 50%;
-    border: 1px solid $primaryLightGrey;
-    color: $primaryDarkGrey;
-    padding: 18px;
-    width: 60px;
-    height: 60px;
-
-    &:hover {
-      background-color: $primaryWhite;
-    }
-    &_dark {
-      color: $primaryLightGrey;
-      background-color: $secondaryDark;
-      border: none;
-
-      &:hover {
-        background-color: #242222;
-      }
-    }
-  }
-  // ИСПОЛЬЗОВАТЬ В КОМПОНЕНТЕ TOGGLE THEME
-  &_iconTheme {
-    @include flexCenter;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    color: $primaryDarkGrey;
-    background-color: $secondaryWhite;
-
-    &:hover,
-    :focus {
-      color: $primaryBlack;
-    }
-
-    &_dark {
-      color: $primaryLightGrey;
-      background-color: $secondaryDark;
-      &:hover,
-      :focus {
-        color: $primaryWhite;
-      }
-    }
-  }
 }
-
-// &_iconFunctional {
-// color: $primaryDarkGrey;
-// border-radius: 4px;
-// width: 28px;
-// height: 28px;
-// background-color: $secondaryWhite;
-
-// &:hover,
-// :focus {
-//   color: $primaryBlack;
-// }
-
-// &_dark {
-//   color: $primaryLightGrey;
-//   background-color: $secondaryDark;
-
-//   &:hover,
-//   :focus {
-//     color: $primaryWhite;
-//   }
-// }
-
-// &_disabled {
-//   color: $primaryLightGrey;
-//   @include disabledOpacity05;
-// }
-// }
-
-// &_iconUp {
-// border-radius: 50%;
-// border: 1px solid $primaryLightGrey;
-// color: $primaryDarkGrey;
-// padding: 18px;
-// width: 60px;
-// height: 60px;
-
-// &:hover {
-//   background-color: $primaryWhite;
-// }
-// &_dark {
-//   color: $primaryLightGrey;
-//   background-color: $secondaryDark;
-//   border: none;
-
-//   &:hover {
-//     background-color: #242222;
-//   }
-// }
-// }
-
-// &_iconTheme {
-//   border-radius: 50%;
-//   width: 40px;
-//   height: 40px;
-//   color: $primaryDarkGrey;
-//   background-color: $secondaryWhite;
-
-//   &:hover,
-//   :focus {
-//     color: $primaryBlack;
-//   }
-
-//   &_dark {
-//     color: $primaryLightGrey;
-//     background-color: $secondaryDark;
-//     &:hover,
-//     :focus {
-//       color: $primaryWhite;
-//     }
-//   }
-// }
-// }
