@@ -1,4 +1,4 @@
-@import './variables';
+@import './_variables';
 
 @mixin breakPointMax {
   @media screen and (min-width: $breakPointMax) {
