@@ -13,8 +13,10 @@ type TScrollButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ScrollButton: React.FC<TScrollButtonProps> = ({
+  /**
+   * Boolean value for change theme
+   */
   isDarkTheme = false,
-  children,
   ...props
 }) => {
   // Тут функция для скролла будет написана

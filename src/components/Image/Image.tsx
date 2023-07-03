@@ -7,12 +7,33 @@ import styles from './Image.module.scss';
 const cx = cn.bind(styles);
 
 export type ImageProps = {
+  /**
+   * Source of img - MAIN
+   */
   src: string;
+  /**
+   * Source of webp img
+   */
   webp?: string;
+  /**
+   * Source of src2x img for Retina display
+   */
   src2x?: string;
+  /**
+   * Source of webp2x img for Retina display
+   */
   webp2x?: string;
+  /**
+   * Source of original img
+   */
   original?: string;
+  /**
+   * ALT text for img
+   */
   alt: string;
+  /**
+   * Addition className for Image
+   */
   className?: string;
 } & React.HTMLAttributes<HTMLPictureElement>;
 

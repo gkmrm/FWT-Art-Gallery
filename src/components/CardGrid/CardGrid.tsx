@@ -9,6 +9,9 @@ import styles from './CardGrid.module.scss';
 const cx = cn.bind(styles);
 
 type TCardGridProps = {
+  /**
+   * Array of TCardProps from API
+   */
   arrayData: TCardProps[];
 };
 

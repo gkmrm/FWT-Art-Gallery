@@ -12,9 +12,21 @@ type TLinkProps = {
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const Link: React.FC<TLinkProps> = ({
+  /**
+   * Boolean value for change theme
+   */
   isDarkTheme,
+  /**
+   * ReactNode
+   */
   children,
+  /**
+   * Addition className for Link
+   */
   className,
+  /**
+   * standart Anchor props <a></a>
+   */
   ...other
 }) => {
   const classNames = cx(className, 'Link', { Link_dark: isDarkTheme });

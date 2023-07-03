@@ -7,11 +7,29 @@ import styles from './Button.module.scss';
 const cx = cn.bind(styles);
 
 type TButtonProps = {
+  /**
+   * String value display inside button, DON'T ADD WITH ICON className
+   */
   value?: string;
+  /**
+   * ReactComponent for adding inside button
+   */
   icon?: React.ReactNode;
+  /**
+   * Bollean value for change theme
+   */
   isDarkTheme?: boolean;
+  /**
+   * Bollean value for disable button
+   */
   isDisabled?: boolean;
+  /**
+   * Type of button default | text | icon   <- string
+   */
   className?: 'default' | 'text' | 'icon';
+  /**
+   * Callback function to click event
+   */
   onClick: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
