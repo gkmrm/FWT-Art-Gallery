@@ -2,9 +2,10 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as Arrow } from './arrowIcon.svg';
+import { ReactComponent as Arrow } from '@assets/icons/arrowIcon.svg';
+import { ImageProps, Image } from '@components/Image';
+
 import styles from './Card.module.scss';
-import { ImageProps, Image } from '../Image';
 
 const cx = cn.bind(styles);
 
