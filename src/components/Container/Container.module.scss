@@ -1,0 +1,15 @@
+@import '@styles/_mixins';
+@import '@styles/_variables';
+
+.Container {
+  // ПОМЕНЯТЬ!!!!!
+  min-width: 1240px;
+  margin: 0 auto;
+
+  // @include as {
+  //   min-width: 728px;
+  // }
+  // @include sa {
+  //   max-width: 1240px;
+  // }
+}
