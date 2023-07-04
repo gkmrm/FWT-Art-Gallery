@@ -1,0 +1,29 @@
+@import '@styles/_mixins';
+@import '@styles/_variables';
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primaryWhite;
+  color: $primaryDarkGrey;
+
+  &_dark {
+    background-color: $primaryBlack;
+    color: $primaryLightGrey;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+
+    &_name {
+      color: $secondaryGrey;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    gap: 20px;
+  }
+}
