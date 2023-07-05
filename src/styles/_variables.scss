@@ -1,8 +1,3 @@
-@import './fonts/font.scss';
-
-$MainFontFamily: 'Cormorant SC', serif;
-$SecondFontFamily: 'Inter', sans-serif;
-
 // H heading
 $h1TextSize: 60px;
 $h1TextWeight: 500;
@@ -40,10 +35,6 @@ $pTextTinyWight: 500;
 $buttonTextSize: 12px;
 $buttonTextWeight: 700;
 
-// Subtitle
-$subtitleTextSize: 12px;
-$subtitleTextWeight: 700;
-
 // Input
 $inputTextSize: 12px;
 $inputTextWeight: 700;
@@ -55,14 +46,14 @@ $capTextWeight: 500;
 $capTextMidSize: 12px;
 $capTextMidWeight: 500;
 
-$capTextSmallSize: 8px;
-$capTextSmallWeight: 700;
+$capTextSmallSize: 18px;
+$capTextSMallWeight: 700;
 
 // Colors
 // Primary colors
 $primaryWhite: #ffffff;
 $primaryBlack: #121212;
-$primaryLightGrey: #dedede;
+$primaryLightGray: #dedede;
 $primaryDarkGrey: #575757;
 
 // Secondary colors
@@ -76,7 +67,6 @@ $accentGold: #ab8956;
 $accentError: #ae2917;
 
 // BreakPoints
-$breakPointMax: 1440px;
-$breakPointPC: 1240px;
-$breakPointTab: 768px;
+$breakPointMax: 1439px;
+$breakPointTAb: 767px;
 $breakPointMob: 320px;
