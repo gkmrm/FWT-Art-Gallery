@@ -1,7 +1,30 @@
-@import './variables';
+@import './_variables';
+
+@mixin breakPointMax {
+  @media screen and (min-width: $breakPointMax) {
+    @content;
+  }
+}
+@mixin breakPointPC {
+  @media screen and (min-width: $breakPointPC) {
+    @content;
+  }
+}
+
+@mixin breakPointTab {
+  @media screen and (min-width: $breakPointTab) {
+    @content;
+  }
+}
+
+@mixin breakPointMobile {
+  @media screen and (min-width: $breakPointMob) {
+    @content;
+  }
+}
 
 @mixin paintingsGridMax {
-  @media screen and (min-width: $breakPointMax) {
+  @media screen and (min-width: $breakPointPC) {
     grid-template-columns: repeat(3, minmax(392px, 1fr));
     @content;
   }
@@ -19,4 +42,25 @@
     grid-template-columns: minmax(280px, 1fr);
     @content;
   }
+}
+
+@mixin noUserSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin disabledOpacity05 {
+  pointer-events: none;
+  opacity: 0.5;
+  @include noUserSelect;
 }

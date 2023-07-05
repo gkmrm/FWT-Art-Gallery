@@ -1,0 +1,34 @@
+@import '@styles/_variables.scss';
+@import '@styles/_mixins.scss';
+
+.scroll {
+  padding: 0;
+  box-sizing: border-box;
+  @include flexCenter;
+  border-radius: 50%;
+  padding: 18px;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+  box-shadow: none;
+
+  &_light {
+    background-color: $secondaryWhite;
+    border: 1px solid $primaryLightGrey;
+    color: $primaryDarkGrey;
+
+    &:hover {
+      background-color: $primaryWhite;
+    }
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+    background-color: $secondaryDark;
+    border: none;
+
+    &:hover {
+      background-color: #242222;
+    }
+  }
+}
