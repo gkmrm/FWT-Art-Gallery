@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Link>;
 
 export const Standart: Story = {
   args: {
-    isDarkTheme: false,
+    theme: 'light',
     children: 'Normal link',
     href: 'https://framework.team/',
   },
@@ -27,7 +27,7 @@ export const Standart: Story = {
 
 export const Dark: Story = {
   args: {
-    isDarkTheme: true,
+    theme: 'dark',
     children: 'Normal link',
     href: 'https://framework.team/',
   },
