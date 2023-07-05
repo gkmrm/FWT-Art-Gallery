@@ -2,11 +2,11 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import styles from './Image.module.scss';
+import styles from './Picture.module.scss';
 
 const cx = cn.bind(styles);
 
-export type ImageProps = {
+export type TPictureProps = {
   /**
    * Source of img - MAIN
    */
@@ -26,10 +26,6 @@ export type ImageProps = {
   /**
    * Source of original img
    */
-  original?: string;
-  /**
-   * ALT text for img
-   */
   alt: string;
   /**
    * Addition className for Image
@@ -37,15 +33,13 @@ export type ImageProps = {
   className?: string;
 } & React.HTMLAttributes<HTMLPictureElement>;
 
-// Временное решение, исправлю, storybook не подтягивает сам -->
-const BASE_API_URL = 'https://internship-front.framework.team';
+const BASE_API_URL = process.env.REACT_APP_BASE_URL;
 
-const Image: React.FC<ImageProps> = ({
+const Picture: React.FC<TPictureProps> = ({
   src,
   webp,
   src2x,
   webp2x,
-  original,
   alt,
   className,
 }) => (
@@ -71,19 +65,12 @@ const Image: React.FC<ImageProps> = ({
         type='image/webp'
       />
     )}
-    {original && (
-      <source
-        srcSet={`${BASE_API_URL}${original}`}
-        media='(min-width: 600px)'
-        type='image/jpeg'
-      />
-    )}
     <img
-      className={cx('Image', className)}
+      className={cx('picture', className)}
       src={`${BASE_API_URL}${src}`}
       alt={alt}
     />
   </picture>
 );
 
-export default Image;
+export default Picture;
