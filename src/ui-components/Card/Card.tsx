@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
 import cn from 'classnames/bind';
 
 import { ReactComponent as Arrow } from '@assets/icons/arrowIcon.svg';
-import { ImageProps, Image } from '@components/Image';
+import { TPictureProps, Picture } from '@ui-components/Picture';
 
 import styles from './Card.module.scss';
 
@@ -25,7 +27,7 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  image: ImageProps;
+  image: TPictureProps;
   /**
    * Callback function to click event
    */
@@ -33,7 +35,7 @@ export type TCardProps = {
   /**
    * Bollean value for change theme
    */
-  isDarkTheme?: boolean;
+  theme?: 'light' | 'dark';
 };
 
 const Card: React.FC<TCardProps> = ({
@@ -41,28 +43,20 @@ const Card: React.FC<TCardProps> = ({
   subtitle,
   image,
   onClick,
-  isDarkTheme,
+  theme = 'light',
 }) => (
-  <div className={cx('Сard')} onClick={onClick}>
-    <Image {...image} className={cx('img')} />
-    <div className={cx('wrapper')}>
-      <div className={cx('info', { info_dark: isDarkTheme })}>
-        <div
-          className={cx('info__textBlock', {
-            info__textBlock_dark: isDarkTheme,
-          })}
-        >
+  <div className={cx('card')} onClick={onClick}>
+    <Picture {...image} className={cx('card__img')} />
+    <div className={cx('card__wrapper')}>
+      <div className={cx('info', `info_${theme}`)}>
+        <div className={cx('info__textBlock', `info__textBlock_${theme}`)}>
           <p className={cx('info__title')}>{title}</p>
-          <p
-            className={cx('info__subtitle', {
-              info__subtitle_dark: isDarkTheme,
-            })}
-          >
+          <p className={cx('info__subtitle', `info__subtitle_${theme}`)}>
             {subtitle}
           </p>
         </div>
       </div>
-      <div className={cx('info__arrow', { info__arrow_dark: isDarkTheme })}>
+      <div className={cx('info__arrow', `info__arrow_${theme}`)}>
         <Arrow />
       </div>
     </div>
