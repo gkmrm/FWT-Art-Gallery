@@ -3,33 +3,37 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as Arrow } from '@assets/icons/right_arrow_icon.svg';
+import { Button } from '@ui-components/Button';
 
 import styles from './ScrollButton.module.scss';
 
 const cx = cn.bind(styles);
 
 type TScrollButtonProps = {
-  isDarkTheme?: boolean;
+  theme: 'light' | 'dark';
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ScrollButton: React.FC<TScrollButtonProps> = ({
   /**
    * Boolean value for change theme
    */
-  isDarkTheme = false,
+  theme = 'light',
   ...props
 }) => {
-  // Тут функция для скролла будет написана
-  const onScroll = () => {};
+  // TODO Тут функция для скролла будет написана
+  const onScroll: React.MouseEventHandler = () => null;
 
-  const classNames = cx('Scroll', {
-    [`Scroll_dark`]: isDarkTheme,
-  });
+  const classNames = cx('scroll', [`scroll_${theme}`]);
 
   return (
-    <button onClick={onScroll} type='button' className={classNames} {...props}>
+    <Button
+      onClick={() => onScroll}
+      type='button'
+      className={classNames}
+      {...props}
+    >
       <Arrow />
-    </button>
+    </Button>
   );
 };
 

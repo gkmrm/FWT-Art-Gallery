@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CardGrid from './CardGrid';
-import testData from './testDataforCardGrid';
+import Grid from './Grid';
 
-const meta: Meta<typeof CardGrid> = {
-  title: 'Project/ui/CardGrid',
-  component: CardGrid,
+const meta: Meta<typeof Grid> = {
+  title: 'Project/ui/Grid',
+  component: Grid,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -16,12 +15,10 @@ const meta: Meta<typeof CardGrid> = {
   },
 };
 
-type Story = StoryObj<typeof CardGrid>;
+type Story = StoryObj<typeof Grid>;
 
 export const Standart: Story = {
-  args: {
-    arrayData: testData,
-  },
+  args: {},
 };
 
 export default meta;

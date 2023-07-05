@@ -21,13 +21,13 @@ type Story = StoryObj<typeof ToggleTheme>;
 
 export const Default: Story = {
   args: {
-    isDarkTheme: false,
+    theme: 'light',
   },
 };
 
 export const Dark: Story = {
   args: {
-    isDarkTheme: true,
+    theme: 'dark',
   },
 };
 

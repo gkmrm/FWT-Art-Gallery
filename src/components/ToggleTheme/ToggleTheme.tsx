@@ -4,35 +4,34 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as DarkIcon } from '@assets/icons/dark_icon.svg';
 import { ReactComponent as LightIcon } from '@assets/icons/light_icon.svg';
+import { Button } from '@ui-components/Button';
 
 import styles from './ToggleTheme.module.scss';
 
 const cx = cn.bind(styles);
 
 type TToggleThemeProps = {
-  isDarkTheme?: boolean;
+  theme?: 'light' | 'dark';
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ToggleTheme: React.FC<TToggleThemeProps> = ({
-  isDarkTheme = false,
+  theme = 'light',
   ...props
 }) => {
-  // Тут функция для смены темы
+  // TODO Тут функция для смены темы
   const onThemeChange = () => {};
 
-  const classNames = cx('Toggle', {
-    [`Toggle_dark`]: isDarkTheme,
-  });
+  const classNames = cx('Toggle', `Toggle_${theme}`);
 
   return (
-    <button
+    <Button
       onClick={onThemeChange}
       type='button'
       className={classNames}
       {...props}
     >
-      {isDarkTheme ? <LightIcon /> : <DarkIcon />}
-    </button>
+      {theme === 'dark' ? <LightIcon /> : <DarkIcon />}
+    </Button>
   );
 };
 

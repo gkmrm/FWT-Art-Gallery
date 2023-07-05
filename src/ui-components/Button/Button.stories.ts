@@ -22,7 +22,7 @@ const meta: Meta<typeof Button> = {
           Created to display function buttons as a square image. eg: a trash icon button, a gear icon button. 
 
           Note: 
-          Buttons to display the switching and scrolling of the theme USE components ToogleTheme and Scroll`,
+          Buttons to display the scrolling and switching of the theme USE components ToogleTheme and ScrollButton`,
       },
     },
   },
@@ -32,40 +32,40 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   args: {
-    className: 'default',
+    variant: 'default',
     onClick: () => {
       // eslint-disable-next-line no-console
       console.log('CLicked');
     },
-    isDarkTheme: false,
+    theme: 'light',
     isDisabled: false,
-    value: 'Default button',
+    children: 'Default button',
   },
 };
 
 export const Text: Story = {
   args: {
-    className: 'text',
+    variant: 'text',
     onClick: () => {
       // eslint-disable-next-line no-console
       console.log('CLicked');
     },
-    isDarkTheme: false,
+    theme: 'light',
     isDisabled: false,
-    value: 'Default button',
+    children: 'Default button',
   },
 };
 
 export const Icon: Story = {
   args: {
-    className: 'icon',
+    variant: 'icon',
     onClick: () => {
       // eslint-disable-next-line no-console
       console.log('CLicked');
     },
-    isDarkTheme: false,
+    theme: 'light',
     isDisabled: false,
-    value: '',
+    children: '',
   },
 };
 

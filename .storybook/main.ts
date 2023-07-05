@@ -1,5 +1,3 @@
-import path from 'path';
-
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
@@ -9,21 +7,6 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/preset-create-react-app',
     '@storybook/addon-interactions',
-    {
-      name: '@storybook/addon-styling',
-      options: {
-        cssBuildRule: {
-          test: /\.css$/,
-          use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {},
-            },
-          ],
-        },
-      },
-    },
   ],
   framework: {
     name: '@storybook/react-webpack5',

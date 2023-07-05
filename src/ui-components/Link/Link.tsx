@@ -7,7 +7,7 @@ import styles from './Link.module.scss';
 const cx = cn.bind(styles);
 
 type TLinkProps = {
-  isDarkTheme: boolean;
+  theme: 'light' | 'dark';
   className?: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -15,11 +15,7 @@ const Link: React.FC<TLinkProps> = ({
   /**
    * Boolean value for change theme
    */
-  isDarkTheme,
-  /**
-   * ReactNode
-   */
-  children,
+  theme,
   /**
    * Addition className for Link
    */
@@ -27,18 +23,19 @@ const Link: React.FC<TLinkProps> = ({
   /**
    * standart Anchor props <a></a>
    */
-  ...other
+  ...others
 }) => {
-  const classNames = cx(className, 'Link', { Link_dark: isDarkTheme });
+  const classNames = cx(className, 'link', `link_${theme}`);
 
   return (
     <a
       className={classNames}
-      href={other.href}
+      href={others.href}
       target='_blank'
       rel='noreferrer'
+      {...others}
     >
-      {children}
+      {others.children}
     </a>
   );
 };

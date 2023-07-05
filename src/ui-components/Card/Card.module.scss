@@ -1,7 +1,7 @@
 @import '@styles/_variables.scss';
 @import '@styles/_mixins.scss';
 
-.Сard {
+.card {
   margin: 0;
   padding: 0;
   border: 0;
@@ -11,40 +11,38 @@
   height: 100%;
   overflow: hidden;
   transition: all ease-in 0.3s;
-}
 
-.img {
-  transition: all 0.5s ease-out;
-  @include noUserSelect;
-  @include breakPointPC {
-    &:hover {
-      transform: scale(1.3);
+  &__wrapper {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 20px);
+    max-height: 45px;
+
+    @include breakPointTab {
+      max-height: 66px;
+      width: calc(100% - 28px);
+    }
+    @include breakPointPC {
+      max-height: 82px;
+      width: calc(100% - 92px);
     }
   }
-}
 
-.wrapper {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 20px);
-  max-height: 45px;
-
-  @include breakPointTab {
-    max-height: 66px;
-    width: calc(100% - 28px);
-  }
-  @include breakPointPC {
-    max-height: 82px;
-    width: calc(100% - 92px);
+  &__img {
+    transition: all 0.5s ease-out;
+    @include noUserSelect;
+    @include breakPointPC {
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
   }
 }
 
 .info {
   text-transform: uppercase;
   box-sizing: border-box;
-  background-color: $primaryWhite;
-  color: $primaryBlack;
   width: 100%;
   padding: 8px 0 8px 0px;
   max-width: 236px;
@@ -57,12 +55,17 @@
     padding: 20px 0 20px 0px;
   }
 
+  &_light {
+    background-color: $primaryWhite;
+    color: $primaryBlack;
+  }
+
   &__textBlock {
     width: 100%;
     height: 29px;
     border: none;
     padding-left: 12px;
-    letter-spacing: 0.0000000001px;
+    letter-spacing: 0.01px;
 
     @include breakPointTab {
       height: 42px;
@@ -70,7 +73,10 @@
 
     @include breakPointPC {
       padding-left: 18px;
-      border-left: 2px solid $accentRed;
+
+      &_light {
+        border-left: 2px solid $accentRed;
+      }
 
       &_dark {
         border-left: 2px solid $accentGold;
@@ -98,9 +104,12 @@
     font-family: $SecondFontFamily;
     font-size: $capTextSmallSize;
     font-weight: $subtitleTextWeight;
-    color: $accentRed;
     margin-block-start: 4px;
     margin-block-end: 0;
+
+    &_light {
+      color: $accentRed;
+    }
 
     &_dark {
       color: $accentGold;
@@ -115,10 +124,11 @@
   &__arrow {
     max-width: 24px;
     width: 100%;
-    background-color: $accentRed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
+
+    &_light {
+      background-color: $accentRed;
+    }
 
     &_dark {
       background-color: $accentGold;
