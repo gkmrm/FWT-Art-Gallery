@@ -2,12 +2,14 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
+import { ThemeTypes } from '@hooks/ThemeConext';
+
 import styles from './Link.module.scss';
 
 const cx = cn.bind(styles);
 
 type TLinkProps = {
-  theme: 'light' | 'dark';
+  theme: ThemeTypes;
   className?: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
