@@ -2,37 +2,37 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { Container } from '@components/Container';
-// import { useThemeContext } from '@hooks/ThemeContext';
+// import { Container } from '@components/Container';
 import { Footer } from '@components/Footer';
-import { Header } from '@components/Header';
+import { Navigation2 } from '@components/Navigation2';
+import { useThemeContext } from '@hooks/ThemeConext';
+import { Card } from '@ui-components/Card';
+import { Grid } from '@ui-components/Grid';
+import testData from '@ui-components/Grid/testDataforCardGrid';
 
-import styles from './Footer.module.scss';
+import styles from './MainPage.module.scss';
 
 const cx = cn.bind(styles);
 
 export type TMainPageProps = {
-  className: string;
-  isDarkTheme: boolean;
+  className?: string;
 };
 
-const MainPage: React.FC<TMainPageProps> = ({ className, isDarkTheme }) => (
-  // const { isDarkTheme } = useThemeContext();
-  <div
-    className={cx(className, 'MainPage', { [`MainPage_dark`]: isDarkTheme })}
-  >
-    <Container>
-      <Header isDarkTheme={false} />
-      <div
-        className={cx('CardGrid_wrapper', {
-          [`CardGrid_wrapper_dark`]: isDarkTheme,
-        })}
-      >
-        {/* <CardGrid /> */}
-      </div>
-      <Footer isDarkTheme={false} />
-    </Container>
-  </div>
-);
+const MainPage: React.FC<TMainPageProps> = ({ className }) => {
+  const { theme } = useThemeContext();
+
+  return (
+    <div className={cx(className, 'mainPage', `mainPage_${theme}`)}>
+      <Navigation2 theme={theme} />
+      <Grid className={cx('mainPage__grid')}>
+        {testData.map((item) => (
+          <Card {...item} theme={theme} />
+        ))}
+      </Grid>
+      {/* <Container className={cx('mainPage__wrapperPaint')}></Container> */}
+      <Footer theme={theme} />
+    </div>
+  );
+};
 
 export default MainPage;

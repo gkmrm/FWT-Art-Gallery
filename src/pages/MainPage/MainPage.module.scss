@@ -1,0 +1,27 @@
+.mainPage {
+  min-height: 100vh;
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  &__grid {
+    padding: 80px 20px 80px 20px;
+
+    @include breakPointPC {
+      padding: 100px 20px 100px 20px;
+    }
+  }
+
+  &__wrapperPaint {
+    box-sizing: border-box;
+    padding: 80px 0 80px 0;
+    @include breakPointPC {
+      padding: 100px 0 100px 0;
+    }
+  }
+}
