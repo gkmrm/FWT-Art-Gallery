@@ -1,14 +1,14 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 
-export type ThemeTypes = boolean;
+export type ThemeTypes = 'light' | 'dark';
 
 export interface ThemeProps {
-  isDarkTheme: ThemeTypes;
+  theme: ThemeTypes;
   setTheme: Dispatch<SetStateAction<ThemeTypes>>;
 }
 
 export const themeDefaultValue: ThemeProps = {
-  isDarkTheme: false,
+  theme: 'light',
   setTheme: () => true,
 };
 
