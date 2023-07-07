@@ -5,6 +5,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as Arrow } from '@assets/icons/arrowIcon.svg';
+import { ThemeTypes } from '@hooks/ThemeConext';
 import { TPictureProps, Picture } from '@ui-components/Picture';
 
 import styles from './Card.module.scss';
@@ -35,7 +36,7 @@ export type TCardProps = {
   /**
    * Bollean value for change theme
    */
-  theme?: 'light' | 'dark';
+  theme?: ThemeTypes;
 };
 
 const Card: React.FC<TCardProps> = ({
@@ -45,7 +46,7 @@ const Card: React.FC<TCardProps> = ({
   onClick,
   theme = 'light',
 }) => (
-  <div className={cx('card')} onClick={onClick}>
+  <div className={cx('card')} onClick={onClick} role='presentation'>
     <Picture {...image} className={cx('card__img')} />
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
