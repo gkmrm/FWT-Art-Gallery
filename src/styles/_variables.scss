@@ -22,6 +22,10 @@ $h5TextWeight: 700;
 $h6TextSize: 12px;
 $h6TextWeight: 500;
 
+//Navigation buttons
+$navTextSize: 16px;
+$navTextWeight: 700;
+
 // Paragraph base
 $pTextSize: 16px;
 $pTextWeightLight: 300;
@@ -80,6 +84,10 @@ $breakPointMax: 1440px;
 $breakPointPC: 1240px;
 $breakPointTab: 768px;
 $breakPointMob: 320px;
+$breakPointPCMaxWidth: 1239px;
+$breakPointTabMaxWidth: 767px;
+$breakPointMobMaxWidth: 319px;
+$breakPointGridPC: 1280px;
 
 // Button variables
 $defaultButtonLightShadow: 0px 4px 10px 0px #00000040;

@@ -23,9 +23,28 @@
   }
 }
 
+@mixin breakPointTabMaxWidth {
+  @media screen and (max-width: $breakPointTabMaxWidth) {
+    @content;
+  }
+}
+
+@mixin breakPointPCMaxWidth {
+  @media screen and (max-width: $breakPointPCMaxWidth) {
+    @content;
+  }
+}
+
 @mixin paintingsGridMax {
-  @media screen and (min-width: $breakPointPC) {
+  @media screen and (min-width: calc($breakPointGridPC)) {
     grid-template-columns: repeat(3, minmax(392px, 1fr));
+    @content;
+  }
+}
+
+@mixin paintingsGridPC {
+  @media screen and (min-width: $breakPointPC) {
+    grid-template-columns: repeat(3, minmax(380px, 1fr));
     @content;
   }
 }
