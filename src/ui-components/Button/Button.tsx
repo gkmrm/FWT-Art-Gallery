@@ -2,6 +2,8 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
+import { ThemeTypes } from '@hooks/ThemeConext';
+
 import styles from './Button.module.scss';
 
 const cx = cn.bind(styles);
@@ -10,7 +12,7 @@ type TButtonProps = {
   /**
    * String value for change theme 'light' | 'dark'
    */
-  theme?: 'dark' | 'light';
+  theme?: ThemeTypes;
   /**
    * Bollean value for disable button
    */
