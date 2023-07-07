@@ -3,6 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as Arrow } from '@assets/icons/right_arrow_icon.svg';
+import { ThemeTypes } from '@hooks/ThemeConext';
 import { Button } from '@ui-components/Button';
 
 import styles from './ScrollButton.module.scss';
@@ -10,12 +11,12 @@ import styles from './ScrollButton.module.scss';
 const cx = cn.bind(styles);
 
 type TScrollButtonProps = {
-  theme: 'light' | 'dark';
+  theme: ThemeTypes;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ScrollButton: React.FC<TScrollButtonProps> = ({
   /**
-   * Boolean value for change theme
+   * String value for change theme
    */
   theme = 'light',
   ...props
