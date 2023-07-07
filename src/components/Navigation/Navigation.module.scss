@@ -1,0 +1,169 @@
+// @import '@styles/_variables.scss';
+// @import '@styles/_mixins.scss';
+
+.menu__button {
+  display: none;
+}
+
+@include breakPointPCMaxWidth {
+  .blur {
+    visibility: hidden;
+    height: 0vh;
+    width: 0vh;
+    position: absolute;
+    backdrop-filter: brightness(0.5);
+  }
+
+  .menu {
+    visibility: hidden;
+    position: fixed;
+    width: 0;
+    height: 117vh;
+    transition: width 0.1s ease-out;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    gap: 20px;
+
+    @include breakPointTab {
+      gap: 40px;
+    }
+
+    &_light {
+      background-color: $primaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+
+    &__button {
+      display: none;
+    }
+
+    &__icon {
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      position: relative;
+      user-select: none;
+      visibility: visible;
+    }
+
+    &__button:checked ~ .menu {
+      width: 252px;
+      visibility: visible;
+
+      @include breakPointTab {
+        width: 466px;
+      }
+    }
+
+    &__button:checked ~ .blur {
+      display: flex;
+      height: 117vh;
+      width: 200vh;
+      visibility: visible;
+      top: 16px;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+
+    &__button:checked ~ .menu__icon .navicon {
+      @include noUserSelect;
+      background-image: url('./../../assets/icons/delete_icon.svg');
+      position: fixed;
+      top: 20px;
+
+      @include breakPointTab {
+        top: 32px;
+      }
+    }
+  }
+
+  .navicon {
+    background-image: url('./../../assets/icons/buger_icon.svg');
+    background-color: transparent;
+    display: block;
+    height: 24px;
+    width: 24px;
+    position: relative;
+    z-index: 10;
+    color: $primaryLightGrey;
+  }
+
+  .menu .login {
+    -webkit-box-ordinal-group: 1;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+  }
+
+  .menu .signup {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 3;
+    -ms-flex-order: 3;
+    order: 3;
+  }
+
+  .menu .toggle {
+    -webkit-box-ordinal-group: 3;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    margin: 144px 0 20px 47px;
+
+    @include breakPointTab {
+      margin: 200px 0 20px 94px;
+    }
+  }
+
+  .login,
+  .signup {
+    font-size: $h3TextSize;
+    font-weight: $h3TextWeight;
+    font-family: $MainFontFamily;
+    text-decoration: none;
+    margin-left: 47px;
+
+    @include breakPointTab {
+      font-size: $h1TextSize;
+      font-weight: $h1TextWeight;
+      margin-left: 94px;
+    }
+  }
+}
+
+@include breakPointPC {
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    gap: 20px;
+
+    &__icon {
+      visibility: hidden;
+    }
+  }
+  .toggle {
+    margin-left: 40px;
+  }
+
+  .login,
+  .signup {
+    font-family: $MainFontFamily;
+    text-decoration: none;
+    font-size: $navTextSize;
+    font-weight: $navTextWeight;
+  }
+}
