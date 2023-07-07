@@ -1,12 +1,17 @@
-@import '@styles/_mixins';
-@import '@styles/_variables';
+// @import '@styles/_mixins.scss';
+// @import '@styles/_variables.scss';
 
-.Footer {
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $primaryWhite;
-  color: $primaryDarkGrey;
+  font-family: $SecondFontFamily;
+  box-sizing: border-box;
+
+  &_light {
+    background-color: $primaryWhite;
+    color: $primaryDarkGrey;
+  }
 
   &_dark {
     background-color: $primaryBlack;
@@ -16,14 +21,66 @@
   &__text {
     display: flex;
     flex-direction: column;
+    gap: 9px;
+    font-size: $pTextSmallSize;
+    font-weight: $pTextWeightLight;
+    margin-left: 20px;
+
+    @include breakPointTab {
+      font-size: $pTextSize;
+      gap: 12px;
+    }
+
+    @include breakPointPC {
+      gap: 20px;
+      margin-left: 20px;
+    }
+
+    &_paragraph {
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding: 2px 0 2px 0;
+    }
 
     &_name {
       color: $secondaryGrey;
+      margin-block-start: 0;
+      margin-block-end: 0;
+      padding: 1px 0 1px 0;
+    }
+
+    &_link {
+      display: inline-flex;
+      font-weight: $pTextWeightMid;
     }
   }
 
   &__icons {
     display: flex;
     gap: 20px;
+    margin-left: 20px;
+
+    @include breakPointTab {
+      margin-right: 20px;
+    }
+    @include breakPointPC {
+      margin: 0;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 0 40px 0;
+
+    @include breakPointTab {
+      flex-direction: row;
+    }
+
+    @include breakPointPC {
+      padding: 40px 0 40px 0;
+    }
   }
 }
