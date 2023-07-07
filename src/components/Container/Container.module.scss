@@ -1,15 +1,21 @@
-@import '@styles/_mixins';
-@import '@styles/_variables';
+// @import '@styles/_mixins.scss';
+// @import '@styles/_variables.scss';
 
-.Container {
-  // ПОМЕНЯТЬ!!!!!
-  min-width: 1240px;
+.container {
+  min-width: 320px;
+  width: 100%;
   margin: 0 auto;
+  max-width: 1240px;
+  box-sizing: border-box;
 
-  // @include as {
-  //   min-width: 728px;
-  // }
-  // @include sa {
-  //   max-width: 1240px;
-  // }
+  @include breakPointTab {
+    min-width: 728px;
+  }
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+  &_dark {
+    background-color: $primaryBlack;
+  }
 }

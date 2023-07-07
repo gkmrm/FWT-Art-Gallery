@@ -12,7 +12,7 @@ export type TContainerProps = {
 };
 
 const Container: React.FC<TContainerProps> = ({ className, children }) => (
-  <div className={cx('Container', className)}>{children}</div>
+  <div className={cx('container', className)}>{children}</div>
 );
 
 export default Container;
