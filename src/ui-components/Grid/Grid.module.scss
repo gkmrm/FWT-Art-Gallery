@@ -3,21 +3,16 @@
 .grid {
   display: grid;
   margin: 0 auto;
-  max-width: 1240px;
-  padding: 80px 20px 80px 20px;
 
   @include paintingsGridMobile {
     gap: 20px;
   }
+
   @include paintingsGridTab {
     gap: 24px;
   }
-  @include paintingsGridPC {
-    gap: 30px;
-  }
 
-  @include paintingsGridMax {
+  @include paintingsGridPC {
     gap: 32px;
-    padding: 100px 0 100px 0;
   }
 }

@@ -11,6 +11,9 @@ type TGridProps = {
    * Additional classNames for Grid
    */
   className?: string;
+  /**
+   * Inner comppnents for this component
+   */
   children?: React.ReactNode;
 };
 
