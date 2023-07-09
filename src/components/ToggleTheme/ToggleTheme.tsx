@@ -19,7 +19,7 @@ type TToggleThemeProps = {
 
 const ToggleTheme: React.FC<TToggleThemeProps> = ({ className, ...props }) => {
   const themeContext = useThemeContext();
-  // TODO Тут функция для смены темы
+
   const onThemeChange = () =>
     themeContext.setTheme(themeContext.theme === 'light' ? 'dark' : 'light');
 
