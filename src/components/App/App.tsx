@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
-import { Header } from '@components/Header';
 import { ThemeProvider, ThemeTypes } from '@hooks/ThemeConext';
 
+import { MainPage } from '../../pages/MainPage';
+
 const App = () => {
-  const [isDarkTheme, setTheme] = useState<ThemeTypes>(false);
+  const [theme, setTheme] = useState<ThemeTypes>('light');
 
   return (
-    <ThemeProvider value={{ isDarkTheme, setTheme }}>
-      <Header isDarkTheme={isDarkTheme} />
+    <ThemeProvider value={{ theme, setTheme }}>
+      <MainPage />
     </ThemeProvider>
   );
 };
