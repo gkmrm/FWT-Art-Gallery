@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as Arrow } from '@assets/icons/arrowIcon.svg';
+import { ArrowCardIcon } from '@assets/icons';
 import { ThemeTypes } from '@hooks/ThemeConext';
 import { TPictureProps, Picture } from '@ui-components/Picture';
 
@@ -56,7 +56,7 @@ const Card: React.FC<TCardProps> = ({
         </div>
       </div>
       <div className={cx('info__arrow', `info__arrow_${theme}`)}>
-        <Arrow />
+        <ArrowCardIcon />
       </div>
     </div>
   </div>

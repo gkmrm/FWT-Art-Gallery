@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as BurgerIcon } from '@assets/icons/buger_icon.svg';
-import { ReactComponent as CloseIcon } from '@assets/icons/delete_icon.svg';
-import { ReactComponent as Logo } from '@assets/icons/logo.svg';
+import { BurgerIcon, CloseIcon, Logo } from '@assets/icons';
 import { Container } from '@components/Container';
 import { ToggleTheme } from '@components/ToggleTheme';
 import { ThemeTypes } from '@hooks/ThemeConext';

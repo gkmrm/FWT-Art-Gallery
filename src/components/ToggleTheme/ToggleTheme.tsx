@@ -2,8 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as DarkIcon } from '@assets/icons/dark_icon.svg';
-import { ReactComponent as LightIcon } from '@assets/icons/light_icon.svg';
+import { DarkIcon, LightIcon } from '@assets/icons';
 import { useThemeContext } from '@hooks/ThemeConext';
 import { Button } from '@ui-components/Button';
 

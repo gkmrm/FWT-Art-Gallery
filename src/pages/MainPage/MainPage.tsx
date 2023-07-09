@@ -30,7 +30,7 @@ const MainPage: React.FC<TMainPageProps> = ({ className }) => {
       <Container className={cx('mainPage__wrapperPaint')}>
         <Grid className={cx('mainPage__grid')}>
           {testData.map((item) => (
-            <Card {...item} theme={theme} />
+            <Card {...item} id={item.id} theme={theme} />
           ))}
         </Grid>
       </Container>

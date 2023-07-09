@@ -2,9 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as FacebookIcon } from '@assets/icons/facebook_icon.svg';
-import { ReactComponent as InstagramIcon } from '@assets/icons/instagram_icon.svg';
-import { ReactComponent as VkIcon } from '@assets/icons/vk_icon.svg';
+import { FacebookIcon, InstagramIcon, VkIcon } from '@assets/icons';
 import { Container } from '@components/Container';
 import { ThemeTypes } from '@hooks/ThemeConext';
 import { Link } from '@ui-components/Link';

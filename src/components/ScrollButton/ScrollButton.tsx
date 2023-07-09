@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as Arrow } from '@assets/icons/right_arrow_icon.svg';
+import { ArrowIcon } from '@assets/icons';
 import { ThemeTypes } from '@hooks/ThemeConext';
 import { Button } from '@ui-components/Button';
 
@@ -30,7 +30,7 @@ const ScrollButton: React.FC<TScrollButtonProps> = ({ theme, ...props }) => {
       className={classNames}
       {...props}
     >
-      <Arrow />
+      <ArrowIcon />
     </Button>
   );
 };
