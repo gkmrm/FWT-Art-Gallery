@@ -25,7 +25,7 @@ export type TFooterProps = {
 };
 
 const Footer: React.FC<TFooterProps> = ({ className, theme }) => (
-  <div className={cx(className, 'footer', `footer_${theme}`)}>
+  <footer className={cx(className, 'footer', `footer_${theme}`)}>
     <Container className={cx('footer__container')}>
       <div className={cx(className, 'footer__text')}>
         <p className={cx('footer__text_paragraph')}>
@@ -53,7 +53,7 @@ const Footer: React.FC<TFooterProps> = ({ className, theme }) => (
         </Link>
       </div>
     </Container>
-  </div>
+  </footer>
 );
 
 export default Footer;
