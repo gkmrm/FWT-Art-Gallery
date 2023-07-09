@@ -81,13 +81,14 @@ $accentError: #ae2917;
 
 // BreakPoints
 $breakPointMax: 1440px;
-$breakPointPC: 1240px;
+$breakPointPC: 1280px;
 $breakPointTab: 768px;
 $breakPointMob: 320px;
-$breakPointPCMaxWidth: 1239px;
+
+// BreakPoints with max-width param
+$breakPointPCMaxWidth: 1279px;
 $breakPointTabMaxWidth: 767px;
 $breakPointMobMaxWidth: 319px;
-$breakPointGridPC: 1280px;
 
 // Button variables
 $defaultButtonLightShadow: 0px 4px 10px 0px #00000040;

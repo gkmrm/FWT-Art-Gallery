@@ -1,5 +1,6 @@
 @import './_variables';
 
+// BreakPoints standart
 @mixin breakPointMax {
   @media screen and (min-width: $breakPointMax) {
     @content;
@@ -23,6 +24,7 @@
   }
 }
 
+// BreakPoints for max-width param
 @mixin breakPointTabMaxWidth {
   @media screen and (max-width: $breakPointTabMaxWidth) {
     @content;
@@ -35,16 +37,10 @@
   }
 }
 
-@mixin paintingsGridMax {
-  @media screen and (min-width: calc($breakPointGridPC)) {
-    grid-template-columns: repeat(3, minmax(392px, 1fr));
-    @content;
-  }
-}
-
+// BreakPoints for Grid
 @mixin paintingsGridPC {
   @media screen and (min-width: $breakPointPC) {
-    grid-template-columns: repeat(3, minmax(380px, 1fr));
+    grid-template-columns: repeat(3, minmax(392px, 1fr));
     @content;
   }
 }
@@ -63,6 +59,8 @@
   }
 }
 
+// Special mixin's
+// Disabling user selection
 @mixin noUserSelect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Chrome/Safari/Opera */
@@ -72,12 +70,14 @@
   user-select: none;
 }
 
+// Flex positioning in the centre
 @mixin flexCenter {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+// Opacity + disabled user selection + disabled click
 @mixin disabledOpacity05 {
   pointer-events: none;
   opacity: 0.5;
