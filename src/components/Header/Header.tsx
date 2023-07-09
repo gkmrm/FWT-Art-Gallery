@@ -68,7 +68,9 @@ const Header: React.FC<THeaderProps> = ({ theme }) => {
           <div
             onClick={() => setNavigationStatus(!isNavigationActive)}
             onKeyDown={() => setNavigationStatus(!isNavigationActive)}
-            className={cx('header__button')}
+            className={cx('header__button', {
+              [`header__button_active`]: isNavigationActive,
+            })}
             role='button'
             tabIndex={0}
           >
