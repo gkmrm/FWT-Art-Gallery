@@ -29,6 +29,10 @@ const Header: React.FC<THeaderProps> = ({ theme }) => {
     setNavigationStatus(false);
   };
 
+  const menuClassNames = isNavigationActive
+    ? cx('header__menu', 'header__menu_active', `header__menu_${theme}`)
+    : cx('header__menu', `header__menu_${theme}`);
+
   return (
     <header className={cx('header', `header_${theme}`)}>
       <Container className={cx('header__container')}>
@@ -38,17 +42,7 @@ const Header: React.FC<THeaderProps> = ({ theme }) => {
               <Logo />
             </Link>
           </div>
-          <div
-            className={
-              isNavigationActive
-                ? cx(
-                    'header__menu',
-                    'header__menu_active',
-                    `header__menu_${theme}`
-                  )
-                : cx('header__menu', `header__menu_${theme}`)
-            }
-          >
+          <div className={menuClassNames}>
             <ToggleTheme />
             <nav>
               <ul className={cx('header__nav')}>
@@ -73,19 +67,24 @@ const Header: React.FC<THeaderProps> = ({ theme }) => {
               </ul>
             </nav>
           </div>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <div
             onClick={() => setNavigationStatus(!isNavigationActive)}
+            onKeyDown={() => setNavigationStatus(!isNavigationActive)}
             className={cx('header__button')}
+            role='button'
+            tabIndex={0}
           >
             {isNavigationActive ? <CloseIcon /> : <BurgerIcon />}
           </div>
         </div>
         {isNavigationActive ? (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+          // eslint-disable-next-line jsx-a11y/control-has-associated-label
           <div
             className={cx('blur', `blur_${theme}`)}
             onClick={onOutsideClick}
+            onKeyDown={onOutsideClick}
+            role='button'
+            tabIndex={0}
           />
         ) : (
           ''
