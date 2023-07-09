@@ -1,33 +1,158 @@
-// @import '@styles/_mixins.scss';
-// @import '@styles/_variables.scss';
-
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $primaryWhite;
-  color: $primaryDarkGrey;
-  height: 66px;
+  width: 100%;
+  box-sizing: border-box;
+
+  &_light {
+    color: $primaryDarkGrey;
+    background-color: $primaryWhite;
+  }
 
   &_dark {
-    background-color: $primaryBlack;
     color: $primaryLightGrey;
+    background-color: $primaryBlack;
   }
 
-  &__link {
-    @include flexCenter;
+  &__wrapper {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+
+    @include breakPointTab {
+      height: 88px;
+    }
+    @include breakPointPC {
+      height: 80px;
+    }
   }
 
-  @include breakPointTab {
-    height: 88px;
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
-  @include breakPointPC {
-    height: 80px;
+
+  &__menu {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 40px;
+    padding: 144px 0 20px 47px;
+
+    @include breakPointTab {
+      padding: 200px 0 20px 94px;
+    }
+
+    @include breakPointPC {
+      padding: 0;
+    }
+
+    @include breakPointPCMaxWidth {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: fixed;
+      left: 100%;
+      top: 0;
+      width: 252px;
+      height: 200vh;
+      overflow: hidden;
+      z-index: 10;
+      transition: left 0.5s;
+      @include noUserSelect;
+
+      @include breakPointTab {
+        width: 466px;
+      }
+
+      &_active {
+        left: calc(100% - 252px);
+
+        @include breakPointTab {
+          left: calc(100% - 466px);
+        }
+      }
+
+      &_light {
+        background-color: $primaryWhite;
+      }
+
+      &_dark {
+        background-color: $primaryBlack;
+      }
+    }
+  }
+
+  &__button {
+    display: none;
+
+    @include breakPointPCMaxWidth {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      z-index: 10;
+      width: 24px;
+      height: 24px;
+
+      @include breakPointTab {
+        top: 32px;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include breakPointPC {
+      flex-direction: row;
+    }
+
+    &_link {
+      font-size: $h3TextSize;
+      font-weight: $h3TextWeight;
+      font-family: $MainFontFamily;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      @include breakPointTab {
+        font-size: $h1TextSize;
+        font-weight: $h1TextWeight;
+      }
+
+      @include breakPointPC {
+        font-family: $MainFontFamily;
+        text-decoration: none;
+        font-size: $navTextSize;
+        font-weight: $navTextWeight;
+      }
+    }
   }
 }
 
-.container {
+.blur {
   display: flex;
-  justify-content: space-between;
-  padding: 0 20px 0 20px;
+  height: 200vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9;
+
+  &_light {
+    background-color: #0303034d;
+  }
+
+  &_dark {
+    background-color: #03030399;
+  }
+
+  @include breakPointPC {
+    display: none;
+  }
 }
