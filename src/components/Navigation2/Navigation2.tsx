@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
 
-// import { ReactComponent as Tnak } from '@assets/icons/buger_icon.svg';
 import { ReactComponent as BurgerIcon } from '@assets/icons/buger_icon.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/delete_icon.svg';
 import { ReactComponent as Logo } from '@assets/icons/logo.svg';
@@ -20,12 +19,11 @@ type TNavigation2 = {
 };
 
 const Navigation2: React.FC<TNavigation2> = ({ theme }) => {
-  // TODO Сделать обработчик клика вне Navigation
-  // const onOutsideCLick = () => {};
-  const [navigation, setNavigation] = useState(false);
+  const [isNavigationActive, setNavigationStatus] = useState(false);
 
+  // TODO Сделать лучше
   const onOutsideClick = (): void => {
-    setNavigation(false);
+    setNavigationStatus(false);
   };
 
   return (
@@ -39,7 +37,7 @@ const Navigation2: React.FC<TNavigation2> = ({ theme }) => {
           </div>
           <div
             className={
-              navigation
+              isNavigationActive
                 ? cx(
                     'header__menu',
                     'header__menu_active',
@@ -74,13 +72,13 @@ const Navigation2: React.FC<TNavigation2> = ({ theme }) => {
           </div>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <div
-            onClick={() => setNavigation(!navigation)}
+            onClick={() => setNavigationStatus(!isNavigationActive)}
             className={cx('header__button')}
           >
-            {navigation ? <CloseIcon /> : <BurgerIcon />}
+            {isNavigationActive ? <CloseIcon /> : <BurgerIcon />}
           </div>
         </div>
-        {navigation ? (
+        {isNavigationActive ? (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <div
             className={cx('blur', `blur_${theme}`)}
