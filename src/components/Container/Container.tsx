@@ -7,7 +7,13 @@ import styles from './Container.module.scss';
 const cx = cn.bind(styles);
 
 export type TContainerProps = {
+  /**
+   * Theme from parent component
+   */
   className?: string;
+  /**
+   * Inner comopnents for this component
+   */
   children: React.ReactNode;
 };
 

@@ -12,7 +12,7 @@ type TGridProps = {
    */
   className?: string;
   /**
-   * Inner comppnents for this component
+   * Inner components for this component
    */
   children?: React.ReactNode;
 };

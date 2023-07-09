@@ -11,16 +11,13 @@ import styles from './ScrollButton.module.scss';
 const cx = cn.bind(styles);
 
 type TScrollButtonProps = {
-  theme: ThemeTypes;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-const ScrollButton: React.FC<TScrollButtonProps> = ({
   /**
    * String value for change theme
    */
-  theme = 'light',
-  ...props
-}) => {
+  theme: ThemeTypes;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const ScrollButton: React.FC<TScrollButtonProps> = ({ theme, ...props }) => {
   // TODO Тут функция для скролла будет написана
   const onScroll: React.MouseEventHandler = () => null;
 

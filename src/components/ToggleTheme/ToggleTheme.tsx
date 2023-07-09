@@ -12,6 +12,9 @@ import styles from './ToggleTheme.module.scss';
 const cx = cn.bind(styles);
 
 type TToggleThemeProps = {
+  /**
+   * Additional classNames for ToggleTheme
+   */
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

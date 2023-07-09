@@ -2,7 +2,6 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-// import { ReactComponent as Tnak } from '@assets/icons/buger_icon.svg';
 import { ToggleTheme } from '@components/ToggleTheme';
 import { ThemeTypes } from '@hooks/ThemeConext';
 import { Link } from '@ui-components/Link';
@@ -11,11 +10,14 @@ import styles from './Navigation.module.scss';
 
 const cx = cn.bind(styles);
 
-type TNavigation = {
+type TNavigationProps = {
+  /**
+   * Theme from parent component = 'light' | 'dark'
+   */
   theme: ThemeTypes;
 };
 
-const Navigation: React.FC<TNavigation> = ({ theme }) => {
+const Navigation: React.FC<TNavigationProps> = ({ theme }) => {
   // TODO Сделать обработчик клика вне Navigation
   const onOutsideCLick = () => {};
 
