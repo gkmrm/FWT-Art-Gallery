@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
 
+import { Provider } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { ThemeProvider, ThemeTypes } from '@hooks/ThemeConext';
+import { setupStore } from '@store/store';
 
 import { MainPage } from '../../pages/MainPage';
 
 const App = () => {
   const [theme, setTheme] = useState<ThemeTypes>('light');
+  const store = setupStore();
 
   return (
     <ThemeProvider value={{ theme, setTheme }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='*' element={<Navigate to='/' replace />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='*' element={<Navigate to='/' replace />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   );
 };

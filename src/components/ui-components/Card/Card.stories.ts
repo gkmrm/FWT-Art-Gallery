@@ -14,12 +14,11 @@ export const Standart: Story = {
     theme: 'light',
     title: 'JEAN-HONORE FRAGONARD',
     subtitle: '1732 - 1806',
-    image: {
+    paint: {
       src: '/images/64761919c25ef9fb3e0cdb98/image.jpg',
       webp: '/images/64761919c25ef9fb3e0cdb98/image.webp',
       src2x: '/images/64761919c25ef9fb3e0cdb98/image2x.jpg',
       webp2x: '/images/64761919c25ef9fb3e0cdb98/image2x.webp',
-      alt: 'Example',
     },
     onClick: () => {
       // eslint-disable-next-line no-console

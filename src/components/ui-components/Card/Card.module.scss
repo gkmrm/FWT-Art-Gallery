@@ -101,6 +101,13 @@
     font-weight: $h4TextWeight;
     margin-block-start: 0;
     margin-block-end: 0;
+    max-width: 280px;
+    overflow: hidden;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    white-space: nowrap;
 
     @include breakPointTab {
       font-size: $h4TextSize;

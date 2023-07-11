@@ -4,7 +4,8 @@ import cn from 'classnames/bind';
 
 import { ArrowCardIcon } from '@assets/icons';
 import { ThemeTypes } from '@hooks/ThemeConext';
-import { TPictureProps, Picture } from '@ui-components/Picture';
+import { IPaint } from '@store/models/ArtistStaticModels';
+import { Picture } from '@ui-components/Picture';
 
 import styles from './Card.module.scss';
 
@@ -26,7 +27,7 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  image: TPictureProps;
+  paint: IPaint;
   /**
    * Callback function to click event
    */
@@ -34,18 +35,22 @@ export type TCardProps = {
   /**
    * Bollean value for change theme
    */
-  theme?: ThemeTypes;
+  theme: ThemeTypes;
 };
 
 const Card: React.FC<TCardProps> = ({
   title,
   subtitle,
-  image,
+  paint,
   onClick,
-  theme = 'light',
+  theme,
 }) => (
   <div className={cx('card')} onClick={onClick} role='presentation'>
-    <Picture {...image} className={cx('card__img')} />
+    <Picture
+      {...paint}
+      className={cx('card__img')}
+      alt={`paiting of ${title}`}
+    />
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
         <div className={cx('info__textBlock', `info__textBlock_${theme}`)}>
