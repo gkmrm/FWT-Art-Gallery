@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
 
-import { BurgerIcon, CloseIcon, Logo } from '@assets/icons';
+import { ReactComponent as BurgerIcon } from '@assets/icons/buger_icon.svg';
+import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
+import { ReactComponent as Logo } from '@assets/icons/logo.svg';
 import { Container } from '@components/Container';
 import { ToggleTheme } from '@components/ToggleTheme';
-import { ThemeTypes } from '@hooks/ThemeConext';
 import { Link } from '@ui-components/Link';
+import { ThemeTypes } from 'src/context/ThemeConext';
 
 import styles from './Header.module.scss';
 
