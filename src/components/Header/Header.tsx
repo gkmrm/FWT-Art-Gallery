@@ -7,22 +7,16 @@ import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ReactComponent as Logo } from '@assets/icons/logo.svg';
 import { Container } from '@components/Container';
 import { ToggleTheme } from '@components/ToggleTheme';
+import { useThemeContext } from '@context/ThemeConext';
 import { Link } from '@ui-components/Link';
-import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Header.module.scss';
 
 const cx = cn.bind(styles);
 
-type THeaderProps = {
-  /**
-   * Theme from parent component = 'light' | 'dark'
-   */
-  theme: ThemeType;
-};
-
-const Header: React.FC<THeaderProps> = ({ theme }) => {
+const Header: React.FC = () => {
   const [isNavigationActive, setNavigationStatus] = useState(false);
+  const { theme } = useThemeContext();
 
   // TODO Сделать лучше
   const onOutsideClick = (): void => {

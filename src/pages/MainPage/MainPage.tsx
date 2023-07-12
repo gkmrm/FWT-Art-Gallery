@@ -14,19 +14,12 @@ import styles from './MainPage.module.scss';
 
 const cx = cn.bind(styles);
 
-export type TMainPageProps = {
-  /**
-   * Additional classNames for MainPage
-   */
-  className?: string;
-};
-
-const MainPage: React.FC<TMainPageProps> = ({ className }) => {
+const MainPage: React.FC = () => {
   const { theme } = useThemeContext();
 
   return (
-    <div className={cx(className, 'mainPage', `mainPage_${theme}`)}>
-      <Header theme={theme} />
+    <div className={cx('mainPage', `mainPage_${theme}`)}>
+      <Header />
       <Container className={cx('mainPage__wrapperPaint')}>
         <Grid className={cx('mainPage__grid')}>
           {testData.map((item) => (
@@ -34,7 +27,7 @@ const MainPage: React.FC<TMainPageProps> = ({ className }) => {
           ))}
         </Grid>
       </Container>
-      <Footer theme={theme} />
+      <Footer />
     </div>
   );
 };
