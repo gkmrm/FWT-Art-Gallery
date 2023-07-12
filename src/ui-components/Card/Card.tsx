@@ -3,6 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
+import { Link } from '@ui-components/Link';
 import { TPictureProps, Picture } from '@ui-components/Picture';
 import { ThemeType } from 'src/context/ThemeConext';
 
@@ -30,7 +31,7 @@ export type TCardProps = {
   /**
    * Callback function to click event
    */
-  onClick: () => void;
+  href: string;
   /**
    * Bollean value for change theme
    */
@@ -41,10 +42,10 @@ const Card: React.FC<TCardProps> = ({
   title,
   subtitle,
   image,
-  onClick,
+  href = '/',
   theme = 'light',
 }) => (
-  <div className={cx('card')} onClick={onClick} role='presentation'>
+  <Link className={cx('card')} href={href} theme={theme}>
     <Picture {...image} className={cx('card__img')} />
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
@@ -59,7 +60,7 @@ const Card: React.FC<TCardProps> = ({
         <ArrowCardIcon />
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default Card;

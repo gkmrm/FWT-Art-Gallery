@@ -21,10 +21,6 @@ export const Standart: Story = {
       webp2x: '/images/64761919c25ef9fb3e0cdb98/image2x.webp',
       alt: 'Example',
     },
-    onClick: () => {
-      // eslint-disable-next-line no-console
-      console.log('Click');
-    },
   },
 };
 
