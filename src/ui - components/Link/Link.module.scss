@@ -1,0 +1,25 @@
+// @import '@styles/_variables.scss';
+
+.link {
+  font-family: $SecondFontFamily;
+  font-weight: 500;
+  font-size: inherit;
+  letter-spacing: 0.5px;
+  text-underline-offset: 4px;
+
+  &_light {
+    color: $primaryDarkGrey;
+
+    &:hover {
+      color: $primaryBlack;
+    }
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+
+    &:hover {
+      color: $primaryWhite;
+    }
+  }
+}

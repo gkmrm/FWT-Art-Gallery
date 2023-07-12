@@ -1,0 +1,115 @@
+// @import '@styles/_variables.scss';
+// @import '@styles/_mixins.scss';
+
+.button {
+  font-family: $SecondFontFamily;
+  font-size: $buttonTextSize;
+  font-weight: $buttonTextWeight;
+  text-transform: uppercase;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  @include flexCenter;
+  gap: 12px;
+
+  &_default {
+    padding: 16px 0 16px 0;
+    border-radius: 25px;
+    width: 200px;
+
+    &_light {
+      background-color: $primaryBlack;
+      color: $primaryWhite;
+
+      &:hover {
+        box-shadow: $defaultButtonLightShadow;
+      }
+
+      &:focus {
+        background-color: $defaultButtonLightFocus;
+        box-shadow: $defaultButtonLightShadow;
+      }
+    }
+
+    &_dark {
+      background-color: $accentGold;
+
+      &:hover {
+        box-shadow: $defaultButtonDarkShadow;
+      }
+
+      &:focus {
+        background-color: $defaultButtonDarkFocus;
+        box-shadow: $defaultButtonDarkShadow;
+      }
+    }
+    &:disabled {
+      @include disabledOpacity05;
+    }
+  }
+
+  &_text {
+    text-decoration: underline;
+    background-color: transparent;
+    text-underline-offset: 4px;
+    height: 16px;
+
+    &_light {
+      color: $primaryDarkGrey;
+
+      &:hover,
+      :focus {
+        color: $primaryBlack;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+
+      &:hover,
+      :focus {
+        color: $primaryWhite;
+      }
+
+      &.Button_text:disabled {
+        color: $secondaryGrey;
+      }
+    }
+
+    &:disabled {
+      color: $primaryLightGrey;
+      @include disabledOpacity05;
+    }
+  }
+
+  &_icon {
+    @include flexCenter;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+
+    &_light {
+      color: $primaryDarkGrey;
+      background-color: $secondaryWhite;
+
+      &:hover,
+      :focus {
+        color: $primaryBlack;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+
+      &:hover,
+      :focus {
+        color: $primaryWhite;
+      }
+    }
+
+    &:disabled {
+      @include disabledOpacity05;
+    }
+  }
+}
