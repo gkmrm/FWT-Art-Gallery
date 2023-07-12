@@ -1,51 +1,51 @@
 @import './_variables';
 
-// BreakPoints standart
-@mixin breakPointMax {
+// Media queries standart
+@mixin mediaMax {
   @media screen and (min-width: $breakPointMax) {
     @content;
   }
 }
-@mixin breakPointPC {
+@mixin mediaDesktop {
   @media screen and (min-width: $breakPointPC) {
     @content;
   }
 }
 
-@mixin breakPointTab {
+@mixin mediaTablet {
   @media screen and (min-width: $breakPointTab) {
     @content;
   }
 }
 
-@mixin breakPointMobile {
+@mixin mediaMobile {
   @media screen and (min-width: $breakPointMob) {
     @content;
   }
 }
 
-// BreakPoints for max-width param
-@mixin breakPointTabMaxWidth {
+// Media queries for max-width param
+@mixin mediaTabletMaxWidth {
   @media screen and (max-width: $breakPointTabMaxWidth) {
     @content;
   }
 }
 
-@mixin breakPointPCMaxWidth {
+@mixin mediaDesktopMaxWidth {
   @media screen and (max-width: $breakPointPCMaxWidth) {
     @content;
   }
 }
 
 // BreakPoints for Grid
-@mixin paintingsGridPC {
+@mixin paintingsGridDesktop {
   @media screen and (min-width: $breakPointPC) {
     grid-template-columns: repeat(3, minmax(392px, 1fr));
     @content;
   }
 }
 
-@mixin paintingsGridTab {
+@mixin paintingsGridTablet {
   @media screen and (min-width: $breakPointTab) {
     grid-template-columns: repeat(2, minmax(352px, 1fr));
     @content;

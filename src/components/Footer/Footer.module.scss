@@ -22,22 +22,22 @@
     font-size: $pSmallText;
     font-weight: $pLight;
 
-    @include breakPointTab {
+    @include mediaTablet {
       font-size: $pBaseText;
       gap: 12px;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       gap: 20px;
     }
 
     &_paragraph {
-      padding: 2px 0 2px 0;
+      padding: 2px 0;
     }
 
     &_name {
       color: $secondaryGrey;
-      padding: 1px 0 1px 0;
+      padding: 1px 0;
     }
 
     &_link {
@@ -59,7 +59,7 @@
     padding-top: 32px;
     padding-bottom: 32px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       flex-direction: row;
       padding-top: 40px;
       padding-bottom: 40px;

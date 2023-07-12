@@ -8,11 +8,11 @@
     gap: 20px;
   }
 
-  @include paintingsGridTab {
+  @include paintingsGridTablet {
     gap: 24px;
   }
 
-  @include paintingsGridPC {
+  @include paintingsGridDesktop {
     gap: 32px;
   }
 }

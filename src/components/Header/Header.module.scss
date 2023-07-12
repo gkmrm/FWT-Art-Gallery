@@ -17,10 +17,10 @@
     display: flex;
     justify-content: space-between;
 
-    @include breakPointTab {
+    @include mediaTablet {
       height: 88px;
     }
-    @include breakPointPC {
+    @include mediaDesktop {
       height: 80px;
     }
   }
@@ -39,15 +39,15 @@
     gap: 40px;
     padding: 144px 0 20px 47px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       padding: 200px 0 20px 94px;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       padding: 0;
     }
 
-    @include breakPointPCMaxWidth {
+    @include mediaDesktopMaxWidth {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -62,14 +62,14 @@
       transition: left 0.5s;
       @include noUserSelect;
 
-      @include breakPointTab {
+      @include mediaTablet {
         width: 466px;
       }
 
       &_active {
         left: calc(100% - 252px);
 
-        @include breakPointTab {
+        @include mediaTablet {
           left: calc(100% - 466px);
         }
       }
@@ -87,7 +87,7 @@
   &__button {
     display: none;
 
-    @include breakPointPCMaxWidth {
+    @include mediaDesktopMaxWidth {
       display: block;
       position: absolute;
       right: 20px;
@@ -97,7 +97,7 @@
       width: 24px;
       height: 24px;
 
-      @include breakPointTab {
+      @include mediaTablet {
         top: 32px;
       }
 
@@ -112,7 +112,7 @@
     flex-direction: column;
     gap: 20px;
 
-    @include breakPointPC {
+    @include mediaDesktop {
       flex-direction: row;
     }
 
@@ -123,12 +123,12 @@
       text-decoration: none;
       text-transform: uppercase;
 
-      @include breakPointTab {
+      @include mediaTablet {
         font-size: $h1Text;
         font-weight: $h1Medium;
       }
 
-      @include breakPointPC {
+      @include mediaDesktop {
         font-family: $mainFontFamily;
         text-decoration: none;
         font-size: $navText;
@@ -156,7 +156,7 @@
     background-color: #03030399;
   }
 
-  @include breakPointPC {
+  @include mediaDesktop {
     display: none;
   }
 }
