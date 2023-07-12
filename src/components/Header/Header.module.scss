@@ -119,7 +119,7 @@
     &_link {
       font-size: $h3TextSize;
       font-weight: $h3TextWeight;
-      font-family: $MainFontFamily;
+      font-family: $mainFontFamily;
       text-decoration: none;
       text-transform: uppercase;
 
@@ -129,7 +129,7 @@
       }
 
       @include breakPointPC {
-        font-family: $MainFontFamily;
+        font-family: $mainFontFamily;
         text-decoration: none;
         font-size: $navTextSize;
         font-weight: $navTextWeight;
