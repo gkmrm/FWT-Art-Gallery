@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { ArrowIcon } from '@assets/icons';
+import { Button } from '@ui-components/Button';
 import cn from 'classnames/bind';
 
-import { ArrowIcon } from '@assets/icons';
-import { ThemeTypes } from '@hooks/ThemeConext';
-import { Button } from '@ui-components/Button';
+import { ThemeTypes } from 'src/context/ThemeConext';
 
 import styles from './ScrollButton.module.scss';
 
