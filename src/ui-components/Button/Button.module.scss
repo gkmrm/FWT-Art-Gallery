@@ -3,8 +3,7 @@
 
 .button {
   font-family: $secondFontFamily;
-  font-size: $buttonText;
-  font-weight: $buttonBold;
+  @include buttonText;
   text-transform: uppercase;
   border: none;
   padding: 0;

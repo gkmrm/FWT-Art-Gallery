@@ -3,13 +3,11 @@
   box-sizing: border-box;
 
   &_light {
-    color: $primaryDarkGrey;
-    background-color: $primaryWhite;
+    @include light;
   }
 
   &_dark {
-    color: $primaryLightGrey;
-    background-color: $primaryBlack;
+    @include dark;
   }
 
   &__wrapper {
@@ -60,8 +58,8 @@
       width: 252px;
       min-height: 100%;
       overflow: hidden;
-      z-index: 10;
-      transition: right 0.5s;
+      z-index: $secondLayer;
+      transition: right $headerMenuDelay;
       @include noUserSelect;
 
       @include mediaTablet {
@@ -92,7 +90,7 @@
       right: 20px;
       top: 20px;
       cursor: pointer;
-      z-index: 10;
+      z-index: $secondLayer;
       width: 24px;
       height: 24px;
 
@@ -116,22 +114,17 @@
     }
 
     &_link {
-      font-size: $h3Text;
-      font-weight: $h3SemiBold;
       font-family: $mainFontFamily;
+      @include h3;
       text-decoration: none;
       text-transform: uppercase;
 
       @include mediaTablet {
-        font-size: $h1Text;
-        font-weight: $h1Medium;
+        @include h1;
       }
 
       @include mediaDesktop {
-        font-family: $mainFontFamily;
-        text-decoration: none;
-        font-size: $navText;
-        font-weight: $navMedium;
+        @include nav;
       }
     }
   }
@@ -145,14 +138,15 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 9;
+  z-index: $firstLayer;
+  border: none;
 
   &_light {
-    background-color: #0303034d;
+    background-color: rgba($blurColor, 0.3);
   }
 
   &_dark {
-    background-color: #03030399;
+    background-color: rgba($blurColor, 0.6);
   }
 
   @include mediaDesktop {

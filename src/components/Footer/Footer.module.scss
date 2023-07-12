@@ -6,21 +6,18 @@
   box-sizing: border-box;
 
   &_light {
-    background-color: $primaryWhite;
-    color: $primaryDarkGrey;
+    @include light;
   }
 
   &_dark {
-    background-color: $primaryBlack;
-    color: $primaryLightGrey;
+    @include dark;
   }
 
   &__text {
     display: flex;
     flex-direction: column;
     gap: 9px;
-    font-size: $pSmallText;
-    font-weight: $pLight;
+    @include pSmallLight;
 
     @include mediaTablet {
       font-size: $pBaseText;

@@ -83,3 +83,80 @@
   opacity: 0.5;
   @include noUserSelect;
 }
+
+// Typography mixins
+@mixin h1 {
+  font-size: $h1Text;
+  font-weight: $h1Medium;
+}
+
+@mixin h2 {
+  font-size: $h2Text;
+  font-weight: $h2Medium;
+}
+
+@mixin h3 {
+  font-size: $h3Text;
+  font-weight: $h3SemiBold;
+}
+
+@mixin h4 {
+  font-size: $h4Text;
+  font-weight: $h4Medium;
+}
+
+@mixin h5 {
+  font-size: $h5Text;
+  font-weight: $hBold;
+}
+
+@mixin h6 {
+  font-size: $h6Text;
+  font-weight: $h6Medium;
+}
+
+@mixin nav {
+  font-size: $navText;
+  font-weight: $navMedium;
+}
+
+@mixin pBaseLight {
+  font-size: $pBaseText;
+  font-weight: $pLight;
+}
+
+@mixin pBaseMedium {
+  font-size: $pBaseText;
+  font-weight: $pMedium;
+}
+
+@mixin pSmallLight {
+  font-size: $pSmallText;
+  font-weight: $pLight;
+}
+
+@mixin pSmallMedium {
+  font-size: $pSmallText;
+  font-weight: $pMedium;
+}
+
+@mixin pTiny {
+  font-size: $pTinyText;
+  font-weight: $pMedium;
+}
+
+@mixin buttonText {
+  font-size: $buttonBold;
+  font-weight: $buttonText;
+}
+
+// Colors mixnis
+@mixin light {
+  background-color: $primaryWhite;
+  color: $primaryDarkGrey;
+}
+
+@mixin dark {
+  background-color: $primaryBlack;
+  color: $primaryLightGrey;
+}
