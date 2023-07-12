@@ -15,17 +15,15 @@ import styles from './Header.module.scss';
 const cx = cn.bind(styles);
 
 const Header: React.FC = () => {
-  const [isNavigationActive, setNavigationStatus] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { theme } = useThemeContext();
 
   // TODO Сделать лучше
   const onOutsideClick = (): void => {
-    setNavigationStatus(false);
+    setIsOpen(false);
   };
 
-  const menuClassNames = isNavigationActive
-    ? cx('header__menu', 'header__menu_active', `header__menu_${theme}`)
-    : cx('header__menu', `header__menu_${theme}`);
+  const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
     <header className={cx('header', `header_${theme}`)}>
@@ -36,7 +34,11 @@ const Header: React.FC = () => {
               <Logo />
             </Link>
           </div>
-          <div className={menuClassNames}>
+          <div
+            className={cx('header__menu', `header__menu_${theme}`, {
+              header__menu_active: isOpen,
+            })}
+          >
             <ToggleTheme />
             <nav>
               <ul className={cx('header__nav')}>
@@ -62,28 +64,24 @@ const Header: React.FC = () => {
             </nav>
           </div>
           <div
-            onClick={() => setNavigationStatus(!isNavigationActive)}
-            onKeyDown={() => setNavigationStatus(!isNavigationActive)}
+            onClick={toggleOpen}
+            onKeyDown={toggleOpen}
             className={cx('header__button', {
-              [`header__button_active`]: isNavigationActive,
+              header__button_active: isOpen,
             })}
-            role='button'
-            tabIndex={0}
+            role='presentation'
           >
-            {isNavigationActive ? <CloseIcon /> : <BurgerIcon />}
+            {isOpen ? <CloseIcon /> : <BurgerIcon />}
           </div>
         </div>
-        {isNavigationActive ? (
+        {isOpen && (
           // eslint-disable-next-line jsx-a11y/control-has-associated-label
-          <div
+          <button
             className={cx('blur', `blur_${theme}`)}
             onClick={onOutsideClick}
             onKeyDown={onOutsideClick}
-            role='button'
-            tabIndex={0}
+            type='button'
           />
-        ) : (
-          ''
         )}
       </Container>
     </header>
