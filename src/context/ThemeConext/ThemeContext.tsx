@@ -14,21 +14,32 @@ export interface ThemeProps {
 
 export const themeDefaultValue: ThemeProps = {
   theme: 'light',
-  setTheme: () => true,
+  setTheme: () => 'light',
 };
 
 export const ThemeContext = createContext<ThemeProps>(themeDefaultValue);
 
 export const ThemeProvider = ThemeContext.Provider;
 
-type TThemePRoviderComponent = {
-  children: React.ReactNode;
+const getTheme = (): ThemeType => {
+  let themeLocalStorage = localStorage.getItem('theme');
+
+  if (!themeLocalStorage) {
+    localStorage.setItem('theme', 'light');
+    themeLocalStorage = 'light';
+  }
+
+  return themeLocalStorage === 'light' ? 'light' : 'dark';
 };
+
+type TThemePRoviderComponent = React.HTMLAttributes<HTMLDivElement>;
 
 const ThemeProviderComponent: React.FC<TThemePRoviderComponent> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<ThemeType>('light');
+  const [theme, setTheme] = useState<ThemeType>(getTheme);
+
+  localStorage.setItem('theme', theme);
 
   return <ThemeProvider value={{ theme, setTheme }}>{children}</ThemeProvider>;
 };
