@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { ThemeProvider, ThemeTypes } from '@hooks/ThemeConext';
+import { ThemeProviderComponent } from '@context/ThemeConext';
+import { MainPage } from '@pages/MainPage';
 
-import { MainPage } from '../../pages/MainPage';
-
-const App = () => {
-  const [theme, setTheme] = useState<ThemeTypes>('light');
-
-  return (
-    <ThemeProvider value={{ theme, setTheme }}>
-      <MainPage />
-    </ThemeProvider>
-  );
-};
+const App = () => (
+  <ThemeProviderComponent>
+    <MainPage />
+  </ThemeProviderComponent>
+);
 
 export default App;
