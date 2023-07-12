@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ArrowCardIcon } from '@assets/icons';
-import { TPictureProps, Picture } from '@ui-components/Picture';
 import cn from 'classnames/bind';
 
+import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
+import { TPictureProps, Picture } from '@ui-components/Picture';
 import { ThemeTypes } from 'src/context/ThemeConext';
 
 import styles from './Card.module.scss';

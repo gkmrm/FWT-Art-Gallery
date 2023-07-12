@@ -96,7 +96,7 @@
 
   &__title {
     box-sizing: border-box;
-    font-family: $MainFontFamily;
+    font-family: $mainFontFamily;
     font-size: $h6TextSize;
     font-weight: $h4TextWeight;
     margin-block-start: 0;
@@ -108,7 +108,7 @@
   }
 
   &__subtitle {
-    font-family: $SecondFontFamily;
+    font-family: $secondFontFamily;
     font-size: $capTextSmallSize;
     font-weight: $subtitleTextWeight;
     margin-block-start: 4px;
