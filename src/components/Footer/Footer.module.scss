@@ -19,11 +19,11 @@
     display: flex;
     flex-direction: column;
     gap: 9px;
-    font-size: $pTextSmallSize;
-    font-weight: $pTextWeightLight;
+    font-size: $pSmallText;
+    font-weight: $pLight;
 
     @include breakPointTab {
-      font-size: $pTextSize;
+      font-size: $pBaseText;
       gap: 12px;
     }
 
@@ -42,7 +42,7 @@
 
     &_link {
       display: inline-flex;
-      font-weight: $pTextWeightMid;
+      font-weight: $pMedium;
     }
   }
 

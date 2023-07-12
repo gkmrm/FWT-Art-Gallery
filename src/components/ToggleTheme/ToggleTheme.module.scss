@@ -43,8 +43,8 @@
   &__text {
     display: flex;
     font-family: $secondFontFamily;
-    font-size: $buttonTextSize;
-    font-weight: $buttonTextWeight;
+    font-size: $buttonText;
+    font-weight: $buttonBold;
     text-decoration: underline;
     text-underline-offset: 3px;
     letter-spacing: 0.1px;

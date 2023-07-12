@@ -117,22 +117,22 @@
     }
 
     &_link {
-      font-size: $h3TextSize;
-      font-weight: $h3TextWeight;
+      font-size: $h3Text;
+      font-weight: $h3SemiBold;
       font-family: $mainFontFamily;
       text-decoration: none;
       text-transform: uppercase;
 
       @include breakPointTab {
-        font-size: $h1TextSize;
-        font-weight: $h1TextWeight;
+        font-size: $h1Text;
+        font-weight: $h1Medium;
       }
 
       @include breakPointPC {
         font-family: $mainFontFamily;
         text-decoration: none;
-        font-size: $navTextSize;
-        font-weight: $navTextWeight;
+        font-size: $navText;
+        font-weight: $navMedium;
       }
     }
   }
