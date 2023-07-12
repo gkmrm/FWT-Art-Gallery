@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { Container } from '@components/Container';
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header';
-import { useThemeContext } from '@hooks/ThemeConext';
+import { useThemeContext } from '@context/ThemeConext';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import testData from '@ui-components/Grid/testDataforCardGrid';
