@@ -3,14 +3,16 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@ui-components/*": ["src/components/ui-components/*"],
+      "@ui-components/*": ["src/ui-components/*"],
       "@App/*": ["src/components/App/*"],
       "@config/*": ["src/config/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@store/*": ["src/store/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@context/*": ["src/context/*"],
+      "@pages/*": ["src/pages/*"]
     }
   }
 }
