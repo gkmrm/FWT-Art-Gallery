@@ -7,7 +7,7 @@ import { ReactComponent as InstagramIcon } from '@assets/icons/instagram_icon.sv
 import { ReactComponent as VkIcon } from '@assets/icons/vk_icon.svg';
 import { Container } from '@components/Container';
 import { Link } from '@ui-components/Link';
-import { ThemeTypes } from 'src/context/ThemeConext';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Footer.module.scss';
 
@@ -21,13 +21,13 @@ export type TFooterProps = {
   /**
    * Theme from parent component = 'light' | 'dark'
    */
-  theme: ThemeTypes;
+  theme: ThemeType;
 };
 
 const Footer: React.FC<TFooterProps> = ({ className, theme }) => (
   <footer className={cx(className, 'footer', `footer_${theme}`)}>
     <Container className={cx('footer__container')}>
-      <div className={cx(className, 'footer__text')}>
+      <div className={cx('footer__text')}>
         <p className={cx('footer__text_paragraph')}>
           Проект реализован в рамках стажировки
           <br /> для Frontend-разработчиков от компании{' '}
@@ -41,7 +41,7 @@ const Footer: React.FC<TFooterProps> = ({ className, theme }) => (
         </p>
         <p className={cx('footer__text_name')}>Картавцев Глеб, 2023</p>
       </div>
-      <div className={cx(className, 'footer__icons')}>
+      <div className={cx('footer__icons')}>
         <Link href='https://www.facebook.com/framework.team' theme={theme}>
           <FacebookIcon />
         </Link>

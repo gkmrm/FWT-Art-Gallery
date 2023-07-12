@@ -5,11 +5,11 @@ import React, {
   useState,
 } from 'react';
 
-export type ThemeTypes = 'light' | 'dark';
+export type ThemeType = 'light' | 'dark';
 
 export interface ThemeProps {
-  theme: ThemeTypes;
-  setTheme: Dispatch<SetStateAction<ThemeTypes>>;
+  theme: ThemeType;
+  setTheme: Dispatch<SetStateAction<ThemeType>>;
 }
 
 export const themeDefaultValue: ThemeProps = {
@@ -28,7 +28,7 @@ type TThemePRoviderComponent = {
 const ThemeProviderComponent: React.FC<TThemePRoviderComponent> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<ThemeTypes>('light');
+  const [theme, setTheme] = useState<ThemeType>('light');
 
   return <ThemeProvider value={{ theme, setTheme }}>{children}</ThemeProvider>;
 };

@@ -8,7 +8,7 @@ import { ReactComponent as Logo } from '@assets/icons/logo.svg';
 import { Container } from '@components/Container';
 import { ToggleTheme } from '@components/ToggleTheme';
 import { Link } from '@ui-components/Link';
-import { ThemeTypes } from 'src/context/ThemeConext';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Header.module.scss';
 
@@ -18,7 +18,7 @@ type THeaderProps = {
   /**
    * Theme from parent component = 'light' | 'dark'
    */
-  theme: ThemeTypes;
+  theme: ThemeType;
 };
 
 const Header: React.FC<THeaderProps> = ({ theme }) => {
