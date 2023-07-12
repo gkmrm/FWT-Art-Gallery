@@ -80,15 +80,15 @@ $accentGold: #ab8956;
 $accentError: #ae2917;
 
 // BreakPoints
-$breakPointMax: 1440px;
-$breakPointPC: 1280px;
-$breakPointTab: 768px;
-$breakPointMob: 320px;
+$breakpointMax: 1440px;
+$breakpointDesktop: 1280px;
+$breakpointTablet: 768px;
+$breakpointMobile: 320px;
 
 // BreakPoints with max-width param
-$breakPointPCMaxWidth: 1279px;
-$breakPointTabMaxWidth: 767px;
-$breakPointMobMaxWidth: 319px;
+$breakpointDesktopMaxWidth: 1279px;
+$breakpointTabletMaxWidth: 767px;
+$breakpointMobileMaxWidth: 319px;
 
 // Button variables
 $defaultButtonLightShadow: 0px 4px 10px 0px #00000040;

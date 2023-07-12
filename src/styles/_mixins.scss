@@ -2,58 +2,58 @@
 
 // Media queries standart
 @mixin mediaMax {
-  @media screen and (min-width: $breakPointMax) {
+  @media screen and (min-width: $breakpointMax) {
     @content;
   }
 }
 @mixin mediaDesktop {
-  @media screen and (min-width: $breakPointPC) {
+  @media screen and (min-width: $breakpointDesktop) {
     @content;
   }
 }
 
 @mixin mediaTablet {
-  @media screen and (min-width: $breakPointTab) {
+  @media screen and (min-width: $breakpointTablet) {
     @content;
   }
 }
 
 @mixin mediaMobile {
-  @media screen and (min-width: $breakPointMob) {
+  @media screen and (min-width: $breakpointMobile) {
     @content;
   }
 }
 
 // Media queries for max-width param
 @mixin mediaTabletMaxWidth {
-  @media screen and (max-width: $breakPointTabMaxWidth) {
+  @media screen and (max-width: $breakpointTabletMaxWidth) {
     @content;
   }
 }
 
 @mixin mediaDesktopMaxWidth {
-  @media screen and (max-width: $breakPointPCMaxWidth) {
+  @media screen and (max-width: $breakpointDesktopMaxWidth) {
     @content;
   }
 }
 
 // BreakPoints for Grid
 @mixin paintingsGridDesktop {
-  @media screen and (min-width: $breakPointPC) {
+  @media screen and (min-width: $breakpointDesktop) {
     grid-template-columns: repeat(3, minmax(392px, 1fr));
     @content;
   }
 }
 
 @mixin paintingsGridTablet {
-  @media screen and (min-width: $breakPointTab) {
+  @media screen and (min-width: $breakpointTablet) {
     grid-template-columns: repeat(2, minmax(352px, 1fr));
     @content;
   }
 }
 
 @mixin paintingsGridMobile {
-  @media screen and (min-width: $breakPointMob) {
+  @media screen and (min-width: $breakpointMobile) {
     grid-template-columns: minmax(280px, 1fr);
     @content;
   }
