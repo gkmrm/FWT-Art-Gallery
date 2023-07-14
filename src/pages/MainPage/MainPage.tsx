@@ -36,7 +36,12 @@ const MainPage: React.FC<TMainPageProps> = ({ className }) => {
         ) : (
           <Grid className={cx('mainPage__grid')}>
             {artistStatic.map((item) => (
-              <Card {...item} id={item.id} theme={theme} onClick={() => {}} />
+              <Card
+                {...item}
+                id={item.id}
+                theme={theme}
+                pathTo={`/artists/static/${item.id}`}
+              />
             ))}
           </Grid>
         )}
