@@ -4,10 +4,11 @@ import cn from 'classnames/bind';
 
 import { ArrowCardIcon } from '@assets/icons';
 import { ThemeTypes } from '@hooks/ThemeConext';
-import { IPaint } from '@store/models/ArtistStaticModels';
+import { IImage } from '@store/models/PaintModel';
 import { Picture } from '@ui-components/Picture';
 
 import styles from './Card.module.scss';
+import { Link } from '../Link';
 
 const cx = cn.bind(styles);
 
@@ -27,25 +28,22 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  paint: IPaint;
-  /**
-   * Callback function to click event
-   */
-  onClick: () => void;
+  paint: IImage;
   /**
    * Bollean value for change theme
    */
   theme: ThemeTypes;
+  pathTo: string;
 };
 
 const Card: React.FC<TCardProps> = ({
   title,
   subtitle,
   paint,
-  onClick,
   theme,
+  pathTo,
 }) => (
-  <div className={cx('card')} onClick={onClick} role='presentation'>
+  <Link className={cx('card')} theme={theme} to={pathTo}>
     <Picture
       {...paint}
       className={cx('card__img')}
@@ -64,7 +62,7 @@ const Card: React.FC<TCardProps> = ({
         <ArrowCardIcon />
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default Card;

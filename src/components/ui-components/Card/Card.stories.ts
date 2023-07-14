@@ -20,10 +20,6 @@ export const Standart: Story = {
       src2x: '/images/64761919c25ef9fb3e0cdb98/image2x.jpg',
       webp2x: '/images/64761919c25ef9fb3e0cdb98/image2x.webp',
     },
-    onClick: () => {
-      // eslint-disable-next-line no-console
-      console.log('Click');
-    },
   },
 };
 
