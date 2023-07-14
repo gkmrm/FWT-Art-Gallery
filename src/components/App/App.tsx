@@ -6,6 +6,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, ThemeTypes } from '@hooks/ThemeConext';
 import { setupStore } from '@store/store';
 
+import { ArtistPage } from '../../pages/ArtistPage';
 import { MainPage } from '../../pages/MainPage';
 
 const App = () => {
@@ -18,6 +19,9 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<MainPage />} />
+            <Route path='/artists/static'>
+              <Route path=':id' element={<ArtistPage />} />
+            </Route>
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </BrowserRouter>
