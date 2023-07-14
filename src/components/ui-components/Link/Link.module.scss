@@ -6,6 +6,8 @@
   font-size: inherit;
   letter-spacing: 0.5px;
   text-underline-offset: 4px;
+  display: flex;
+  align-items: center;
 
   &_light {
     color: $primaryDarkGrey;
