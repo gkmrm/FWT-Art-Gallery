@@ -1,0 +1,217 @@
+// .artist {
+//   &__wrapper {
+//     padding-bottom: 80px;
+
+//     @include breakPointTab {
+//       padding-bottom: 100px;
+//     }
+//   }
+
+//   &__avatar {
+//     &_picture {
+//       height: 452px;
+//     }
+
+//     @include breakPointTab {
+//       &_picture {
+//         height: 500px;
+//       }
+//     }
+
+//     @include breakPointPC {
+//       position: absolute;
+//       right: 0;
+
+//       &_picture {
+//         width: 100%;
+//         max-width: 1000px;
+//         height: 100%;
+//         height: 1000px;
+//       }
+//     }
+
+//     .textBlock {
+//       // position: absolute;
+//       // top: 220px;
+//       // width: 604px;
+//       // &_light {
+//       //   background-color: $primaryWhite;
+//       //   color: $primaryDarkGrey;
+//       // }
+
+//       // &_dark {
+//       //   background-color: $primaryBlack;
+//       //   color: $primaryLightGrey;
+//       // }
+
+//       @include breakPointPC {
+//         max-width: 604px;
+//       }
+
+//       &__container {
+//         &_description {
+//           padding-top: 20px;
+
+//           @include breakPointTab {
+//             padding-top: 40px;
+//           }
+
+//           @include breakPointPC {
+//             padding: 0 80px;
+//           }
+//         }
+
+//         &_main {
+//           position: absolute;
+//           left: 0px;
+//           top: 506px;
+
+//           background-color: inherit;
+//           width: 300px;
+//           padding-bottom: 20px;
+
+//           @include breakPointTab {
+//             width: 560px;
+//             top: 558px;
+//           }
+//           @include breakPointPC {
+//             width: 604px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.artist {
+  &__avatar {
+    position: relative;
+
+    &_image {
+      max-height: 452px;
+
+      @include breakPointTab {
+        max-height: 1000px;
+      }
+
+      @include breakPointPC {
+        position: relative;
+        height: 1000px;
+        width: 1000px;
+        margin-left: 440px;
+      }
+    }
+
+    &_text {
+      position: absolute;
+      bottom: 0;
+      background-color: inherit;
+      padding-bottom: 20px;
+      width: 300px;
+
+      @include breakPointTab {
+        width: 560px;
+      }
+
+      @include breakPointPC {
+        left: 100px;
+        width: 604px;
+        bottom: 736px;
+      }
+
+      &_dark {
+        background-color: $primaryBlack;
+        color: $secondaryGrey;
+      }
+
+      &_light {
+        background-color: $primaryWhite;
+        color: $primaryDarkGrey;
+      }
+    }
+  }
+
+  &__year {
+    font-size: 12px;
+    padding: 20px 0 12px 20px;
+
+    @include breakPointTab {
+      font-size: 16px;
+    }
+
+    @include breakPointPC {
+      padding: 60px 0 32px 80px;
+    }
+  }
+
+  &__name {
+    font-size: 32px;
+
+    font-weight: 500;
+    padding-left: 20px;
+
+    &_light {
+      color: $accentRed;
+      border-left: 2px solid $accentRed;
+    }
+
+    &_dark {
+      color: $accentGold;
+      border-left: 2px solid $accentGold;
+    }
+
+    @include breakPointTab {
+      font-size: 48px;
+    }
+
+    @include breakPointPC {
+      font-size: 60px;
+      padding-left: 80px;
+    }
+  }
+
+  &__container {
+    padding: 0;
+  }
+
+  &__textBlock {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 20px;
+
+    &_dark {
+      background-color: $primaryBlack;
+      color: $primaryLightGrey;
+    }
+
+    &_light {
+      background-color: $primaryWhite;
+      color: $primaryDarkGrey;
+    }
+
+    &_line {
+      display: none;
+      color: inherit;
+
+      @include breakPointPC {
+        display: block;
+        padding-top: 32px;
+      }
+    }
+
+    @include breakPointPC {
+      position: absolute;
+      width: 604px;
+      top: 449px;
+      left: 100px;
+      padding: 0 80px;
+      padding-bottom: 60px;
+    }
+  }
+  &__accordion {
+  }
+  &__genres {
+    margin-top: 20px;
+  }
+}
