@@ -1,0 +1,159 @@
+.card {
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  // animation: load 1s ease-out infinite;
+
+  @include breakPointPC {
+    max-width: 392px;
+    max-height: 260px;
+  }
+
+  &__wrapper {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 20px);
+    max-height: 45px;
+
+    @include breakPointTab {
+      max-height: 66px;
+      width: calc(100% - 28px);
+    }
+    @include breakPointPC {
+      max-height: 82px;
+      width: calc(100% - 92px);
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // min-width: 280px;
+    // min-height: 185px;
+    background-color: #eeeded;
+  }
+}
+
+.info {
+  text-transform: uppercase;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 0 8px 0px;
+  max-width: 236px;
+  background-color: $primaryWhite;
+
+  @include breakPointTab {
+    padding: 12px 0 12px 0px;
+    max-width: 300px;
+  }
+  @include breakPointPC {
+    padding: 20px 0 20px 0px;
+  }
+
+  // &_light {
+  //   background-color: $primaryWhite;
+  //   color: $primaryBlack;
+  // }
+
+  &__textBlock {
+    width: 100%;
+    height: 29px;
+    border: none;
+    padding-left: 12px;
+    letter-spacing: 0.01px;
+
+    @include breakPointTab {
+      height: 42px;
+    }
+
+    @include breakPointPC {
+      padding-left: 18px;
+
+      // &_light {
+      //   border-left: 2px solid $accentRed;
+      // }
+
+      // &_dark {
+      //   border-left: 2px solid $accentGold;
+      // }
+    }
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+    color: $primaryWhite;
+  }
+
+  &__title {
+    box-sizing: border-box;
+    max-width: 160px;
+    height: 15px;
+    background-color: #eeeded;
+
+    @include breakPointTab {
+      font-size: $h4TextSize;
+      max-width: 214px;
+      height: 19px;
+    }
+  }
+
+  &__subtitle {
+    margin-block-start: 4px;
+    background-color: #ac6d6d;
+    width: 47px;
+    height: 10px;
+
+    &_light {
+      color: $accentRed;
+      background-color: #eeeded;
+    }
+
+    &_dark {
+      color: $accentGold;
+    }
+
+    @include breakPointTab {
+      margin-block-start: 8px;
+      font-size: $subtitleTextSize;
+      width: 70px;
+      height: 15px;
+    }
+  }
+
+  &__arrow {
+    max-width: 24px;
+    width: 100%;
+    @include flexCenter;
+    color: $primaryLightGrey;
+
+    &_light {
+      background-color: $accentRed;
+    }
+
+    &_dark {
+      background-color: $accentGold;
+    }
+
+    @include breakPointPC {
+      display: none;
+    }
+  }
+}
+
+@keyframes load {
+  from {
+    left: -150px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.img {
+  width: 500px;
+  height: 350px;
+}
