@@ -34,7 +34,7 @@ const ArtistPage: React.FC = () => {
           <ArrowCardIcon className={cx('link__arrow')} />
         </Link>
       </div>
-      {isLoading ? <Loader /> : ''}
+      {isLoading ? <Loader theme={theme} /> : ''}
       {artist && (
         <>
           <ArtistInfo
