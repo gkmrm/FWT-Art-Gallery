@@ -46,7 +46,7 @@ const ArtistPage: React.FC = () => {
             description={artist.description}
             genres={artist.genres}
           />
-          <Container>
+          <Container className={cx('artistPage__container')}>
             <h1
               className={cx(
                 'artistPage__heading',
