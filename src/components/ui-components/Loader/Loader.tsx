@@ -1,32 +1,47 @@
 import React from 'react';
 
-import classNames from 'classnames';
+import cn from 'classnames/bind';
+
+import { ThemeTypes } from '@hooks/ThemeConext';
 
 import styles from './Loader.module.scss';
 
-export enum LoaderSize {
-  s = 's',
-  m = 'm',
-  l = 'l',
-}
+const cx = cn.bind(styles);
 
 export type LoaderProps = {
-  /**
-   * Loader has 3 sizes 's' = 20px | 'l' = 40px | 'm' = 60px
-   * Inside the component, an enum is exported with the dimensions of the Loader
-   */
-  size?: LoaderSize;
-  /**
-   * Additional clases for CSS
-   */
+  theme: ThemeTypes;
   className?: string;
 };
 
-// TODO Сделать по макету
-// Сделал пока самый простой, чтобы протестировать вместе с получением данных из RTK Query
-
-const Loader: React.FC<LoaderProps> = ({ size = 'm', className }) => (
-  <div className={classNames(styles.loader, styles[size], className)} />
+const Loader: React.FC<LoaderProps> = ({ className, theme }) => (
+  <div className={cx('loader', `loader_${theme}`, className)}>
+    <svg className={cx('loader__wrapper')} viewBox='0 0 50 50'>
+      <circle
+        className={cx('loader__circle', 'loader__circle_1')}
+        cx='25'
+        cy='25'
+        r='20'
+      />
+      <circle
+        className={cx('loader__circle', 'loader__circle_2')}
+        cx='25'
+        cy='25'
+        r='20'
+      />
+      <circle
+        className={cx('loader__circle', 'loader__circle_3')}
+        cx='25'
+        cy='25'
+        r='20'
+      />
+      <circle
+        className={cx('loader__circle', 'loader__circle_4')}
+        cx='25'
+        cy='25'
+        r='20'
+      />
+    </svg>
+  </div>
 );
 
 export default Loader;
