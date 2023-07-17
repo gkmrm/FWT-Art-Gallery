@@ -30,9 +30,8 @@ const ArtistPage: React.FC = () => {
     <div className={cx('artistPage', `artistPage_${theme}`)}>
       <Header theme={theme} />
       <div className={cx('link')}>
-        <Link theme={theme} to='/'>
+        <Link theme={theme} to='/' className={cx('link__content')}>
           <ArrowCardIcon className={cx('link__arrow')} />
-          BACK
         </Link>
       </div>
       {isLoading ? <Loader /> : ''}

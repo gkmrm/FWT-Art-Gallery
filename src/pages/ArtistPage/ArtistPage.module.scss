@@ -63,4 +63,10 @@
     margin-right: 12px;
     transform: rotate(180deg);
   }
+
+  &__content::after {
+    @include breakPointTab {
+      content: 'BACK';
+    }
+  }
 }
