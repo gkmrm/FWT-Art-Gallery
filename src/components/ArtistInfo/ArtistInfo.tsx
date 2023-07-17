@@ -33,7 +33,7 @@ const ArtistInfo: React.FC<TArtistInfoProps> = ({
   genres,
 }) => (
   <div className={cx('artist', `artist_${theme}`)}>
-    <div className={cx('')}>
+    <div className={cx('artist__wrapper')}>
       <div className={cx('artist__avatar')}>
         <Picture
           {...avatar}
