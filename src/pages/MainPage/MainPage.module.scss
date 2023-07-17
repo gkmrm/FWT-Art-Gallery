@@ -1,0 +1,22 @@
+.mainPage {
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  &__wrapperPaint {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    @include mediaTablet {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+  }
+}

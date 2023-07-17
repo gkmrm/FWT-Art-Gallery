@@ -10,12 +10,15 @@ type TGridProps = {
   /**
    * Additional classNames for Grid
    */
-  className: string;
-  children: React.ReactNode;
+  className?: string;
+  /**
+   * Inner components for this component
+   */
+  children?: React.ReactNode;
 };
 
 const Grid: React.FC<TGridProps> = ({ className, children }) => (
-  <div className={cx('grid', className)}>{children}</div>
+  <div className={cx(className, 'grid')}>{children}</div>
 );
 
 export default Grid;

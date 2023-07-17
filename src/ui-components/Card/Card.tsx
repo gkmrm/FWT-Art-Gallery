@@ -1,11 +1,11 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as Arrow } from '@assets/icons/arrowIcon.svg';
+import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
+import { Link } from '@ui-components/Link';
 import { TPictureProps, Picture } from '@ui-components/Picture';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Card.module.scss';
 
@@ -31,21 +31,21 @@ export type TCardProps = {
   /**
    * Callback function to click event
    */
-  onClick: () => void;
+  href: string;
   /**
    * Bollean value for change theme
    */
-  theme?: 'light' | 'dark';
+  theme?: ThemeType;
 };
 
 const Card: React.FC<TCardProps> = ({
   title,
   subtitle,
   image,
-  onClick,
+  href = '/',
   theme = 'light',
 }) => (
-  <div className={cx('card')} onClick={onClick}>
+  <Link className={cx('card')} href={href} theme={theme}>
     <Picture {...image} className={cx('card__img')} />
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
@@ -57,10 +57,10 @@ const Card: React.FC<TCardProps> = ({
         </div>
       </div>
       <div className={cx('info__arrow', `info__arrow_${theme}`)}>
-        <Arrow />
+        <ArrowCardIcon />
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default Card;

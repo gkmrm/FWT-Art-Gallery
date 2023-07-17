@@ -2,24 +2,22 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as Arrow } from '@assets/icons/right_arrow_icon.svg';
+import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon.svg';
 import { Button } from '@ui-components/Button';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './ScrollButton.module.scss';
 
 const cx = cn.bind(styles);
 
 type TScrollButtonProps = {
-  theme: 'light' | 'dark';
+  /**
+   * String value for change theme
+   */
+  theme: ThemeType;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const ScrollButton: React.FC<TScrollButtonProps> = ({
-  /**
-   * Boolean value for change theme
-   */
-  theme = 'light',
-  ...props
-}) => {
+const ScrollButton: React.FC<TScrollButtonProps> = ({ theme, ...props }) => {
   // TODO Тут функция для скролла будет написана
   const onScroll: React.MouseEventHandler = () => null;
 
@@ -32,7 +30,7 @@ const ScrollButton: React.FC<TScrollButtonProps> = ({
       className={classNames}
       {...props}
     >
-      <Arrow />
+      <ArrowIcon />
     </Button>
   );
 };

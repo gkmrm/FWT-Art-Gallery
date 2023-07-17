@@ -1,28 +1,52 @@
-@import '@styles/_variables.scss';
-@import '@styles/_mixins.scss';
-
-.Toggle {
+.toggle {
   border: none;
   padding: 0;
   box-sizing: border-box;
-  @include flexCenter;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  color: $primaryDarkGrey;
-  background-color: $secondaryWhite;
+  background-color: transparent;
 
-  &:hover,
-  :focus {
-    color: $primaryBlack;
+  &__icon {
+    @include flexCenter;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+
+    &_light {
+      background-color: $secondaryWhite;
+    }
+
+    &_dark {
+      background-color: $secondaryDark;
+    }
+  }
+
+  &_light {
+    color: $primaryDarkGrey;
+
+    &:hover,
+    :focus {
+      color: $primaryBlack;
+    }
   }
 
   &_dark {
     color: $primaryLightGrey;
-    background-color: $secondaryDark;
+
     &:hover,
     :focus {
       color: $primaryWhite;
+    }
+  }
+
+  &__text {
+    display: flex;
+    font-family: $secondFontFamily;
+    @include buttonText;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    letter-spacing: 0.1px;
+
+    @include mediaDesktop {
+      display: none;
     }
   }
 }

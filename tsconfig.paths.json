@@ -10,7 +10,9 @@
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@store/*": ["src/store/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@context/*": ["src/context/*"],
+      "@pages/*": ["src/pages/*"]
     }
   }
 }

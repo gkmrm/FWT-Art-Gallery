@@ -1,6 +1,3 @@
-@import '@styles/_variables.scss';
-@import '@styles/_mixins.scss';
-
 .card {
   margin: 0;
   padding: 0;
@@ -10,7 +7,12 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  transition: all ease-in 0.3s;
+  transition: $cardTransition;
+
+  @include mediaDesktop {
+    max-width: 392px;
+    max-height: 260px;
+  }
 
   &__wrapper {
     display: flex;
@@ -19,20 +21,20 @@
     width: calc(100% - 20px);
     max-height: 45px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       max-height: 66px;
       width: calc(100% - 28px);
     }
-    @include breakPointPC {
+    @include mediaDesktop {
       max-height: 82px;
       width: calc(100% - 92px);
     }
   }
 
   &__img {
-    transition: all 0.5s ease-out;
+    transition: $cardImgTransition;
     @include noUserSelect;
-    @include breakPointPC {
+    @include mediaDesktop {
       &:hover {
         transform: scale(1.3);
       }
@@ -44,15 +46,15 @@
   text-transform: uppercase;
   box-sizing: border-box;
   width: 100%;
-  padding: 8px 0 8px 0px;
+  padding: 8px 0;
   max-width: 236px;
 
-  @include breakPointTab {
-    padding: 12px 0 12px 0px;
+  @include mediaTablet {
+    padding: 12px 0;
     max-width: 300px;
   }
-  @include breakPointPC {
-    padding: 20px 0 20px 0px;
+  @include mediaDesktop {
+    padding: 20px 0;
   }
 
   &_light {
@@ -67,11 +69,11 @@
     padding-left: 12px;
     letter-spacing: 0.01px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       height: 42px;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       padding-left: 18px;
 
       &_light {
@@ -91,19 +93,21 @@
 
   &__title {
     box-sizing: border-box;
-    font-family: $MainFontFamily;
-    font-size: $h6TextSize;
-    font-weight: $h4TextWeight;
+    font-family: $mainFontFamily;
+    font-size: $h6Text;
+    font-weight: $h4Medium;
+    margin-block-start: 0;
+    margin-block-end: 0;
 
-    @include breakPointTab {
-      font-size: $h4TextSize;
+    @include mediaTablet {
+      font-size: $h4Text;
     }
   }
 
   &__subtitle {
-    font-family: $SecondFontFamily;
-    font-size: $capTextSmallSize;
-    font-weight: $subtitleTextWeight;
+    font-family: $secondFontFamily;
+    font-size: $capSmallText;
+    font-weight: $subtitleBold;
     margin-block-start: 4px;
     margin-block-end: 0;
 
@@ -115,9 +119,9 @@
       color: $accentGold;
     }
 
-    @include breakPointTab {
+    @include mediaTablet {
       margin-block-start: 8px;
-      font-size: $subtitleTextSize;
+      font-size: $subtitleText;
     }
   }
 
@@ -134,7 +138,7 @@
       background-color: $accentGold;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       display: none;
     }
   }

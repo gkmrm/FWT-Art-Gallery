@@ -1,0 +1,65 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $secondFontFamily;
+  box-sizing: border-box;
+
+  &_light {
+    @include light;
+  }
+
+  &_dark {
+    @include dark;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    @include pSmallLight;
+
+    @include mediaTablet {
+      font-size: $pBaseText;
+      gap: 12px;
+    }
+
+    @include mediaDesktop {
+      gap: 20px;
+    }
+
+    &_paragraph {
+      padding: 2px 0;
+    }
+
+    &_name {
+      color: $secondaryGrey;
+      padding: 1px 0;
+    }
+
+    &_link {
+      display: inline-flex;
+      font-weight: $pMedium;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    @include mediaTablet {
+      flex-direction: row;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }
+}

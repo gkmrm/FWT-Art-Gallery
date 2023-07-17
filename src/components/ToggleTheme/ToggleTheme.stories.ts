@@ -20,15 +20,11 @@ const meta: Meta<typeof ToggleTheme> = {
 type Story = StoryObj<typeof ToggleTheme>;
 
 export const Default: Story = {
-  args: {
-    theme: 'light',
-  },
+  args: {},
 };
 
 export const Dark: Story = {
-  args: {
-    theme: 'dark',
-  },
+  args: {},
 };
 
 export default meta;
