@@ -16,13 +16,19 @@ export interface IArtistsStaticModel {
   paint: IImage;
 }
 
+export const normalizeDate = (date: string) =>
+  date
+    .split(' – ')
+    .map((item) => new Date(item).getFullYear())
+    .join(' - ');
+
 export const normalizeIArtistsStatic = (
   item: IArtistsStatic
 ): IArtistsStaticModel => ({
   // eslint-disable-next-line no-underscore-dangle
   id: item._id,
   title: item.name,
-  subtitle: item.yearsOfLife,
+  subtitle: normalizeDate(item.yearsOfLife),
   paint: item.mainPainting.image,
 });
 
