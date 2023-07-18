@@ -18,7 +18,6 @@ const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useThemeContext();
 
-  // TODO Сделать лучше
   const onOutsideClick = (): void => {
     setIsOpen(false);
   };

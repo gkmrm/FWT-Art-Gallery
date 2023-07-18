@@ -3,17 +3,14 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon.svg';
+import { ThemeType } from '@context/ThemeConext';
 import { Button } from '@ui-components/Button';
-import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './ScrollButton.module.scss';
 
 const cx = cn.bind(styles);
 
 type TScrollButtonProps = {
-  /**
-   * String value for change theme
-   */
   theme: ThemeType;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
