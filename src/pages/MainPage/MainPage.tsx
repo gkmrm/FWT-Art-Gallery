@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { Container } from '@components/Container';
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header';
-import { Loader } from '@components/ui-components/Loader';
+import { Skeleton } from '@components/ui-components/Skeleton';
 import { useThemeContext } from '@hooks/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Card } from '@ui-components/Card';
@@ -32,7 +32,12 @@ const MainPage: React.FC<TMainPageProps> = ({ className }) => {
       <Header theme={theme} />
       <Container className={cx('mainPage__wrapperPaint')}>
         {isLoading ? (
-          <Loader />
+          <Grid>
+            {Array.from({ length: 9 }).map((_, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <Skeleton key={index} theme={theme} />
+            ))}
+          </Grid>
         ) : (
           <Grid className={cx('mainPage__grid')}>
             {artistStatic.map((item) => (

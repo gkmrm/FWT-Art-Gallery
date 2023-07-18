@@ -12,6 +12,7 @@ import { Card } from '@components/ui-components/Card';
 import { Grid } from '@components/ui-components/Grid';
 import { Link } from '@components/ui-components/Link';
 import { Loader } from '@components/ui-components/Loader';
+import { Skeleton } from '@components/ui-components/Skeleton';
 import { useThemeContext } from '@hooks/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 
@@ -54,11 +55,20 @@ const ArtistPage: React.FC = () => {
             >
               Artworks
             </h1>
-            <Grid className={cx('artistPage__grid')}>
-              {artist?.paintings.map((item) => (
-                <Card pathTo='/' {...item} id={item.id} theme={theme} />
-              ))}
-            </Grid>
+            {isLoading ? (
+              <Grid>
+                {Array.from({ length: 9 }).map((_, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <Skeleton key={index} theme={theme} />
+                ))}
+              </Grid>
+            ) : (
+              <Grid className={cx('artistPage__grid')}>
+                {artist?.paintings.map((item) => (
+                  <Card pathTo='/' {...item} id={item.id} theme={theme} />
+                ))}
+              </Grid>
+            )}
           </Container>
         </>
       )}
