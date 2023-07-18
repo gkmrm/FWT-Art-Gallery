@@ -146,8 +146,8 @@
 }
 
 @mixin buttonText {
-  font-size: $buttonBold;
-  font-weight: $buttonText;
+  font-size: $buttonText;
+  font-weight: $buttonBold;
 }
 
 @mixin capText {
