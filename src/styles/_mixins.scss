@@ -150,6 +150,11 @@
   font-weight: $buttonText;
 }
 
+@mixin capText {
+  font-size: $capSmallText;
+  font-weight: $capBold;
+}
+
 // Colors mixnis
 @mixin light {
   background-color: $primaryWhite;

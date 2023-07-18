@@ -62,6 +62,12 @@ $capMedium: 500;
 $capSmallText: 8px;
 $capBold: 700;
 
+// Default
+$light: 300;
+$medium: 500;
+$semiBold: 600;
+$bold: 700;
+
 // Colors
 // Primary colors
 $primaryWhite: #ffffff;
@@ -82,6 +88,10 @@ $accentError: #ae2917;
 // Blur color
 $blurColor: #030303;
 
+// Genre colors
+$backgroundLight: #1212120d;
+$backgroundDark: #cdcdcd0d;
+
 // BreakPoints
 $breakpointMax: 1440px;
 $breakpointDesktop: 1280px;
@@ -99,6 +109,10 @@ $defaultButtonLightFocus: #232323;
 $defaultButtonDarkShadow: 0px 4px 10px 0px #ab895640;
 $defaultButtonDarkFocus: #ba9052;
 
+// Accordion
+$accordionGradientLight: linear-gradient(180deg, #575757 0%, #57575740);
+$accordionGradientDark: linear-gradient(180deg, #dedede 0%, #dedede40);
+
 // Z-INDEX
 $firstLayer: 1;
 $secondLayer: 2;
@@ -111,3 +125,9 @@ $headerMenuDelay: 0.5s;
 // Card
 $cardTransition: all ease-in 0.3s;
 $cardImgTransition: all 0.5s ease-out;
+
+// Default delay
+$defaultDelay: 0.5s;
+
+// Loader delay
+$loaderDelay: 2s;
