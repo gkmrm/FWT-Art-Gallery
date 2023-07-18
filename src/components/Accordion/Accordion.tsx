@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { Button } from '@components/ui-components/Button';
-import { ThemeTypes } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
 
 import { ReactComponent as Arrow } from '@assets/icons/expand_icon.svg';
+import { ThemeType } from '@context/ThemeConext';
+import { Button } from '@ui-components/Button';
 
 import styles from './Accordion.module.scss';
 
@@ -12,7 +12,7 @@ const cx = cn.bind(styles);
 
 type TAccordionProps = {
   className?: string;
-  theme: ThemeTypes;
+  theme: ThemeType;
   text: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
