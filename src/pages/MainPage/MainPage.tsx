@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { useThemeContext } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
 
 import { Container } from '@components/Container';
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header';
-import { Skeleton } from '@components/ui-components/Skeleton';
+import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
+import { Skeleton } from '@ui-components/Skeleton';
 
 import styles from './MainPage.module.scss';
 
@@ -36,6 +36,7 @@ const MainPage: React.FC = () => {
             {artistStatic.map((item) => (
               <Card
                 {...item}
+                image={item.paint}
                 id={item.id}
                 theme={theme}
                 pathTo={`/artists/static/${item.id}`}
