@@ -95,12 +95,10 @@
   &__title {
     box-sizing: border-box;
     font-family: $mainFontFamily;
-    font-size: $h6Text;
-    font-weight: $h4Medium;
+    @include h6;
     margin-block-start: 0;
     margin-block-end: 0;
     max-width: 280px;
-    overflow: hidden;
     word-break: break-all;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -114,8 +112,7 @@
 
   &__subtitle {
     font-family: $secondFontFamily;
-    font-size: $capSmallText;
-    font-weight: $subtitleBold;
+    @include capText;
     margin-block-start: 4px;
     margin-block-end: 0;
 
@@ -129,7 +126,7 @@
 
     @include mediaTablet {
       margin-block-start: 8px;
-      font-size: $subtitleText;
+      font-size: $capMidText;
     }
   }
 
