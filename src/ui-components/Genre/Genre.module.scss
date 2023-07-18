@@ -1,6 +1,6 @@
 .genre {
-  font-family: $SecondFontFamily;
-  font-size: 8px;
+  font-family: $secondFontFamily;
+  font-size: $capSmallText;
   line-height: 10px;
   box-sizing: border-box;
   padding: 8px 16px;
@@ -11,18 +11,18 @@
 
   &_light {
     color: $primaryDarkGrey;
-    background-color: #1212120d;
+    background-color: $backgroundLight;
   }
 
   &_dark {
     color: $primaryLightGrey;
-    background-color: #cdcdcd0d;
+    background-color: $backgroundDark;
     border: 1px solid $primaryWhite;
     border-radius: 30px;
   }
 
-  @include breakPointTab {
-    font-size: 12px;
+  @include mediaTablet {
+    font-size: $capMidText;
     margin-right: 20px;
     line-height: 17px;
   }

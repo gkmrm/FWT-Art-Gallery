@@ -7,7 +7,7 @@
   overflow: hidden;
   aspect-ratio: 4/3;
 
-  @include breakPointPC {
+  @include mediaDesktop {
     max-width: 392px;
     max-height: 260px;
   }
@@ -54,11 +54,11 @@
     width: calc(100% - 20px);
     max-height: 45px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       max-height: 66px;
       width: calc(100% - 28px);
     }
-    @include breakPointPC {
+    @include mediaDesktop {
       max-height: 82px;
       width: calc(100% - 92px);
     }
@@ -77,11 +77,11 @@
   padding: 8px 0 8px 0px;
   max-width: 236px;
 
-  @include breakPointTab {
+  @include mediaTablet {
     padding: 12px 0 12px 0px;
     max-width: 300px;
   }
-  @include breakPointPC {
+  @include mediaDesktop {
     padding: 20px 0 20px 0px;
   }
 
@@ -99,11 +99,11 @@
     border: none;
     padding-left: 12px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       height: 42px;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       padding-left: 18px;
     }
   }
@@ -114,8 +114,7 @@
     height: 15px;
     background-color: #eeeded;
 
-    @include breakPointTab {
-      font-size: $h4TextSize;
+    @include mediaTablet {
       max-width: 214px;
       height: 19px;
     }
@@ -142,7 +141,7 @@
       background-color: #0d0d0d;
     }
 
-    @include breakPointTab {
+    @include mediaTablet {
       margin-block-start: 8px;
       width: 70px;
       height: 15px;

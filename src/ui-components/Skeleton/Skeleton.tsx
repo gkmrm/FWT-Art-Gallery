@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { ThemeTypes } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
+
+import { ThemeType } from '@context/ThemeConext';
 
 import styles from './Skeleton.module.scss';
 
 const cx = cn.bind(styles);
 
 type TSkeletonProps = {
-  theme: ThemeTypes;
+  theme: ThemeType;
 };
 
 const Skeleton: React.FC<TSkeletonProps> = ({ theme }) => (

@@ -24,25 +24,25 @@
     fill: none;
     transform: rotate(100deg);
     transform-origin: center;
-    animation: wrapper 2s linear infinite;
+    animation: wrapper $loaderDelay linear infinite;
 
     &_1 {
-      animation: circle_1 2s ease-in-out infinite;
+      animation: circle_1 $loaderDelay ease-in-out infinite;
       opacity: 0.8;
     }
 
     &_2 {
-      animation: circle_2 2s ease-in-out infinite;
+      animation: circle_2 $loaderDelay ease-in-out infinite;
       opacity: 0.35;
     }
 
     &_3 {
-      animation: circle_3 2s ease-in-out infinite;
+      animation: circle_3 $loaderDelay ease-in-out infinite;
       opacity: 0.35;
     }
 
     &_4 {
-      animation: circle_4 2s ease-in-out infinite;
+      animation: circle_4 $loaderDelay ease-in-out infinite;
       opacity: 0.35;
     }
   }

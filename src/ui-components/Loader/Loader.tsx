@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { ThemeTypes } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
+
+import { ThemeType } from '@context/ThemeConext';
 
 import styles from './Loader.module.scss';
 
 const cx = cn.bind(styles);
 
 export type LoaderProps = {
-  theme: ThemeTypes;
+  theme: ThemeType;
   className?: string;
 };
 
