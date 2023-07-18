@@ -2,6 +2,7 @@ import React, {
   createContext,
   Dispatch,
   SetStateAction,
+  useMemo,
   useState,
 } from 'react';
 
@@ -19,8 +20,6 @@ export const themeDefaultValue: ThemeProps = {
 
 export const ThemeContext = createContext<ThemeProps>(themeDefaultValue);
 
-export const ThemeProvider = ThemeContext.Provider;
-
 const getTheme = (): ThemeType => {
   let themeLocalStorage = localStorage.getItem('theme');
 
@@ -32,16 +31,24 @@ const getTheme = (): ThemeType => {
   return themeLocalStorage === 'light' ? 'light' : 'dark';
 };
 
-type TThemePRoviderComponent = React.HTMLAttributes<HTMLDivElement>;
+type TThemeProvider = React.HTMLAttributes<HTMLDivElement>;
 
-const ThemeProviderComponent: React.FC<TThemePRoviderComponent> = ({
-  children,
-}) => {
+const ThemeProvider: React.FC<TThemeProvider> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeType>(getTheme);
 
   localStorage.setItem('theme', theme);
 
-  return <ThemeProvider value={{ theme, setTheme }}>{children}</ThemeProvider>;
+  const themeValue = useMemo(
+    () => ({
+      theme,
+      setTheme,
+    }),
+    [theme, setTheme]
+  );
+
+  return (
+    <ThemeContext.Provider value={themeValue}>{children}</ThemeContext.Provider>
+  );
 };
 
-export default ThemeProviderComponent;
+export default ThemeProvider;
