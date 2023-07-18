@@ -25,8 +25,9 @@ const Footer: React.FC = () => {
             <br /> для Frontend-разработчиков от компании{' '}
             <Link
               className={cx('footer__text_link')}
-              href='https://framework.team'
+              to='https://framework.team'
               theme={theme}
+              target='_blanc'
             >
               Framework Team
             </Link>
@@ -34,13 +35,21 @@ const Footer: React.FC = () => {
           <p className={cx('footer__text_name')}>Картавцев Глеб, 2023</p>
         </div>
         <div className={cx('footer__icons')}>
-          <Link href='https://www.facebook.com/framework.team' theme={theme}>
+          <Link
+            theme={theme}
+            to='https://www.facebook.com/framework.team'
+            target='_blanc'
+          >
             <FacebookIcon />
           </Link>
-          <Link href='https://vk.com/frameworkteam' theme={theme}>
+          <Link to='https://vk.com/frameworkteam' theme={theme} target='_blanc'>
             <VkIcon />
           </Link>
-          <Link href='https://www.instagram.com/framework.team/' theme={theme}>
+          <Link
+            to='https://www.instagram.com/framework.team/'
+            theme={theme}
+            target='_blanc'
+          >
             <InstagramIcon />
           </Link>
         </div>
