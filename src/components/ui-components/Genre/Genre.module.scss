@@ -1,0 +1,29 @@
+.genre {
+  font-family: $SecondFontFamily;
+  font-size: 8px;
+  line-height: 10px;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  display: inline-block;
+  border-radius: 30px;
+  margin-right: 8px;
+  margin-top: 12px;
+
+  &_light {
+    color: $primaryDarkGrey;
+    background-color: #1212120d;
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+    background-color: #cdcdcd0d;
+    border: 1px solid $primaryWhite;
+    border-radius: 30px;
+  }
+
+  @include breakPointTab {
+    font-size: 12px;
+    margin-right: 20px;
+    line-height: 17px;
+  }
+}

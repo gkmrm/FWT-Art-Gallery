@@ -1,0 +1,72 @@
+.artistPage {
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  &__container {
+    padding-bottom: 80px;
+
+    @include breakPointTab {
+      padding-bottom: 100px;
+    }
+  }
+
+  &__heading {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    padding: 60px 0;
+
+    @include breakPointTab {
+      font-size: 60px;
+      font-weight: 500;
+      padding: 98px 0 60px 0;
+    }
+
+    @include breakPointPC {
+      padding-top: 160px;
+      padding-left: 60px;
+    }
+
+    &_light {
+      color: $accentRed;
+    }
+
+    &_dark {
+      color: $accentGold;
+    }
+  }
+}
+
+// Видел в макете то, что в этом блоке будут
+// еще кнопки с логикой, вынесу в отдельный компонент
+.link {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 20px;
+  margin-top: 52px;
+  margin-bottom: 24px;
+
+  &__arrow {
+    margin-right: 12px;
+    transform: rotate(180deg);
+  }
+
+  &__content::after {
+    @include breakPointTab {
+      content: 'BACK';
+    }
+  }
+}

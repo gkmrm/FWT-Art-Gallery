@@ -12,7 +12,8 @@
       "@store/*": ["src/store/*"],
       "@assets/*": ["src/assets/*"],
       "@context/*": ["src/context/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@models/*": ["src/store/models/*"]
     }
   }
 }

@@ -1,0 +1,56 @@
+.accordion {
+  font-family: $SecondFontFamily;
+  font-weight: 300;
+  font-size: 16px;
+  text-align: justify;
+
+  &_dark {
+    color: $primaryLightGrey;
+  }
+  &_light {
+    color: $primaryDarkGrey;
+  }
+
+  &__text {
+    padding-top: 20px;
+    line-height: 22px;
+
+    @include breakPointTab {
+      padding-top: 40px;
+    }
+    @include breakPointPC {
+      padding-top: 20px;
+    }
+
+    &_active {
+      &_dark {
+        background: linear-gradient(180deg, #dedede 0%, #dedede40);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      &_light {
+        background: linear-gradient(180deg, #575757 0%, #57575740);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 20px;
+    cursor: pointer;
+
+    &_light {
+      color: $primaryDarkGrey;
+    }
+    &_dark {
+      color: $primaryLightGrey;
+    }
+
+    &__arrow {
+      transition: all 0.5s;
+      transform: rotate(180deg);
+    }
+  }
+}

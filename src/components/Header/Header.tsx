@@ -30,7 +30,7 @@ const Header: React.FC = () => {
       <Container className={cx('header__container')}>
         <div className={cx('header__wrapper')}>
           <div className={cx('header__logo')}>
-            <Link theme={theme} href='/'>
+            <Link theme={theme} to='/'>
               <Logo />
             </Link>
           </div>
@@ -43,20 +43,12 @@ const Header: React.FC = () => {
             <nav>
               <ul className={cx('header__nav')}>
                 <li>
-                  <Link
-                    href='##'
-                    theme={theme}
-                    className={cx('header__nav_link')}
-                  >
+                  <Link to='/' theme={theme} className={cx('header__nav_link')}>
                     Log in
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href='##'
-                    theme={theme}
-                    className={cx('header__nav_link')}
-                  >
+                  <Link to='/' theme={theme} className={cx('header__nav_link')}>
                     Sign up
                   </Link>
                 </li>
