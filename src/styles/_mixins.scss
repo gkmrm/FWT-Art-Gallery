@@ -156,12 +156,12 @@
 }
 
 // Colors mixnis
-@mixin light {
+@mixin lightTheme {
   background-color: $primaryWhite;
   color: $primaryDarkGrey;
 }
 
-@mixin dark {
+@mixin darkTheme {
   background-color: $primaryBlack;
   color: $primaryLightGrey;
 }

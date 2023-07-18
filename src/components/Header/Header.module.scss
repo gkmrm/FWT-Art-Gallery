@@ -3,11 +3,11 @@
   box-sizing: border-box;
 
   &_light {
-    @include light;
+    @include lightTheme;
   }
 
   &_dark {
-    @include dark;
+    @include darkTheme;
   }
 
   &__wrapper {

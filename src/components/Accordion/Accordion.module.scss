@@ -1,6 +1,5 @@
 .accordion {
-  font-family: $secondFontFamily;
-  font-weight: 300;
+  @include pBaseLight;
   font-size: 16px;
   text-align: justify;
 
@@ -18,6 +17,7 @@
     @include mediaTablet {
       padding-top: 40px;
     }
+
     @include mediaDesktop {
       padding-top: 20px;
     }

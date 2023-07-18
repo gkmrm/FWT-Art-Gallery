@@ -66,7 +66,7 @@
       }
 
       &_light {
-        @include light;
+        @include lightTheme;
       }
     }
   }
@@ -119,11 +119,11 @@
     padding: 0 20px;
 
     &_dark {
-      @include dark;
+      @include darkTheme;
     }
 
     &_light {
-      @include light;
+      @include lightTheme;
     }
 
     &_line {

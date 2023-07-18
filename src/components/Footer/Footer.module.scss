@@ -7,11 +7,11 @@
   border-top: 1px solid $secondaryGrey;
 
   &_light {
-    @include light;
+    @include lightTheme;
   }
 
   &_dark {
-    @include dark;
+    @include darkTheme;
   }
 
   &__text {
