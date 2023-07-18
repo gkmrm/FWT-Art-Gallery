@@ -3,13 +3,11 @@
   box-sizing: border-box;
 
   &_light {
-    color: $primaryDarkGrey;
-    background-color: $primaryWhite;
+    @include light;
   }
 
   &_dark {
-    color: $primaryLightGrey;
-    background-color: $primaryBlack;
+    @include dark;
   }
 
   &__wrapper {
@@ -17,10 +15,10 @@
     display: flex;
     justify-content: space-between;
 
-    @include breakPointTab {
+    @include mediaTablet {
       height: 88px;
     }
-    @include breakPointPC {
+    @include mediaDesktop {
       height: 80px;
     }
   }
@@ -37,41 +35,40 @@
     align-items: center;
     flex-direction: row-reverse;
     gap: 40px;
-    padding: 144px 0 20px 47px;
+    padding-top: 144px;
+    padding-left: 47px;
 
-    @include breakPointTab {
-      padding: 200px 0 20px 94px;
+    @include mediaTablet {
+      padding-top: 200px;
+      padding-left: 94px;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       padding: 0;
     }
 
-    @include breakPointPCMaxWidth {
+    @include mediaDesktopMaxWidth {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
       position: fixed;
-      left: 100%;
+      right: -252px;
       top: 0;
       width: 252px;
-      height: 200vh;
+      min-height: 100%;
       overflow: hidden;
-      z-index: 10;
-      transition: left 0.5s;
+      z-index: $secondLayer;
+      transition: right $headerMenuDelay;
       @include noUserSelect;
 
-      @include breakPointTab {
+      @include mediaTablet {
+        right: -466px;
         width: 466px;
       }
 
       &_active {
-        left: calc(100% - 252px);
-
-        @include breakPointTab {
-          left: calc(100% - 466px);
-        }
+        right: 0;
       }
 
       &_light {
@@ -87,17 +84,17 @@
   &__button {
     display: none;
 
-    @include breakPointPCMaxWidth {
+    @include mediaDesktopMaxWidth {
       display: block;
       position: absolute;
       right: 20px;
       top: 20px;
       cursor: pointer;
-      z-index: 10;
+      z-index: $secondLayer;
       width: 24px;
       height: 24px;
 
-      @include breakPointTab {
+      @include mediaTablet {
         top: 32px;
       }
 
@@ -112,27 +109,22 @@
     flex-direction: column;
     gap: 20px;
 
-    @include breakPointPC {
+    @include mediaDesktop {
       flex-direction: row;
     }
 
     &_link {
-      font-size: $h3TextSize;
-      font-weight: $h3TextWeight;
-      font-family: $MainFontFamily;
+      font-family: $mainFontFamily;
+      @include h3;
       text-decoration: none;
       text-transform: uppercase;
 
-      @include breakPointTab {
-        font-size: $h1TextSize;
-        font-weight: $h1TextWeight;
+      @include mediaTablet {
+        @include h1;
       }
 
-      @include breakPointPC {
-        font-family: $MainFontFamily;
-        text-decoration: none;
-        font-size: $navTextSize;
-        font-weight: $navTextWeight;
+      @include mediaDesktop {
+        @include nav;
       }
     }
   }
@@ -146,17 +138,18 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 9;
+  z-index: $firstLayer;
+  border: none;
 
   &_light {
-    background-color: #0303034d;
+    background-color: rgba($blurColor, 0.3);
   }
 
   &_dark {
-    background-color: #03030399;
+    background-color: rgba($blurColor, 0.6);
   }
 
-  @include breakPointPC {
+  @include mediaDesktop {
     display: none;
   }
 }

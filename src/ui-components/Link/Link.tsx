@@ -3,14 +3,14 @@ import React from 'react';
 import cn from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
-import { ThemeTypes } from '@hooks/ThemeConext';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Link.module.scss';
 
 const cx = cn.bind(styles);
 
 type TLinkProps = {
-  theme: ThemeTypes;
+  theme: ThemeType;
   className?: string;
   to: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;

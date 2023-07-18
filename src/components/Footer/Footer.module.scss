@@ -2,48 +2,45 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: $SecondFontFamily;
+  font-family: $secondFontFamily;
   box-sizing: border-box;
   border-top: 1px solid $secondaryGrey;
 
   &_light {
-    background-color: $primaryWhite;
-    color: $primaryDarkGrey;
+    @include light;
   }
 
   &_dark {
-    background-color: $primaryBlack;
-    color: $primaryLightGrey;
+    @include dark;
   }
 
   &__text {
     display: flex;
     flex-direction: column;
     gap: 9px;
-    font-size: $pTextSmallSize;
-    font-weight: $pTextWeightLight;
+    @include pSmallLight;
 
-    @include breakPointTab {
-      font-size: $pTextSize;
+    @include mediaTablet {
+      font-size: $pBaseText;
       gap: 12px;
     }
 
-    @include breakPointPC {
+    @include mediaDesktop {
       gap: 20px;
     }
 
     &_paragraph {
-      padding: 2px 0 2px 0;
+      padding: 2px 0;
     }
 
     &_name {
       color: $secondaryGrey;
-      padding: 1px 0 1px 0;
+      padding: 1px 0;
     }
 
     &_link {
       display: inline-flex;
-      font-weight: $pTextWeightMid;
+      font-weight: $pMedium;
     }
   }
 
@@ -60,7 +57,7 @@
     padding-top: 32px;
     padding-bottom: 32px;
 
-    @include breakPointTab {
+    @include mediaTablet {
       flex-direction: row;
       padding-top: 40px;
       padding-bottom: 40px;

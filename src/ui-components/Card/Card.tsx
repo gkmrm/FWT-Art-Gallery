@@ -2,13 +2,12 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ArrowCardIcon } from '@assets/icons';
-import { ThemeTypes } from '@hooks/ThemeConext';
-import { IImage } from '@store/models/PaintModel';
-import { Picture } from '@ui-components/Picture';
+import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
+import { Link } from '@ui-components/Link';
+import { TPictureProps, Picture } from '@ui-components/Picture';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Card.module.scss';
-import { Link } from '../Link';
 
 const cx = cn.bind(styles);
 
@@ -28,27 +27,26 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  paint: IImage;
+  image: TPictureProps;
+  /**
+   * Callback function to click event
+   */
+  href: string;
   /**
    * Bollean value for change theme
    */
-  theme: ThemeTypes;
-  pathTo: string;
+  theme?: ThemeType;
 };
 
 const Card: React.FC<TCardProps> = ({
   title,
   subtitle,
-  paint,
-  theme,
-  pathTo,
+  image,
+  href = '/',
+  theme = 'light',
 }) => (
-  <Link className={cx('card')} theme={theme} to={pathTo}>
-    <Picture
-      {...paint}
-      className={cx('card__img')}
-      alt={`paiting of ${title}`}
-    />
+  <Link className={cx('card')} href={href} theme={theme}>
+    <Picture {...image} className={cx('card__img')} />
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
         <div className={cx('info__textBlock', `info__textBlock_${theme}`)}>

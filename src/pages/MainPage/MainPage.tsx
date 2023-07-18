@@ -1,12 +1,12 @@
 import React from 'react';
 
+import { useThemeContext } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
 
 import { Container } from '@components/Container';
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header';
 import { Skeleton } from '@components/ui-components/Skeleton';
-import { useThemeContext } from '@hooks/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
@@ -15,21 +15,14 @@ import styles from './MainPage.module.scss';
 
 const cx = cn.bind(styles);
 
-export type TMainPageProps = {
-  /**
-   * Additional classNames for MainPage
-   */
-  className?: string;
-};
-
-const MainPage: React.FC<TMainPageProps> = ({ className }) => {
+const MainPage: React.FC = () => {
   const { theme } = useThemeContext();
   const { data: artistStatic = [], isLoading } =
     artistsStaticApi.useFetchArtistsStaticQuery('');
 
   return (
-    <div className={cx(className, 'mainPage', `mainPage_${theme}`)}>
-      <Header theme={theme} />
+    <div className={cx('mainPage', `mainPage_${theme}`)}>
+      <Header />
       <Container className={cx('mainPage__wrapperPaint')}>
         {isLoading ? (
           <Grid>
@@ -51,7 +44,7 @@ const MainPage: React.FC<TMainPageProps> = ({ className }) => {
           </Grid>
         )}
       </Container>
-      <Footer theme={theme} />
+      <Footer />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
+import { Button } from '@components/ui-components/Button';
+import { ThemeTypes } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
 
 import { ReactComponent as Arrow } from '@assets/icons/expand_icon.svg';
-import { Button } from '@components/ui-components/Button';
-import { ThemeTypes } from '@hooks/ThemeConext';
 
 import styles from './Accordion.module.scss';
 

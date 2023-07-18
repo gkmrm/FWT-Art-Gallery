@@ -1,19 +1,19 @@
 import React from 'react';
 
+import { ArrowCardIcon } from '@assets/icons';
+import { Card } from '@components/ui-components/Card';
+import { Grid } from '@components/ui-components/Grid';
+import { Link } from '@components/ui-components/Link';
+import { useThemeContext } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
 import { useParams } from 'react-router-dom';
 
-import { ArrowCardIcon } from '@assets/icons';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
 import { Footer } from '@components/Footer';
 import { Header } from '@components/Header';
-import { Card } from '@components/ui-components/Card';
-import { Grid } from '@components/ui-components/Grid';
-import { Link } from '@components/ui-components/Link';
 import { Loader } from '@components/ui-components/Loader';
 import { Skeleton } from '@components/ui-components/Skeleton';
-import { useThemeContext } from '@hooks/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 
 import styles from './ArtistPage.module.scss';

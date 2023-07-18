@@ -2,9 +2,9 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ArrowIcon } from '@assets/icons';
-import { ThemeTypes } from '@hooks/ThemeConext';
+import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon.svg';
 import { Button } from '@ui-components/Button';
+import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './ScrollButton.module.scss';
 
@@ -14,7 +14,7 @@ type TScrollButtonProps = {
   /**
    * String value for change theme
    */
-  theme: ThemeTypes;
+  theme: ThemeType;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ScrollButton: React.FC<TScrollButtonProps> = ({ theme, ...props }) => {

@@ -7,18 +7,11 @@ import styles from './Container.module.scss';
 const cx = cn.bind(styles);
 
 export type TContainerProps = {
-  /**
-   * Theme from parent component
-   */
   className?: string;
-  /**
-   * Inner comopnents for this component
-   */
-  children: React.ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const Container: React.FC<TContainerProps> = ({ className, children }) => (
-  <div className={cx('container', className)}>{children}</div>
+const Container: React.FC<TContainerProps> = ({ className, ...props }) => (
+  <div className={cx('container', className)} {...props} />
 );
 
 export default Container;

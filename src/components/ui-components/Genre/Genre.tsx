@@ -1,8 +1,7 @@
 import React from 'react';
 
-import cn from 'classnames/bind';
-
 import { ThemeTypes } from '@hooks/ThemeConext';
+import cn from 'classnames/bind';
 
 import styles from './Genre.module.scss';
 
