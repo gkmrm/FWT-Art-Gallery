@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Picture } from '@components/ui-components/Picture';
-import { ThemeTypes } from '@hooks/ThemeConext';
 import cn from 'classnames/bind';
 
 import { ReactComponent as Line } from '@assets/icons/textBlockLine.svg';
 import { Accordion } from '@components/Accordion';
 import { Container } from '@components/Container';
-import { Genre } from '@components/ui-components/Genre';
+import { ThemeType } from '@context/ThemeConext';
 import { IGenre } from '@store/models/ArtistStaticByIdModel';
 import { IImage } from '@store/models/PaintModel';
+import { Genre } from '@ui-components/Genre';
+import { Picture } from '@ui-components/Picture';
 
 import styles from './ArtistInfo.module.scss';
 
@@ -17,7 +17,7 @@ const cx = cn.bind(styles);
 
 type TArtistInfoProps = {
   avatar: IImage;
-  theme: ThemeTypes;
+  theme: ThemeType;
   name: string;
   year: string;
   description: string;
