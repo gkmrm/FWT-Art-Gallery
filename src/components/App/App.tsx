@@ -1,32 +1,21 @@
 import React from 'react';
 
-import { Provider } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import { ThemeProvider } from '@context/ThemeConext';
+import { MainLayout } from '@layout/MainLayout';
+import { ArtistPage } from '@pages/ArtistPage';
 import { MainPage } from '@pages/MainPage';
-import { setupStore } from '@store/store';
 
-import { ArtistPage } from '../../pages/ArtistPage';
-
-const App = () => {
-  const store = setupStore();
-
-  return (
-    <ThemeProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<MainPage />} />
-            <Route path='/artists/static'>
-              <Route path=':id' element={<ArtistPage />} />
-            </Route>
-            <Route path='*' element={<Navigate to='/' replace />} />
-          </Routes>
-        </BrowserRouter>
-      </Provider>
-    </ThemeProvider>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<MainLayout />}>
+        <Route index element={<MainPage />} />
+        <Route path='/artists/static/:id' element={<ArtistPage />} />
+      </Route>
+      <Route path='*' element={<Navigate to='/' replace />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
