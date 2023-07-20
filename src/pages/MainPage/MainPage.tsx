@@ -3,8 +3,6 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { Container } from '@components/Container';
-import { Footer } from '@components/Footer';
-import { Header } from '@components/Header';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Card } from '@ui-components/Card';
@@ -22,7 +20,6 @@ const MainPage: React.FC = () => {
 
   return (
     <div className={cx('mainPage', `mainPage_${theme}`)}>
-      <Header />
       <Container className={cx('mainPage__wrapperPaint')}>
         {isLoading ? (
           <Grid>
@@ -45,7 +42,6 @@ const MainPage: React.FC = () => {
           </Grid>
         )}
       </Container>
-      <Footer />
     </div>
   );
 };
