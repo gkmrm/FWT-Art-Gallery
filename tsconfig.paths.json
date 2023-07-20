@@ -13,7 +13,8 @@
       "@assets/*": ["src/assets/*"],
       "@context/*": ["src/context/*"],
       "@pages/*": ["src/pages/*"],
-      "@models/*": ["src/store/models/*"]
+      "@models/*": ["src/store/models/*"],
+      "@layout/*": ["src/layout/*"]
     }
   }
 }
