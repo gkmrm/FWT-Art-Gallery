@@ -10,7 +10,7 @@ export type TPictureProps = {
   /**
    * Source of img - MAIN
    */
-  src: string;
+  src?: string;
   /**
    * Source of webp img
    */
@@ -26,10 +26,8 @@ export type TPictureProps = {
   /**
    * Source of original img
    */
+  original?: string;
   alt: string;
-  /**
-   * Addition className for Image
-   */
   className?: string;
 } & React.HTMLAttributes<HTMLPictureElement>;
 
@@ -40,6 +38,7 @@ const Picture: React.FC<TPictureProps> = ({
   webp,
   src2x,
   webp2x,
+  original,
   alt,
   className,
 }) => (
@@ -63,6 +62,13 @@ const Picture: React.FC<TPictureProps> = ({
         srcSet={`${BASE_API_URL}${webp2x}`}
         media='(min-width: 600px)'
         type='image/webp'
+      />
+    )}
+    {original && (
+      <source
+        srcSet={`${BASE_API_URL}${original}`}
+        media='(min-width: 600px)'
+        type='image/jpeg'
       />
     )}
     <img
