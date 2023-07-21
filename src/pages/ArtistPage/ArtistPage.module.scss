@@ -48,6 +48,7 @@
 // еще кнопки с логикой, вынесу в отдельный компонент
 .link {
   box-sizing: border-box;
+  line-height: 24px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -58,7 +59,6 @@
   margin-bottom: 24px;
 
   &__arrow {
-    margin-right: 12px;
     transform: rotate(180deg);
   }
 
