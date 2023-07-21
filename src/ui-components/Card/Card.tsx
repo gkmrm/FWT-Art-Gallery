@@ -20,18 +20,20 @@ export type TCardProps = {
    * Object with image source {string, string...}
    */
   image: IImage;
-  pathTo: string;
+  pathTo?: string;
   theme: ThemeType;
+  onClick?: () => void;
 };
 
 const Card: React.FC<TCardProps> = ({
   title,
   subtitle,
   image,
-  pathTo = '/',
+  pathTo = '',
   theme = 'light',
+  onClick,
 }) => (
-  <Link className={cx('card')} theme={theme} to={pathTo}>
+  <Link className={cx('card')} theme={theme} onClick={onClick} to={pathTo}>
     <Picture {...image} className={cx('card__img')} alt={`paint of ${title}`} />
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
