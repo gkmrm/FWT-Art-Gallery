@@ -1,4 +1,6 @@
 .button {
+  cursor: pointer;
+  letter-spacing: 0.1px;
   font-family: $secondFontFamily;
   @include buttonText;
   text-transform: uppercase;
