@@ -1,0 +1,188 @@
+.swiper {
+  display: none;
+  color: $primaryLightGrey;
+  z-index: 9999;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: 100vh !important;
+  min-width: 100vw !important;
+  position: fixed;
+  @include noUserSelect;
+
+  &_visible {
+    display: block;
+    position: absolute;
+    top: 0;
+  }
+
+  &-button-next,
+  &-button-prev {
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    @include h3;
+    margin-bottom: 19px;
+    padding-right: 40px;
+    text-transform: uppercase;
+    color: $primaryLightGrey;
+    @media screen and (max-width: 768px) {
+      padding-bottom: 1%;
+      @include h5;
+    }
+    &_current {
+    }
+    &_total {
+      margin-right: 40px;
+    }
+  }
+
+  &__navigation {
+    &_next::after {
+    }
+    &_prev::after {
+      display: block;
+      width: 21px;
+      height: 34px;
+      color: white;
+    }
+  }
+
+  &-button-next {
+    display: block;
+    width: 21px;
+    height: 34px;
+    color: white;
+  }
+}
+
+.action {
+  &__close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 100;
+    top: 60px;
+    right: 40px;
+    background-color: transparent;
+    color: $primaryLightGrey;
+  }
+
+  &__cover {
+    cursor: pointer;
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    color: $primaryLightGrey;
+  }
+}
+
+.swiper-slide {
+  max-width: 100vw;
+  max-height: 100vh;
+  font-size: 18px;
+  background: #fff;
+  position: relative;
+}
+
+.swiper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+
+  &-pagination {
+  }
+
+  .swiper-pagination {
+  }
+
+  .infoBlock {
+    box-sizing: border-box;
+    width: 498px;
+    height: 122px;
+    position: absolute;
+    bottom: 18px;
+    left: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    &_light {
+      background-color: $secondaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+
+    &__icons {
+      display: flex;
+      gap: 20px;
+      padding-top: 20px;
+      padding-right: 20px;
+
+      @include mediaTablet {
+      }
+    }
+
+    &__container {
+      @include flexCenter;
+    }
+
+    &__text {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &_light {
+        border-left: 2px solid $accentRed;
+      }
+
+      &_dark {
+        border-left: 2px solid $accentGold;
+      }
+
+      &_title {
+        @include h4;
+        text-transform: uppercase;
+        margin-top: 10px;
+
+        &_light {
+          color: $primaryBlack;
+        }
+
+        &_dark {
+          color: $primaryWhite;
+        }
+
+        @media screen and (max-width: 768px) {
+          @include h6;
+          margin-top: 5px;
+        }
+      }
+
+      &_subtitle {
+        font-family: $secondFontFamily;
+        font-size: 12px;
+        font-weight: 700;
+
+        &_light {
+          color: $accentRed;
+        }
+
+        &_dark {
+          color: $accentGold;
+        }
+      }
+    }
+  }
+}
