@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -6,7 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
-import { SliderTest } from '@components/SliderTest';
+import { SliderSlick } from '@components/SliderSlick';
+// import { SliderTest } from '@components/SliderTest';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
@@ -26,9 +27,9 @@ const ArtistPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [, setCurrentIndex] = useState(0);
 
-  const handleCloseSlider = useCallback(() => setIsOpen(false), []);
+  // const handleCloseSlider = useCallback(() => setIsOpen(false), []);
   const handleShowSlider = (index: number) => () => {
     setCurrentIndex(index);
     setIsOpen(true);
@@ -91,12 +92,19 @@ const ArtistPage: React.FC = () => {
             )}
           </Container>
           {isOpen && (
-            <SliderTest
-              currentIndex={currentIndex}
-              paintings={artist.paintings}
+            // <SliderTest
+            //   currentIndex={currentIndex}
+            //   paintings={artist.paintings}
+            //   theme={theme}
+            //   isOpen={isOpen}
+            //   onCloseSlider={handleCloseSlider}
+            // />
+            <SliderSlick
               theme={theme}
+              paintings={artist.paintings}
               isOpen={isOpen}
-              onCloseSlider={handleCloseSlider}
+              onCloseClick={() => setIsOpen(false)}
+              // currentIndex={currentIndex}
             />
           )}
         </>
