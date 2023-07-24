@@ -125,9 +125,29 @@ $headerMenuDelay: 0.5s;
 // Card
 $cardTransition: all ease-in 0.3s;
 $cardImgTransition: all 0.5s ease-out;
+$borderLight: 2px solid $accentRed;
+$borderDark: 2px solid $accentGold;
 
 // Default delay
 $defaultDelay: 0.5s;
 
 // Loader delay
 $loaderDelay: 2s;
+
+// Skeleton
+$lightBackground: #eeeded;
+$lightGradient: linear-gradient(
+  to right,
+  transparent 0%,
+  $primaryWhite 50%,
+  transparent 100%
+);
+
+$darkBackground: #0d0d0d;
+$darkGradient: linear-gradient(
+  to right,
+  transparent 0%,
+  #181818 50%,
+  transparent 100%
+);
+$skeletonAnimation: 2s ease-out infinite;

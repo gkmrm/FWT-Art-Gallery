@@ -155,6 +155,11 @@
   font-weight: $capBold;
 }
 
+@mixin subtitle {
+  font-size: $subtitleText;
+  font-weight: $subtitleBold$subtitleBold;
+}
+
 // Colors mixnis
 @mixin lightTheme {
   background-color: $primaryWhite;

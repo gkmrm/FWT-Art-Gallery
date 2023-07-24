@@ -5,17 +5,15 @@
 
     @include mediaDesktop {
       position: relative;
-      margin-left: 80px;
-      // Проверь
       margin: 0 auto;
       width: 100%;
-      max-width: 1280px;
+      max-width: $breakpointDesktop;
       height: 1000px;
       padding-left: 20px;
     }
 
     @include mediaMax {
-      max-width: 1440px;
+      max-width: $breakpointMax;
     }
   }
 
@@ -90,12 +88,12 @@
 
     &_light {
       color: $accentRed;
-      border-left: 2px solid $accentRed;
+      border-left: $borderLight;
     }
 
     &_dark {
       color: $accentGold;
-      border-left: 2px solid $accentGold;
+      border-left: $borderDark;
     }
 
     @include mediaTablet {
