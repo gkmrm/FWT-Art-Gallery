@@ -1,6 +1,7 @@
 import React from 'react';
 
 import cn from 'classnames/bind';
+import { uid } from 'uid';
 
 import { Container } from '@components/Container';
 import { useThemeContext } from '@context/ThemeConext';
@@ -24,9 +25,8 @@ const MainPage: React.FC = () => {
       <Container className={cx('mainPage__wrapperPaint')}>
         {isLoading ? (
           <Grid>
-            {Array.from({ length: 9 }).map((_, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <Skeleton key={index} theme={theme} />
+            {Array.from({ length: 9 }).map(() => (
+              <Skeleton key={uid()} theme={theme} />
             ))}
           </Grid>
         ) : (
