@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
 import { useNavigate, useParams } from 'react-router-dom';
+import { uid } from 'uid';
 
 import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
-import { SliderSlick } from '@components/SliderSlick';
-// import { SliderTest } from '@components/SliderTest';
+import { Slider } from '@components/Slider';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
-// import { Link } from '@ui-components/Link';
 import { Loader } from '@ui-components/Loader';
 import { Skeleton } from '@ui-components/Skeleton';
 
@@ -29,8 +28,7 @@ const ArtistPage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // const handleCloseSlider = useCallback(() => setIsOpen(false), []);
-  const handleShowSlider = (index: number) => () => {
+  const onSliderOpen = (index: number) => () => {
     setCurrentIndex(index);
     setIsOpen(true);
   };
@@ -72,17 +70,18 @@ const ArtistPage: React.FC = () => {
             </h1>
             {isLoading ? (
               <Grid>
-                {Array.from({ length: 9 }).map((_, index) => (
+                {Array.from({ length: 6 }).map(() => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <Skeleton key={index} theme={theme} />
+                  <Skeleton key={uid()} theme={theme} />
                 ))}
               </Grid>
             ) : (
               <Grid className={cx('artistPage__grid')}>
                 {artist?.paintings.map((item, index) => (
                   <Card
+                    key={item.id}
                     image={item.paint}
-                    onClick={handleShowSlider(index)}
+                    onClick={onSliderOpen(index)}
                     {...item}
                     id={item.id}
                     theme={theme}
@@ -92,18 +91,11 @@ const ArtistPage: React.FC = () => {
             )}
           </Container>
           {isOpen && (
-            // <SliderTest
-            //   currentIndex={currentIndex}
-            //   paintings={artist.paintings}
-            //   theme={theme}
-            //   isOpen={isOpen}
-            //   onCloseSlider={handleCloseSlider}
-            // />
-            <SliderSlick
+            <Slider
               theme={theme}
               paintings={artist.paintings}
               isOpen={isOpen}
-              onCloseClick={() => setIsOpen(false)}
+              onClose={() => setIsOpen(false)}
               currentIndex={currentIndex}
             />
           )}
