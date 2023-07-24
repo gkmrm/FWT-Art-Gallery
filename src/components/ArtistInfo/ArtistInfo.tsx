@@ -6,7 +6,7 @@ import { ReactComponent as Line } from '@assets/icons/textBlockLine.svg';
 import { Accordion } from '@components/Accordion';
 import { Container } from '@components/Container';
 import { ThemeType } from '@context/ThemeConext';
-import { IGenre } from '@store/models/ArtistStaticByIdModel';
+import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
 import { IImage } from '@store/models/PaintModel';
 import { Genre } from '@ui-components/Genre';
 import { Picture } from '@ui-components/Picture';
@@ -21,7 +21,7 @@ type TArtistInfoProps = {
   name: string;
   year: string;
   description: string;
-  genres: IGenre[];
+  genres: IGenreModel[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const ArtistInfo: React.FC<TArtistInfoProps> = ({
@@ -57,7 +57,9 @@ const ArtistInfo: React.FC<TArtistInfoProps> = ({
           </div>
           <div className={cx('artist__genres')}>
             {genres.map((item) => (
-              <Genre theme={theme}>{item.name}</Genre>
+              <Genre key={item.id} theme={theme}>
+                {item.name}
+              </Genre>
             ))}
           </div>
         </div>
