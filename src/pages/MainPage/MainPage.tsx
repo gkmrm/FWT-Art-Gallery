@@ -15,6 +15,7 @@ const cx = cn.bind(styles);
 
 const MainPage: React.FC = () => {
   const { theme } = useThemeContext();
+
   const { data: artistStatic = [], isLoading } =
     artistsStaticApi.useFetchArtistsStaticQuery('');
 
@@ -32,6 +33,7 @@ const MainPage: React.FC = () => {
           <Grid className={cx('mainPage__grid')}>
             {artistStatic.map((item) => (
               <Card
+                key={item.id}
                 {...item}
                 image={item.paint}
                 id={item.id}
