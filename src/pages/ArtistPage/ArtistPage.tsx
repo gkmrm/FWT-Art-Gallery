@@ -25,12 +25,12 @@ const ArtistPage: React.FC = () => {
   const { id = '' } = useParams();
   const navigate = useNavigate();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSlider, setIsOpenSlider] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const onSliderOpen = (index: number) => () => {
+  const onClickCard = (index: number) => () => {
     setCurrentIndex(index);
-    setIsOpen(true);
+    setIsOpenSlider(true);
   };
 
   const { data: artist, isLoading } =
@@ -71,7 +71,6 @@ const ArtistPage: React.FC = () => {
             {isLoading ? (
               <Grid>
                 {Array.from({ length: 6 }).map(() => (
-                  // eslint-disable-next-line react/no-array-index-key
                   <Skeleton key={uid()} theme={theme} />
                 ))}
               </Grid>
@@ -81,7 +80,7 @@ const ArtistPage: React.FC = () => {
                   <Card
                     key={item.id}
                     image={item.paint}
-                    onClick={onSliderOpen(index)}
+                    onClick={onClickCard(index)}
                     {...item}
                     id={item.id}
                     theme={theme}
@@ -90,12 +89,12 @@ const ArtistPage: React.FC = () => {
               </Grid>
             )}
           </Container>
-          {isOpen && (
+          {isOpenSlider && (
             <Slider
               theme={theme}
               paintings={artist.paintings}
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
+              isOpen={isOpenSlider}
+              onClose={() => setIsOpenSlider(false)}
               currentIndex={currentIndex}
             />
           )}
