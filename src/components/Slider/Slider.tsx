@@ -54,16 +54,15 @@ const Slider: React.FC<TSliderProps> = ({
             <Picture
               original={painting.paint.original}
               alt={`${painting.title}`}
-              className={cx('slider__slide_img')}
             />
             <div className={cx('slider__pagination')}>{`${index + 1}/${
               paintings.length
             }`}</div>
-            <Button className={cx('action__close')} onClick={onClose}>
+            <Button className={cx('slider__close')} onClick={onClose}>
               <Close />
             </Button>
             <Button
-              className={cx('action__cover')}
+              className={cx('slider__cover')}
               variant='text'
               theme={theme}
               onClick={() => {}}
@@ -122,13 +121,19 @@ const Slider: React.FC<TSliderProps> = ({
         <div className={cx('slider__navigation')}>
           <button
             type='button'
-            className={cx('slider__prev', 'splide__arrow splide__arrow--prev')}
+            className={cx(
+              'slider__navigation_prev',
+              'splide__arrow splide__arrow--prev'
+            )}
           >
             <ArrowIcon />
           </button>
           <button
             type='button'
-            className={cx('slider__next', 'splide__arrow splide__arrow--next')}
+            className={cx(
+              'slider__navigation_next',
+              'splide__arrow splide__arrow--next'
+            )}
           >
             <ArrowIcon />
           </button>
