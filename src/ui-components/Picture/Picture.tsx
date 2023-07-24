@@ -75,6 +75,7 @@ const Picture: React.FC<TPictureProps> = ({
       className={cx('picture', className)}
       src={`${BASE_API_URL}${src}`}
       alt={alt}
+      loading='lazy'
     />
   </picture>
 );
