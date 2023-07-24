@@ -16,9 +16,20 @@ export interface IGenre {
   name: string;
 }
 
+export interface IGenreModel {
+  id: string;
+  name: string;
+}
+
+export const normalizeGenres = (item: IGenre): IGenreModel => ({
+  // eslint-disable-next-line no-underscore-dangle
+  id: item._id,
+  name: item.name,
+});
+
 export interface IArtistsStaticByIdModel {
   paintings: IPaintModel[];
-  genres: IGenre[];
+  genres: IGenreModel[];
   id: string;
   name: string;
   description: string;
@@ -30,7 +41,7 @@ export const normalizeIArtistStaticById = (
   item: IArtistsStaticById
 ): IArtistsStaticByIdModel => ({
   paintings: item.paintings.map(normalizeIPaint),
-  genres: item.genres,
+  genres: item.genres.map(normalizeGenres),
   // eslint-disable-next-line no-underscore-dangle
   id: item._id,
   name: item.name,
