@@ -27,7 +27,7 @@ const ArtistPage: React.FC = () => {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // const handleCloseSlider = useCallback(() => setIsOpen(false), []);
   const handleShowSlider = (index: number) => () => {
@@ -104,7 +104,7 @@ const ArtistPage: React.FC = () => {
               paintings={artist.paintings}
               isOpen={isOpen}
               onCloseClick={() => setIsOpen(false)}
-              // currentIndex={currentIndex}
+              currentIndex={currentIndex}
             />
           )}
         </>
