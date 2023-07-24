@@ -10,8 +10,8 @@ const cx = cn.bind(styles);
 
 type TGenreProps = { theme: ThemeType } & React.HTMLAttributes<HTMLDivElement>;
 
-const Genre: React.FC<TGenreProps> = ({ theme, children }) => (
-  <div className={cx('genre', `genre_${theme}`)}>{children}</div>
+const Genre: React.FC<TGenreProps> = ({ theme, ...props }) => (
+  <div className={cx('genre', `genre_${theme}`)} {...props} />
 );
 
 export default Genre;
