@@ -46,28 +46,28 @@ const Picture: React.FC<TPictureProps> = ({
     {webp && (
       <source
         srcSet={`${BASE_API_URL}${webp}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/webp'
       />
     )}
     {src2x && (
       <source
         srcSet={`${BASE_API_URL}${src2x}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/jpeg'
       />
     )}
     {webp2x && (
       <source
         srcSet={`${BASE_API_URL}${webp2x}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/webp'
       />
     )}
     {original && (
       <source
         srcSet={`${BASE_API_URL}${original}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/jpeg'
       />
     )}
