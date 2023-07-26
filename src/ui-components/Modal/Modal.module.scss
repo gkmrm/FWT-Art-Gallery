@@ -1,0 +1,25 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $tenLayer;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  @include flexCenter;
+
+  &_light {
+    background-color: rgba($blurColor, 0.3);
+  }
+
+  &_dark {
+    background-color: rgba($blurColor, 0.6);
+  }
+
+  &__inner {
+    z-index: $elevenLayer;
+    position: relative;
+  }
+}
