@@ -1,0 +1,83 @@
+.authModal {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  // margin: 0 auto;
+  background-color: aqua;
+  display: flex;
+
+  @include mediaDesktop {
+    width: 1024px;
+    height: 700px;
+  }
+  &_light {
+    background-color: $secondaryWhite;
+  }
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  &__login {
+  }
+  &__signup {
+  }
+
+  &__img {
+    @include mediaDesktop {
+      width: 498px;
+      height: 700px;
+
+      &_login {
+        background-image: url('./../../assets/png/loginPaint.png');
+      }
+      &_signup {
+        background-image: url('./../../assets/png/signupPaint.png');
+      }
+    }
+  }
+
+  &__textBlock {
+    width: 100%;
+    margin: 0 auto;
+    @include flexCenter;
+    flex-direction: column;
+    gap: 60px;
+
+    @include mediaDesktopMaxWidth {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    @include mediaTablet {
+      gap: 40px;
+    }
+
+    @include mediaDesktop {
+      max-width: 530px;
+      gap: 20px;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+  }
+
+  &__header {
+    @include h3;
+
+    @include mediaTablet {
+      @include h1;
+    }
+
+    @include mediaDesktop {
+      @include h2;
+    }
+  }
+
+  &__form {
+    @include mediaTablet {
+      order: 1;
+    }
+  }
+}
