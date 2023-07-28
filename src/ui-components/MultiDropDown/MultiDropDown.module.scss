@@ -1,0 +1,191 @@
+.dropDown {
+  width: 260px;
+  height: 46px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 0 45px 0 16px;
+  @include fieldText;
+  border: none;
+  outline: none;
+  @include noUserSelect;
+  position: relative;
+  overflow: hidden;
+  z-index: $thirdLayer;
+
+  &_light {
+    border: 1px solid $primaryLightGrey;
+    color: $primaryDarkGrey;
+    background-color: $primaryWhite;
+
+    &:hover {
+      border: 1px solid $secondaryGrey;
+    }
+
+    &_active,
+    &:focus {
+      border: 1px solid $primaryDarkGrey;
+    }
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+    background-color: $secondaryDark;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid $primaryDarkGrey;
+    }
+
+    &_active,
+    &:focus {
+      border: 1px solid $primaryLightGrey;
+    }
+  }
+
+  &_error {
+    border: 1px solid $accentError;
+  }
+
+  @include mediaTablet {
+    width: 340px;
+  }
+
+  &__wrapper {
+    &_light {
+    }
+    &_dark {
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: $secondFontFamily;
+    @include labelText;
+    line-height: 15px;
+    margin-bottom: 8px;
+    @include noUserSelect;
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+  }
+
+  &__select {
+    position: relative;
+    top: 5px;
+    gap: 12px;
+    box-sizing: border-box;
+    display: block;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__selected {
+    margin: 0;
+    display: inline-flex;
+    margin-right: 12px;
+  }
+
+  &__open {
+    position: absolute;
+    width: 260px;
+    height: 170px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 16px 0 12px 0;
+    margin-top: -4px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      border: 1px solid transparent;
+      background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 4px;
+      margin: 4px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    z-index: $secondLayer;
+
+    &_light {
+      background-color: $primaryWhite;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $secondaryGrey;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $scrollLight;
+      }
+    }
+    &_dark {
+      background-color: $secondaryDark;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $primaryDarkGrey;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $scrollDark;
+      }
+    }
+
+    @include mediaTablet {
+      width: 340px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 8px 16px;
+    gap: 12px;
+    font-family: $secondFontFamily;
+    @include pBaseLight;
+
+    &_light {
+      color: $primaryDarkGrey;
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+
+    &_arrow {
+      position: absolute;
+      top: 15px;
+      right: -30px;
+      width: 16px;
+      height: 16px;
+      color: $secondaryGrey;
+      cursor: pointer;
+
+      &_open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
