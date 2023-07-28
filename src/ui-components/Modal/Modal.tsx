@@ -16,8 +16,18 @@ type TModalProps = {
   theme: ThemeType;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const Modal: React.FC<TModalProps> = ({ isShow, onHide, theme, ...other }) =>
-  isShow
+const Modal: React.FC<TModalProps> = ({ isShow, onHide, theme, ...other }) => {
+  React.useEffect(() => {
+    if (theme === 'dark' && isShow) {
+      document.body.style.backgroundColor = '#121212';
+    }
+
+    return () => {
+      document.body.style.backgroundColor = '';
+    };
+  }, [isShow]);
+
+  return isShow
     ? ReactDOM.createPortal(
         <>
           <RemoveScrollBar />
@@ -30,15 +40,16 @@ const Modal: React.FC<TModalProps> = ({ isShow, onHide, theme, ...other }) =>
             onClick={onHide}
           >
             <div
-              className={cx('modal__inner')}
-              // onClick={(e) => e.stopPropagation}
+              className={cx(other.className, 'modal__inner')}
+              onClick={(e) => e.stopPropagation()}
               {...other}
-              // role='presentation'
+              role='presentation'
             />
           </div>
         </>,
         document.body
       )
     : null;
+};
 
 export default Modal;
