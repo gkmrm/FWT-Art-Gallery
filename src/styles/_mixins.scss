@@ -149,6 +149,15 @@
   font-size: $buttonText;
   font-weight: $buttonBold;
 }
+@mixin capBigText {
+  font-size: $capBaseText;
+  font-weight: $capMedium;
+}
+
+@mixin capMidText {
+  font-size: $capMidText;
+  font-weight: $capMedium;
+}
 
 @mixin capText {
   font-size: $capSmallText;
@@ -160,6 +169,26 @@
   font-weight: $subtitleBold$subtitleBold;
 }
 
+@mixin linkAuth {
+  font-size: $linkText;
+  font-weight: $linkBold;
+}
+
+@mixin linkAuthBig {
+  font-size: $linkBigText;
+  font-weight: $linkMedium;
+}
+
+@mixin fieldText {
+  font-size: $pBaseText;
+  font-weight: $light;
+}
+
+@mixin labelText {
+  font-size: $labelText;
+  font-weight: $labelold;
+}
+
 // Colors mixnis
 @mixin lightTheme {
   background-color: $primaryWhite;
@@ -168,5 +197,13 @@
 
 @mixin darkTheme {
   background-color: $primaryBlack;
+  color: $primaryLightGrey;
+}
+
+@mixin lightText {
+  color: $primaryDarkGrey;
+}
+
+@mixin darkText {
   color: $primaryLightGrey;
 }

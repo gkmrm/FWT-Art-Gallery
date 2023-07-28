@@ -62,6 +62,18 @@ $capMedium: 500;
 $capSmallText: 8px;
 $capBold: 700;
 
+// Link
+// Link authModal
+$linkText: 12px;
+$linkBold: 700;
+
+$linkBigText: 16px;
+$linkMedium: 700;
+
+// Label's
+$labelText: 12px;
+$labelold: 700;
+
 // Default
 $light: 300;
 $medium: 500;
@@ -112,6 +124,10 @@ $defaultButtonDarkFocus: #ba9052;
 // Accordion
 $accordionGradientLight: linear-gradient(180deg, #575757 0%, #57575740);
 $accordionGradientDark: linear-gradient(180deg, #dedede 0%, #dedede40);
+
+// Scroll
+$scrollLight: #1212120d;
+$scrollDark: #cdcdcd0d;
 
 // Z-INDEX
 $firstLayer: 1;
