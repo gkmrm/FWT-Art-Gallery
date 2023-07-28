@@ -17,22 +17,16 @@ const App = () => {
         <Route path='/' element={<MainLayout />}>
           <Route index element={<MainPage />} />
           <Route path='/artists/static/:id' element={<ArtistPage />} />
-          <Route
-            path='/login'
-            element={<AuthModal theme='light' variant='login' />}
-          />
-          {/* <Route path='/signup' element={<Modal isShow={false} />} /> */}
+          <Route path='/login' element={<AuthModal variant='login' />} />
+          <Route path='/signup' element={<AuthModal variant='signup' />} />
         </Route>
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
 
       {background && (
         <Routes>
-          <Route
-            path='login'
-            element={<AuthModal theme='light' variant='login' />}
-          />
-          {/* <Route path='signup' element={<Modal isShow={false} />} /> */}
+          <Route path='login' element={<AuthModal variant='login' />} />
+          <Route path='signup' element={<AuthModal variant='signup' />} />
         </Routes>
       )}
     </>
