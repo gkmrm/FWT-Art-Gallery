@@ -1,0 +1,98 @@
+.textarea {
+  &__label {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: $secondFontFamily;
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+
+    &_text {
+      @include labelText;
+      line-height: 15px;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__field {
+    resize: none;
+    width: 340px;
+    height: 150px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 12px 16px;
+    @include fieldText;
+    border: none;
+    outline: none;
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      border: 1px solid transparent;
+      background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 4px;
+      margin: 4px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &_light {
+      border: 1px solid $primaryLightGrey;
+      color: $primaryDarkGrey;
+      background-color: $primaryWhite;
+
+      &:hover {
+        border: 1px solid $secondaryGrey;
+      }
+
+      &:focus {
+        border: 1px solid $primaryDarkGrey;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $secondaryGrey;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $scrollLight;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+      border: 1px solid transparent;
+
+      &:hover {
+        border: 1px solid $primaryDarkGrey;
+      }
+
+      &:focus {
+        border: 1px solid $primaryLightGrey;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $primaryDarkGrey;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $scrollDark;
+      }
+    }
+
+    &_error {
+      border: 1px solid $accentError;
+    }
+  }
+}
