@@ -44,7 +44,7 @@ const Input: React.FC<TInputProps> = forwardRef<HTMLInputElement, TInputProps>(
           placeholder={placeholder}
           id={labelName}
           className={cx('input__field', `input__field_${theme}`, {
-            input__field_error: !!errorMessage,
+            input__field_error: errorMessage,
           })}
           {...other}
         />
