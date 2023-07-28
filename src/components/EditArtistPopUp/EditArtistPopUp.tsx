@@ -10,6 +10,7 @@ import { ThemeType } from '@context/ThemeConext';
 import { Button } from '@ui-components/Button';
 import { Input } from '@ui-components/Input';
 import { Modal } from '@ui-components/Modal';
+import { MultiDropDown } from '@ui-components/MultiDropDown';
 import { TextArea } from '@ui-components/TextArea';
 
 import styles from './EditArtistPopUp.module.scss';
@@ -50,7 +51,7 @@ const EditArtistPopUp: React.FC<TEditArtistPopUpProps> = ({
       isShow={isShow}
       onHide={onClose}
       theme={theme}
-      className={cx('popup__modal')}
+      className={cx('popup__modal', `popup__modal_${theme}`)}
     >
       <div className={cx('popup', `popup_${theme}`)}>
         <Button
@@ -93,7 +94,11 @@ const EditArtistPopUp: React.FC<TEditArtistPopUpProps> = ({
               errorMessage={errors.description?.message as string}
               theme={theme}
             />
-            {/* <MultiSelect /> */}
+            <MultiDropDown
+              theme={theme}
+              labelName='Genres*'
+              errorMessage='undefined'
+            />
             <Button
               type='submit'
               variant='default'

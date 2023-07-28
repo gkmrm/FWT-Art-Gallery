@@ -1,0 +1,31 @@
+.popup {
+  @include flexCenter;
+  flex-direction: column;
+  min-width: 100%;
+  min-height: 100%;
+
+  &__modal {
+    @include flexCenter;
+    min-width: 100vw;
+    min-height: 100vh;
+
+    &_light {
+      background-color: $secondaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+  }
+
+  @include mediaDesktop {
+    width: 800px;
+    height: 876px;
+  }
+}
+
+.form {
+  @include flexCenter;
+  flex-direction: column;
+  gap: 40px;
+}
