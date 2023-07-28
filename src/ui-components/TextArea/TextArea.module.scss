@@ -22,7 +22,7 @@
 
   &__field {
     resize: none;
-    width: 340px;
+    width: 260px;
     height: 150px;
     box-sizing: border-box;
     border-radius: 4px;
@@ -93,6 +93,11 @@
 
     &_error {
       border: 1px solid $accentError;
+    }
+
+    @include mediaTablet {
+      width: 340px;
+      height: 150px;
     }
   }
 }

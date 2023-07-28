@@ -34,7 +34,7 @@ const TextArea: React.FC<TTextAreaProps> = forwardRef<
         ref={ref}
         id={labelName}
         className={cx('textarea__field', `textarea__field_${theme}`, {
-          textarea__field_error: !!errorMessage,
+          textarea__field_error: errorMessage,
         })}
         {...others}
       />
