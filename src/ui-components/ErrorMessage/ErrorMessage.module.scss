@@ -1,0 +1,10 @@
+.error {
+  box-sizing: border-box;
+  font-family: $secondFontFamily;
+  display: flex;
+  align-items: center;
+  color: $accentError;
+  @include pSmallLight;
+  gap: 4px;
+  margin-top: 4px;
+}
