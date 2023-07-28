@@ -15,7 +15,7 @@ type TButtonProps = {
    * Type of button default | text | icon   <- string
    */
   variant?: 'default' | 'text' | 'icon';
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

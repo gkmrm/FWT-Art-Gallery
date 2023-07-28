@@ -14,10 +14,11 @@
     padding: 16px 0;
     border-radius: 25px;
     width: 200px;
+    color: $primaryWhite;
+    @include noUserSelect;
 
     &_light {
       background-color: $primaryBlack;
-      color: $primaryWhite;
 
       &:hover {
         box-shadow: $defaultButtonLightShadow;
