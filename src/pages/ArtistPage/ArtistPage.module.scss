@@ -43,28 +43,3 @@
     }
   }
 }
-
-// Видел в макете то, что в этом блоке будут
-// еще кнопки с логикой, вынесу в отдельный компонент
-.link {
-  box-sizing: border-box;
-  line-height: 24px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  margin: 0 auto;
-  max-width: 1280px;
-  padding: 0 20px;
-  margin-top: 52px;
-  margin-bottom: 24px;
-
-  &__arrow {
-    transform: rotate(180deg);
-  }
-
-  &__content::after {
-    @include mediaTablet {
-      content: 'BACK';
-    }
-  }
-}

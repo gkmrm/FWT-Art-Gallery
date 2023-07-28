@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { uid } from 'uid';
 
-import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
+import { ControlBar } from '@components/ControlBar';
 import { Slider } from '@components/Slider';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
-import { Button } from '@ui-components/Button';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import { Loader } from '@ui-components/Loader';
@@ -23,7 +22,6 @@ const cx = cn.bind(styles);
 const ArtistPage: React.FC = () => {
   const { theme } = useThemeContext();
   const { id = '' } = useParams();
-  const navigate = useNavigate();
 
   const [isOpenSlider, setIsOpenSlider] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,16 +36,7 @@ const ArtistPage: React.FC = () => {
 
   return (
     <div className={cx('artistPage', `artistPage_${theme}`)}>
-      <div className={cx('link')}>
-        <Button
-          variant='text'
-          theme={theme}
-          onClick={() => navigate(-1)}
-          className={cx('link__content')}
-        >
-          <ArrowCardIcon className={cx('link__arrow')} />
-        </Button>
-      </div>
+      <ControlBar theme={theme} />
       {isLoading ? <Loader theme={theme} /> : ''}
       {artist && (
         <>
