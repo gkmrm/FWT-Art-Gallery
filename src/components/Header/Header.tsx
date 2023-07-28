@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import cn from 'classnames/bind';
+import { useLocation } from 'react-router-dom';
 
 import { ReactComponent as BurgerIcon } from '@assets/icons/buger_icon.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
@@ -23,6 +24,7 @@ const Header: React.FC = () => {
   };
 
   const toggleOpen = () => setIsOpen(!isOpen);
+  const location = useLocation();
 
   return (
     <header className={cx('header', `header_${theme}`)}>
@@ -42,12 +44,22 @@ const Header: React.FC = () => {
             <nav>
               <ul className={cx('header__nav')}>
                 <li>
-                  <Link to='/' theme={theme} className={cx('header__nav_link')}>
+                  <Link
+                    to='/login'
+                    state={{ background: location }}
+                    theme={theme}
+                    className={cx('header__nav_link')}
+                  >
                     Log in
                   </Link>
                 </li>
                 <li>
-                  <Link to='/' theme={theme} className={cx('header__nav_link')}>
+                  <Link
+                    to='/signup'
+                    state={{ background: location }}
+                    theme={theme}
+                    className={cx('header__nav_link')}
+                  >
                     Sign up
                   </Link>
                 </li>
