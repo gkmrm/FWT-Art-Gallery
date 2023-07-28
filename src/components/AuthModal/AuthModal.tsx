@@ -3,8 +3,8 @@ import React from 'react';
 import cn from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 
-import { ThemeType } from '@context/ThemeConext';
-import { Button } from '@ui-components/Button';
+import { AuthForm } from '@components/AuthForm';
+import { useThemeContext } from '@context/ThemeConext';
 import { Link } from '@ui-components/Link';
 import { Modal } from '@ui-components/Modal';
 
@@ -13,12 +13,24 @@ import styles from './AuthModal.module.scss';
 const cx = cn.bind(styles);
 
 type TAuthModalProps = {
-  theme: ThemeType;
   variant: 'login' | 'signup';
 };
 
-const AuthModal: React.FC<TAuthModalProps> = ({ theme, variant }) => {
+const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
   const navigate = useNavigate();
+  const { theme } = useThemeContext();
+
+  const headerText =
+    variant === 'login' ? 'Welcome back' : 'Create your profile';
+
+  const paragraphText =
+    variant === 'login'
+      ? "If you don't have an account yet, please "
+      : 'If you already have an account, please ';
+
+  const linkText = variant === 'login' ? 'sign up' : 'log in';
+
+  const linkTo = variant === 'login' ? '/signup' : '/login';
 
   return (
     <Modal isShow onHide={() => navigate(-1)} theme={theme}>
@@ -36,18 +48,21 @@ const AuthModal: React.FC<TAuthModalProps> = ({ theme, variant }) => {
             `authModal__textBlock_${variant}`
           )}
         >
-          <h2 className={cx('authModal__header')}>Welcome back</h2>
+          <h2 className={cx('authModal__header', `authModal__header_${theme}`)}>
+            {headerText}
+          </h2>
           <div className={cx('authModal__form')}>
-            <div>тут email</div>
-            <div>тут password</div>
-            <Button variant='default' onClick={() => {}}>
-              log in
-            </Button>
+            <AuthForm theme={theme} variant={variant} />
           </div>
-          <p className={cx('authModal__paragraph')}>
-            If you don&apos;t have an account yet, please{' '}
-            <Link theme={theme} to='/signup' className={cx('authModal__link')}>
-              sign up
+          <p
+            className={cx(
+              'authModal__paragraph',
+              `authModal__paragraph_${theme}`
+            )}
+          >
+            {paragraphText}
+            <Link theme={theme} to={linkTo} className={cx('authModal__link')}>
+              {linkText}
             </Link>
           </p>
         </div>
