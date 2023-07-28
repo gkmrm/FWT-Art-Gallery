@@ -1,0 +1,40 @@
+.controlbar {
+  box-sizing: border-box;
+  line-height: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 20px;
+  margin-top: 52px;
+  margin-bottom: 24px;
+
+  &__link {
+    display: flex;
+    justify-content: flex-start;
+
+    &_arrow {
+      transform: rotate(180deg);
+    }
+    &_content {
+      height: 24px;
+
+      &::after {
+        @include mediaTablet {
+          content: 'BACK';
+        }
+      }
+    }
+  }
+
+  &__controllers {
+    height: 24px;
+    display: flex;
+    gap: 20px;
+
+    @include mediaTablet {
+      gap: 22px;
+    }
+  }
+}
