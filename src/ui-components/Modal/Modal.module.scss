@@ -20,6 +20,6 @@
 
   &__inner {
     z-index: $elevenLayer;
-    position: relative;
+    position: static;
   }
 }

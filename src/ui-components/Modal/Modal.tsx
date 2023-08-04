@@ -31,6 +31,7 @@ const Modal: React.FC<TModalProps> = ({ isShow, onHide, theme, ...other }) => {
     ? ReactDOM.createPortal(
         <>
           <RemoveScrollBar />
+
           <div
             className={cx('modal', `modal_${theme}`)}
             aria-modal
