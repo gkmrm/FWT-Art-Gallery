@@ -3,6 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 
+import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { AuthForm } from '@components/AuthForm';
 import { useThemeContext } from '@context/ThemeConext';
 import { Link } from '@ui-components/Link';
@@ -41,6 +42,10 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
           `authModal_${theme}`
         )}
       >
+        <CloseIcon
+          onClick={() => navigate(-1)}
+          className={cx('authModal__close', `authModal__close_${theme}`)}
+        />
         <div className={cx('authModal__img', `authModal__img_${variant}`)} />
         <div
           className={cx(
@@ -61,6 +66,7 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
             )}
           >
             {paragraphText}
+            {/* todo background прокидывать */}
             <Link theme={theme} to={linkTo} className={cx('authModal__link')}>
               {linkText}
             </Link>

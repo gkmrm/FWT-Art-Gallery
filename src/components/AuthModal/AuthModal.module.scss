@@ -19,17 +19,38 @@
     background-color: $primaryBlack;
   }
 
+  &__close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+
+    @include mediaTablet {
+      top: 32px;
+    }
+    @include mediaDesktop {
+      right: 32px;
+    }
+
+    &_light {
+      color: $primaryDarkGrey;
+    }
+    &_dark {
+      color: $primaryLightGrey;
+    }
+  }
+
   &__img {
     @include mediaDesktop {
       width: 498px;
       height: 700px;
 
       &_login {
-        background-image: url('./../../assets/png/loginPaint.png');
+        background-image: url('./../../assets/picture/loginPaint.png');
       }
 
       &_signup {
-        background-image: url('./../../assets/png/signupPaint.png');
+        background-image: url('./../../assets/picture/signupPaint.png');
       }
     }
   }
