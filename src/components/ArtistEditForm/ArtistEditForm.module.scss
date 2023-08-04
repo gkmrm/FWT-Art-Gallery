@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  &_light {
+    background-color: $secondaryWhite;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  @include mediaTablet {
+    gap: 60px;
+  }
+
+  @include mediaDesktop {
+    flex-direction: row;
+  }
+
+  &__wrapper {
+    @include flexCenter;
+    flex-direction: column;
+    gap: 40px;
+  }
+}
