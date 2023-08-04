@@ -36,10 +36,10 @@ const ArtistPage: React.FC = () => {
 
   return (
     <div className={cx('artistPage', `artistPage_${theme}`)}>
-      <ControlBar theme={theme} />
       {isLoading ? <Loader theme={theme} /> : ''}
       {artist && (
         <>
+          <ControlBar theme={theme} artist={artist} />
           <ArtistInfo
             avatar={artist.avatar}
             theme={theme}
