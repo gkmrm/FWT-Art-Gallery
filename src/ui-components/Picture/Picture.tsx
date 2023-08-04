@@ -7,25 +7,10 @@ import styles from './Picture.module.scss';
 const cx = cn.bind(styles);
 
 export type TPictureProps = {
-  /**
-   * Source of img - MAIN
-   */
   src?: string;
-  /**
-   * Source of webp img
-   */
   webp?: string;
-  /**
-   * Source of src2x img for Retina display
-   */
   src2x?: string;
-  /**
-   * Source of webp2x img for Retina display
-   */
   webp2x?: string;
-  /**
-   * Source of original img
-   */
   original?: string;
   alt: string;
   className?: string;
