@@ -32,5 +32,11 @@
 
   &__close {
     display: flex;
+    transition-duration: $defaultDelay;
+    transition-property: transform;
+
+    &:hover {
+      transform: rotate(360deg);
+    }
   }
 }
