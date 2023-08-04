@@ -39,7 +39,12 @@ const TextArea: React.FC<TTextAreaProps> = forwardRef<
         {...others}
       />
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      {errorMessage && (
+        <ErrorMessage
+          className={cx('textarea__error')}
+          errorMessage={errorMessage}
+        />
+      )}
     </label>
   )
 );
