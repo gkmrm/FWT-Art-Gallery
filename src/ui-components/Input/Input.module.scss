@@ -4,6 +4,7 @@
     flex-direction: column;
     box-sizing: border-box;
     font-family: $secondFontFamily;
+    position: relative;
 
     &_light {
       color: $primaryBlack;
@@ -30,10 +31,15 @@
     height: 46px;
     box-sizing: border-box;
     border-radius: 4px;
-    padding: 0 45px 0 16px;
+    padding: 0 16px;
     @include fieldText;
     border: none;
     outline: none;
+
+    @include mediaTablet {
+      width: 340px;
+      height: 46px;
+    }
 
     &_light {
       border: 1px solid $primaryLightGrey;
@@ -66,17 +72,9 @@
     &_error {
       border: 1px solid $accentError;
     }
-
-    @include mediaTablet {
-      width: 340px;
-      height: 46px;
-    }
   }
 
-  &__password {
-    position: absolute;
-    right: 16px;
-    top: 11px;
-    cursor: pointer;
+  &__error {
+    bottom: -28px;
   }
 }
