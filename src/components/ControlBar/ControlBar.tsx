@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as ArrowIcon } from '@assets/icons/arrowIcon.svg';
 import { ReactComponent as Edit } from '@assets/icons/edit_icon.svg';
+import { ReactComponent as Gear } from '@assets/icons/gear_icon.svg';
 import { ReactComponent as Delete } from '@assets/icons/trash_icon.svg';
+import { TArtistEditValues } from '@components/ArtistEditForm/ArtistEditForm';
 import { DeletePopUp } from '@components/DeletePopUp';
 import { EditArtistPopUp } from '@components/EditArtistPopUp';
+import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { ThemeType } from '@context/ThemeConext';
 import { Button } from '@ui-components/Button';
 
@@ -17,18 +20,25 @@ const cx = cn.bind(styles);
 
 type TControlBarProps = {
   theme: ThemeType;
+  artist: TArtistEditValues;
 };
 
-const ControlBar: React.FC<TControlBarProps> = ({ theme }) => {
+const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
   const navigate = useNavigate();
   const [isShowDelete, setShowDelete] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
+  // временно для проверки модалки
+  const [isShowEditPaint, setShowEditPaint] = useState(false);
 
   const onCloseDeletePopUp = () => {
     setShowDelete(!isShowDelete);
   };
   const onCloseEditPopUp = () => {
     setShowEdit(!isShowEdit);
+  };
+
+  const onClosePaintEditPopUp = () => {
+    setShowEditPaint(!isShowEditPaint);
   };
 
   return (
@@ -52,6 +62,13 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme }) => {
         >
           <Delete />
         </Button>
+        <Button
+          variant='icon'
+          onClick={() => setShowEditPaint(true)}
+          theme={theme}
+        >
+          <Gear />
+        </Button>
       </div>
       <DeletePopUp
         isShow={isShowDelete}
@@ -61,6 +78,12 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme }) => {
       <EditArtistPopUp
         isShow={isShowEdit}
         onClose={onCloseEditPopUp}
+        theme={theme}
+        artist={artist}
+      />
+      <PaintEditPopUp
+        isShow={isShowEditPaint}
+        onClose={onClosePaintEditPopUp}
         theme={theme}
       />
     </div>
