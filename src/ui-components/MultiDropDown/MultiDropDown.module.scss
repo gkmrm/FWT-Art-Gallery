@@ -1,4 +1,4 @@
-.dropDown {
+.dropdown {
   width: 260px;
   height: 46px;
   box-sizing: border-box;
@@ -11,6 +11,7 @@
   position: relative;
   overflow: hidden;
   z-index: $thirdLayer;
+  position: relative;
 
   &_light {
     border: 1px solid $primaryLightGrey;
@@ -44,6 +45,9 @@
 
   &_error {
     border: 1px solid $accentError;
+  }
+
+  &__notification {
   }
 
   @include mediaTablet {
@@ -160,13 +164,24 @@
     gap: 12px;
     font-family: $secondFontFamily;
     @include pBaseLight;
+    cursor: pointer;
 
     &_light {
       color: $primaryDarkGrey;
+
+      &:hover {
+        // в переменные
+        background-color: #1212120d;
+      }
     }
 
     &_dark {
       color: $primaryLightGrey;
+
+      &:hover {
+        // в переменные
+        background-color: #cdcdcd0d;
+      }
     }
   }
 

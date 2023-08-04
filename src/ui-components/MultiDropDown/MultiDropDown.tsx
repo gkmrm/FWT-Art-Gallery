@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import cn from 'classnames/bind';
-// import { Control, FieldValues } from 'react-hook-form';
-import { uid } from 'uid';
 
 import { ReactComponent as Arrow } from '@assets/icons/expand_icon.svg';
 import { ThemeType } from '@context/ThemeConext';
+import useOutsideClick from '@hooks/useOutsideClick';
 import { Checkbox } from '@ui-components/CheckBox';
+import { ErrorMessage } from '@ui-components/ErrorMessage';
 import { Genre } from '@ui-components/Genre';
 
 import styles from './MultiDropDown.module.scss';
+import { testData } from './TestData';
 
 const cx = cn.bind(styles);
 
@@ -18,23 +19,14 @@ interface IOption {
   name: string;
 }
 
-const testData = [
-  { id: 'dfdvnsbdkvh33423', name: 'Romanticism' },
-  { id: 'dfdvnsbd123kvh33423', name: 'Art' },
-  { id: 'dfdvnsbdasddkvh33423', name: 'Nature' },
-  { id: 'dfdvnsbdasdkvh33423', name: 'Bataille' },
-  { id: 'dfdvnsbdasdkvh33423', name: 'Realistic' },
-];
-
 type TMultiDropDownProps = {
   theme: ThemeType;
   labelName?: string;
   errorMessage: string;
   // todo заменить моделью данных
   options?: IOption[];
-  // selected?: IOption[];
-  // name: string;
-  // control: Control<FieldValues>;
+  selected: IOption[];
+  onChange: (selected: IOption[]) => void;
 };
 
 const MultiDropDown: React.FC<TMultiDropDownProps> = ({
@@ -42,77 +34,63 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
   theme,
   errorMessage,
   options = testData,
-  // selected,
-  // name,
-  // control,
+  selected,
+  onChange,
 }) => {
-  // const { field } = useController({ name, control });
   const [isOpen, setOpen] = useState(false);
-  const [isSelect, setSelect] = useState(false);
+  const [selectedValues, setSelectedValues] =
+    React.useState<IOption[]>(selected);
+  const ref = useRef<null | HTMLDivElement>(null);
 
-  // React.useEffect(() => {
-  //   if (selected?.length) {
-  //     field.onChange(selected);
-  //   }
-  // }, []);
+  const handleChange = (obj: IOption) => {
+    const newSelected = selectedValues.includes(obj)
+      ? selectedValues.filter((item) => item.id !== obj.id)
+      : [...selected, obj];
 
-  const selected: IOption[] = [
-    { id: 'dfdvnsbdkvh33423', name: 'Romanticism' },
-    { id: 'dfdvnsbd123kvh33423', name: 'Art' },
-    { id: 'dfdvnsbdasddkvh33423', name: 'Nature' },
-    { id: 'dfdvnsbdasdkvh33423', name: 'Bataille' },
-  ];
-
-  const onSelectToggle = (option: IOption) => {
-    if (selected.includes(option)) {
-      console.log('Убрали');
-      setSelect(false);
-      selected.filter((item) => item.id === option.id);
-    } else {
-      console.log('Добавили');
-      setSelect(true);
-      selected.push(option);
-    }
+    setSelectedValues(newSelected);
+    onChange(newSelected);
   };
 
-  // const onSelect = (option: IOption) => {
-  //   setSelect(true);
-  //   selected.push(option);
-  // };
+  const onToggle = useCallback(() => {
+    setOpen((prev) => !prev);
+  }, [setOpen]);
 
-  // const onDelete = (option: IOption) => {
-  //   setSelect(false);
-  //   selected.filter((item) => item.id === option.id);
-  // };
+  const handleToggle = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
 
-  const onToggle = () => {
-    setOpen(!isOpen);
-  };
+  useOutsideClick(ref, handleToggle);
+
+  const checkIsSelected = (obj: IOption) =>
+    !!selectedValues.find((item) => item.id === obj.id);
 
   return (
-    <div className={cx('dropDown__wrapper', `dropDown__wrapper_${theme}`)}>
+    <div
+      className={cx('dropdown__wrapper', `dropdown__wrapper_${theme}`)}
+      ref={ref}
+    >
       {labelName && (
-        <p className={cx('dropDown__label', `dropDown__label_${theme}`)}>
+        <p className={cx('dropdown__label', `dropdown__label_${theme}`)}>
           {labelName}
         </p>
       )}
       <div
         role='presentation'
         onClick={onToggle}
-        className={cx('dropDown', `dropDown_${theme}`, {
-          dropDown_error: errorMessage,
-          [`dropDown_${theme}_active`]: isOpen,
+        className={cx('dropdown', `dropdown_${theme}`, {
+          dropdown_error: errorMessage,
+          [`dropdown_${theme}_active`]: isOpen,
         })}
       >
-        <div className={cx('dropDown__inner', `dropDown__inner_${theme}`)}>
+        <div className={cx('dropdown__inner', `dropdown__inner_${theme}`)}>
           {selected && (
-            <div className={cx('dropDown__select')}>
-              {selected.map((item) => (
+            <div className={cx('dropdown__select')}>
+              {selectedValues.map((item) => (
                 <Genre
                   key={item.id}
-                  className={cx('dropDown__selected')}
+                  className={cx('dropdown__selected')}
                   theme={theme}
-                  onClose={() => console.log('Delete')}
+                  onClose={() => handleChange(item)}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {item.name}
@@ -121,23 +99,33 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
             </div>
           )}
           <Arrow
-            className={cx('dropDown__inner_arrow', {
+            className={cx('dropdown__inner_arrow', {
               dropDown__inner_arrow_open: isOpen,
             })}
           />
         </div>
       </div>
+      {errorMessage && (
+        <ErrorMessage
+          className={cx('dropdown__notification')}
+          errorMessage={errorMessage}
+        />
+      )}
 
       {isOpen && (
-        <div className={cx('dropDown__open', `dropDown__open_${theme}`)}>
+        <div className={cx('dropdown__open', `dropdown__open_${theme}`)}>
           {options.map((item) => (
             <div
-              key={uid()}
-              className={cx('dropDown__item', `dropDown__item_${theme}`)}
+              key={item.id}
+              className={cx('dropdown__item', `dropdown__item_${theme}`)}
               role='presentation'
-              onClick={() => onSelectToggle}
+              onClick={() => handleChange(item)}
             >
-              <Checkbox theme={theme} isChecked={isSelect} idFor={item.id} />
+              <Checkbox
+                theme={theme}
+                checked={checkIsSelected(item)}
+                name={item.id}
+              />
               <p id={item.id}>{item.name}</p>
             </div>
           ))}
