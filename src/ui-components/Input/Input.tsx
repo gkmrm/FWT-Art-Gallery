@@ -10,24 +10,24 @@ import styles from './Input.module.scss';
 const cx = cn.bind(styles);
 
 export type TInputProps = {
-  labelName: string;
+  labelName?: string;
   errorMessage: string;
-  placeholder?: string;
   theme: ThemeType;
   className?: string;
   inner?: React.ReactNode;
+  classNameInner?: string;
   onInnerClick?: () => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: React.FC<TInputProps> = forwardRef<HTMLInputElement, TInputProps>(
   (
     {
-      labelName,
+      labelName = '',
       errorMessage,
-      placeholder = '',
       theme,
       className = '',
       inner = null,
+      classNameInner,
       onInnerClick,
       ...other
     },
@@ -35,28 +35,33 @@ const Input: React.FC<TInputProps> = forwardRef<HTMLInputElement, TInputProps>(
   ) => (
     <label
       htmlFor={labelName}
-      className={cx(className, 'input__label', `input__label_${theme}`)}
+      className={cx('input__label', `input__label_${theme}`)}
     >
       <p className={cx('input__label_text')}>{labelName}</p>
       <div className={cx('input__wrapper')}>
         <input
           ref={ref}
-          placeholder={placeholder}
+          placeholder={other.placeholder}
           id={labelName}
-          className={cx('input__field', `input__field_${theme}`, {
+          className={cx(className, 'input__field', `input__field_${theme}`, {
             input__field_error: errorMessage,
           })}
           {...other}
         />
         <span
-          className={cx('input__password')}
+          className={cx(classNameInner)}
           role='presentation'
           onClick={onInnerClick}
         >
           {inner}
         </span>
       </div>
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      {errorMessage && (
+        <ErrorMessage
+          className={cx('input__error')}
+          errorMessage={errorMessage}
+        />
+      )}
     </label>
   )
 );
