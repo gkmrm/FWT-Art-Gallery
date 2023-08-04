@@ -4,6 +4,7 @@
     flex-direction: column;
     box-sizing: border-box;
     font-family: $secondFontFamily;
+    position: relative;
 
     &_light {
       color: $primaryBlack;
@@ -30,6 +31,7 @@
     @include fieldText;
     border: none;
     outline: none;
+    font-family: $secondFontFamily;
 
     &::-webkit-scrollbar-thumb {
       border-radius: 4px;
@@ -99,5 +101,9 @@
       width: 340px;
       height: 150px;
     }
+  }
+
+  &__error {
+    bottom: -28px;
   }
 }
