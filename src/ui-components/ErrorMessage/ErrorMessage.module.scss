@@ -7,4 +7,10 @@
   @include pSmallLight;
   gap: 4px;
   margin-top: 4px;
+  overflow-wrap: break-word;
+  position: absolute;
+
+  &__icon {
+    min-width: 24px;
+  }
 }

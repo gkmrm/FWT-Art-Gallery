@@ -10,14 +10,16 @@ const cx = cn.bind(styles);
 
 type TErrorMessageProps = {
   errorMessage: string;
+  className?: string;
 } & React.HTMLAttributes<HTMLParagraphElement>;
 
 const ErrorMessage: React.FC<TErrorMessageProps> = ({
   errorMessage,
+  className = '',
   ...other
 }) => (
-  <p className={cx('error')} {...other}>
-    <ErrorIcon />
+  <p className={cx('error', className)} {...other}>
+    <ErrorIcon className={cx('error__icon')} />
     {errorMessage}
   </p>
 );
