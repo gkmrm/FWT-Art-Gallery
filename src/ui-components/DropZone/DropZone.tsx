@@ -9,6 +9,7 @@ import { ThemeType } from '@context/ThemeConext';
 import { Button } from '@ui-components/Button';
 import { ErrorMessage } from '@ui-components/ErrorMessage';
 import BASE_URL from '@utils/BASE_URL';
+import getBase64 from '@utils/functions/getBase64';
 
 import styles from './DropZone.module.scss';
 
@@ -27,14 +28,6 @@ type TDropZoneProps = {
   onChange: (file: File | '') => void;
   initialValue?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
-
-export const getBase64 = (file: File): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
 
 const DropZone: React.FC<TDropZoneProps> = ({
   onReset,
