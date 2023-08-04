@@ -1,0 +1,65 @@
+.dropdown {
+  @include noUserSelect;
+  width: 212px;
+
+  @include mediaTablet {
+    width: 320px;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_title {
+      @include h4;
+      line-height: 19px;
+      text-transform: uppercase;
+    }
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+  }
+
+  &__wrapper {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    @include mediaTablet {
+      margin-top: 20px;
+    }
+  }
+
+  &__options {
+    cursor: pointer;
+    @include noUserSelect;
+    font-family: $secondFontFamily;
+    @include pSmallLight;
+    line-height: 17px;
+
+    &_light {
+      color: $primaryDarkGrey;
+
+      &_selected {
+        color: $primaryBlack;
+        font-weight: 500;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+
+      &_selected {
+        color: $accentGold;
+        font-weight: 500;
+      }
+    }
+  }
+}
