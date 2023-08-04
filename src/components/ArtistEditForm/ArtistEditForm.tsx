@@ -18,17 +18,17 @@ import styles from './ArtistEditForm.module.scss';
 
 const cx = cn.bind(styles);
 
-// const MAX_FILE_SIZE = 3145728;
-// const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
+const MAX_FILE_SIZE = 3145728;
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
 
 const schema = z.object({
   avatar: z
     .any()
-    // .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 3MB.`)
-    // .refine(
-    //   (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-    //   'Only .jpg, .jpeg, .png formats are supported.'
-    // )
+    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 3MB.`)
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      'Only .jpg, .jpeg, .png formats are supported.'
+    )
     .optional(),
   name: z
     .string()
