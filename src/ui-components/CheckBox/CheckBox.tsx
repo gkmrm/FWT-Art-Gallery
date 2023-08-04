@@ -10,27 +10,25 @@ import styles from './CheckBox.module.scss';
 const cx = cn.bind(styles);
 
 type TCheckBoxProps = {
-  isChecked: boolean;
-  idFor: string;
+  // idFor: string;
   theme: ThemeType;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const CheckBox: React.FC<TCheckBoxProps> = ({
-  isChecked,
-  idFor,
+  // eslint-disable-next-line react/prop-types
+  name,
   theme,
   ...others
 }) => (
-  <label htmlFor={idFor} className={cx('checkbox__wrapper')}>
+  <label htmlFor={name} className={cx('checkbox__wrapper')}>
     <input
       className={cx('checkbox', `checkbox_${theme}`)}
       type='checkbox'
-      id={idFor}
-      checked={isChecked}
+      id={name}
       readOnly
       {...others}
     />
-    {isChecked && <SelectIcon className={cx('checkbox__icon')} />}
+    {others.checked && <SelectIcon className={cx('checkbox__icon')} />}
   </label>
 );
 
