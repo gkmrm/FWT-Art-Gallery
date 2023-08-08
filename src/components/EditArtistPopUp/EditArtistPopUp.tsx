@@ -16,7 +16,7 @@ type TEditArtistPopUpProps = {
   isShow: boolean;
   onClose: () => void;
   theme: ThemeType;
-  artist: TArtistEditValues;
+  artist?: TArtistEditValues;
 };
 
 const EditArtistPopUp: React.FC<TEditArtistPopUpProps> = ({

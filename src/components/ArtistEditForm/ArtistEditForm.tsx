@@ -61,12 +61,20 @@ export type TArtistEditValues = {
 
 type TArtistEditFormProps = {
   theme: ThemeType;
-  artistValues: TArtistEditValues;
+  artistValues?: TArtistEditValues;
+};
+
+const defaultEmpty: TArtistEditValues = {
+  name: '',
+  years: '',
+  description: '',
+  genres: [],
+  avatar: { src: '' },
 };
 
 const ArtistEditForm: React.FC<TArtistEditFormProps> = ({
   theme,
-  artistValues,
+  artistValues = defaultEmpty,
 }) => {
   const [isDraggable, setDraggable] = useState(false);
 
