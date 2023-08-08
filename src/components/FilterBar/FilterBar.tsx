@@ -2,11 +2,10 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ThemeType } from '@context/ThemeConext';
 import { Button } from '@ui-components/Button';
 import { DropDown } from '@ui-components/DropDown';
-import { Modal } from '@ui-components/Modal';
+import { Sidebar } from '@ui-components/Sidebar';
 
 import styles from './FilterBar.module.scss';
 
@@ -54,54 +53,23 @@ const testData: IOption[] = [
   },
 ];
 
-const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
-  // const [isClear, setClear] = useState(false);
-
-  // const onClear = () => {
-  //   setClear(true);
-  // };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const a = '';
-
-  return (
-    <Modal
-      isShow={isShow}
-      onHide={onClose}
-      theme={theme}
-      className={cx('filterbar', `filterbar_${theme}`)}
-    >
-      <Button
-        onClick={onClose}
-        className={cx('filterbar__icon', `filterbar__icon_${theme}`)}
-      >
-        <CloseIcon />
+const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => (
+  <Sidebar theme={theme} isShow={isShow} onClose={onClose}>
+    <div className={cx('filterbar__wrapper')}>
+      <div className={cx('filterbar__dropdowns')}>
+        <DropDown name='Genres' values={[]} options={testData} theme={theme} />
+        <DropDown name='Sort by' values={[]} options={testData} theme={theme} />
+      </div>
+    </div>
+    <div className={cx('filterbar__buttons')}>
+      <Button variant='text' theme={theme}>
+        show the result
       </Button>
-      <div className={cx('filterbar__wrapper')}>
-        <div className={cx('filterbar__dropdowns')}>
-          <DropDown
-            name='Genres'
-            values={[]}
-            options={testData}
-            theme={theme}
-          />
-          <DropDown
-            name='Sort by'
-            values={[]}
-            options={testData}
-            theme={theme}
-          />
-        </div>
-      </div>
-      <div className={cx('filterbar__buttons')}>
-        <Button variant='text' theme={theme}>
-          show the result
-        </Button>
-        <Button variant='text' theme={theme}>
-          clear
-        </Button>
-      </div>
-    </Modal>
-  );
-};
+      <Button variant='text' theme={theme}>
+        clear
+      </Button>
+    </div>
+  </Sidebar>
+);
 
 export default FilterBar;

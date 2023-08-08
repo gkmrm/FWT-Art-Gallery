@@ -1,49 +1,4 @@
 .filterbar {
-  position: absolute;
-  right: 0;
-  min-height: 100vh;
-  width: 252px;
-  @include noUserSelect;
-
-  &_light {
-    background-color: $secondaryWhite;
-  }
-
-  &_dark {
-    background-color: $primaryBlack;
-  }
-
-  @include mediaTablet {
-    width: 372px;
-  }
-
-  @include mediaDesktop {
-    width: 492px;
-  }
-
-  &__icon {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: transparent;
-
-    @include mediaTablet {
-      top: 32px;
-    }
-
-    @include mediaDesktop {
-      top: 60px;
-      right: 100px;
-    }
-
-    &_light {
-      color: $primaryDarkGrey;
-    }
-    &_dark {
-      color: $secondaryGrey;
-    }
-  }
-
   &__wrapper {
     position: relative;
     top: 104px;
@@ -71,13 +26,13 @@
 
   &__buttons {
     position: absolute;
-    top: 452px;
+    top: 348px;
     left: 20px;
     display: flex;
     gap: 49px;
 
     @include mediaTablet {
-      top: 689px;
+      top: 509px;
       gap: 157px;
       left: 32px;
     }
