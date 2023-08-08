@@ -51,6 +51,7 @@ $subtitleBold: 700;
 // Input
 $inputText: 12px;
 $inputBold: 700;
+$inputRadius: 4px;
 
 // Caption
 $capBaseText: 16px;
@@ -72,7 +73,10 @@ $linkMedium: 700;
 
 // Label's
 $labelText: 12px;
-$labelold: 700;
+$labelbold: 700;
+
+$labelBigText: 16px;
+$labelMedium: 500;
 
 // Default
 $light: 300;
@@ -129,6 +133,9 @@ $accordionGradientDark: linear-gradient(180deg, #dedede 0%, #dedede40);
 $scrollLight: #1212120d;
 $scrollDark: #cdcdcd0d;
 
+// Scroll button
+$scrollBG: #242222;
+
 // Z-INDEX
 $firstLayer: 1;
 $secondLayer: 2;
@@ -153,6 +160,10 @@ $defaultDelay: 0.5s;
 // Loader delay
 $loaderDelay: 2s;
 
+//MultiDropDown
+$hoverLight: #1212120d;
+$hoverDark: #cdcdcd0d;
+
 // Skeleton
 $lightBackground: #eeeded;
 $lightGradient: linear-gradient(
@@ -170,3 +181,12 @@ $darkGradient: linear-gradient(
   transparent 100%
 );
 $skeletonAnimation: 2s ease-out infinite;
+
+// Text editing
+$textCenter: center;
+$textLastCenter: center;
+$textJustify: justify;
+
+// DropZone
+$radiusAvatar: 10px;
+$radiusPaint: 2px;

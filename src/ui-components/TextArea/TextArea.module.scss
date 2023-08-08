@@ -26,28 +26,14 @@
     width: 260px;
     height: 150px;
     box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: $inputRadius;
     padding: 12px 16px;
     @include fieldText;
     border: none;
     outline: none;
     font-family: $secondFontFamily;
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      border: 1px solid transparent;
-      background-clip: content-box;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 4px;
-      margin: 4px;
-    }
-
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
+    @include scrollStyle;
 
     &_light {
       border: 1px solid $primaryLightGrey;
@@ -62,13 +48,7 @@
         border: 1px solid $primaryDarkGrey;
       }
 
-      &::-webkit-scrollbar-thumb {
-        background-color: $secondaryGrey;
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: $scrollLight;
-      }
+      @include scrollStyleLight;
     }
 
     &_dark {
@@ -84,13 +64,7 @@
         border: 1px solid $primaryLightGrey;
       }
 
-      &::-webkit-scrollbar-thumb {
-        background-color: $primaryDarkGrey;
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: $scrollDark;
-      }
+      @include scrollStyleDark;
     }
 
     &_error {
@@ -104,6 +78,6 @@
   }
 
   &__error {
-    bottom: -28px;
+    bottom: -30px;
   }
 }

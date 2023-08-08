@@ -2,7 +2,7 @@
   font-family: $secondFontFamily;
   @include pBaseLight;
   font-size: 16px;
-  text-align: justify;
+  text-align: $textJustify;
 
   &_dark {
     color: $primaryLightGrey;

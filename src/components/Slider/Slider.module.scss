@@ -5,7 +5,13 @@
   z-index: 100;
   width: 100vw;
   overflow: hidden;
-  background-color: black;
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+  &_dark {
+    background-color: $primaryBlack;
+  }
 
   &__visible {
     display: block;

@@ -2,7 +2,6 @@
   &__label {
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     font-family: $secondFontFamily;
     position: relative;
 
@@ -29,8 +28,7 @@
   &__field {
     width: 260px;
     height: 46px;
-    box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: $inputRadius;
     padding: 0 16px;
     @include fieldText;
     border: none;
@@ -75,6 +73,6 @@
   }
 
   &__error {
-    bottom: -28px;
+    bottom: -30px;
   }
 }

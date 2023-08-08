@@ -41,8 +41,7 @@
     display: flex;
     font-family: $secondFontFamily;
     @include buttonText;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    @include decorationUnderline;
     letter-spacing: 0.1px;
 
     @include mediaDesktop {

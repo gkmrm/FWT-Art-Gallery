@@ -66,8 +66,7 @@
     @include flexCenter;
     flex-direction: column;
     gap: 12px;
-    text-align: justify;
-    text-align-last: center;
+    @include textJustifyCenter;
 
     &_light {
       color: $primaryDarkGrey;

@@ -48,9 +48,8 @@
   }
 
   &_text {
-    text-decoration: underline;
+    @include decorationUnderline;
     background-color: transparent;
-    text-underline-offset: 4px;
     height: 16px;
 
     &_light {
