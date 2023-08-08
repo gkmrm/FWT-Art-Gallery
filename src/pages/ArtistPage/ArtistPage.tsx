@@ -4,12 +4,15 @@ import cn from 'classnames/bind';
 import { useParams } from 'react-router-dom';
 import { uid } from 'uid';
 
+import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
 import { ControlBar } from '@components/ControlBar';
+import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { Slider } from '@components/Slider';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
+import { Button } from '@ui-components/Button';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import { Loader } from '@ui-components/Loader';
@@ -23,16 +26,21 @@ const ArtistPage: React.FC = () => {
   const { theme } = useThemeContext();
   const { id = '' } = useParams();
 
+  const { data: artist, isLoading } =
+    artistsStaticApi.useFetchArtistStaticByIdQuery(id);
+
   const [isOpenSlider, setIsOpenSlider] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isShowEditPaint, setShowEditPaint] = useState(false);
 
   const onClickCard = (index: number) => () => {
     setCurrentIndex(index);
     setIsOpenSlider(true);
   };
 
-  const { data: artist, isLoading } =
-    artistsStaticApi.useFetchArtistStaticByIdQuery(id);
+  const onClosePaintEditPopUp = () => {
+    setShowEditPaint(!isShowEditPaint);
+  };
 
   return (
     <div className={cx('artistPage', `artistPage_${theme}`)}>
@@ -57,6 +65,17 @@ const ArtistPage: React.FC = () => {
             >
               Artworks
             </h1>
+            <div className={cx('artistPage__addBlock')}>
+              <Button
+                theme={theme}
+                variant='text'
+                onClick={() => setShowEditPaint(true)}
+                className={cx('artistPage__addBlock_button')}
+              >
+                <PlusIcon />
+                add picture
+              </Button>
+            </div>
             {isLoading ? (
               <Grid>
                 {Array.from({ length: 6 }).map(() => (
@@ -78,6 +97,11 @@ const ArtistPage: React.FC = () => {
               </Grid>
             )}
           </Container>
+          <PaintEditPopUp
+            isShow={isShowEditPaint}
+            onClose={onClosePaintEditPopUp}
+            theme={theme}
+          />
           {isOpenSlider && (
             <Slider
               theme={theme}
