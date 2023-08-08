@@ -63,16 +63,6 @@ const DropDown: React.FC<TDropDownProps> = ({
       {isOpen && (
         <div className={cx('dropdown__wrapper')}>
           {options.map((item) => (
-            // <div
-            //   className={cx('dropdown__options', `dropdown__options_${theme}`, {
-            //     [`dropdown__options_${theme}_selected`]: getSelected(item),
-            //   })}
-            //   key={item.id}
-            //   role='presentation'
-            //   onClick={() => handleChange(item)}
-            // >
-            //   {item.name}
-            // </div>
             <FilterItem
               theme={theme}
               handleChange={handleChange}
