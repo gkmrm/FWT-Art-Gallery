@@ -2,11 +2,9 @@ import React, { ChangeEvent, DragEvent, useCallback, useRef } from 'react';
 
 import cn from 'classnames/bind';
 
-import { ReactComponent as AvatarPlaceholder } from '@assets/icons/artistAvatar.svg';
-import { ReactComponent as PaintPlaceholder } from '@assets/icons/paintDrop_icon_small.svg';
-import { ReactComponent as DeleteIcon } from '@assets/icons/trash_icon.svg';
 import { ThemeType } from '@context/ThemeConext';
-import { Button } from '@ui-components/Button';
+import { DropField } from '@ui-components/DropField';
+import { DropImagePreview } from '@ui-components/DropImagePreview';
 import { ErrorMessage } from '@ui-components/ErrorMessage';
 import BASE_URL from '@utils/BASE_URL';
 import getBase64 from '@utils/functions/getBase64';
@@ -54,7 +52,6 @@ const DropZone: React.FC<TDropZoneProps> = ({
       const base64 = await getBase64(file);
       setImage(base64);
       onChange(file);
-      console.log(file);
     }
   };
 
@@ -107,129 +104,27 @@ const DropZone: React.FC<TDropZoneProps> = ({
         )}
       >
         {image && !errorMessage && (
-          <div
-            className={cx(
-              'dropzone__imageBlock',
-              `dropzone__imageBlock_${variant}`,
-              { dropzone__imageBlock_disabled: isDraggable }
-            )}
-          >
-            <img
-              className={cx(
-                'dropzone__imageBlock_image',
-                `dropzone__imageBlock_image_${variant}`
-              )}
-              src={image}
-              alt=''
-            />
-            <Button
-              className={cx('dropzone__imageBlock_icon')}
-              variant='icon'
-              theme={theme}
-              onClick={handleDeleteImage}
-            >
-              <DeleteIcon />
-            </Button>
-          </div>
-        )}
-        <div
-          className={cx(
-            'dropzone__field',
-            `dropzone__field_${theme}`,
-            `dropzone__field_${variant}`,
-            {
-              [`dropzone__field_${variant}_drag`]: isDraggable,
-              [`dropzone__field_${theme}_drag`]: isDraggable,
-            }
-          )}
-        >
-          <input
-            className={cx('dropzone__input')}
-            id={idFor}
-            ref={inputRef}
-            type='file'
-            {...other}
-            onChange={handleChangeImage}
+          <DropImagePreview
+            isDraggable={isDraggable}
+            variant={variant}
+            theme={theme}
+            image={image}
+            handleDeleteImage={handleDeleteImage}
           />
-          <div className={cx('dropzone__inner')}>
-            {variant === 'avatar' ? (
-              <AvatarPlaceholder
-                className={cx(
-                  'dropzone__placeholder',
-                  'dropzone__placeholder_avatar'
-                )}
-              />
-            ) : (
-              <PaintPlaceholder
-                className={cx(
-                  'dropzone__placeholder',
-                  'dropzone__placeholder_paint'
-                )}
-              />
-            )}
-
-            {variant === 'avatar' ? (
-              <>
-                <p
-                  className={cx('dropzone__text', `dropzone__text_${theme}`, {
-                    dropzone__text_drag: isDraggable,
-                  })}
-                />
-                {isDraggable && (
-                  <p
-                    className={cx(
-                      'dropzone__text_sub',
-                      `dropzone__text_sub_${theme}`
-                    )}
-                  >
-                    Upload only .jpg or .png format less than 3 MB
-                  </p>
-                )}
-              </>
-            ) : (
-              <div
-                className={cx(
-                  'dropzone__text_paint',
-                  `dropzone__text_${theme}`
-                )}
-              >
-                <p
-                  className={cx(
-                    'dropzone__text_main',
-                    `dropzone__text_main_${theme}`
-                  )}
-                >
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <label
-                    className={cx(
-                      'dropzone__label_paint',
-                      `dropzone__label_paint_${theme}`
-                    )}
-                    htmlFor={idFor}
-                  />
-                </p>
-                <p
-                  className={cx(
-                    'dropzone__text_sub',
-                    `dropzone__text_sub_${theme}`
-                  )}
-                >
-                  Upload only .jpg or .png format less than 3 MB
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+        )}
+        <DropField
+          variant={variant}
+          theme={theme}
+          isDraggable={isDraggable}
+          idFor={idFor}
+          handleChangeImage={handleChangeImage}
+          labelName={labelName}
+          {...other}
+        />
       </section>
-      <label
-        className={cx('dropzone__label', `dropzone__label_${theme}`)}
-        htmlFor={idFor}
-      >
-        <p>{labelName}</p>
-      </label>
       {errorMessage && (
         <ErrorMessage
-          className={cx(`dropzone__error_${variant}`)}
+          className={cx(`dropzone__error`)}
           errorMessage={errorMessage}
         />
       )}

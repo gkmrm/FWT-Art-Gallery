@@ -1,0 +1,41 @@
+.imageBlock {
+  width: 100%;
+  position: absolute;
+  z-index: $elevenLayer;
+
+  &_avatar {
+    height: 200px;
+    width: 200px;
+  }
+
+  &_paint {
+    height: 187px;
+
+    @include mediaTablet {
+      height: 327px;
+    }
+  }
+
+  &_disabled {
+    display: none;
+  }
+
+  &_image {
+    @include imagePositionCover;
+
+    &_avatar {
+      border-radius: $radiusAvatar;
+      position: relative;
+    }
+
+    &_paint {
+      border-radius: $radiusPaint;
+    }
+  }
+
+  &_icon {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+  }
+}
