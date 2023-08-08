@@ -7,6 +7,8 @@ import { Header } from '@components/Header';
 import { ScrollButton } from '@components/ScrollButton';
 import useScrollToTop from '@hooks/useScrollToTop';
 
+import { ToasterLayout } from './ToasterLayout';
+
 export const MainLayout = () => {
   useScrollToTop();
 
@@ -16,6 +18,7 @@ export const MainLayout = () => {
       <Outlet />
       <Footer />
       <ScrollButton />
+      <ToasterLayout />
     </>
   );
 };
