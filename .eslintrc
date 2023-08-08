@@ -34,7 +34,7 @@
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "@typescript-eslint/no-unused-vars": "error",
     "no-unused-vars": "warn",
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": 0,
     "import/order": [
       "error",
       {
