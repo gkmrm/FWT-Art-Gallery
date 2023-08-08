@@ -65,10 +65,7 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
     !!selectedValues.find((item) => item.id === obj.id);
 
   return (
-    <div
-      className={cx('dropdown__wrapper', `dropdown__wrapper_${theme}`)}
-      ref={ref}
-    >
+    <div ref={ref}>
       {labelName && (
         <p className={cx('dropdown__label', `dropdown__label_${theme}`)}>
           {labelName}
@@ -105,12 +102,7 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
           />
         </div>
       </div>
-      {errorMessage && (
-        <ErrorMessage
-          className={cx('dropdown__notification')}
-          errorMessage={errorMessage}
-        />
-      )}
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
 
       {isOpen && (
         <div className={cx('dropdown__open', `dropdown__open_${theme}`)}>
