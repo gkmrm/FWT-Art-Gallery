@@ -37,29 +37,29 @@
     }
   }
 
-  &__options {
-    cursor: pointer;
-    @include noUserSelect;
-    font-family: $secondFontFamily;
-    @include pSmallLight;
-    line-height: 17px;
+  // &__options {
+  //   cursor: pointer;
+  //   @include noUserSelect;
+  //   font-family: $secondFontFamily;
+  //   @include pSmallLight;
+  //   line-height: 17px;
 
-    &_light {
-      color: $primaryDarkGrey;
+  //   &_light {
+  //     color: $primaryDarkGrey;
 
-      &_selected {
-        color: $primaryBlack;
-        font-weight: 500;
-      }
-    }
+  //     &_selected {
+  //       color: $primaryBlack;
+  //       font-weight: 500;
+  //     }
+  //   }
 
-    &_dark {
-      color: $primaryLightGrey;
+  //   &_dark {
+  //     color: $primaryLightGrey;
 
-      &_selected {
-        color: $accentGold;
-        font-weight: $pMedium;
-      }
-    }
-  }
+  //     &_selected {
+  //       color: $accentGold;
+  //       font-weight: $pMedium;
+  //     }
+  //   }
+  // }
 }

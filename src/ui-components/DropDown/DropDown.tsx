@@ -5,6 +5,7 @@ import cn from 'classnames/bind';
 import { ReactComponent as MinusIcon } from '@assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ThemeType } from '@context/ThemeConext';
+import { FilterItem } from '@ui-components/FilterItem';
 
 import styles from './DropDown.module.scss';
 
@@ -62,16 +63,22 @@ const DropDown: React.FC<TDropDownProps> = ({
       {isOpen && (
         <div className={cx('dropdown__wrapper')}>
           {options.map((item) => (
-            <div
-              className={cx('dropdown__options', `dropdown__options_${theme}`, {
-                [`dropdown__options_${theme}_selected`]: getSelected(item),
-              })}
-              key={item.id}
-              role='presentation'
-              onClick={() => handleChange(item)}
-            >
-              {item.name}
-            </div>
+            // <div
+            //   className={cx('dropdown__options', `dropdown__options_${theme}`, {
+            //     [`dropdown__options_${theme}_selected`]: getSelected(item),
+            //   })}
+            //   key={item.id}
+            //   role='presentation'
+            //   onClick={() => handleChange(item)}
+            // >
+            //   {item.name}
+            // </div>
+            <FilterItem
+              theme={theme}
+              handleChange={handleChange}
+              isSelected={getSelected(item)}
+              data={item}
+            />
           ))}
         </div>
       )}
