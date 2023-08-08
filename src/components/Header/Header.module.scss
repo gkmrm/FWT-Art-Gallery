@@ -34,6 +34,10 @@
         height: 20px;
       }
     }
+
+    &_hide {
+      display: none;
+    }
   }
 
   &__menu {
@@ -50,6 +54,37 @@
 
     @include mediaDesktop {
       display: none;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: 20px;
+
+    @include mediaDesktop {
+      display: none;
+    }
+  }
+
+  &__searchbar {
+    @include flexCenter;
+  }
+
+  &__loupe {
+    &_disabled {
+      display: none;
+    }
+
+    @include mediaTablet {
+      display: none;
+    }
+  }
+
+  &__search {
+    display: none;
+
+    &_open {
+      display: block;
     }
   }
 }
