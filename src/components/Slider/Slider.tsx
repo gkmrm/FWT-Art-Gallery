@@ -34,7 +34,7 @@ const Slider: React.FC<TSliderProps> = ({
   onClose,
   currentIndex,
 }) => (
-  <div className={cx('slider', { slider__visible: isOpen })}>
+  <div className={cx('slider', `slider_${theme}`, { slider__visible: isOpen })}>
     <RemoveScrollBar />
     <Splide
       options={{

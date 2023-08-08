@@ -10,7 +10,6 @@ import styles from './CheckBox.module.scss';
 const cx = cn.bind(styles);
 
 type TCheckBoxProps = {
-  // idFor: string;
   theme: ThemeType;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 

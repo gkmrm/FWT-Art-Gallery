@@ -20,7 +20,6 @@ type TDropDownProps = {
   values: IOption[];
   options: IOption[];
   theme: ThemeType;
-  // isClear: boolean;
 };
 
 const DropDown: React.FC<TDropDownProps> = ({
@@ -28,7 +27,6 @@ const DropDown: React.FC<TDropDownProps> = ({
   values,
   options,
   theme,
-  // isClear,
 }) => {
   const [value, setValue] = useState<IOption[]>(values);
   const [isOpen, setOpen] = useState(false);
