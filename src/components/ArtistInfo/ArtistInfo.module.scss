@@ -3,6 +3,7 @@
     display: block;
     position: static;
     @include noUserSelect;
+    box-sizing: content-box;
 
     @include mediaDesktop {
       position: relative;
