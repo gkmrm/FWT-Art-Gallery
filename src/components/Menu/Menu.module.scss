@@ -1,0 +1,58 @@
+.menu {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 40px;
+  padding-top: 144px;
+  padding-left: 47px;
+
+  @include mediaTablet {
+    padding-top: 200px;
+    padding-left: 94px;
+  }
+
+  @include mediaDesktop {
+    padding: 0;
+  }
+
+  @include mediaDesktopMaxWidth {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @include noUserSelect;
+
+    &_light {
+      background-color: $primaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include mediaDesktop {
+      flex-direction: row;
+    }
+
+    &_link {
+      font-family: $mainFontFamily;
+      @include h3;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      @include mediaTablet {
+        @include h1;
+      }
+
+      @include mediaDesktop {
+        @include nav;
+      }
+    }
+  }
+}
