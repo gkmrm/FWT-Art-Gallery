@@ -1,42 +1,25 @@
 .authModal {
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  // margin: 0 auto;
-  display: flex;
+  display: block;
 
   @include mediaDesktop {
     width: 1028px;
     height: 700px;
   }
 
-  &_light {
-    background-color: $secondaryWhite;
-  }
+  &__inner {
+    @include flexCenter;
+    padding: 80px 0;
 
-  &_dark {
-    background-color: $primaryBlack;
-  }
-
-  &__close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    cursor: pointer;
-
-    @include mediaTablet {
-      top: 32px;
-    }
     @include mediaDesktop {
-      right: 32px;
+      padding: 0;
     }
 
     &_light {
-      color: $primaryDarkGrey;
+      background-color: $secondaryWhite;
     }
+
     &_dark {
-      color: $primaryLightGrey;
+      background-color: $primaryBlack;
     }
   }
 
@@ -56,20 +39,14 @@
   }
 
   &__textBlock {
-    width: 100%;
-    margin: 0 auto;
     @include flexCenter;
     flex-direction: column;
     gap: 40px;
     @include noUserSelect;
 
-    @include mediaDesktopMaxWidth {
-      width: 100vw;
-      height: 100vh;
-    }
-
     @include mediaDesktop {
-      max-width: 530px;
+      padding: 0;
+      width: 530px;
       gap: 20px;
     }
 
@@ -132,18 +109,15 @@
   &__paragraph {
     font-family: $secondFontFamily;
     line-height: 17px;
-    font-size: 12px;
-    font-weight: 300;
+    @include pSmallLight;
     margin-top: 20px;
 
     @include mediaTablet {
-      font-size: 16px;
-      font-weight: 300;
+      @include pBaseLight;
       line-height: 22px;
       margin-top: 0px;
     }
 
-    // Пересмотреть в других классах
     &_light {
       @include lightText;
     }

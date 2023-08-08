@@ -3,11 +3,10 @@ import React from 'react';
 import cn from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { AuthForm } from '@components/AuthForm';
 import { useThemeContext } from '@context/ThemeConext';
 import { Link } from '@ui-components/Link';
-import { Modal } from '@ui-components/Modal';
+import { ModalWrapper } from '@ui-components/ModalWrapper';
 
 import styles from './AuthModal.module.scss';
 
@@ -21,31 +20,41 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
   const navigate = useNavigate();
   const { theme } = useThemeContext();
 
+  const text = {
+    login: {
+      greeting: 'Welcome back',
+      paragraph: "If you don't have an account yet, please ",
+      linkText: 'sign up',
+      linkPath: '/signup',
+    },
+    signup: {
+      greeting: 'Create your profile',
+      paragraph: 'If you already have an account, please ',
+      linkText: 'login',
+      linkPath: '/login',
+    },
+  };
+
   const headerText =
-    variant === 'login' ? 'Welcome back' : 'Create your profile';
+    variant === 'login' ? text.login.greeting : text.signup.greeting;
 
   const paragraphText =
-    variant === 'login'
-      ? "If you don't have an account yet, please "
-      : 'If you already have an account, please ';
+    variant === 'login' ? text.login.paragraph : text.signup.paragraph;
 
-  const linkText = variant === 'login' ? 'sign up' : 'log in';
+  const linkText =
+    variant === 'login' ? text.login.linkText : text.signup.linkText;
 
-  const linkTo = variant === 'login' ? '/signup' : '/login';
+  const linkTo =
+    variant === 'login' ? text.login.linkPath : text.signup.linkPath;
 
   return (
-    <Modal isShow onHide={() => navigate(-1)} theme={theme}>
-      <div
-        className={cx(
-          'authModal',
-          `authModal__${variant}`,
-          `authModal_${theme}`
-        )}
-      >
-        <CloseIcon
-          onClick={() => navigate(-1)}
-          className={cx('authModal__close', `authModal__close_${theme}`)}
-        />
+    <ModalWrapper
+      className={cx('authModal', `authModal_${theme}`)}
+      isShow
+      onClose={() => navigate(-1)}
+      theme={theme}
+    >
+      <div className={cx('authModal__inner', `authModal__inner_${theme}`)}>
         <div className={cx('authModal__img', `authModal__img_${variant}`)} />
         <div
           className={cx(
@@ -73,7 +82,7 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
           </p>
         </div>
       </div>
-    </Modal>
+    </ModalWrapper>
   );
 };
 
