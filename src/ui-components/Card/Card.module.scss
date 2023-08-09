@@ -15,6 +15,28 @@
     max-height: 260px;
   }
 
+  &:hover,
+  &:focus {
+    @include mediaDesktop {
+      .card__icon {
+        display: block;
+      }
+    }
+  }
+
+  &__icon {
+    display: none;
+
+    @include mediaDesktopMaxWidth {
+      display: block;
+    }
+
+    z-index: $tenLayer;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+
   &__wrapper {
     display: flex;
     position: absolute;
