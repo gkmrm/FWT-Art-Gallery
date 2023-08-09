@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { PaintAddForm } from '@components/PaintAddForm';
+import { PaintForm, TPaintEditValues } from '@components/PaintForm';
 import { ThemeType } from '@context/ThemeConext';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
@@ -14,12 +14,14 @@ type TPaintEditPopUpProps = {
   isShow: boolean;
   onClose: () => void;
   theme: ThemeType;
+  paint?: TPaintEditValues;
 };
 
 const PaintEditPopUp: React.FC<TPaintEditPopUpProps> = ({
   theme,
   onClose,
   isShow,
+  paint,
 }) => (
   <ModalWrapper
     className={cx('popup')}
@@ -28,7 +30,7 @@ const PaintEditPopUp: React.FC<TPaintEditPopUpProps> = ({
     theme={theme}
   >
     <div className={cx('popup__inner', `popup__inner_${theme}`)}>
-      <PaintAddForm theme={theme} />
+      <PaintForm theme={theme} paintValues={paint} />
     </div>
   </ModalWrapper>
 );
