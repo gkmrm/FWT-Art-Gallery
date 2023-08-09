@@ -1,0 +1,17 @@
+.drag {
+  position: relative;
+}
+
+.button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: $tenLayer;
+
+  &_light {
+    background-color: $cardIconLight;
+  }
+  &_dark {
+    background-color: $cardIconDark;
+  }
+}
