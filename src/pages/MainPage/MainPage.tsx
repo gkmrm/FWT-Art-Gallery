@@ -8,11 +8,13 @@ import { ReactComponent as FilterIcon } from '@assets/icons/filter_icon.svg';
 import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
 import { Container } from '@components/Container';
+// import { DragCard } from '@components/DragCard';
+import { DragGrid } from '@components/DragGrid';
 import { FilterBar } from '@components/FilterBar';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
-import { Card } from '@ui-components/Card';
+// import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import { Search } from '@ui-components/Search';
 import { Skeleton } from '@ui-components/Skeleton';
@@ -75,18 +77,7 @@ const MainPage: React.FC = () => {
             ))}
           </Grid>
         ) : (
-          <Grid className={cx('mainPage__grid')}>
-            {artistStatic.map((item) => (
-              <Card
-                key={item.id}
-                {...item}
-                image={item.paint}
-                id={item.id}
-                theme={theme}
-                pathTo={`/artists/static/${item.id}`}
-              />
-            ))}
-          </Grid>
+          <DragGrid array={artistStatic} theme={theme} variant='author' />
         )}
       </Container>
       <ArtistEditPopUp
@@ -99,4 +90,21 @@ const MainPage: React.FC = () => {
   );
 };
 
+/* <Grid className={cx('mainPage__grid')}></Grid> */
+
 export default MainPage;
+
+// {
+//   artistStatic.map((item) => (
+//     <DragCard id={item.id} key={item.id} theme={theme}>
+//       <Card
+//         key={item.id}
+//         {...item}
+//         id={item.id}
+//         image={item.paint}
+//         theme={theme}
+//         pathTo={`/artists/static/${item.id}`}
+//       />
+//     </DragCard>
+//   ));
+// }

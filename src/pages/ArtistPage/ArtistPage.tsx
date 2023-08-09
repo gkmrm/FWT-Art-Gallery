@@ -8,7 +8,7 @@ import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
 import { ControlBar } from '@components/ControlBar';
-import { PaintCard } from '@components/PaintCard';
+import { DragGrid } from '@components/DragGrid';
 import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { Slider } from '@components/Slider';
 import { useThemeContext } from '@context/ThemeConext';
@@ -83,18 +83,12 @@ const ArtistPage: React.FC = () => {
                 ))}
               </Grid>
             ) : (
-              <Grid className={cx('artistPage__grid')}>
-                {artist?.paintings.map((item, index) => (
-                  <PaintCard
-                    key={item.id}
-                    image={item.paint}
-                    onClick={onClickCard(index)}
-                    {...item}
-                    id={item.id}
-                    theme={theme}
-                  />
-                ))}
-              </Grid>
+              <DragGrid
+                array={artist?.paintings}
+                theme={theme}
+                variant='paint'
+                onClickCard={onClickCard}
+              />
             )}
           </Container>
           <PaintEditPopUp
