@@ -6,8 +6,8 @@ import { uid } from 'uid';
 
 import { ReactComponent as FilterIcon } from '@assets/icons/filter_icon.svg';
 import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
+import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
 import { Container } from '@components/Container';
-import { EditArtistPopUp } from '@components/EditArtistPopUp';
 import { FilterBar } from '@components/FilterBar';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
@@ -89,7 +89,7 @@ const MainPage: React.FC = () => {
           </Grid>
         )}
       </Container>
-      <EditArtistPopUp
+      <ArtistEditPopUp
         isShow={isShowAdd}
         onClose={onCloseEditPopUp}
         theme={theme}

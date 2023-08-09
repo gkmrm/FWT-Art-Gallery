@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowIcon } from '@assets/icons/arrowIcon.svg';
 import { ReactComponent as Edit } from '@assets/icons/edit_icon.svg';
 import { ReactComponent as Delete } from '@assets/icons/trash_icon.svg';
-import { TArtistEditValues } from '@components/ArtistEditForm/ArtistEditForm';
+import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
+import { TArtistFormValues } from '@components/ArtistForm/ArtistForm';
 import { DeletePopUp } from '@components/DeletePopUp';
-import { EditArtistPopUp } from '@components/EditArtistPopUp';
 import { ThemeType } from '@context/ThemeConext';
 import { Button } from '@ui-components/Button';
 
@@ -18,7 +18,7 @@ const cx = cn.bind(styles);
 
 type TControlBarProps = {
   theme: ThemeType;
-  artist: TArtistEditValues;
+  artist: TArtistFormValues;
 };
 
 const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
@@ -56,11 +56,12 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
         </Button>
       </div>
       <DeletePopUp
+        variant='artist'
         isShow={isShowDelete}
         onClose={onCloseDeletePopUp}
         theme={theme}
       />
-      <EditArtistPopUp
+      <ArtistEditPopUp
         isShow={isShowEdit}
         onClose={onCloseEditPopUp}
         theme={theme}

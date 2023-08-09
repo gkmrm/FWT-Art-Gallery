@@ -8,12 +8,12 @@ import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
 import { ControlBar } from '@components/ControlBar';
+import { PaintCard } from '@components/PaintCard';
 import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { Slider } from '@components/Slider';
 import { useThemeContext } from '@context/ThemeConext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
-import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import { Loader } from '@ui-components/Loader';
 import { Skeleton } from '@ui-components/Skeleton';
@@ -85,7 +85,7 @@ const ArtistPage: React.FC = () => {
             ) : (
               <Grid className={cx('artistPage__grid')}>
                 {artist?.paintings.map((item, index) => (
-                  <Card
+                  <PaintCard
                     key={item.id}
                     image={item.paint}
                     onClick={onClickCard(index)}

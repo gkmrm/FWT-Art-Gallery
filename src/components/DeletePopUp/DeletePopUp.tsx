@@ -16,12 +16,14 @@ type TDeletePopUpProps = {
   isShow: boolean;
   onClose: () => void;
   theme: ThemeType;
+  variant: 'paint' | 'artist';
 };
 
 const DeletePopUp: React.FC<TDeletePopUpProps> = ({
   isShow,
   onClose,
   theme,
+  variant,
 }) => (
   <Modal
     isShow={isShow}
@@ -45,14 +47,20 @@ const DeletePopUp: React.FC<TDeletePopUpProps> = ({
       </div>
       <div className={cx('popup__text', `popup__text_${theme}`)}>
         <div className={cx('popup__text_quest')}>
-          Do you want to delete this artist profile?
+          Do you want to delete this
+          {variant === 'artist' ? ' artist profile' : ' paint'}?
         </div>
         <div className={cx('popup__text_description')}>
-          You will not be able to recover this profile afterwards.
+          You will not be able to recover this
+          {variant === 'artist' ? ' artist' : ' paint'} afterwards.
         </div>
       </div>
       <div className={cx('popup__buttons')}>
-        <Button variant='default' theme={theme}>
+        <Button
+          variant='default'
+          theme={theme}
+          onClick={() => console.log('delete')}
+        >
           delete
         </Button>
         <Button variant='text' theme={theme} onClick={onClose}>
