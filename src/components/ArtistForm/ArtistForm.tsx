@@ -14,7 +14,7 @@ import { Input } from '@ui-components/Input';
 import { MultiDropDown } from '@ui-components/MultiDropDown';
 import { TextArea } from '@ui-components/TextArea';
 
-import styles from './ArtistEditForm.module.scss';
+import styles from './ArtistForm.module.scss';
 
 const cx = cn.bind(styles);
 
@@ -51,7 +51,7 @@ const schema = z.object({
 
 export type TArtistValidForm = z.infer<typeof schema>;
 
-export type TArtistEditValues = {
+export type TArtistFormValues = {
   name: string;
   years: string;
   description: string;
@@ -59,12 +59,12 @@ export type TArtistEditValues = {
   avatar: IImage;
 };
 
-type TArtistEditFormProps = {
+type TArtistFormProps = {
   theme: ThemeType;
-  artistValues?: TArtistEditValues;
+  artistValues?: TArtistFormValues;
 };
 
-const defaultEmpty: TArtistEditValues = {
+const defaultEmpty: TArtistFormValues = {
   name: '',
   years: '',
   description: '',
@@ -72,7 +72,7 @@ const defaultEmpty: TArtistEditValues = {
   avatar: { src: '' },
 };
 
-const ArtistEditForm: React.FC<TArtistEditFormProps> = ({
+const ArtistForm: React.FC<TArtistFormProps> = ({
   theme,
   artistValues = defaultEmpty,
 }) => {
@@ -87,7 +87,7 @@ const ArtistEditForm: React.FC<TArtistEditFormProps> = ({
     formState: { errors },
     control,
     resetField,
-  } = useForm<TArtistEditValues>({
+  } = useForm<TArtistFormValues>({
     mode: 'all',
     resolver: zodResolver(schema),
     defaultValues: artistValues,
@@ -164,4 +164,4 @@ const ArtistEditForm: React.FC<TArtistEditFormProps> = ({
   );
 };
 
-export default ArtistEditForm;
+export default ArtistForm;
