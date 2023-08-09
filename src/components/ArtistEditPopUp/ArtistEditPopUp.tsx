@@ -2,24 +2,22 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import ArtistEditForm, {
-  TArtistEditValues,
-} from '@components/ArtistEditForm/ArtistEditForm';
+import { ArtistForm, TArtistFormValues } from '@components/ArtistForm';
 import { ThemeType } from '@context/ThemeConext';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
-import styles from './EditArtistPopUp.module.scss';
+import styles from './ArtistEditPopUp.module.scss';
 
 const cx = cn.bind(styles);
 
-type TEditArtistPopUpProps = {
+type TArtistEditPopUpProps = {
   isShow: boolean;
   onClose: () => void;
   theme: ThemeType;
-  artist?: TArtistEditValues;
+  artist?: TArtistFormValues;
 };
 
-const EditArtistPopUp: React.FC<TEditArtistPopUpProps> = ({
+const ArtistEditPopUp: React.FC<TArtistEditPopUpProps> = ({
   isShow,
   onClose,
   theme,
@@ -32,9 +30,9 @@ const EditArtistPopUp: React.FC<TEditArtistPopUpProps> = ({
     theme={theme}
   >
     <div className={cx('popup__inner', `popup__inner_${theme}`)}>
-      <ArtistEditForm theme={theme} artistValues={artist} />
+      <ArtistForm theme={theme} artistValues={artist} />
     </div>
   </ModalWrapper>
 );
 
-export default EditArtistPopUp;
+export default ArtistEditPopUp;
