@@ -6,15 +6,14 @@ import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { ThemeType } from '@context/ThemeConext';
+import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';
 import { DropZone } from '@ui-components/DropZone';
 import { Input } from '@ui-components/Input';
 
-import styles from './PaintAddForm.module.scss';
+import styles from './PaintForm.module.scss';
 
 const cx = cn.bind(styles);
-
-type TPaintAddFormProps = { theme: ThemeType };
 
 const MAX_FILE_SIZE = 3145728;
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -29,7 +28,7 @@ const schema = z.object({
     ),
   name: z
     .string()
-    .min(6, { message: 'Name must contain at least 6 characters' })
+    .min(4, { message: 'Name must contain at least 4 characters' })
     .max(60, {
       message: 'Name must contain at most 60 characters',
     }),
@@ -39,7 +38,24 @@ const schema = z.object({
     .max(36, { message: 'Max 36 number' }),
 });
 
-const PaintAddForm: React.FC<TPaintAddFormProps> = ({ theme }) => {
+export type TPaintEditValues = {
+  name: string;
+  years: string;
+  paint: IImage;
+};
+
+type TPaintFormProps = { theme: ThemeType; paintValues?: TPaintEditValues };
+
+const defaultEmpty: TPaintEditValues = {
+  name: '',
+  years: '',
+  paint: { src: '' },
+};
+
+const PaintForm: React.FC<TPaintFormProps> = ({
+  theme,
+  paintValues = defaultEmpty,
+}) => {
   const [isDraggable, setDraggable] = useState(false);
 
   const handleDragOver = useCallback(() => setDraggable(true), []);
@@ -54,6 +70,7 @@ const PaintAddForm: React.FC<TPaintAddFormProps> = ({ theme }) => {
   } = useForm({
     mode: 'all',
     resolver: zodResolver(schema),
+    defaultValues: paintValues,
   });
 
   return (
@@ -91,7 +108,7 @@ const PaintAddForm: React.FC<TPaintAddFormProps> = ({ theme }) => {
             idFor='paint'
             isDraggable={isDraggable}
             onDragLeave={handleDragLeave}
-            // initialValue=''
+            initialValue={field.value.src}
           />
         )}
       />
@@ -102,4 +119,4 @@ const PaintAddForm: React.FC<TPaintAddFormProps> = ({ theme }) => {
   );
 };
 
-export default PaintAddForm;
+export default PaintForm;
