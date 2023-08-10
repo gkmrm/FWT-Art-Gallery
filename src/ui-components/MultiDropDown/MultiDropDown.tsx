@@ -97,7 +97,7 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
           )}
           <Arrow
             className={cx('dropdown__inner_arrow', {
-              dropDown__inner_arrow_open: isOpen,
+              dropdown__inner_arrow_open: isOpen,
             })}
           />
         </div>
