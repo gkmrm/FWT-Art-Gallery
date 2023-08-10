@@ -18,8 +18,18 @@
     background-color: rgba($blurColor, 0.6);
   }
 
+  &_transition {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+  }
+
   &__inner {
     z-index: $elevenLayer;
     position: static;
+
+    &_transition {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
   }
 }
