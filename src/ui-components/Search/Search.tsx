@@ -19,11 +19,13 @@ type TSearchProps = Omit<
   theme: ThemeType;
   errorMessage: string;
   values?: string;
+  classNameInput?: string;
 };
 
 const Search: React.FC<TSearchProps> = ({
   values = '',
   className = '',
+  classNameInput = '',
   onChange,
   theme,
   errorMessage,
@@ -47,7 +49,7 @@ const Search: React.FC<TSearchProps> = ({
         value={value}
         onChange={handleInputChange}
         placeholder='Search'
-        className={cx('search', `search_${theme}`, {
+        className={cx(classNameInput, 'search', `search_${theme}`, {
           input_error: errorMessage,
         })}
         {...other}
