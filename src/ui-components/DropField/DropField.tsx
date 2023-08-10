@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as AvatarPlaceholder } from '@assets/icons/artistAvatar.svg';
 import { ReactComponent as PaintPlaceholder } from '@assets/icons/paintDrop_icon_small.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 
 import styles from './DropField.module.scss';
 

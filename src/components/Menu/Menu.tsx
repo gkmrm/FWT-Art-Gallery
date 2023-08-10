@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 
 import { ToggleTheme } from '@components/ToggleTheme';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Link } from '@ui-components/Link';
 
 import styles from './Menu.module.scss';

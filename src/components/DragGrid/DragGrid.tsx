@@ -19,11 +19,12 @@ import {
 
 import { DragCard } from '@components/DragCard';
 import { PaintCard } from '@components/PaintCard';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 
 type TDragGridProps = {
+  // Todo add Types
   // array: IArtistsStaticModel[] | IArtistsStaticByIdModel[];
   array: any[];
   theme: ThemeType;

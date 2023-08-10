@@ -3,10 +3,10 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
+import { ThemeType } from '@context/ThemeContext';
 import { IImage } from '@store/models/PaintModel';
 import { Link } from '@ui-components/Link';
 import { Picture } from '@ui-components/Picture';
-import { ThemeType } from 'src/context/ThemeConext';
 
 import styles from './Card.module.scss';
 

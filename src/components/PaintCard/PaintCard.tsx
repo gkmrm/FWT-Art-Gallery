@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { ReactComponent as GearIcon } from '@assets/icons/gear_icon.svg';
 import { DeletePopUp } from '@components/DeletePopUp';
 import { PaintEditPopUp } from '@components/PaintEditPopUp';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import useOutsideClick from '@hooks/useOutsideClick';
 import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';

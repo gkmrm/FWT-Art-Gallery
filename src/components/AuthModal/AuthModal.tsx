@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '@components/AuthForm';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { Link } from '@ui-components/Link';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 

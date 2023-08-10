@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon.svg';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './ScrollButton.module.scss';

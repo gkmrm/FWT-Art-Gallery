@@ -6,7 +6,7 @@ import { ReactComponent as FacebookIcon } from '@assets/icons/facebook_icon.svg'
 import { ReactComponent as InstagramIcon } from '@assets/icons/instagram_icon.svg';
 import { ReactComponent as VkIcon } from '@assets/icons/vk_icon.svg';
 import { Container } from '@components/Container';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { Link } from '@ui-components/Link';
 
 import styles from './Footer.module.scss';

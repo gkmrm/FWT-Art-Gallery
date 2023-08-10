@@ -9,7 +9,7 @@ import { ReactComponent as Close } from '@assets/icons/close_icon.svg';
 import { ReactComponent as Edit } from '@assets/icons/edit_icon.svg';
 import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon_large.svg';
 import { ReactComponent as Delete } from '@assets/icons/trash_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { IPaintModel } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';
 import { Picture } from '@ui-components/Picture';

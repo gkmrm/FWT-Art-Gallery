@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as DeleteIcon } from '@assets/icons/trash_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './DropImagePreview.module.scss';

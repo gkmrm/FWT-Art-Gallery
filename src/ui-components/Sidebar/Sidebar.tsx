@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
 import styles from './Sidebar.module.scss';

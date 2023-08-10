@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { PaintForm, TPaintEditValues } from '@components/PaintForm';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
 import styles from './PaintEditPopUp.modules.scss';

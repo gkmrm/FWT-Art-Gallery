@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import cn from 'classnames/bind';
 import { toast, Toaster } from 'react-hot-toast';
 
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { Toast } from '@ui-components/Toast';
 
 import styles from './Toaster.module.scss';

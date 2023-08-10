@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 import ReactDOM from 'react-dom';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 
 import styles from './Modal.module.scss';
 

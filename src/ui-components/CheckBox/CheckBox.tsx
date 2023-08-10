@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as SelectIcon } from '@assets/icons/success_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 
 import styles from './CheckBox.module.scss';
 

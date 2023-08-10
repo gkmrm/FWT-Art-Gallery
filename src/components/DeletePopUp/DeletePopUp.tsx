@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/trash_icon_large.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 import { Modal } from '@ui-components/Modal';
 

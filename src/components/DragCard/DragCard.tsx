@@ -5,7 +5,7 @@ import { CSS } from '@dnd-kit/utilities';
 import cn from 'classnames/bind';
 
 import { ReactComponent as DragIcon } from '@assets/icons/drag_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './DragCard.module.scss';

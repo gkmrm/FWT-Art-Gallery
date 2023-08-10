@@ -5,9 +5,9 @@ import cn from 'classnames/bind';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
-import Input from '@ui-components/Input/Input';
+import { Input } from '@ui-components/Input';
 import { InputPass } from '@ui-components/InputPass';
 
 import styles from './AuthForm.module.scss';

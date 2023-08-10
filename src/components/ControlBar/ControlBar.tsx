@@ -9,7 +9,7 @@ import { ReactComponent as Delete } from '@assets/icons/trash_icon.svg';
 import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
 import { TArtistFormValues } from '@components/ArtistForm/ArtistForm';
 import { DeletePopUp } from '@components/DeletePopUp';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './ControlBar.module.scss';

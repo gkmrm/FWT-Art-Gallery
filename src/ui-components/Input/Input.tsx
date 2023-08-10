@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 import cn from 'classnames/bind';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { ErrorMessage } from '@ui-components/ErrorMessage';
 
 import styles from './Input.module.scss';

@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
 import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';

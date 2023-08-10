@@ -2,7 +2,7 @@ import React, { ChangeEvent, DragEvent, useCallback, useRef } from 'react';
 
 import cn from 'classnames/bind';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { DropField } from '@ui-components/DropField';
 import { DropImagePreview } from '@ui-components/DropImagePreview';
 import { ErrorMessage } from '@ui-components/ErrorMessage';

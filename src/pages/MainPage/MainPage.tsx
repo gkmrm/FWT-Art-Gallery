@@ -10,7 +10,7 @@ import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
 import { Container } from '@components/Container';
 import { DragGrid } from '@components/DragGrid';
 import { FilterBar } from '@components/FilterBar';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';

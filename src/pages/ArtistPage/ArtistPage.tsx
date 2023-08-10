@@ -11,7 +11,7 @@ import { ControlBar } from '@components/ControlBar';
 import { DragGrid } from '@components/DragGrid';
 import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { Slider } from '@components/Slider';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';

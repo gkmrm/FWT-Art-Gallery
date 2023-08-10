@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as MinusIcon } from '@assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { FilterItem } from '@ui-components/FilterItem';
 
 import styles from './DropDown.module.scss';

@@ -8,7 +8,7 @@ import { ReactComponent as Logo } from '@assets/icons/logo.svg';
 import { ReactComponent as LoupeIcon } from '@assets/icons/search_icon.svg';
 import { Container } from '@components/Container';
 import { Menu } from '@components/Menu';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import useOutsideClick from '@hooks/useOutsideClick';
 import { Link } from '@ui-components/Link';
 import { Search } from '@ui-components/Search';

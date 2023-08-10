@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as ResetIcon } from '@assets/icons/close_icon_small.svg';
 import { ReactComponent as LoupeIcon } from '@assets/icons/search_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { ErrorMessage } from '@ui-components/ErrorMessage';
 
 import styles from './Search.module.scss';

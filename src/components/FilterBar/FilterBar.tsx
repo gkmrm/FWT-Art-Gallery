@@ -2,7 +2,7 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 import { DropDown } from '@ui-components/DropDown';
 import { Sidebar } from '@ui-components/Sidebar';

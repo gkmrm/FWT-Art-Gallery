@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ReactComponent as ErrorIcon } from '@assets/icons/error_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './Toast.module.scss';

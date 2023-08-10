@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
-import { ThemeType } from '@context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 import { Modal } from '@ui-components/Modal';
 
