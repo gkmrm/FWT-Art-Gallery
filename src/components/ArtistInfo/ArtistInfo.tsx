@@ -8,6 +8,7 @@ import { Container } from '@components/Container';
 import { ThemeType } from '@context/ThemeContext';
 import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
 import { IImage } from '@store/models/PaintModel';
+import { AvatarPlaceholder } from '@ui-components/AvatarPlaceholder';
 import { Genre } from '@ui-components/Genre';
 import { Picture } from '@ui-components/Picture';
 
@@ -16,7 +17,7 @@ import styles from './ArtistInfo.module.scss';
 const cx = cn.bind(styles);
 
 type TArtistInfoProps = {
-  avatar: IImage;
+  avatar: IImage | undefined;
   theme: ThemeType;
   name: string;
   year: string;
@@ -35,11 +36,19 @@ const ArtistInfo: React.FC<TArtistInfoProps> = ({
   <div className={cx('artist', `artist_${theme}`)}>
     <div className={cx('artist__wrapper')}>
       <div className={cx('artist__avatar')}>
-        <Picture
-          {...avatar}
-          alt={`${name} - portrait`}
-          className={cx('artist__avatar_image')}
-        />
+        {avatar ? (
+          <Picture
+            {...avatar}
+            alt={`${name} - portrait`}
+            className={cx('artist__avatar_image')}
+          />
+        ) : (
+          <AvatarPlaceholder
+            theme={theme}
+            className={cx('artist__avatar_image')}
+          />
+        )}
+
         <div
           className={cx('artist__avatar_text', `artist__avatar_text_${theme}`)}
         >

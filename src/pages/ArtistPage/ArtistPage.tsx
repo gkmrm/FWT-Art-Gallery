@@ -16,6 +16,8 @@ import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';
 import { Loader } from '@ui-components/Loader';
+import { MissPaintCard } from '@ui-components/MissPaintCard';
+import { MissPaintMessage } from '@ui-components/MissPaintMessage';
 import { Skeleton } from '@ui-components/Skeleton';
 
 import styles from './ArtistPage.module.scss';
@@ -41,6 +43,16 @@ const ArtistPage: React.FC = () => {
   const onClosePaintEditPopUp = () => {
     setShowEditPaint(!isShowEditPaint);
   };
+
+  const paintLength = artist?.paintings?.length;
+  const getIsPaintEqualZero = (num: number | undefined) => {
+    if (num === undefined) {
+      return false;
+    }
+
+    return num <= 0;
+  };
+  const isPaintZero = getIsPaintEqualZero(paintLength);
 
   return (
     <div className={cx('artistPage', `artistPage_${theme}`)}>
@@ -76,11 +88,19 @@ const ArtistPage: React.FC = () => {
                 add picture
               </Button>
             </div>
+            {/* eslint-disable-next-line no-nested-ternary */}
             {isLoading ? (
               <Grid>
                 {Array.from({ length: 6 }).map(() => (
                   <Skeleton key={uid()} theme={theme} />
                 ))}
+              </Grid>
+            ) : isPaintZero ? (
+              <Grid>
+                <MissPaintCard
+                  theme={theme}
+                  onClick={() => setShowEditPaint(true)}
+                />
               </Grid>
             ) : (
               <DragGrid
@@ -90,6 +110,8 @@ const ArtistPage: React.FC = () => {
                 onClickCard={onClickCard}
               />
             )}
+
+            {isPaintZero && <MissPaintMessage theme={theme} />}
           </Container>
           <PaintEditPopUp
             isShow={isShowEditPaint}
