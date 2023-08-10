@@ -44,20 +44,27 @@ const Header: React.FC = () => {
     <header className={cx('header', `header_${theme}`)}>
       <Container className={cx('header__container')}>
         <div className={cx('header__wrapper')}>
-          <div className={cx('header__logo')}>
-            <Link
-              className={cx({ header__logo_hide: isSearchOpen })}
-              theme={theme}
-              to='/'
-            >
+          <div
+            className={cx('header__logo', { header__logo_hide: isSearchOpen })}
+          >
+            <Link className={cx()} theme={theme} to='/'>
               <Logo className={cx('header__logo_icon')} />
             </Link>
           </div>
           <div className={cx('header__menu')}>
             <Menu theme={theme} />
           </div>
-          <div className={cx('header__controls')}>
-            <div className={cx('header__searchbar')} ref={ref}>
+          <div
+            className={cx('header__controls', {
+              header__controls_width: isSearchOpen,
+            })}
+          >
+            <div
+              className={cx('header__searchbar', {
+                header__searchbar_width: isSearchOpen,
+              })}
+              ref={ref}
+            >
               <LoupeIcon
                 onClick={onOpen}
                 className={cx('header__loupe', {
@@ -71,6 +78,7 @@ const Header: React.FC = () => {
                 theme={theme}
                 errorMessage=''
                 onChange={debounceSearchQuery}
+                classNameInput={cx('header__search_input')}
               />
             </div>
             <BurgerIcon onClick={toggleOpen} className={cx('header__burger')} />

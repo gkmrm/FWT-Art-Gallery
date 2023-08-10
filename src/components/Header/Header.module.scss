@@ -51,6 +51,7 @@
   &__burger {
     display: flex;
     align-self: center;
+    min-width: 24px;
 
     @include mediaDesktop {
       display: none;
@@ -64,10 +65,17 @@
     @include mediaDesktop {
       display: none;
     }
+    &_width {
+      width: 100%;
+    }
   }
 
   &__searchbar {
     @include flexCenter;
+
+    &_width {
+      width: 100%;
+    }
   }
 
   &__loupe {
@@ -85,6 +93,11 @@
 
     &_open {
       display: block;
+      width: 100%;
+    }
+
+    &_input {
+      width: 100%;
     }
   }
 }
