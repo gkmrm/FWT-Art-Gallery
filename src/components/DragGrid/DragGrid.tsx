@@ -9,6 +9,7 @@ import {
   useSensors,
   DragStartEvent,
   DragEndEvent,
+  DragOverlay,
 } from '@dnd-kit/core';
 import {
   arrayMove,
@@ -37,7 +38,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
   onClickCard = () => {},
 }) => {
   const [items, setItems] = useState(array);
-  const [, setActiveId] = useState<string | number | null>(null);
+  const [activeId, setActiveId] = useState<string | number | null>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
@@ -90,6 +91,35 @@ const DragGrid: React.FC<TDragGridProps> = ({
           </DragCard>
         ));
 
+  const overlayCard = (
+    <DragCard id={activeId as string} theme={theme}>
+      {items.map((item, index) =>
+        // eslint-disable-next-line no-nested-ternary
+        item.id === activeId ? (
+          variant === 'author' ? (
+            <Card
+              key={item.id}
+              {...item}
+              id={item.id}
+              image={item.paint}
+              theme={theme}
+              pathTo={`/artists/static/${item.id}`}
+            />
+          ) : (
+            <PaintCard
+              key={item.id}
+              image={item.paint}
+              onClick={onClickCard(index)}
+              {...item}
+              id={item.id}
+              theme={theme}
+            />
+          )
+        ) : null
+      )}
+    </DragCard>
+  );
+
   return (
     <DndContext
       sensors={sensors}
@@ -101,6 +131,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
       <SortableContext items={items} strategy={rectSortingStrategy}>
         <Grid>{grid}</Grid>
       </SortableContext>
+      <DragOverlay adjustScale>{activeId ? overlayCard : null}</DragOverlay>
     </DndContext>
   );
 };

@@ -24,7 +24,7 @@ const DragCard: React.FC<TDragCardProps> = ({
   ...other
 }) => {
   const {
-    // isDragging,
+    isDragging,
     attributes,
     listeners,
     setNodeRef,
@@ -38,7 +38,12 @@ const DragCard: React.FC<TDragCardProps> = ({
   };
 
   return (
-    <div className={cx('drag')} ref={setNodeRef} style={style} {...other}>
+    <div
+      className={cx('drag', { drag_dragging: isDragging })}
+      ref={setNodeRef}
+      style={style}
+      {...other}
+    >
       <Button
         theme={theme}
         variant='icon'
