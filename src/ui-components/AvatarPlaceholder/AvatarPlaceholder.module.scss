@@ -1,0 +1,27 @@
+.placeholder {
+  @include flexCenter;
+  flex-direction: column;
+
+  &_light {
+    background-color: $secondaryWhite;
+  }
+  &_dark {
+    background-color: $secondaryDark;
+  }
+
+  &__wrapper {
+    @include mediaDesktopMaxWidth {
+      padding-top: 60px;
+      padding-bottom: 155px;
+    }
+  }
+
+  &__text {
+    font-family: $secondFontFamily;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 900;
+    color: $secondaryGrey;
+    margin-top: 32px;
+  }
+}
