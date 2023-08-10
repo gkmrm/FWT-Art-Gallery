@@ -17,6 +17,7 @@ type TModalWrapperProps = {
   isShow: boolean;
   onClose: () => void;
   theme: ThemeType;
+  variant?: 'modal' | 'sidebar';
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const ModalWrapper: React.FC<TModalWrapperProps> = ({
@@ -25,6 +26,7 @@ const ModalWrapper: React.FC<TModalWrapperProps> = ({
   isShow,
   onClose,
   theme,
+  variant = 'modal',
   children = null,
   ...other
 }) => (
@@ -33,6 +35,7 @@ const ModalWrapper: React.FC<TModalWrapperProps> = ({
     onHide={onClose}
     theme={theme}
     className={cx(className, 'modal', `modal_${theme}`)}
+    variant={variant}
     {...other}
   >
     <Button

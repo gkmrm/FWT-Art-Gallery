@@ -25,6 +25,7 @@ const Sidebar: React.FC<TSidebarProps> = ({
   ...other
 }) => (
   <ModalWrapper
+    variant='sidebar'
     className={cx(className, 'sidebar')}
     classNameIcon={cx('sidebar__icon', `sidebar__icon_${theme}`)}
     isShow={isShow}
