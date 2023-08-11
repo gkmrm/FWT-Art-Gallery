@@ -21,6 +21,7 @@ type TDropDownProps = {
   values: IOption[];
   options: IOption[];
   theme: ThemeType;
+  gridVariant?: 'twoCol' | 'oneCol';
 };
 
 const DropDown: React.FC<TDropDownProps> = ({
@@ -28,6 +29,7 @@ const DropDown: React.FC<TDropDownProps> = ({
   values,
   options,
   theme,
+  gridVariant = 'twoCol',
 }) => {
   const [value, setValue] = useState<IOption[]>(values);
   const [isOpen, setOpen] = useState(false);
@@ -61,7 +63,12 @@ const DropDown: React.FC<TDropDownProps> = ({
         {isOpen ? <MinusIcon /> : <PlusIcon />}
       </div>
       {isOpen && (
-        <div className={cx('dropdown__wrapper')}>
+        <div
+          className={cx(
+            'dropdown__wrapper',
+            `dropdown__wrapper_${gridVariant}`
+          )}
+        >
           {options.map((item) => (
             <FilterItem
               theme={theme}
