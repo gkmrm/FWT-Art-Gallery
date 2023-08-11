@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
 
+import { useFilterContext } from '@context/FilterContext';
 import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 import { DropDown } from '@ui-components/DropDown';
@@ -53,7 +54,7 @@ const testData: IOption[] = [
   },
 ];
 
-const testDataSort = [
+const testDataSort: IOption[] = [
   {
     id: 'dasdasd',
     name: 'Recently added',
@@ -62,29 +63,70 @@ const testDataSort = [
   { id: 'dasdas123d', name: 'Z-A' },
 ];
 
-const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => (
-  <Sidebar theme={theme} isShow={isShow} onClose={onClose}>
-    <div className={cx('filterbar__wrapper')}>
-      <div className={cx('filterbar__dropdowns')}>
-        <DropDown name='Genres' values={[]} options={testData} theme={theme} />
-        <DropDown
-          name='Sort by'
-          values={[]}
-          options={testDataSort}
-          theme={theme}
-          gridVariant='oneCol'
-        />
+const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
+  const { filters, setFilters, onClearFilter } = useFilterContext();
+  const [filterGenres, setFilterGenres] = useState<IOption[] | null>(
+    filters.genres
+  );
+  const [filterSort, setFilterSort] = useState<IOption[] | null>(
+    filters.sortBy
+  );
+  const [isClear, setClear] = useState(false);
+
+  const onFilterResults = useCallback(() => {
+    // console.log(filters);
+    // console.log(filterGenres, filterSort);
+    setFilters({
+      // ...defaultFilters,
+      genres: filterGenres,
+      sortBy: filterSort,
+    });
+
+    onClose();
+  }, [filterGenres, filterSort, onClose, setFilters]);
+
+  const onClear = useCallback(() => {
+    setFilterGenres(null);
+    setFilterSort(null);
+    setClear(true);
+    onClearFilter();
+  }, []);
+
+  React.useEffect(() => setClear(false), [filters, filterGenres, filterSort]);
+
+  return (
+    <Sidebar theme={theme} isShow={isShow} onClose={onClose}>
+      <div className={cx('filterbar__wrapper')}>
+        <div className={cx('filterbar__dropdowns')}>
+          <DropDown
+            isClear={isClear}
+            name='Genres'
+            values={filters.genres}
+            onFilterChange={setFilterGenres}
+            options={testData}
+            theme={theme}
+          />
+          <DropDown
+            isClear={isClear}
+            name='Sort by'
+            values={filters.sortBy}
+            onFilterChange={setFilterSort}
+            options={testDataSort}
+            theme={theme}
+            gridVariant='oneCol'
+          />
+        </div>
       </div>
-    </div>
-    <div className={cx('filterbar__buttons')}>
-      <Button variant='text' theme={theme}>
-        show the result
-      </Button>
-      <Button variant='text' theme={theme}>
-        clear
-      </Button>
-    </div>
-  </Sidebar>
-);
+      <div className={cx('filterbar__buttons')}>
+        <Button variant='text' theme={theme} onClick={onFilterResults}>
+          show the result
+        </Button>
+        <Button variant='text' theme={theme} onClick={onClear}>
+          clear
+        </Button>
+      </div>
+    </Sidebar>
+  );
+};
 
 export default FilterBar;

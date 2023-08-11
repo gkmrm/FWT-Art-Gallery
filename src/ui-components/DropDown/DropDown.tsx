@@ -18,10 +18,12 @@ interface IOption {
 
 type TDropDownProps = {
   name: string;
-  values: IOption[];
+  values: IOption[] | null;
   options: IOption[];
   theme: ThemeType;
+  onFilterChange: (obj: IOption[]) => void;
   gridVariant?: 'twoCol' | 'oneCol';
+  isClear: boolean;
 };
 
 const DropDown: React.FC<TDropDownProps> = ({
@@ -29,16 +31,24 @@ const DropDown: React.FC<TDropDownProps> = ({
   values,
   options,
   theme,
+  isClear,
+  onFilterChange,
   gridVariant = 'twoCol',
 }) => {
-  const [value, setValue] = useState<IOption[]>(values);
+  const [value, setValue] = useState<IOption[]>(
+    values || [{ id: '', name: '' }]
+  );
+
   const [isOpen, setOpen] = useState(false);
 
   const toggleOpen = () => setOpen(!isOpen);
 
   const onChange = (obj: IOption[]) => {
     setValue(obj);
+    onFilterChange(obj);
   };
+
+  const onClear = () => setValue([{ id: '', name: '' }]);
 
   const handleChange = (obj: IOption) => {
     if (value.includes(obj)) {
@@ -48,6 +58,8 @@ const DropDown: React.FC<TDropDownProps> = ({
       onChange([...value, obj]);
     }
   };
+
+  React.useEffect(() => onClear(), [isClear]);
 
   const getSelected = (obj: IOption) =>
     !!value.find((item) => item.id === obj.id);
@@ -71,6 +83,7 @@ const DropDown: React.FC<TDropDownProps> = ({
         >
           {options.map((item) => (
             <FilterItem
+              key={item.id}
               theme={theme}
               handleChange={handleChange}
               isSelected={getSelected(item)}
