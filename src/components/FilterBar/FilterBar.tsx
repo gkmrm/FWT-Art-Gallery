@@ -53,12 +53,27 @@ const testData: IOption[] = [
   },
 ];
 
+const testDataSort = [
+  {
+    id: 'dasdasd',
+    name: 'Recently added',
+  },
+  { id: 'dasdasasdad', name: 'A-Z' },
+  { id: 'dasdas123d', name: 'Z-A' },
+];
+
 const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => (
   <Sidebar theme={theme} isShow={isShow} onClose={onClose}>
     <div className={cx('filterbar__wrapper')}>
       <div className={cx('filterbar__dropdowns')}>
         <DropDown name='Genres' values={[]} options={testData} theme={theme} />
-        <DropDown name='Sort by' values={[]} options={testData} theme={theme} />
+        <DropDown
+          name='Sort by'
+          values={[]}
+          options={testDataSort}
+          theme={theme}
+          gridVariant='oneCol'
+        />
       </div>
     </div>
     <div className={cx('filterbar__buttons')}>
