@@ -42,14 +42,12 @@ const schema = z.object({
     .max(36, { message: 'Years must contain at most 36 characters' }),
   description: z
     .string()
-    .min(50, { message: 'Description must contain at least 8 characters' })
+    .min(20, { message: 'Description must contain at least 20 characters' })
     .max(1000, { message: 'Description must contain at most 1000 characters' }),
   genres: z
     .array(z.object({ id: z.string(), name: z.string() }))
     .min(1, { message: 'At least 1 element is required' }),
 });
-
-export type TArtistValidForm = z.infer<typeof schema>;
 
 export type TArtistFormValues = {
   name: string;
