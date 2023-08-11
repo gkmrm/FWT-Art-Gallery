@@ -1,0 +1,61 @@
+.paginationItem {
+  width: 24px;
+  height: 24px;
+  @include flexCenter;
+  user-select: none;
+  cursor: pointer;
+  appearance: none;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: inherit;
+  font-family: $secondFontFamily;
+  @include pBaseLight;
+
+  &_light,
+  &_dark {
+    &:hover {
+      font-weight: $medium;
+      transition: font-weight ease-in-out 0.2s;
+    }
+  }
+
+  &_light {
+    color: $primaryDarkGrey;
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+  }
+
+  &_disabled {
+    pointer-events: none;
+  }
+
+  &:first-of-type {
+    cursor: pointer;
+    margin-right: 23px;
+  }
+
+  &:last-child {
+    cursor: pointer;
+    margin-left: 23px;
+  }
+
+  &_active {
+    font-weight: $medium;
+    pointer-events: none;
+
+    &:hover {
+      cursor: auto;
+    }
+
+    &_light {
+      background-color: $activeDark;
+    }
+
+    &_dark {
+      background-color: $secondaryDark;
+    }
+  }
+}
