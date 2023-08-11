@@ -19,6 +19,7 @@ import { Loader } from '@ui-components/Loader';
 import { MissPaintCard } from '@ui-components/MissPaintCard';
 import { MissPaintMessage } from '@ui-components/MissPaintMessage';
 import { Skeleton } from '@ui-components/Skeleton';
+import getIsEqualZero from '@utils/functions/getIsEqualZero';
 
 import styles from './ArtistPage.module.scss';
 
@@ -44,15 +45,7 @@ const ArtistPage: React.FC = () => {
     setShowEditPaint(!isShowEditPaint);
   };
 
-  const paintLength = artist?.paintings?.length;
-  const getIsPaintEqualZero = (num: number | undefined) => {
-    if (num === undefined) {
-      return false;
-    }
-
-    return num <= 0;
-  };
-  const isPaintZero = getIsPaintEqualZero(paintLength);
+  const isPaintZero = getIsEqualZero(artist?.paintings?.length);
 
   return (
     <div className={cx('artistPage', `artistPage_${theme}`)}>

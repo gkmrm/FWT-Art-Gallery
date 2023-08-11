@@ -5,6 +5,7 @@ import cn from 'classnames/bind';
 import { ReactComponent as Arrow } from '@assets/icons/expand_icon.svg';
 import { ThemeType } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
+import getCropText from '@utils/functions/getCropText';
 
 import styles from './Accordion.module.scss';
 
@@ -21,8 +22,6 @@ const Accordion: React.FC<TAccordionProps> = ({ className, theme, text }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClick = () => setIsOpen(!isOpen);
-
-  const getCropText = (textData: string) => `${textData.slice(0, 265)}...`;
 
   const cropText = getCropText(text);
 
