@@ -10,6 +10,7 @@ import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
 import { Container } from '@components/Container';
 import { DragGrid } from '@components/DragGrid';
 import { FilterBar } from '@components/FilterBar';
+import { Pagination } from '@components/Pagination';
 import { useThemeContext } from '@context/ThemeContext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
@@ -77,6 +78,12 @@ const MainPage: React.FC = () => {
         ) : (
           <DragGrid array={artistStatic} theme={theme} variant='author' />
         )}
+        <Pagination
+          theme={theme}
+          pagesAmount={9}
+          currentPage={5}
+          onChange={() => console.log('Переключили')}
+        />
       </Container>
       <ArtistEditPopUp
         isShow={isShowAdd}
