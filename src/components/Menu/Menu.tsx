@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { ToggleTheme } from '@components/ToggleTheme';
 import { useAuthContext } from '@context/AuthContext';
 import { ThemeType } from '@context/ThemeContext';
+import { Button } from '@ui-components/Button';
 import { Link } from '@ui-components/Link';
 
 import styles from './Menu.module.scss';
@@ -26,6 +27,17 @@ const Menu: React.FC<TMenuProps> = ({ theme, ...other }) => {
       <nav>
         <ul className={cx('menu__nav')}>
           {isAuth ? (
+            <li>
+              <Button
+                theme={theme}
+                variant='text'
+                onClick={() => console.log('вышли')}
+                className={cx('menu__nav_link')}
+              >
+                log out
+              </Button>
+            </li>
+          ) : (
             <>
               <li>
                 <Link
@@ -48,8 +60,6 @@ const Menu: React.FC<TMenuProps> = ({ theme, ...other }) => {
                 </Link>
               </li>
             </>
-          ) : (
-            ''
           )}
         </ul>
       </nav>
