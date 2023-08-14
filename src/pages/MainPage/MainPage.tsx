@@ -11,6 +11,7 @@ import { Container } from '@components/Container';
 import { DragGrid } from '@components/DragGrid';
 import { FilterBar } from '@components/FilterBar';
 import { Pagination } from '@components/Pagination';
+import { useAuthContext } from '@context/AuthContext';
 import { useThemeContext } from '@context/ThemeContext';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
@@ -26,6 +27,7 @@ const MainPage: React.FC = () => {
   const { theme } = useThemeContext();
   const [isShow, setShow] = useState(false);
   const [isShowAdd, setShowAdd] = useState(false);
+  const { isAuth } = useAuthContext();
 
   const { data: artistStatic = [], isLoading } =
     artistsStaticApi.useFetchArtistsStaticQuery('');
@@ -47,29 +49,35 @@ const MainPage: React.FC = () => {
 
   return (
     <div className={cx('mainPage', `mainPage_${theme}`)}>
-      <Container className={cx('mainPage__wrapperPaint')}>
-        <div className={cx('mainPage__control')}>
-          <Button
-            theme={theme}
-            variant='text'
-            onClick={() => setShowAdd(true)}
-            className={cx('mainPage__control_button')}
-          >
-            <PlusIcon />
-            Add artist
-          </Button>
-          <div className={cx('mainPage__control_input')}>
-            <Search
-              className={cx('mainPage__search')}
+      <Container
+        className={cx('mainPage__wrapperPaint', {
+          mainPage__wrapperPaint_nonAuth: !isAuth,
+        })}
+      >
+        {isAuth && (
+          <div className={cx('mainPage__control')}>
+            <Button
               theme={theme}
-              errorMessage=''
-              onChange={debounceSearchQuery}
-            />
-            <Button variant='icon' onClick={onOpen} theme={theme}>
-              <FilterIcon />
+              variant='text'
+              onClick={() => setShowAdd(true)}
+              className={cx('mainPage__control_button')}
+            >
+              <PlusIcon />
+              Add artist
             </Button>
+            <div className={cx('mainPage__control_input')}>
+              <Search
+                className={cx('mainPage__search')}
+                theme={theme}
+                errorMessage=''
+                onChange={debounceSearchQuery}
+              />
+              <Button variant='icon' onClick={onOpen} theme={theme}>
+                <FilterIcon />
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
         {isLoading ? (
           <Grid>
             {Array.from({ length: 9 }).map(() => (
