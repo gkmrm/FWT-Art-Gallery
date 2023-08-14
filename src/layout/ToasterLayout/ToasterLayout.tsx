@@ -40,7 +40,8 @@ const ToasterLayout = () => {
         }
       );
     }
-  }, [handleClose, message, theme]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleClose, message]);
 
   return <Toaster containerClassName={cx('toaster')} />;
 };
