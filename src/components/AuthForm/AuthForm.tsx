@@ -3,9 +3,9 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'classnames/bind';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 import { ThemeType } from '@context/ThemeContext';
+import authSchema from '@schemas/authSchema';
 import { Button } from '@ui-components/Button';
 import { Input } from '@ui-components/Input';
 import { InputPass } from '@ui-components/InputPass';
@@ -13,22 +13,6 @@ import { InputPass } from '@ui-components/InputPass';
 import styles from './AuthForm.module.scss';
 
 const cx = cn.bind(styles);
-
-const schema = z.object({
-  email: z.coerce
-    .string()
-    .min(6, { message: 'Email address must be at least 6 characters long' })
-    .max(36, {
-      message:
-        'The length of the email address should not exceed 36 characters',
-    })
-    .email({ message: 'Incorrect email address' }),
-
-  password: z
-    .string()
-    .min(8, { message: 'Password must be at least 8 characters long' })
-    .max(36, { message: 'Password must be no more than 36 characters long' }),
-});
 
 type TAuthFormProps = {
   theme: ThemeType;
@@ -42,7 +26,7 @@ const AuthForm: React.FC<TAuthFormProps> = ({ theme, variant, className }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(authSchema),
     mode: 'onBlur',
   });
 

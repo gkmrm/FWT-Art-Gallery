@@ -3,9 +3,9 @@ import React, { useCallback, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 import { ThemeType } from '@context/ThemeContext';
+import artistSchema from '@schemas/artistFormSchema';
 import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
 import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';
@@ -17,37 +17,6 @@ import { TextArea } from '@ui-components/TextArea';
 import styles from './ArtistForm.module.scss';
 
 const cx = cn.bind(styles);
-
-const MAX_FILE_SIZE = 3145728;
-const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
-
-const schema = z.object({
-  avatar: z
-    .any()
-    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 3MB.`)
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      'Only .jpg, .jpeg, .png formats are supported.'
-    )
-    .optional(),
-  name: z
-    .string()
-    .min(6, { message: 'String must contain at least 6 characters' })
-    .max(60, {
-      message: 'String must contain at most 60 characters',
-    }),
-  years: z
-    .string()
-    .min(8, { message: 'Years must contain at least 8 characters' })
-    .max(36, { message: 'Years must contain at most 36 characters' }),
-  description: z
-    .string()
-    .min(20, { message: 'Description must contain at least 20 characters' })
-    .max(1000, { message: 'Description must contain at most 1000 characters' }),
-  genres: z
-    .array(z.object({ id: z.string(), name: z.string() }))
-    .min(1, { message: 'At least 1 element is required' }),
-});
 
 export type TArtistFormValues = {
   name: string;
@@ -87,7 +56,7 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
     resetField,
   } = useForm<TArtistFormValues>({
     mode: 'all',
-    resolver: zodResolver(schema),
+    resolver: zodResolver(artistSchema),
     defaultValues: artistValues,
   });
 

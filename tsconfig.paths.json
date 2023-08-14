@@ -14,7 +14,8 @@
       "@context/*": ["src/context/*"],
       "@pages/*": ["src/pages/*"],
       "@models/*": ["src/store/models/*"],
-      "@layout/*": ["src/layout/*"]
+      "@layout/*": ["src/layout/*"],
+      "@schemas/*": ["src/types/schemas/*"]
     }
   }
 }

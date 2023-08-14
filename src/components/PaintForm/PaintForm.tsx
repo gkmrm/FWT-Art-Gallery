@@ -3,9 +3,9 @@ import React, { useCallback, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
-import * as z from 'zod';
 
 import { ThemeType } from '@context/ThemeContext';
+import paintFormSchema from '@schemas/paintFormSchema';
 import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';
 import { DropZone } from '@ui-components/DropZone';
@@ -14,29 +14,6 @@ import { Input } from '@ui-components/Input';
 import styles from './PaintForm.module.scss';
 
 const cx = cn.bind(styles);
-
-const MAX_FILE_SIZE = 3145728;
-const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
-
-const schema = z.object({
-  paint: z
-    .any()
-    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 3MB.`)
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      'Only .jpg, .jpeg, .png formats are supported.'
-    ),
-  name: z
-    .string()
-    .min(4, { message: 'Name must contain at least 4 characters' })
-    .max(60, {
-      message: 'Name must contain at most 60 characters',
-    }),
-  years: z
-    .string()
-    .min(4, { message: 'Min 4 num' })
-    .max(36, { message: 'Max 36 number' }),
-});
 
 export type TPaintEditValues = {
   name: string;
@@ -69,7 +46,7 @@ const PaintForm: React.FC<TPaintFormProps> = ({
     resetField,
   } = useForm({
     mode: 'all',
-    resolver: zodResolver(schema),
+    resolver: zodResolver(paintFormSchema),
     defaultValues: paintValues,
   });
 
