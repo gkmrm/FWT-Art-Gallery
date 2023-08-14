@@ -3,15 +3,11 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ThemeType } from '@context/ThemeContext';
+import { IOption } from '@store/models/testIOptionModel';
 
 import styles from './FilterItem.module.scss';
 
 const cx = cn.bind(styles);
-
-interface IOption {
-  id: string;
-  name: string;
-}
 
 type TFilterItemProps = {
   theme: ThemeType;

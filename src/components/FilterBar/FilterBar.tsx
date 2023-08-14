@@ -4,6 +4,7 @@ import cn from 'classnames/bind';
 
 import { useFilterContext } from '@context/FilterContext';
 import { ThemeType } from '@context/ThemeContext';
+import { IOption } from '@store/models/testIOptionModel';
 import { Button } from '@ui-components/Button';
 import { DropDown } from '@ui-components/DropDown';
 import { Sidebar } from '@ui-components/Sidebar';
@@ -17,11 +18,6 @@ type TFilterBarProps = {
   onClose: () => void;
   theme: ThemeType;
 };
-
-interface IOption {
-  id: string;
-  name: string;
-}
 
 const testData: IOption[] = [
   {
@@ -63,21 +59,21 @@ const testDataSort: IOption[] = [
   { id: 'dasdas123d', name: 'Z-A' },
 ];
 
+// Логика в этом компоненте пока выполняет функцию плейсхолдера,
+// и будет доработана с добавлением запросов и авторизации
+
 const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
   const { filters, setFilters, onClearFilter } = useFilterContext();
-  const [filterGenres, setFilterGenres] = useState<IOption[] | null>(
-    filters.genres
+  const [filterGenres, setFilterGenres] = useState<IOption[]>(
+    filters.genres as IOption[]
   );
-  const [filterSort, setFilterSort] = useState<IOption[] | null>(
-    filters.sortBy
+  const [filterSort, setFilterSort] = useState<IOption[]>(
+    filters.sortBy as IOption[]
   );
   const [isClear, setClear] = useState(false);
 
   const onFilterResults = useCallback(() => {
-    // console.log(filters);
-    // console.log(filterGenres, filterSort);
     setFilters({
-      // ...defaultFilters,
       genres: filterGenres,
       sortBy: filterSort,
     });
@@ -86,13 +82,13 @@ const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
   }, [filterGenres, filterSort, onClose, setFilters]);
 
   const onClear = useCallback(() => {
-    setFilterGenres(null);
-    setFilterSort(null);
+    setFilterGenres([]);
+    setFilterSort([]);
     setClear(true);
     onClearFilter();
-  }, []);
+  }, [onClearFilter]);
 
-  React.useEffect(() => setClear(false), [filters, filterGenres, filterSort]);
+  React.useEffect(() => setClear(false), [filterGenres, filterSort]);
 
   return (
     <Sidebar theme={theme} isShow={isShow} onClose={onClose}>

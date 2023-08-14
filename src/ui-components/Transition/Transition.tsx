@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export interface TransitionProps {
+export type TransitionProps = {
   mount: boolean;
   duration: number;
   onEnter: () => void;
@@ -8,7 +8,7 @@ export interface TransitionProps {
   onExit: () => void;
   onExited: () => void;
   children: React.ReactNode;
-}
+};
 
 const rafWrapper = (fn: FrameRequestCallback) => requestAnimationFrame(fn);
 

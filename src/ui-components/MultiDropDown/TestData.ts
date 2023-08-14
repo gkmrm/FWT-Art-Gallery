@@ -1,7 +1,4 @@
-interface IOption {
-  id: string;
-  name: string;
-}
+import { IOption } from '@store/models/testIOptionModel';
 
 export const testData: IOption[] = [
   {

@@ -5,6 +5,7 @@ import cn from 'classnames/bind';
 import { ReactComponent as Arrow } from '@assets/icons/expand_icon.svg';
 import { ThemeType } from '@context/ThemeContext';
 import useOutsideClick from '@hooks/useOutsideClick';
+import { IOption } from '@store/models/testIOptionModel';
 import { Checkbox } from '@ui-components/CheckBox';
 import { ErrorMessage } from '@ui-components/ErrorMessage';
 import { Genre } from '@ui-components/Genre';
@@ -14,16 +15,10 @@ import { testData } from './TestData';
 
 const cx = cn.bind(styles);
 
-interface IOption {
-  id: string;
-  name: string;
-}
-
 type TMultiDropDownProps = {
   theme: ThemeType;
   labelName?: string;
   errorMessage: string;
-  // todo заменить моделью данных во всех файлах
   options?: IOption[];
   selected: IOption[];
   onChange: (selected: IOption[]) => void;

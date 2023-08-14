@@ -8,10 +8,10 @@ import React, {
 
 export type ThemeType = 'light' | 'dark';
 
-export interface ThemeProps {
+export type ThemeProps = {
   theme: ThemeType;
   setTheme: Dispatch<SetStateAction<ThemeType>>;
-}
+};
 
 export const themeDefaultValue: ThemeProps = {
   theme: 'light',

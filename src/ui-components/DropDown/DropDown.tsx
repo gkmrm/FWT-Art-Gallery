@@ -5,20 +5,16 @@ import cn from 'classnames/bind';
 import { ReactComponent as MinusIcon } from '@assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ThemeType } from '@context/ThemeContext';
+import { IOption } from '@store/models/testIOptionModel';
 import { FilterItem } from '@ui-components/FilterItem';
 
 import styles from './DropDown.module.scss';
 
 const cx = cn.bind(styles);
 
-interface IOption {
-  id: string;
-  name: string;
-}
-
 type TDropDownProps = {
   name: string;
-  values: IOption[] | null;
+  values: IOption[];
   options: IOption[];
   theme: ThemeType;
   onFilterChange: (obj: IOption[]) => void;
@@ -35,10 +31,7 @@ const DropDown: React.FC<TDropDownProps> = ({
   onFilterChange,
   gridVariant = 'twoCol',
 }) => {
-  const [value, setValue] = useState<IOption[]>(
-    values || [{ id: '', name: '' }]
-  );
-
+  const [value, setValue] = useState<IOption[]>(values);
   const [isOpen, setOpen] = useState(false);
 
   const toggleOpen = () => setOpen(!isOpen);
@@ -48,7 +41,7 @@ const DropDown: React.FC<TDropDownProps> = ({
     onFilterChange(obj);
   };
 
-  const onClear = () => setValue([{ id: '', name: '' }]);
+  const onClear = () => setValue([]);
 
   const handleChange = (obj: IOption) => {
     if (value.includes(obj)) {
@@ -59,7 +52,11 @@ const DropDown: React.FC<TDropDownProps> = ({
     }
   };
 
-  React.useEffect(() => onClear(), [isClear]);
+  React.useEffect(() => {
+    if (isClear) {
+      onClear();
+    }
+  }, [isClear]);
 
   const getSelected = (obj: IOption) =>
     !!value.find((item) => item.id === obj.id);

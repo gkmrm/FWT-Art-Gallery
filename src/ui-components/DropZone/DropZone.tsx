@@ -1,4 +1,10 @@
-import React, { ChangeEvent, DragEvent, useCallback, useRef } from 'react';
+import React, {
+  ChangeEvent,
+  DragEvent,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 
 import cn from 'classnames/bind';
 
@@ -43,7 +49,7 @@ const DropZone: React.FC<TDropZoneProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [image, setImage] = React.useState(
+  const [image, setImage] = useState(
     initialValue ? `${BASE_URL}${initialValue}` : ''
   );
 
@@ -85,6 +91,8 @@ const DropZone: React.FC<TDropZoneProps> = ({
     },
     []
   );
+
+  React.useEffect(() => console.log(image), [image]);
 
   return (
     <div
