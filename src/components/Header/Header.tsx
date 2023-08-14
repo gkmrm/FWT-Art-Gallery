@@ -19,12 +19,12 @@ import styles from './Header.module.scss';
 const cx = cn.bind(styles);
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
   const { theme } = useThemeContext();
   const ref = useRef<null | HTMLDivElement>(null);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => setOpen(!isOpen);
 
   const onOpen = () => setSearchOpen(true);
 

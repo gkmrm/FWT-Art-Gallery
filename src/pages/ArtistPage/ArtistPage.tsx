@@ -32,13 +32,13 @@ const ArtistPage: React.FC = () => {
   const { data: artist, isLoading } =
     artistsStaticApi.useFetchArtistStaticByIdQuery(id);
 
-  const [isOpenSlider, setIsOpenSlider] = useState(false);
+  const [isOpenSlider, setOpenSlider] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isShowEditPaint, setShowEditPaint] = useState(false);
 
   const onClickCard = (index: number) => () => {
     setCurrentIndex(index);
-    setIsOpenSlider(true);
+    setOpenSlider(true);
   };
 
   const onClosePaintEditPopUp = () => {
@@ -116,7 +116,7 @@ const ArtistPage: React.FC = () => {
               theme={theme}
               paintings={artist.paintings}
               isOpen={isOpenSlider}
-              onClose={() => setIsOpenSlider(false)}
+              onClose={() => setOpenSlider(false)}
               currentIndex={currentIndex}
             />
           )}

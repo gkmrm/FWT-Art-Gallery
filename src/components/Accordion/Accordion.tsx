@@ -19,9 +19,9 @@ type TAccordionProps = {
 
 const Accordion: React.FC<TAccordionProps> = ({ className, theme, text }) => {
   const [isLongText] = useState(text.length > 265);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
 
-  const onClick = () => setIsOpen(!isOpen);
+  const onClick = () => setOpen(!isOpen);
 
   const cropText = getCropText(text);
 

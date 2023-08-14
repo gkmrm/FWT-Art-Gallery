@@ -11,7 +11,7 @@ import styles from './ScrollButton.module.scss';
 const cx = cn.bind(styles);
 
 const ScrollButton = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setVisible] = useState(false);
   const { theme } = useThemeContext();
 
   const scrollToTop = () => {
@@ -24,9 +24,9 @@ const ScrollButton = () => {
   useEffect(() => {
     const buttonVisibility = () => {
       if (window.scrollY > 500) {
-        setIsVisible(true);
+        setVisible(true);
       } else {
-        setIsVisible(false);
+        setVisible(false);
       }
     };
 
