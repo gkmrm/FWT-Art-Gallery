@@ -33,7 +33,7 @@ const DropImagePreview: React.FC<TDropImagePreviewProps> = ({
     <img
       className={cx('imageBlock_image', `imageBlock_image_${variant}`)}
       src={image}
-      alt=''
+      alt={`preview of ${variant}`}
     />
     <Button
       className={cx('imageBlock_icon')}
