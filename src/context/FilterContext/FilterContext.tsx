@@ -15,8 +15,8 @@ export type FilterProps = {
 };
 
 const defaultFilter = {
-  genres: [{}] as IOption[],
-  sortBy: [{}] as IOption[],
+  genres: [],
+  sortBy: [],
   search: '',
 };
 
@@ -35,8 +35,8 @@ export const FilterContext = createContext<FilterProps>({} as FilterProps);
 
 const FilterProvider: React.FC<TFiltersProvider> = ({ children }) => {
   const [params, setParams] = useState<FilterType>({
-    genres: [{}] as IOption[],
-    sortBy: [{}] as IOption[],
+    genres: [],
+    sortBy: [],
     search: '',
   });
 

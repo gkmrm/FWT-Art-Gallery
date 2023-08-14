@@ -64,12 +64,8 @@ const testDataSort: IOption[] = [
 
 const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
   const { filters, setFilters, onClearFilter } = useFilterContext();
-  const [filterGenres, setFilterGenres] = useState<IOption[]>(
-    filters.genres as IOption[]
-  );
-  const [filterSort, setFilterSort] = useState<IOption[]>(
-    filters.sortBy as IOption[]
-  );
+  const [filterGenres, setFilterGenres] = useState<IOption[]>(filters.genres);
+  const [filterSort, setFilterSort] = useState<IOption[]>(filters.sortBy);
   const [isClear, setClear] = useState(false);
 
   const onFilterResults = useCallback(() => {
