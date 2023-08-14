@@ -68,7 +68,10 @@ const DropDown: React.FC<TDropDownProps> = ({
         role='presentation'
         onClick={toggleOpen}
       >
-        <p className={cx('dropdown__name_title')}>{name}</p>
+        <p className={cx('dropdown__name_title')}>
+          {name}
+          {value.length > 0 && `(${value.length})`}
+        </p>
         {isOpen ? <MinusIcon /> : <PlusIcon />}
       </div>
       {isOpen && (
