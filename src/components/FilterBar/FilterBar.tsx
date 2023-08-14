@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import cn from 'classnames/bind';
 
@@ -88,7 +88,7 @@ const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
     onClearFilter();
   }, [onClearFilter]);
 
-  React.useEffect(() => setClear(false), [filterGenres, filterSort]);
+  useEffect(() => setClear(false), [filterGenres, filterSort]);
 
   return (
     <Sidebar theme={theme} isShow={isShow} onClose={onClose}>

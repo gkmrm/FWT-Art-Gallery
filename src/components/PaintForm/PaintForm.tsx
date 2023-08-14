@@ -53,6 +53,7 @@ const PaintForm: React.FC<TPaintFormProps> = ({
   return (
     <form
       className={cx('paintForm')}
+      // eslint-disable-next-line no-console
       onSubmit={handleSubmit((d) => console.log(d))}
       onDragOver={handleDragOver}
     >

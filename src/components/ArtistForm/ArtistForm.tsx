@@ -63,6 +63,7 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
   return (
     <form
       className={cx('form', `form_${theme}`)}
+      // eslint-disable-next-line no-console
       onSubmit={handleSubmit((d) => console.log(d))}
       onDragOver={handleDragOver}
     >

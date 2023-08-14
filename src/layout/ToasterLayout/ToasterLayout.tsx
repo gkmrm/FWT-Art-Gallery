@@ -15,6 +15,7 @@ const ToasterLayout = () => {
 
   const handleClose = useCallback(
     (toastId: string) => () => {
+      // eslint-disable-next-line no-console
       console.log(toastId);
     },
     []
@@ -39,7 +40,7 @@ const ToasterLayout = () => {
         }
       );
     }
-  }, [message]);
+  }, [handleClose, message, theme]);
 
   return <Toaster containerClassName={cx('toaster')} />;
 };

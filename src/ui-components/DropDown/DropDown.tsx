@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames/bind';
 
@@ -52,7 +52,7 @@ const DropDown: React.FC<TDropDownProps> = ({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isClear) {
       onClear();
     }

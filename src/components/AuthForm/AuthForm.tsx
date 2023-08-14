@@ -33,6 +33,7 @@ const AuthForm: React.FC<TAuthFormProps> = ({ theme, variant, className }) => {
   return (
     <form
       className={cx(className, 'form')}
+      // eslint-disable-next-line no-console
       onSubmit={handleSubmit((d) => console.log(d))}
     >
       <Input

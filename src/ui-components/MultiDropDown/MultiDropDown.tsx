@@ -33,8 +33,7 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
   onChange,
 }) => {
   const [isOpen, setOpen] = useState(false);
-  const [selectedValues, setSelectedValues] =
-    React.useState<IOption[]>(selected);
+  const [selectedValues, setSelectedValues] = useState<IOption[]>(selected);
   const ref = useRef<null | HTMLDivElement>(null);
 
   const handleChange = (obj: IOption) => {

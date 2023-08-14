@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import cn from 'classnames/bind';
 import ReactDOM from 'react-dom';
@@ -29,7 +29,7 @@ const Modal: React.FC<TModalProps> = ({
   className,
   ...other
 }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (theme === 'dark' && isShow) {
       document.body.style.backgroundColor = '#121212';
     }
@@ -37,7 +37,7 @@ const Modal: React.FC<TModalProps> = ({
     return () => {
       document.body.style.backgroundColor = '';
     };
-  }, [isShow]);
+  }, [isShow, theme]);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
   const modalInnerRef = useRef<HTMLDivElement | null>(null);

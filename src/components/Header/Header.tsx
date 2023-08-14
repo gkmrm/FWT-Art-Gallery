@@ -28,7 +28,8 @@ const Header: React.FC = () => {
 
   const onOpen = () => setSearchOpen(true);
 
-  const onChange = React.useCallback((str: string) => {
+  const onChange = useCallback((str: string) => {
+    // eslint-disable-next-line no-console
     console.log(str);
   }, []);
 

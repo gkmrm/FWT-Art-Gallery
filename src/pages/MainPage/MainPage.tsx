@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
 import _ from 'lodash';
@@ -38,7 +38,8 @@ const MainPage: React.FC = () => {
   const onOpen = () => setShow(true);
   const onClose = () => setShow(false);
 
-  const onChange = React.useCallback((str: string) => {
+  const onChange = useCallback((str: string) => {
+    // eslint-disable-next-line no-console
     console.log(str);
   }, []);
 
@@ -82,6 +83,7 @@ const MainPage: React.FC = () => {
           theme={theme}
           pagesAmount={9}
           currentPage={5}
+          // eslint-disable-next-line no-console
           onChange={() => console.log('Переключили')}
         />
       </Container>

@@ -59,6 +59,7 @@ const DeletePopUp: React.FC<TDeletePopUpProps> = ({
         <Button
           variant='default'
           theme={theme}
+          // eslint-disable-next-line no-console
           onClick={() => console.log('delete')}
         >
           delete

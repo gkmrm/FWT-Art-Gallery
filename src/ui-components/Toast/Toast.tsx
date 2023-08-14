@@ -26,7 +26,7 @@ const Toast: React.FC<TToastProps> = ({
 }) => {
   useEffect(() => {
     setTimeout(() => onClose(), duration);
-  }, []);
+  }, [duration, onClose]);
 
   return (
     <div className={cx('toast', `toast_${theme}`)}>

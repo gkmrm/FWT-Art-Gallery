@@ -1,19 +1,19 @@
 import { RefObject, useEffect } from 'react';
 
 const useOutsideClick = (ref: RefObject<HTMLElement>, handler: () => void) => {
-  const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-    if (ref.current && !ref.current.contains(event.target as Node)) {
-      handler();
-    }
-  };
-
-  const handleEscapeDown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      handler();
-    }
-  };
-
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        handler();
+      }
+    };
+
+    const handleEscapeDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handler();
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('touchend', handleClickOutside);
     document.addEventListener('keydown', handleEscapeDown);
@@ -23,7 +23,7 @@ const useOutsideClick = (ref: RefObject<HTMLElement>, handler: () => void) => {
       document.removeEventListener('touchend', handleClickOutside);
       document.removeEventListener('keydown', handleEscapeDown);
     };
-  }, [ref]);
+  }, [handler, ref]);
 };
 
 export default useOutsideClick;

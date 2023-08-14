@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -18,7 +18,7 @@ const InputPass: React.FC<TInputPass> = ({
   theme,
   register,
 }) => {
-  const [isShow, setShow] = React.useState(false);
+  const [isShow, setShow] = useState(false);
 
   const toggleShow = () => {
     setShow(!isShow);

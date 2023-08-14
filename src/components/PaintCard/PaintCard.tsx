@@ -87,6 +87,7 @@ const PaintCard: React.FC<TPaintCardProps> = ({
                   )}
                   role='presentation'
                   onClick={() => {
+                    // eslint-disable-next-line no-console
                     console.log('Cover change');
                     onClose();
                   }}

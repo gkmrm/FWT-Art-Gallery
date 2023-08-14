@@ -53,13 +53,16 @@ const DropZone: React.FC<TDropZoneProps> = ({
     initialValue ? `${BASE_URL}${initialValue}` : ''
   );
 
-  const uploadImage = async (file: File | undefined) => {
-    if (file) {
-      const base64 = await getBase64(file);
-      setImage(base64);
-      onChange(file);
-    }
-  };
+  const uploadImage = useCallback(
+    async (file: File | undefined) => {
+      if (file) {
+        const base64 = await getBase64(file);
+        setImage(base64);
+        onChange(file);
+      }
+    },
+    [onChange]
+  );
 
   const handleDeleteImage = () => {
     setImage('');
@@ -71,7 +74,7 @@ const DropZone: React.FC<TDropZoneProps> = ({
       const file = event.target.files?.[0];
       await uploadImage(file);
     },
-    []
+    [uploadImage]
   );
 
   const handleLoadImage = () => inputRef.current?.click();
@@ -89,10 +92,8 @@ const DropZone: React.FC<TDropZoneProps> = ({
         onDragLeave(event);
       }
     },
-    []
+    [onDragLeave, uploadImage]
   );
-
-  React.useEffect(() => console.log(image), [image]);
 
   return (
     <div
