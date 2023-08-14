@@ -95,7 +95,7 @@ const DropField: React.FC<TDropFieldProps> = forwardRef<
 
         <p
           className={cx('field__label', `field__label_${theme}`, {
-            [`field__label_drag`]: isDraggable,
+            field__label_drag: isDraggable,
           })}
         >
           {labelName}
