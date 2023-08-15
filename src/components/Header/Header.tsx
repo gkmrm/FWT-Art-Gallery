@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 
 import cn from 'classnames/bind';
-import _ from 'lodash';
 
 import { ReactComponent as BurgerIcon } from '@assets/icons/buger_icon.svg';
 import { ReactComponent as Logo } from '@assets/icons/logo.svg';
@@ -9,6 +8,7 @@ import { ReactComponent as LoupeIcon } from '@assets/icons/search_icon.svg';
 import { Container } from '@components/Container';
 import { Menu } from '@components/Menu';
 import { useThemeContext } from '@context/ThemeContext';
+import useDebounceSearch from '@hooks/useDebounceSearch';
 import useOutsideClick from '@hooks/useOutsideClick';
 import { Link } from '@ui-components/Link';
 import { Search } from '@ui-components/Search';
@@ -37,7 +37,7 @@ const Header: React.FC = () => {
     setSearchOpen(false);
   }, [setSearchOpen]);
 
-  const debounceSearchQuery = _.debounce(onChange, 650);
+  const debounceSearchQuery = useDebounceSearch(onChange, 650);
 
   useOutsideClick(ref, handleToggle);
 
