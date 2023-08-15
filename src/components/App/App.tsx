@@ -9,7 +9,7 @@ import { MainPage } from '@pages/MainPage';
 
 const App = () => {
   const location = useLocation();
-  const background = location.state ? location.state.background : null;
+  const background = location.state?.background;
 
   return (
     <>
