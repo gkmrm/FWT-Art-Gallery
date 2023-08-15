@@ -33,19 +33,13 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
   theme,
   onClose,
 }) => {
+  const { id, subtitle, title, paint } = painting;
   const [isShowDelete, setShowDelete] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
 
-  const onCloseDeletePopUp = () => {
-    setShowDelete(!isShowDelete);
-  };
-  const onCloseEditPopUp = () => {
-    setShowEdit(!isShowEdit);
-  };
-
   return (
-    <SplideSlide key={painting.id}>
-      <Picture original={painting.paint.original} alt={`${painting.title}`} />
+    <SplideSlide key={id}>
+      <Picture original={paint.original} alt={`${title}`} />
       <div className={cx('slider__pagination')}>{`${index + 1}/${length}`}</div>
       <Button className={cx('slider__close')} onClick={onClose}>
         <Close />
@@ -68,7 +62,7 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
                 `infoBlock__text_subtitle_${theme}`
               )}
             >
-              {painting.subtitle}
+              {subtitle}
             </div>
             <div
               className={cx(
@@ -76,7 +70,7 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
                 `infoBlock__text_title_${theme}`
               )}
             >
-              {painting.title}
+              {title}
             </div>
           </div>
         </div>
@@ -101,19 +95,18 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
       </div>
       <PaintEditPopUp
         isShow={isShowEdit}
-        onClose={onCloseEditPopUp}
+        onClose={() => setShowEdit(false)}
         theme={theme}
         paint={{
-          name: painting.title,
-          years: painting.subtitle,
-          paint: painting.paint,
+          name: title,
+          years: subtitle,
+          paint,
         }}
       />
       <DeletePopUp
         variant='paint'
         isShow={isShowDelete}
-        onClose={onCloseDeletePopUp}
-        theme={theme}
+        onClose={() => setShowDelete(false)}
       />
     </SplideSlide>
   );
