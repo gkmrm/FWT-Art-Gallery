@@ -1,6 +1,5 @@
 .loader {
   @include flexCenter;
-  box-sizing: border-box;
 
   &_light {
     color: $primaryBlack;

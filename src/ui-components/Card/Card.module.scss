@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   border: 0;
-  box-sizing: border-box;
   position: relative;
   width: 100%;
   height: 100%;
@@ -67,7 +66,6 @@
 
 .info {
   text-transform: uppercase;
-  box-sizing: border-box;
   width: 100%;
   padding: 8px 0;
   max-width: 236px;
@@ -115,7 +113,6 @@
   }
 
   &__title {
-    box-sizing: border-box;
     font-family: $mainFontFamily;
     @include h6;
     max-width: 220px;
