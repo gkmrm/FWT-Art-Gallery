@@ -96,7 +96,6 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
       <PaintEditPopUp
         isShow={isShowEdit}
         onClose={() => setShowEdit(false)}
-        theme={theme}
         paint={{
           name: title,
           years: subtitle,
