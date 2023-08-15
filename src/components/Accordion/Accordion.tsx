@@ -17,8 +17,10 @@ type TAccordionProps = {
   text: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+const MAX_LENGTH_TEXT = 265;
+
 const Accordion: React.FC<TAccordionProps> = ({ className, theme, text }) => {
-  const [isLongText] = useState(text.length > 265);
+  const [isLongText] = useState(text.length > MAX_LENGTH_TEXT);
   const [isOpen, setOpen] = useState(false);
 
   const onClick = () => setOpen(!isOpen);
