@@ -13,12 +13,7 @@ type TCheckBoxProps = {
   theme: ThemeType;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-const CheckBox: React.FC<TCheckBoxProps> = ({
-  // eslint-disable-next-line react/prop-types
-  name,
-  theme,
-  ...others
-}) => (
+const CheckBox: React.FC<TCheckBoxProps> = ({ name, theme, ...others }) => (
   <label htmlFor={name} className={cx('checkbox__wrapper')}>
     <input
       className={cx('checkbox', `checkbox_${theme}`)}
