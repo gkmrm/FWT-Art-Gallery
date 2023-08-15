@@ -112,40 +112,4 @@
   &__container {
     padding: 0;
   }
-
-  &__textBlock {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 0 20px;
-
-    &_dark {
-      @include darkTheme;
-    }
-
-    &_light {
-      @include lightTheme;
-    }
-
-    &_line {
-      display: none;
-      color: inherit;
-
-      @include mediaDesktop {
-        display: block;
-        padding-top: 12px;
-      }
-    }
-
-    @include mediaDesktop {
-      position: relative;
-      width: 604px;
-      padding: 0 80px;
-      padding-bottom: 60px;
-    }
-  }
-
-  &__genres {
-    margin-top: 20px;
-  }
 }
