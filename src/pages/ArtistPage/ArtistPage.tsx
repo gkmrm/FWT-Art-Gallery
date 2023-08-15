@@ -41,10 +41,6 @@ const ArtistPage: React.FC = () => {
     setOpenSlider(true);
   };
 
-  const onClosePaintEditPopUp = () => {
-    setShowEditPaint(!isShowEditPaint);
-  };
-
   const isPaintZero = getIsEqualZero(artist?.paintings?.length);
 
   return (
@@ -108,7 +104,7 @@ const ArtistPage: React.FC = () => {
           </Container>
           <PaintEditPopUp
             isShow={isShowEditPaint}
-            onClose={onClosePaintEditPopUp}
+            onClose={() => setShowEditPaint(false)}
             theme={theme}
           />
           {isOpenSlider && (
