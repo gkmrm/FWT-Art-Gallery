@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
               className={cx('footer__text_link')}
               to='https://framework.team'
               theme={theme}
-              target='_blanc'
+              target='_blank'
             >
               Framework Team
             </Link>
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
           <Link
             theme={theme}
             to='https://www.facebook.com/framework.team'
-            target='_blanc'
+            target='_blank'
           >
             <FacebookIcon />
           </Link>
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
           <Link
             to='https://www.instagram.com/framework.team/'
             theme={theme}
-            target='_blanc'
+            target='_blank'
           >
             <InstagramIcon />
           </Link>
