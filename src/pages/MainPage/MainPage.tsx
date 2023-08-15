@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
-import _ from 'lodash';
 import { uid } from 'uid';
 
 import { ReactComponent as FilterIcon } from '@assets/icons/filter_icon.svg';
@@ -12,6 +11,7 @@ import { DragGrid } from '@components/DragGrid';
 import { FilterBar } from '@components/FilterBar';
 import { Pagination } from '@components/Pagination';
 import { useThemeContext } from '@context/ThemeContext';
+import useDebounceSearch from '@hooks/useDebounceSearch';
 import { artistsStaticApi } from '@store/services/ArtistsStaticService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';
@@ -30,20 +30,12 @@ const MainPage: React.FC = () => {
   const { data: artistStatic = [], isLoading } =
     artistsStaticApi.useFetchArtistsStaticQuery('');
 
-  const onCloseEditPopUp = () => {
-    setShowAdd(!isShowAdd);
-  };
-
-  // todo check this
-  const onOpen = () => setShow(true);
-  const onClose = () => setShow(false);
-
   const onChange = useCallback((str: string) => {
     // eslint-disable-next-line no-console
     console.log(str);
   }, []);
 
-  const debounceSearchQuery = _.debounce(onChange, 650);
+  const debounceSearchQuery = useDebounceSearch(onChange, 650);
 
   return (
     <div className={cx('mainPage', `mainPage_${theme}`)}>
@@ -65,7 +57,7 @@ const MainPage: React.FC = () => {
               errorMessage=''
               onChange={debounceSearchQuery}
             />
-            <Button variant='icon' onClick={onOpen} theme={theme}>
+            <Button variant='icon' onClick={() => setShow(true)} theme={theme}>
               <FilterIcon />
             </Button>
           </div>
@@ -89,10 +81,10 @@ const MainPage: React.FC = () => {
       </Container>
       <ArtistEditPopUp
         isShow={isShowAdd}
-        onClose={onCloseEditPopUp}
+        onClose={() => setShowAdd(false)}
         theme={theme}
       />
-      <FilterBar isShow={isShow} onClose={onClose} theme={theme} />
+      <FilterBar isShow={isShow} onClose={() => setShow(false)} theme={theme} />
     </div>
   );
 };
