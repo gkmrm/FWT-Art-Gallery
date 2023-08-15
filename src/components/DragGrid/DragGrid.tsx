@@ -18,10 +18,10 @@ import {
 } from '@dnd-kit/sortable';
 
 import { DragCard } from '@components/DragCard';
-import { PaintCard } from '@components/PaintCard';
 import { ThemeType } from '@context/ThemeContext';
-import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
+
+import DragGridItem from './DragGridItem';
 
 type TDragGridProps = {
   // Todo add Types
@@ -65,57 +65,31 @@ const DragGrid: React.FC<TDragGridProps> = ({
     setActiveId(null);
   }, []);
 
-  const grid =
-    variant === 'author'
-      ? items.map((item) => (
-          <DragCard id={item.id} key={item.id} theme={theme}>
-            <Card
-              key={item.id}
-              {...item}
-              id={item.id}
-              image={item.paint}
-              theme={theme}
-              pathTo={`/artists/static/${item.id}`}
-            />
-          </DragCard>
-        ))
-      : items.map((item, index) => (
-          <DragCard id={item.id} key={item.id} theme={theme}>
-            <PaintCard
-              key={item.id}
-              image={item.paint}
-              onClick={onClickCard(index)}
-              {...item}
-              id={item.id}
-              theme={theme}
-            />
-          </DragCard>
-        ));
+  // TODO CHECK THIS
+  const grid = items.map((item, index) => (
+    <DragCard id={item.id} key={item.id}>
+      <DragGridItem
+        variant={variant}
+        item={item}
+        theme={theme}
+        index={index}
+        onClickCard={onClickCard}
+      />
+    </DragCard>
+  ));
 
   const overlayCard = (
-    <DragCard id={activeId as string} theme={theme}>
+    <DragCard id={activeId as string}>
       {items.map((item, index) =>
-        // eslint-disable-next-line no-nested-ternary
         item.id === activeId ? (
-          variant === 'author' ? (
-            <Card
-              key={item.id}
-              {...item}
-              id={item.id}
-              image={item.paint}
-              theme={theme}
-              pathTo={`/artists/static/${item.id}`}
-            />
-          ) : (
-            <PaintCard
-              key={item.id}
-              image={item.paint}
-              onClick={onClickCard(index)}
-              {...item}
-              id={item.id}
-              theme={theme}
-            />
-          )
+          // TODO CHECK THIS
+          <DragGridItem
+            variant={variant}
+            item={item}
+            theme={theme}
+            index={index}
+            onClickCard={onClickCard}
+          />
         ) : null
       )}
     </DragCard>
