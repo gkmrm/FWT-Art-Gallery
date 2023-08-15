@@ -26,13 +26,6 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
   const [isShowDelete, setShowDelete] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
 
-  const onCloseDeletePopUp = () => {
-    setShowDelete(!isShowDelete);
-  };
-  const onCloseEditPopUp = () => {
-    setShowEdit(!isShowEdit);
-  };
-
   return (
     <div className={cx('controlbar')}>
       <Button
@@ -58,13 +51,11 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
       <DeletePopUp
         variant='artist'
         isShow={isShowDelete}
-        onClose={onCloseDeletePopUp}
-        theme={theme}
+        onClose={() => setShowDelete(false)}
       />
       <ArtistEditPopUp
         isShow={isShowEdit}
-        onClose={onCloseEditPopUp}
-        theme={theme}
+        onClose={() => setShowEdit(false)}
         artist={artist}
       />
     </div>
