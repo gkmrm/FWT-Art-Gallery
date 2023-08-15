@@ -1,0 +1,37 @@
+.drag {
+  position: relative;
+
+  &_dragging {
+    opacity: 0.3;
+  }
+
+  @include mediaDesktop {
+    &:hover,
+    &:focus {
+      .button {
+        display: flex;
+      }
+    }
+  }
+}
+
+.button {
+  display: none;
+
+  @include mediaDesktopMaxWidth {
+    display: flex;
+  }
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: $tenLayer;
+
+  &_light {
+    background-color: $cardIconLight;
+  }
+
+  &_dark {
+    background-color: $cardIconDark;
+  }
+}

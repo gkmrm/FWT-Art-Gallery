@@ -1,0 +1,115 @@
+.artist {
+  &__wrapper {
+    display: block;
+    position: static;
+    @include noUserSelect;
+    box-sizing: content-box;
+
+    @include mediaDesktop {
+      position: relative;
+      margin: 0 auto;
+      width: 100%;
+      max-width: $breakpointDesktop;
+      height: 1000px;
+      padding-left: 20px;
+    }
+
+    @include mediaMax {
+      max-width: $breakpointMax;
+    }
+  }
+
+  &__avatar {
+    position: relative;
+    @include noUserSelect;
+
+    &_image {
+      max-height: 452px;
+
+      @include mediaTablet {
+        max-height: 1000px;
+      }
+
+      @include mediaDesktop {
+        position: absolute;
+        height: 1000px;
+        width: 1000px;
+        right: 0;
+      }
+    }
+
+    &_text {
+      position: absolute;
+      bottom: 0;
+      background-color: inherit;
+      padding-bottom: 20px;
+      width: 300px;
+
+      @include mediaTablet {
+        width: 560px;
+      }
+
+      @include mediaDesktop {
+        position: relative;
+        top: 60px;
+        width: 604px;
+        margin-bottom: 60px;
+      }
+
+      @include mediaMax {
+        left: 80px;
+        margin-left: 0px;
+      }
+
+      &_dark {
+        background-color: $primaryBlack;
+        color: $secondaryGrey;
+      }
+
+      &_light {
+        @include lightTheme;
+      }
+    }
+  }
+
+  &__year {
+    @include h6;
+    padding: 20px 0 12px 20px;
+
+    @include mediaTablet {
+      font-size: 16px;
+    }
+
+    @include mediaDesktop {
+      padding: 60px 0 32px 80px;
+    }
+  }
+
+  &__name {
+    @include h3;
+    padding-left: 20px;
+
+    &_light {
+      color: $accentRed;
+      border-left: $borderLight;
+    }
+
+    &_dark {
+      color: $accentGold;
+      border-left: $borderDark;
+    }
+
+    @include mediaTablet {
+      @include h2;
+    }
+
+    @include mediaDesktop {
+      font-size: $h1Text;
+      padding-left: 80px;
+    }
+  }
+
+  &__container {
+    padding: 0;
+  }
+}

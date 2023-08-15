@@ -1,8 +1,9 @@
 import React from 'react';
 
 import cn from 'classnames/bind';
+import { Link, LinkProps } from 'react-router-dom';
 
-import { ThemeType } from 'src/context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 
 import styles from './Link.module.scss';
 
@@ -10,36 +11,16 @@ const cx = cn.bind(styles);
 
 type TLinkProps = {
   theme: ThemeType;
-  className?: string;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+} & LinkProps;
 
-const Link: React.FC<TLinkProps> = ({
-  /**
-   * Boolean value for change theme
-   */
-  theme,
-  /**
-   * Addition className for Link
-   */
-  className,
-  /**
-   * standart Anchor props <a></a>
-   */
-  ...others
-}) => {
+const Links: React.FC<TLinkProps> = ({ theme, className, to, ...others }) => {
   const classNames = cx(className, 'link', `link_${theme}`);
 
   return (
-    <a
-      className={classNames}
-      href={others.href}
-      target='_blank'
-      rel='noreferrer'
-      {...others}
-    >
+    <Link to={to} className={classNames} {...others}>
       {others.children}
-    </a>
+    </Link>
   );
 };
 
-export default Link;
+export default Links;

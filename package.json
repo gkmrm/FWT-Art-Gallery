@@ -4,12 +4,23 @@
   "private": "false",
   "homepage": "https://gkmrm.github.io/FWT-Art-Gallery",
   "dependencies": {
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/sortable": "^7.0.2",
+    "@dnd-kit/utilities": "^3.2.1",
+    "@hookform/resolvers": "^3.1.1",
+    "@splidejs/react-splide": "^0.7.12",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.2",
+    "react-hot-toast": "^2.4.1",
+    "react-remove-scroll-bar": "^2.3.4",
+    "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
     "storybook": "^7.0.23",
-    "web-vitals": "^2.1.0"
+    "uid": "^2.0.2",
+    "web-vitals": "^2.1.0",
+    "zod": "^3.21.4"
   },
   "scripts": {
     "start": "craco start",
@@ -42,6 +53,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@storybook/addon-essentials": "^7.0.23",
     "@storybook/addon-interactions": "^7.0.23",
     "@storybook/addon-links": "^7.0.23",
@@ -75,6 +87,7 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
+    "react-redux": "^8.1.1",
     "sass": "^1.63.6",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^4.4.2",

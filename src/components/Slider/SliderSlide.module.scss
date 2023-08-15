@@ -1,0 +1,186 @@
+.infoBlock {
+  width: 253px;
+  height: 68px;
+  position: absolute;
+  bottom: 80px;
+  left: 0px;
+  display: flex;
+  justify-content: space-between;
+
+  &_light {
+    background-color: $secondaryWhite;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  @include mediaTablet {
+    width: 498px;
+    height: 122px;
+    bottom: 60px;
+    left: 40px;
+  }
+
+  @include mediaDesktop {
+    bottom: 19px;
+  }
+
+  @include mediaMax {
+    bottom: 100px;
+    left: 120px;
+  }
+
+  &__icons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    gap: 20px;
+    background-color: transparent;
+
+    @include mediaTablet {
+      position: static;
+      padding-top: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  &__button {
+    @include mediaTabletMaxWidth {
+      background-color: transparent;
+      color: $primaryLightGrey;
+    }
+  }
+
+  &__container {
+    @include flexCenter;
+  }
+
+  &__text {
+    padding-left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+
+    @include mediaTablet {
+      padding-left: 20px;
+
+      &_light {
+        border-left: $borderLight;
+      }
+
+      &_dark {
+        border-left: $borderDark;
+      }
+    }
+
+    &_title {
+      @include h6;
+      text-transform: uppercase;
+
+      &_light {
+        color: $primaryBlack;
+      }
+
+      &_dark {
+        color: $primaryWhite;
+      }
+
+      @include mediaTablet {
+        @include h4;
+      }
+    }
+
+    &_subtitle {
+      font-family: $secondFontFamily;
+      @include capText;
+
+      &_light {
+        color: $accentRed;
+      }
+
+      &_dark {
+        color: $accentGold;
+      }
+
+      @include mediaTablet {
+        @include subtitle;
+      }
+    }
+  }
+}
+
+.slider {
+  &__close,
+  &__cover {
+    cursor: pointer;
+    position: absolute;
+    background-color: transparent;
+    color: $primaryLightGrey;
+    top: 20px;
+  }
+
+  &__close {
+    right: 20px;
+  }
+  &__cover {
+    left: 20px;
+  }
+
+  @include mediaTablet {
+    &__close,
+    &__cover {
+      top: 40px;
+    }
+    &__close {
+      right: 40px;
+    }
+    &__cover {
+      left: 40px;
+    }
+  }
+
+  @include mediaDesktop {
+    &__close,
+    &__cover {
+      top: 60px;
+    }
+  }
+
+  @include mediaMax {
+    &__close {
+      right: 120px;
+    }
+    &__cover {
+      left: 120px;
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    @include h5;
+    right: 20px;
+    bottom: 20px;
+    text-transform: uppercase;
+    color: $primaryLightGrey;
+
+    @include mediaTablet {
+      @include h3;
+      right: 40px;
+      bottom: 60px;
+    }
+
+    @include mediaDesktop {
+      bottom: 19px;
+    }
+
+    @include mediaMax {
+      right: 120px;
+      bottom: 100px;
+    }
+  }
+}

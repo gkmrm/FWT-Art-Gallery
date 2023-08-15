@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
+import { uid } from 'uid';
 
+import { ReactComponent as FilterIcon } from '@assets/icons/filter_icon.svg';
+import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
+import { ArtistEditPopUp } from '@components/ArtistEditPopUp';
 import { Container } from '@components/Container';
-import { Footer } from '@components/Footer';
-import { Header } from '@components/Header';
-import { useThemeContext } from '@context/ThemeConext';
-import { Card } from '@ui-components/Card';
+import { DragGrid } from '@components/DragGrid';
+import { FilterBar } from '@components/FilterBar';
+import { Pagination } from '@components/Pagination';
+import { useThemeContext } from '@context/ThemeContext';
+import useDebounceSearch from '@hooks/useDebounceSearch';
+import { artistsStaticApi } from '@store/services/ArtistsStaticService';
+import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';
-import testData from '@ui-components/Grid/testDataforCardGrid';
+import { Search } from '@ui-components/Search';
+import { Skeleton } from '@ui-components/Skeleton';
 
 import styles from './MainPage.module.scss';
 
@@ -16,18 +24,63 @@ const cx = cn.bind(styles);
 
 const MainPage: React.FC = () => {
   const { theme } = useThemeContext();
+  const [isShow, setShow] = useState(false);
+  const [isShowAdd, setShowAdd] = useState(false);
+
+  const { data: artistStatic = [], isLoading } =
+    artistsStaticApi.useFetchArtistsStaticQuery('');
+
+  const onChange = useCallback((str: string) => {
+    // eslint-disable-next-line no-console
+    console.log(str);
+  }, []);
+
+  const debounceSearchQuery = useDebounceSearch(onChange, 650);
 
   return (
     <div className={cx('mainPage', `mainPage_${theme}`)}>
-      <Header />
       <Container className={cx('mainPage__wrapperPaint')}>
-        <Grid className={cx('mainPage__grid')}>
-          {testData.map((item) => (
-            <Card href='/' {...item} id={item.id} theme={theme} />
-          ))}
-        </Grid>
+        <div className={cx('mainPage__control')}>
+          <Button
+            theme={theme}
+            variant='text'
+            onClick={() => setShowAdd(true)}
+            className={cx('mainPage__control_button')}
+          >
+            <PlusIcon />
+            Add artist
+          </Button>
+          <div className={cx('mainPage__control_input')}>
+            <Search
+              className={cx('mainPage__search')}
+              theme={theme}
+              errorMessage=''
+              onChange={debounceSearchQuery}
+            />
+            <Button variant='icon' onClick={() => setShow(true)} theme={theme}>
+              <FilterIcon />
+            </Button>
+          </div>
+        </div>
+        {isLoading ? (
+          <Grid>
+            {Array.from({ length: 9 }).map(() => (
+              <Skeleton key={uid()} theme={theme} />
+            ))}
+          </Grid>
+        ) : (
+          <DragGrid array={artistStatic} theme={theme} variant='author' />
+        )}
+        <Pagination
+          theme={theme}
+          pagesAmount={9}
+          currentPage={5}
+          // eslint-disable-next-line no-console
+          onChange={() => console.log('Переключили')}
+        />
       </Container>
-      <Footer />
+      <ArtistEditPopUp isShow={isShowAdd} onClose={() => setShowAdd(false)} />
+      <FilterBar isShow={isShow} onClose={() => setShow(false)} theme={theme} />
     </div>
   );
 };

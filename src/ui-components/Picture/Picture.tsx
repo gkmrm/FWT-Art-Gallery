@@ -7,29 +7,12 @@ import styles from './Picture.module.scss';
 const cx = cn.bind(styles);
 
 export type TPictureProps = {
-  /**
-   * Source of img - MAIN
-   */
-  src: string;
-  /**
-   * Source of webp img
-   */
+  src?: string;
   webp?: string;
-  /**
-   * Source of src2x img for Retina display
-   */
   src2x?: string;
-  /**
-   * Source of webp2x img for Retina display
-   */
   webp2x?: string;
-  /**
-   * Source of original img
-   */
+  original?: string;
   alt: string;
-  /**
-   * Addition className for Image
-   */
   className?: string;
 } & React.HTMLAttributes<HTMLPictureElement>;
 
@@ -40,6 +23,7 @@ const Picture: React.FC<TPictureProps> = ({
   webp,
   src2x,
   webp2x,
+  original,
   alt,
   className,
 }) => (
@@ -47,28 +31,36 @@ const Picture: React.FC<TPictureProps> = ({
     {webp && (
       <source
         srcSet={`${BASE_API_URL}${webp}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/webp'
       />
     )}
     {src2x && (
       <source
         srcSet={`${BASE_API_URL}${src2x}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/jpeg'
       />
     )}
     {webp2x && (
       <source
         srcSet={`${BASE_API_URL}${webp2x}`}
-        media='(min-width: 600px)'
+        media='(min-width: 280px)'
         type='image/webp'
+      />
+    )}
+    {original && (
+      <source
+        srcSet={`${BASE_API_URL}${original}`}
+        media='(min-width: 280px)'
+        type='image/jpeg'
       />
     )}
     <img
       className={cx('picture', className)}
       src={`${BASE_API_URL}${src}`}
       alt={alt}
+      loading='lazy'
     />
   </picture>
 );

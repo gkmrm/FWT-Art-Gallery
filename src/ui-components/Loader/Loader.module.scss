@@ -1,0 +1,102 @@
+.loader {
+  @include flexCenter;
+
+  &_light {
+    color: $primaryBlack;
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+  }
+
+  &__wrapper {
+    width: 55px;
+    height: 55px;
+    animation: wrapper 1s linear infinite;
+  }
+
+  &__circle {
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 1, 210;
+    stroke: currentColor;
+    fill: none;
+    transform: rotate(100deg);
+    transform-origin: center;
+    animation: wrapper $loaderDelay linear infinite;
+
+    &_1 {
+      animation: circle_1 $loaderDelay ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    &_2 {
+      animation: circle_2 $loaderDelay ease-in-out infinite;
+      opacity: 0.35;
+    }
+
+    &_3 {
+      animation: circle_3 $loaderDelay ease-in-out infinite;
+      opacity: 0.35;
+    }
+
+    &_4 {
+      animation: circle_4 $loaderDelay ease-in-out infinite;
+      opacity: 0.35;
+    }
+  }
+}
+
+@keyframes wrapper {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circle_1 {
+  0%,
+  100% {
+    stroke-dasharray: 1, 150;
+    transform: rotate(85deg);
+  }
+  50% {
+    stroke-dasharray: 30, 150;
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes circle_2 {
+  0%,
+  100% {
+    stroke-dasharray: 1, 150;
+    transform: rotate(85deg);
+  }
+  50% {
+    stroke-dasharray: 45, 150;
+    transform: rotate(-41deg);
+  }
+}
+
+@keyframes circle_3 {
+  0%,
+  100% {
+    stroke-dasharray: 1, 150;
+    transform: rotate(85deg);
+  }
+  50% {
+    stroke-dasharray: 60, 150;
+    transform: rotate(-83deg);
+  }
+}
+
+@keyframes circle_4 {
+  0%,
+  100% {
+    stroke-dasharray: 1, 150;
+    transform: rotate(85deg);
+  }
+  50% {
+    stroke-dasharray: 75, 210;
+    transform: rotate(-125deg);
+  }
+}

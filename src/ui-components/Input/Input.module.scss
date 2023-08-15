@@ -1,0 +1,78 @@
+.input {
+  &__label {
+    display: flex;
+    flex-direction: column;
+    font-family: $secondFontFamily;
+    position: relative;
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+
+    &_text {
+      @include labelText;
+      line-height: 15px;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  &__field {
+    width: 260px;
+    height: 46px;
+    border-radius: $inputRadius;
+    padding: 0 16px;
+    @include fieldText;
+    border: none;
+    outline: none;
+
+    @include mediaTablet {
+      width: 340px;
+      height: 46px;
+    }
+
+    &_light {
+      border: 1px solid $primaryLightGrey;
+      color: $primaryDarkGrey;
+      background-color: $primaryWhite;
+
+      &:hover {
+        border: 1px solid $secondaryGrey;
+      }
+
+      &:focus {
+        border: 1px solid $primaryDarkGrey;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+      border: 1px solid transparent;
+
+      &:hover {
+        border: 1px solid $primaryDarkGrey;
+      }
+
+      &:focus {
+        border: 1px solid $primaryLightGrey;
+      }
+    }
+
+    &_error {
+      border: 1px solid $accentError;
+    }
+  }
+
+  &__error {
+    bottom: -30px;
+  }
+}

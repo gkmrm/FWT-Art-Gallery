@@ -21,7 +21,6 @@ export const Standart: Story = {
   args: {
     theme: 'light',
     children: 'Normal link',
-    href: 'https://framework.team/',
   },
 };
 
@@ -29,7 +28,6 @@ export const Dark: Story = {
   args: {
     theme: 'dark',
     children: 'Normal link',
-    href: 'https://framework.team/',
   },
 };
 

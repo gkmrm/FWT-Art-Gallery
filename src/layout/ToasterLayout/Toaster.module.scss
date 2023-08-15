@@ -1,0 +1,5 @@
+.toaster {
+  @include mediaTabletMaxWidth {
+    inset: 0 !important;
+  }
+}

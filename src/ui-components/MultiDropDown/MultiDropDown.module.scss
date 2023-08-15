@@ -1,0 +1,160 @@
+.dropdown {
+  width: 260px;
+  height: 46px;
+  border-radius: 4px;
+  padding: 0 45px 0 16px;
+  @include fieldText;
+  border: none;
+  outline: none;
+  @include noUserSelect;
+  position: relative;
+  overflow: hidden;
+  z-index: $thirdLayer;
+  position: relative;
+
+  &_light {
+    border: 1px solid $primaryLightGrey;
+    color: $primaryDarkGrey;
+    background-color: $primaryWhite;
+
+    &:hover {
+      border: 1px solid $secondaryGrey;
+    }
+
+    &_active,
+    &:focus {
+      border: 1px solid $primaryDarkGrey;
+    }
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+    background-color: $secondaryDark;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid $primaryDarkGrey;
+    }
+
+    &_active,
+    &:focus {
+      border: 1px solid $primaryLightGrey;
+    }
+  }
+
+  &_error {
+    border: 1px solid $accentError;
+  }
+
+  @include mediaTablet {
+    width: 340px;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    font-family: $secondFontFamily;
+    @include labelText;
+    line-height: 15px;
+    margin-bottom: 8px;
+    @include noUserSelect;
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+  }
+
+  &__select {
+    position: relative;
+    top: 5px;
+    gap: 12px;
+    display: block;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__selected {
+    margin: 0;
+    display: inline-flex;
+    margin-right: 12px;
+  }
+
+  &__open {
+    position: absolute;
+    width: 260px;
+    height: 170px;
+    border-radius: $inputRadius;
+    padding: 16px 0 12px 0;
+    margin-top: -4px;
+    overflow-y: scroll;
+    z-index: $secondLayer;
+    @include scrollStyle;
+
+    &_light {
+      background-color: $primaryWhite;
+      @include scrollStyleLight;
+    }
+
+    &_dark {
+      background-color: $secondaryDark;
+      @include scrollStyleDark;
+    }
+
+    @include mediaTablet {
+      width: 340px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    padding: 8px 16px;
+    gap: 12px;
+    font-family: $secondFontFamily;
+    @include pBaseLight;
+    cursor: pointer;
+
+    &_light {
+      color: $primaryDarkGrey;
+
+      &:hover {
+        background-color: $hoverLight;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+
+      &:hover {
+        background-color: $hoverDark;
+      }
+    }
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+
+    &_arrow {
+      position: absolute;
+      top: 15px;
+      right: -30px;
+      width: 16px;
+      height: 16px;
+      color: $secondaryGrey;
+      cursor: pointer;
+
+      &_open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

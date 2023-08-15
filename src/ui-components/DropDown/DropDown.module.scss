@@ -1,0 +1,46 @@
+.dropdown {
+  @include noUserSelect;
+  width: 212px;
+
+  @include mediaTablet {
+    width: 320px;
+  }
+
+  &__name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_title {
+      @include h4;
+      line-height: 19px;
+      text-transform: uppercase;
+    }
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+  }
+
+  &__wrapper {
+    margin-top: 16px;
+    display: grid;
+    gap: 12px;
+
+    &_oneCol {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &_twoCol {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mediaTablet {
+      margin-top: 20px;
+    }
+  }
+}

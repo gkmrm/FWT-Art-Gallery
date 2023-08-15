@@ -1,0 +1,61 @@
+.artistPage {
+  min-height: 80vh;
+  overflow: hidden;
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  &__container {
+    padding-bottom: 80px;
+
+    @include mediaTablet {
+      padding-bottom: 100px;
+    }
+  }
+
+  &__heading {
+    margin: 0;
+    @include h3;
+    padding-top: 60px;
+
+    @include mediaTablet {
+      @include h1;
+      padding-top: 98px;
+    }
+
+    @include mediaDesktop {
+      padding-top: 160px;
+      padding-left: 60px;
+    }
+
+    &_light {
+      color: $accentRed;
+    }
+
+    &_dark {
+      color: $accentGold;
+    }
+  }
+
+  &__addBlock {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    margin-bottom: 20px;
+    padding-top: 20px;
+
+    @include mediaTablet {
+      padding-top: 16px;
+    }
+
+    &_button {
+      height: 24px;
+    }
+  }
+}

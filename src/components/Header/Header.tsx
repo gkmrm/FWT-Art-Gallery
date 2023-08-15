@@ -1,89 +1,94 @@
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import cn from 'classnames/bind';
 
 import { ReactComponent as BurgerIcon } from '@assets/icons/buger_icon.svg';
-import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ReactComponent as Logo } from '@assets/icons/logo.svg';
+import { ReactComponent as LoupeIcon } from '@assets/icons/search_icon.svg';
 import { Container } from '@components/Container';
-import { ToggleTheme } from '@components/ToggleTheme';
-import { useThemeContext } from '@context/ThemeConext';
+import { Menu } from '@components/Menu';
+import { useThemeContext } from '@context/ThemeContext';
+import useDebounceSearch from '@hooks/useDebounceSearch';
+import useOutsideClick from '@hooks/useOutsideClick';
 import { Link } from '@ui-components/Link';
+import { Search } from '@ui-components/Search';
+import { Sidebar } from '@ui-components/Sidebar';
 
 import styles from './Header.module.scss';
 
 const cx = cn.bind(styles);
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
+  const [isSearchOpen, setSearchOpen] = useState(false);
   const { theme } = useThemeContext();
+  const ref = useRef<null | HTMLDivElement>(null);
 
-  // TODO Сделать лучше
-  const onOutsideClick = (): void => {
-    setIsOpen(false);
-  };
+  const toggleOpen = () => setOpen(!isOpen);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const onOpen = () => setSearchOpen(true);
+
+  const onChange = useCallback((str: string) => {
+    // eslint-disable-next-line no-console
+    console.log(str);
+  }, []);
+
+  const handleToggle = useCallback(() => {
+    setSearchOpen(false);
+  }, [setSearchOpen]);
+
+  const debounceSearchQuery = useDebounceSearch(onChange, 650);
+
+  useOutsideClick(ref, handleToggle);
 
   return (
     <header className={cx('header', `header_${theme}`)}>
       <Container className={cx('header__container')}>
         <div className={cx('header__wrapper')}>
-          <div className={cx('header__logo')}>
-            <Link theme={theme} href='/'>
-              <Logo />
+          <div
+            className={cx('header__logo', { header__logo_hide: isSearchOpen })}
+          >
+            <Link className={cx()} theme={theme} to='/'>
+              <Logo className={cx('header__logo_icon')} />
             </Link>
           </div>
-          <div
-            className={cx('header__menu', `header__menu_${theme}`, {
-              header__menu_active: isOpen,
-            })}
-          >
-            <ToggleTheme />
-            <nav>
-              <ul className={cx('header__nav')}>
-                <li>
-                  <Link
-                    href='##'
-                    theme={theme}
-                    className={cx('header__nav_link')}
-                  >
-                    Log in
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href='##'
-                    theme={theme}
-                    className={cx('header__nav_link')}
-                  >
-                    Sign up
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+          <div className={cx('header__menu')}>
+            <Menu theme={theme} />
           </div>
           <div
-            onClick={toggleOpen}
-            onKeyDown={toggleOpen}
-            className={cx('header__button', {
-              header__button_active: isOpen,
+            className={cx('header__controls', {
+              header__controls_width: isSearchOpen,
             })}
-            role='presentation'
           >
-            {isOpen ? <CloseIcon /> : <BurgerIcon />}
+            <div
+              className={cx('header__searchbar', {
+                header__searchbar_width: isSearchOpen,
+              })}
+              ref={ref}
+            >
+              <LoupeIcon
+                onClick={onOpen}
+                className={cx('header__loupe', {
+                  header__loupe_disabled: isSearchOpen,
+                })}
+              />
+              <Search
+                className={cx('header__search', {
+                  header__search_open: isSearchOpen,
+                })}
+                theme={theme}
+                errorMessage=''
+                onChange={debounceSearchQuery}
+                classNameInput={cx('header__search_input')}
+              />
+            </div>
+            <BurgerIcon onClick={toggleOpen} className={cx('header__burger')} />
           </div>
         </div>
-        {isOpen && (
-          // eslint-disable-next-line jsx-a11y/control-has-associated-label
-          <button
-            className={cx('blur', `blur_${theme}`)}
-            onClick={onOutsideClick}
-            onKeyDown={onOutsideClick}
-            type='button'
-          />
-        )}
       </Container>
+      <Sidebar theme={theme} isShow={isOpen} onClose={toggleOpen}>
+        <Menu theme={theme} />
+      </Sidebar>
     </header>
   );
 };

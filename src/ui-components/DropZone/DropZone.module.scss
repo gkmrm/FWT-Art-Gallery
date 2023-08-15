@@ -1,0 +1,48 @@
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  align-items: center;
+
+  &__avatar {
+    height: 236px;
+  }
+
+  &__section {
+    @include flexCenter;
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+    &_avatar {
+      width: 200px;
+      height: 200px;
+
+      @include mediaDesktop {
+        &_full {
+          position: absolute;
+          top: -80px;
+          left: -200px;
+          z-index: 12;
+          min-width: 800px;
+          min-height: 767px;
+        }
+      }
+    }
+
+    &_paint {
+      width: 280px;
+      height: 187px;
+
+      @include mediaTablet {
+        width: 493px;
+        height: 327px;
+      }
+    }
+  }
+
+  &__error {
+    bottom: -38px;
+  }
+}

@@ -1,0 +1,45 @@
+.filterbar {
+  &__wrapper {
+    position: relative;
+    top: 104px;
+
+    @include mediaTablet {
+      top: 180px;
+    }
+  }
+
+  &__dropdowns {
+    position: relative;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include mediaTablet {
+      left: 32px;
+    }
+
+    @include mediaDesktop {
+      left: 40px;
+    }
+  }
+
+  &__buttons {
+    position: absolute;
+    top: 452px;
+    left: 20px;
+    display: flex;
+    gap: 49px;
+
+    @include mediaTablet {
+      top: 689px;
+      gap: 157px;
+      left: 32px;
+    }
+
+    @include mediaDesktop {
+      gap: 149px;
+      left: 40px;
+    }
+  }
+}

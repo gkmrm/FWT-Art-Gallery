@@ -1,0 +1,41 @@
+.filterItem {
+  cursor: pointer;
+  @include noUserSelect;
+  font-family: $secondFontFamily;
+  @include pSmallLight;
+  line-height: 17px;
+
+  &_light {
+    color: $primaryDarkGrey;
+
+    &:hover {
+      color: $primaryBlack;
+    }
+
+    &_selected {
+      color: $primaryBlack;
+      font-weight: 500;
+
+      &:hover {
+        color: $primaryBlack;
+      }
+    }
+  }
+
+  &_dark {
+    color: $primaryLightGrey;
+
+    &:hover {
+      color: $primaryWhite;
+    }
+
+    &_selected {
+      color: $accentGold;
+      font-weight: $pMedium;
+
+      &:hover {
+        color: $accentGold;
+      }
+    }
+  }
+}

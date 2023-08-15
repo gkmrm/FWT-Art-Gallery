@@ -1,0 +1,59 @@
+.accordion {
+  font-family: $secondFontFamily;
+  @include pBaseLight;
+  font-size: 16px;
+  text-align: $textJustify;
+
+  &_dark {
+    color: $primaryLightGrey;
+  }
+
+  &_light {
+    color: $primaryDarkGrey;
+  }
+
+  &__text {
+    padding-top: 20px;
+    line-height: 22px;
+
+    @include mediaTablet {
+      padding-top: 40px;
+    }
+
+    @include mediaDesktop {
+      padding-top: 20px;
+    }
+
+    &_active {
+      &_dark {
+        background: $accordionGradientDark;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      &_light {
+        background: $accordionGradientLight;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 20px;
+    cursor: pointer;
+
+    &_light {
+      color: $primaryDarkGrey;
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+    }
+
+    &__arrow {
+      transition: all $defaultDelay;
+      transform: rotate(180deg);
+    }
+  }
+}

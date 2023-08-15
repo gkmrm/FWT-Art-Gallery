@@ -1,0 +1,54 @@
+.slider {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: $tenLayer;
+  width: 100vw;
+  overflow: hidden;
+
+  &_light {
+    background-color: $primaryWhite;
+  }
+  &_dark {
+    background-color: $primaryBlack;
+  }
+
+  &__visible {
+    display: block;
+  }
+
+  &__navigation {
+    display: none;
+    z-index: 3;
+    position: absolute;
+    top: calc(50% - 20px);
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
+    color: $secondaryGrey;
+
+    @include mediaTablet {
+      display: flex;
+    }
+
+    &_next,
+    &_prev {
+      border: none;
+      background-color: transparent;
+      display: block;
+      color: inherit;
+
+      cursor: pointer;
+      padding: 0;
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+    }
+
+    &_prev {
+      rotate: 180deg;
+    }
+  }
+}

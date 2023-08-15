@@ -64,7 +64,8 @@
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "always", "prev": "*", "next": "export" }
-    ]
+    ],
+    "react/prop-types": 0
   },
   "settings": {
     "react": {

@@ -1,13 +1,12 @@
 .header {
   width: 100%;
-  box-sizing: border-box;
 
   &_light {
-    @include light;
+    @include lightTheme;
   }
 
   &_dark {
-    @include dark;
+    @include darkTheme;
   }
 
   &__wrapper {
@@ -27,129 +26,77 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
+    &_icon {
+      @include mediaDesktop {
+        width: 91px;
+        height: 20px;
+      }
+    }
+
+    &_hide {
+      display: none;
+    }
   }
 
   &__menu {
-    display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    flex-direction: row-reverse;
-    gap: 40px;
-    padding-top: 144px;
-    padding-left: 47px;
-
-    @include mediaTablet {
-      padding-top: 200px;
-      padding-left: 94px;
-    }
-
-    @include mediaDesktop {
-      padding: 0;
-    }
-
-    @include mediaDesktopMaxWidth {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      position: fixed;
-      right: -252px;
-      top: 0;
-      width: 252px;
-      min-height: 100%;
-      overflow: hidden;
-      z-index: $secondLayer;
-      transition: right $headerMenuDelay;
-      @include noUserSelect;
-
-      @include mediaTablet {
-        right: -466px;
-        width: 466px;
-      }
-
-      &_active {
-        right: 0;
-      }
-
-      &_light {
-        background-color: $primaryWhite;
-      }
-
-      &_dark {
-        background-color: $primaryBlack;
-      }
-    }
-  }
-
-  &__button {
     display: none;
 
-    @include mediaDesktopMaxWidth {
-      display: block;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      cursor: pointer;
-      z-index: $secondLayer;
-      width: 24px;
-      height: 24px;
-
-      @include mediaTablet {
-        top: 32px;
-      }
-
-      &_active {
-        position: fixed;
-      }
+    @include mediaDesktop {
+      @include flexCenter;
     }
   }
 
-  &__nav {
+  &__burger {
     display: flex;
-    flex-direction: column;
+    align-self: center;
+    min-width: 24px;
+
+    @include mediaDesktop {
+      display: none;
+    }
+  }
+
+  &__controls {
+    display: flex;
     gap: 20px;
 
     @include mediaDesktop {
-      flex-direction: row;
+      display: none;
     }
-
-    &_link {
-      font-family: $mainFontFamily;
-      @include h3;
-      text-decoration: none;
-      text-transform: uppercase;
-
-      @include mediaTablet {
-        @include h1;
-      }
-
-      @include mediaDesktop {
-        @include nav;
-      }
+    &_width {
+      width: 100%;
     }
   }
-}
 
-.blur {
-  display: flex;
-  height: 200vh;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: $firstLayer;
-  border: none;
+  &__searchbar {
+    @include flexCenter;
 
-  &_light {
-    background-color: rgba($blurColor, 0.3);
+    &_width {
+      width: 100%;
+    }
   }
 
-  &_dark {
-    background-color: rgba($blurColor, 0.6);
+  &__loupe {
+    &_disabled {
+      display: none;
+    }
+
+    @include mediaTablet {
+      display: none;
+    }
   }
 
-  @include mediaDesktop {
+  &__search {
     display: none;
+
+    &_open {
+      display: block;
+      width: 100%;
+    }
+
+    &_input {
+      width: 100%;
+    }
   }
 }

@@ -1,10 +1,11 @@
 .button {
+  cursor: pointer;
+  letter-spacing: 0.1px;
   font-family: $secondFontFamily;
   @include buttonText;
   text-transform: uppercase;
   border: none;
   padding: 0;
-  box-sizing: border-box;
   @include flexCenter;
   gap: 12px;
 
@@ -12,10 +13,11 @@
     padding: 16px 0;
     border-radius: 25px;
     width: 200px;
+    color: $primaryWhite;
+    @include noUserSelect;
 
     &_light {
       background-color: $primaryBlack;
-      color: $primaryWhite;
 
       &:hover {
         box-shadow: $defaultButtonLightShadow;
@@ -45,9 +47,8 @@
   }
 
   &_text {
-    text-decoration: underline;
+    @include decorationUnderline;
     background-color: transparent;
-    text-underline-offset: 4px;
     height: 16px;
 
     &_light {

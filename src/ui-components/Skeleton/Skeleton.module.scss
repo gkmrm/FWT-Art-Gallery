@@ -1,0 +1,116 @@
+.skeleton {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+
+  @include mediaDesktop {
+    max-width: 392px;
+    max-height: 260px;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -150px;
+    top: 0;
+    height: 100%;
+    width: 80px;
+    animation: loading $skeletonAnimation;
+  }
+
+  &_light {
+    background-color: $lightBackground;
+    &::before {
+      background: $lightGradient;
+    }
+  }
+
+  &_dark {
+    background-color: $darkBackground;
+    &::before {
+      background: $darkGradient;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 20px);
+    height: 45px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding-left: 12px;
+
+    @include mediaTablet {
+      height: 66px;
+      width: calc(100% - 28px);
+      gap: 8px;
+    }
+
+    @include mediaDesktop {
+      height: 82px;
+      width: calc(100% - 92px);
+      padding-left: 20px;
+    }
+
+    &_light {
+      background-color: $primaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+  }
+
+  &__img {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__title,
+  &__subtitle {
+    &_light {
+      background-color: $lightBackground;
+    }
+
+    &_dark {
+      background-color: $darkBackground;
+    }
+  }
+
+  &__title {
+    width: 160px;
+    height: 15px;
+
+    @include mediaTablet {
+      width: 214px;
+      height: 19px;
+    }
+  }
+
+  &__subtitle {
+    width: 47px;
+    height: 10px;
+
+    @include mediaTablet {
+      width: 70px;
+      height: 15px;
+    }
+  }
+}
+
+@keyframes loading {
+  from {
+    left: -500px;
+  }
+  to {
+    left: 100%;
+  }
+}

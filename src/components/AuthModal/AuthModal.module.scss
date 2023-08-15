@@ -1,0 +1,132 @@
+.authModal {
+  display: block;
+
+  @include mediaDesktop {
+    width: 1028px;
+    height: 700px;
+  }
+
+  &__inner {
+    @include flexCenter;
+    padding: 80px 0;
+
+    @include mediaDesktop {
+      padding: 0;
+    }
+
+    &_light {
+      background-color: $secondaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+  }
+
+  &__img {
+    @include mediaDesktop {
+      width: 498px;
+      height: 700px;
+
+      &_login {
+        background-image: url('./../../assets/picture/loginPaint.png');
+      }
+
+      &_signup {
+        background-image: url('./../../assets/picture/signupPaint.png');
+      }
+    }
+  }
+
+  &__textBlock {
+    @include flexCenter;
+    flex-direction: column;
+    gap: 40px;
+    @include noUserSelect;
+
+    @include mediaDesktop {
+      padding: 0;
+      width: 530px;
+      gap: 20px;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+
+    &_light {
+      color: $primaryBlack;
+      @include mediaDesktop {
+        color: $primaryDarkGrey;
+      }
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    @include linkAuth;
+
+    @include mediaTablet {
+      @include linkAuthBig;
+    }
+  }
+
+  &__header {
+    @include h3;
+
+    &_light {
+      color: $primaryBlack;
+    }
+
+    &_dark {
+      color: $primaryWhite;
+    }
+
+    @include mediaTablet {
+      @include h1;
+    }
+
+    @include mediaDesktop {
+      @include h2;
+      &_light {
+        @include lightText;
+      }
+    }
+  }
+
+  &__form {
+    max-width: 340px;
+
+    @include mediaTablet {
+      order: 1;
+      margin-top: 20px;
+    }
+    @include mediaDesktop {
+      margin-top: 40px;
+    }
+  }
+
+  &__paragraph {
+    font-family: $secondFontFamily;
+    line-height: 17px;
+    @include pSmallLight;
+    margin-top: 20px;
+
+    @include mediaTablet {
+      @include pBaseLight;
+      line-height: 22px;
+      margin-top: 0px;
+    }
+
+    &_light {
+      @include lightText;
+    }
+
+    &_dark {
+      @include darkText;
+      @include mediaTablet {
+        color: $primaryWhite;
+      }
+    }
+  }
+}

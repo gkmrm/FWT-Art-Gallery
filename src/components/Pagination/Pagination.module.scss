@@ -1,0 +1,23 @@
+.pagination {
+  @include flexCenter;
+  gap: 4px;
+  margin-top: 32px;
+
+  &__arrow {
+    &_dark {
+      &:hover {
+        color: $primaryWhite;
+      }
+    }
+
+    &_light {
+      &:hover {
+        color: $primaryBlack;
+      }
+    }
+  }
+
+  @include mediaTablet {
+    margin-top: 40px;
+  }
+}

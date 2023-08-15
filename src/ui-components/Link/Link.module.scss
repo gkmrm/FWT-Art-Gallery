@@ -1,9 +1,11 @@
 .link {
   font-family: $secondFontFamily;
-  font-weight: 500;
+  font-weight: $medium;
   font-size: inherit;
   letter-spacing: 0.5px;
-  text-underline-offset: 4px;
+  @include decorationUnderline;
+  display: flex;
+  align-items: center;
 
   &_light {
     color: $primaryDarkGrey;

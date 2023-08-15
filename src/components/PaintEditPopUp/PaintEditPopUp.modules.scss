@@ -1,0 +1,21 @@
+.popup {
+  display: block;
+
+  @include mediaTablet {
+    width: 693px;
+    height: 723px;
+  }
+
+  &__inner {
+    @include flexCenter;
+    padding: 80px 0;
+
+    &_light {
+      background-color: $secondaryWhite;
+    }
+
+    &_dark {
+      background-color: $primaryBlack;
+    }
+  }
+}

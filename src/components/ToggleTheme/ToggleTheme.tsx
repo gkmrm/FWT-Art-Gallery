@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as DarkIcon } from '@assets/icons/dark_icon.svg';
 import { ReactComponent as LightIcon } from '@assets/icons/light_icon.svg';
-import { useThemeContext } from '@context/ThemeConext';
+import { useThemeContext } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './ToggleTheme.module.scss';

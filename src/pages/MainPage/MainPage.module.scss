@@ -1,6 +1,5 @@
 .mainPage {
-  min-height: 100vh;
-  box-sizing: border-box;
+  min-height: 80vh;
 
   &_light {
     background-color: $primaryWhite;
@@ -11,12 +10,89 @@
   }
 
   &__wrapperPaint {
-    padding-top: 80px;
+    padding-top: 10px;
     padding-bottom: 80px;
 
     @include mediaTablet {
-      padding-top: 100px;
+      padding-top: 30px;
       padding-bottom: 100px;
+    }
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+    padding-top: 20px;
+
+    @include mediaTablet {
+      padding-top: 16px;
+    }
+
+    &_button {
+      height: 24px;
+    }
+
+    &_input {
+      @include flexCenter;
+      gap: 20px;
+    }
+  }
+
+  &__input {
+    width: 260px;
+    height: 33px;
+    border-radius: $inputRadius;
+    padding: 0 16px;
+    @include fieldText;
+    border: none;
+    outline: none;
+
+    @include mediaTablet {
+      width: 340px;
+      height: 33px;
+    }
+
+    &_light {
+      border: 1px solid $primaryLightGrey;
+      color: $primaryDarkGrey;
+      background-color: $primaryWhite;
+
+      &:hover {
+        border: 1px solid $secondaryGrey;
+      }
+
+      &:focus {
+        border: 1px solid $primaryDarkGrey;
+      }
+    }
+
+    &_dark {
+      color: $primaryLightGrey;
+      background-color: $secondaryDark;
+      border: 1px solid transparent;
+
+      &:hover {
+        border: 1px solid $primaryDarkGrey;
+      }
+
+      &:focus {
+        border: 1px solid $primaryLightGrey;
+      }
+    }
+
+    &_error {
+      border: 1px solid $accentError;
+    }
+  }
+
+  &__search {
+    display: none;
+
+    @include mediaTablet {
+      display: block;
     }
   }
 }

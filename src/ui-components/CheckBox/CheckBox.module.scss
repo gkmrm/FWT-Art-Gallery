@@ -1,0 +1,26 @@
+.checkbox {
+  height: 24px;
+  width: 24px;
+  border-radius: $inputRadius;
+  appearance: none;
+
+  &_light {
+    background-color: $secondaryWhite;
+    border: 1px solid $primaryLightGrey;
+  }
+
+  &_dark {
+    background-color: $primaryBlack;
+    border: none;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+  }
+}

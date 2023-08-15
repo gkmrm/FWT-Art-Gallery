@@ -2,32 +2,20 @@ import React from 'react';
 
 import cn from 'classnames/bind';
 
-import { ThemeType } from 'src/context/ThemeConext';
+import { ThemeType } from '@context/ThemeContext';
 
 import styles from './Button.module.scss';
 
 const cx = cn.bind(styles);
 
 type TButtonProps = {
-  /**
-   * String value for change theme 'light' | 'dark'
-   */
   theme?: ThemeType;
-  /**
-   * Bollean value for disable button
-   */
   isDisabled?: boolean;
   /**
    * Type of button default | text | icon   <- string
    */
   variant?: 'default' | 'text' | 'icon';
-  /**
-   * Callback function to click event
-   */
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  /**
-   * Additional className from Parent component
-   */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
