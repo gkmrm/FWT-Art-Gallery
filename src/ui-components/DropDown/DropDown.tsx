@@ -58,7 +58,7 @@ const DropDown: React.FC<TDropDownProps> = ({
     }
   }, [isClear]);
 
-  const getSelected = (obj: IOption) =>
+  const checkSelected = (obj: IOption) =>
     !!value.find((item) => item.id === obj.id);
 
   return (
@@ -86,7 +86,7 @@ const DropDown: React.FC<TDropDownProps> = ({
               key={item.id}
               theme={theme}
               handleChange={handleChange}
-              isSelected={getSelected(item)}
+              isSelected={checkSelected(item)}
               data={item}
             />
           ))}
