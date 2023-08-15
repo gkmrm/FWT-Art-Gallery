@@ -23,7 +23,7 @@
     }
   }
 
-  &__icon {
+  &__inner {
     display: none;
 
     @include mediaDesktopMaxWidth {
