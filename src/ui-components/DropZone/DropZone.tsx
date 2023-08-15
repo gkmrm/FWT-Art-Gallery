@@ -54,12 +54,10 @@ const DropZone: React.FC<TDropZoneProps> = ({
   );
 
   const uploadImage = useCallback(
-    async (file: File | undefined) => {
-      if (file) {
-        const base64 = await getBase64(file);
-        setImage(base64);
-        onChange(file);
-      }
+    async (file: File) => {
+      const base64 = await getBase64(file);
+      setImage(base64);
+      onChange(file);
     },
     [onChange]
   );
@@ -72,7 +70,9 @@ const DropZone: React.FC<TDropZoneProps> = ({
   const handleChangeImage = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
-      await uploadImage(file);
+      if (file) {
+        await uploadImage(file);
+      }
     },
     [uploadImage]
   );
