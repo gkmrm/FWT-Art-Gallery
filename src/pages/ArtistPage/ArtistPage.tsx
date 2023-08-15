@@ -105,7 +105,6 @@ const ArtistPage: React.FC = () => {
           <PaintEditPopUp
             isShow={isShowEditPaint}
             onClose={() => setShowEditPaint(false)}
-            theme={theme}
           />
           {isOpenSlider && (
             <Slider

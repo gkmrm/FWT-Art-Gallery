@@ -16,36 +16,26 @@ type TAuthModalProps = {
   variant: 'login' | 'signup';
 };
 
+const modalText = {
+  login: {
+    greeting: 'Welcome back',
+    paragraph: "If you don't have an account yet, please ",
+    linkText: 'sign up',
+    linkPath: '/signup',
+  },
+  signup: {
+    greeting: 'Create your profile',
+    paragraph: 'If you already have an account, please ',
+    linkText: 'login',
+    linkPath: '/login',
+  },
+};
+
 const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
   const navigate = useNavigate();
   const { theme } = useThemeContext();
 
-  const text = {
-    login: {
-      greeting: 'Welcome back',
-      paragraph: "If you don't have an account yet, please ",
-      linkText: 'sign up',
-      linkPath: '/signup',
-    },
-    signup: {
-      greeting: 'Create your profile',
-      paragraph: 'If you already have an account, please ',
-      linkText: 'login',
-      linkPath: '/login',
-    },
-  };
-
-  const headerText =
-    variant === 'login' ? text.login.greeting : text.signup.greeting;
-
-  const paragraphText =
-    variant === 'login' ? text.login.paragraph : text.signup.paragraph;
-
-  const linkText =
-    variant === 'login' ? text.login.linkText : text.signup.linkText;
-
-  const linkTo =
-    variant === 'login' ? text.login.linkPath : text.signup.linkPath;
+  const { linkPath, linkText, paragraph, greeting } = modalText[variant];
 
   return (
     <ModalWrapper
@@ -63,7 +53,7 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
           )}
         >
           <h2 className={cx('authModal__header', `authModal__header_${theme}`)}>
-            {headerText}
+            {greeting}
           </h2>
           <div className={cx('authModal__form')}>
             <AuthForm theme={theme} variant={variant} />
@@ -74,9 +64,9 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
               `authModal__paragraph_${theme}`
             )}
           >
-            {paragraphText}
+            {paragraph}
             {/* todo background прокидывать */}
-            <Link theme={theme} to={linkTo} className={cx('authModal__link')}>
+            <Link theme={theme} to={linkPath} className={cx('authModal__link')}>
               {linkText}
             </Link>
           </p>

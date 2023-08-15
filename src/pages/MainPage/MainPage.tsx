@@ -79,11 +79,7 @@ const MainPage: React.FC = () => {
           onChange={() => console.log('Переключили')}
         />
       </Container>
-      <ArtistEditPopUp
-        isShow={isShowAdd}
-        onClose={() => setShowAdd(false)}
-        theme={theme}
-      />
+      <ArtistEditPopUp isShow={isShowAdd} onClose={() => setShowAdd(false)} />
       <FilterBar isShow={isShow} onClose={() => setShow(false)} theme={theme} />
     </div>
   );
