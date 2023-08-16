@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '@components/AuthForm';
+import { useAuthContext } from '@context/AuthContext';
 import { useThemeContext } from '@context/ThemeContext';
+import { authApi } from '@store/services/AuthService';
 import { Link } from '@ui-components/Link';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
@@ -19,8 +21,10 @@ type TAuthModalProps = {
 const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
   const navigate = useNavigate();
   const { theme } = useThemeContext();
+  const { isAuth, onLogin } = useAuthContext();
+  const [isReset, setReset] = useState(false);
 
-  const text = {
+  const modalText = {
     login: {
       greeting: 'Welcome back',
       paragraph: "If you don't have an account yet, please ",
@@ -35,23 +39,32 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
     },
   };
 
-  const headerText =
-    variant === 'login' ? text.login.greeting : text.signup.greeting;
+  const { linkPath, linkText, paragraph, greeting } = modalText[variant];
 
-  const paragraphText =
-    variant === 'login' ? text.login.paragraph : text.signup.paragraph;
+  const [register, { isSuccess }] = authApi.useRegisterMutation();
 
-  const linkText =
-    variant === 'login' ? text.login.linkText : text.signup.linkText;
+  const onCloseClick = useCallback(() => navigate(-1), [navigate]);
 
-  const linkTo =
-    variant === 'login' ? text.login.linkPath : text.signup.linkPath;
+  const onSubmit = (username: string, password: string) =>
+    register({ username, password });
+
+  React.useEffect(() => {
+    if (isSuccess) {
+      onLogin();
+      setReset(true);
+      onCloseClick();
+    }
+
+    if (isAuth) {
+      onCloseClick();
+    }
+  }, [isSuccess, isAuth, onLogin, onCloseClick]);
 
   return (
     <ModalWrapper
       className={cx('authModal', `authModal_${theme}`)}
       isShow
-      onClose={() => navigate(-1)}
+      onClose={onCloseClick}
       theme={theme}
     >
       <div className={cx('authModal__inner', `authModal__inner_${theme}`)}>
@@ -63,10 +76,15 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
           )}
         >
           <h2 className={cx('authModal__header', `authModal__header_${theme}`)}>
-            {headerText}
+            {greeting}
           </h2>
           <div className={cx('authModal__form')}>
-            <AuthForm theme={theme} variant={variant} />
+            <AuthForm
+              theme={theme}
+              variant={variant}
+              onCubmit={onSubmit}
+              isReset={isReset}
+            />
           </div>
           <p
             className={cx(
@@ -74,9 +92,9 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
               `authModal__paragraph_${theme}`
             )}
           >
-            {paragraphText}
+            {paragraph}
             {/* todo background прокидывать */}
-            <Link theme={theme} to={linkTo} className={cx('authModal__link')}>
+            <Link theme={theme} to={linkPath} className={cx('authModal__link')}>
               {linkText}
             </Link>
           </p>

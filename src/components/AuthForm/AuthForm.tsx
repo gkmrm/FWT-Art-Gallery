@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'classnames/bind';
@@ -18,23 +18,41 @@ type TAuthFormProps = {
   theme: ThemeType;
   variant: 'login' | 'signup';
   className?: string;
+  isReset: boolean;
+  onCubmit: (username: string, password: string) => void;
 } & React.HTMLAttributes<HTMLFormElement>;
 
-const AuthForm: React.FC<TAuthFormProps> = ({ theme, variant, className }) => {
+const AuthForm: React.FC<TAuthFormProps> = ({
+  theme,
+  variant,
+  className,
+  onCubmit,
+  isReset,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(authSchema),
     mode: 'onBlur',
   });
 
+  useEffect(() => {
+    if (isReset) {
+      reset();
+    }
+  }, [isReset, reset]);
+
   return (
     <form
       className={cx(className, 'form')}
       // eslint-disable-next-line no-console
-      onSubmit={handleSubmit((d) => console.log(d))}
+      onSubmit={handleSubmit((data) => {
+        onCubmit(data.email, data.password);
+        console.log(data);
+      })}
     >
       <Input
         {...register('email')}
