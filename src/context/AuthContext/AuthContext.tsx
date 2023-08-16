@@ -1,29 +1,50 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useMemo,
-  useState,
-} from 'react';
+import React, { createContext, useMemo, useState } from 'react';
+
+import { AuthResponse } from '@store/models/AuthModel';
 
 export type AuthType = boolean;
 
 export type AuthProps = {
   isAuth: AuthType;
-  setAuth: Dispatch<SetStateAction<AuthType>>;
+  onLogin: () => void;
+  onLogout: () => void;
 };
 
 export const authDefaultValue: AuthProps = {
   isAuth: false,
-  setAuth: () => false,
+  onLogin: () => true,
+  onLogout: () => false,
 };
 
 export const AuthContext = createContext<AuthProps>(authDefaultValue);
 
-const getAuth = (): AuthType => {
-  const authLocalStorage = localStorage.getItem('auth');
+interface Auth {
+  get: () => { accessToken: string | null; refreshToken: string | null };
+  set: (data: AuthResponse) => void;
+  remove: () => void;
+}
 
-  if (authLocalStorage) {
+export const authLocalStorage: Auth = {
+  get: () => {
+    const accessToken = localStorage.getItem('jwt-access');
+    const refreshToken = localStorage.getItem('jwt-refresh');
+
+    return { accessToken, refreshToken };
+  },
+  set: (data: AuthResponse) => {
+    localStorage.setItem('jwt-access', data.accessToken);
+    localStorage.setItem('jwt-refresh', data.refreshToken);
+  },
+  remove: () => {
+    localStorage.removeItem('jwt-access');
+    localStorage.removeItem('jwt-refresh');
+  },
+};
+
+const getAuth = (): AuthType => {
+  const authStorage = localStorage.getItem('jwt-access');
+
+  if (authStorage) {
     return true;
   }
 
@@ -35,12 +56,23 @@ type TAuthProvider = React.HTMLAttributes<HTMLDivElement>;
 const AuthProvider: React.FC<TAuthProvider> = ({ children }) => {
   const [isAuth, setAuth] = useState<AuthType>(getAuth);
 
+  const onLogin = () => {
+    console.log('INNNNN');
+    setAuth(true);
+  };
+
+  const onLogout = () => {
+    setAuth(false);
+    authLocalStorage.remove();
+  };
+
   const themeValue = useMemo(
     () => ({
       isAuth,
-      setAuth,
+      onLogin,
+      onLogout,
     }),
-    [isAuth, setAuth]
+    [isAuth]
   );
 
   return (
