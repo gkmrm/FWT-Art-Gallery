@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { App } from '@components/App';
+import { AuthProvider } from '@context/AuthContext';
 import { FilterContext } from '@context/FilterContext';
 import { ThemeProvider } from '@context/ThemeContext';
 import { setupStore } from '@store/store';
@@ -18,14 +19,16 @@ const store = setupStore();
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <FilterContext>
-        <Provider store={store}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </Provider>
-      </FilterContext>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <FilterContext>
+          <Provider store={store}>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </Provider>
+        </FilterContext>
+      </ThemeProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
