@@ -5,9 +5,9 @@ import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
 
 import { ThemeType } from '@context/ThemeContext';
+import { IGenreModel } from '@models/GenreModel';
+import { IImage } from '@models/PaintModel';
 import artistSchema from '@schemas/artistFormSchema';
-import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
-import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';
 import { DropZone } from '@ui-components/DropZone';
 import { Input } from '@ui-components/Input';

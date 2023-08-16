@@ -5,8 +5,8 @@ import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
 
 import { ThemeType } from '@context/ThemeContext';
+import { IImage } from '@models/PaintModel';
 import paintFormSchema from '@schemas/paintFormSchema';
-import { IImage } from '@store/models/PaintModel';
 import { Button } from '@ui-components/Button';
 import { DropZone } from '@ui-components/DropZone';
 import { Input } from '@ui-components/Input';

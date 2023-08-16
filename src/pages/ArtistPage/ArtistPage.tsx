@@ -11,8 +11,9 @@ import { ControlBar } from '@components/ControlBar';
 import { DragGrid } from '@components/DragGrid';
 import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { Slider } from '@components/Slider';
+import { useAuthContext } from '@context/AuthContext';
 import { useThemeContext } from '@context/ThemeContext';
-import { artistsStaticApi } from '@store/services/ArtistsStaticService';
+import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';
 import { Loader } from '@ui-components/Loader';
@@ -28,9 +29,12 @@ const cx = cn.bind(styles);
 const ArtistPage: React.FC = () => {
   const { theme } = useThemeContext();
   const { id = '' } = useParams();
+  const { isAuth } = useAuthContext();
 
-  const { data: artist, isLoading } =
-    artistsStaticApi.useFetchArtistStaticByIdQuery(id);
+  const { data: artist, isLoading } = artistApi.useFetchArtistStaticByIdQuery({
+    isAuth,
+    id,
+  });
 
   const [isOpenSlider, setOpenSlider] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,17 +74,21 @@ const ArtistPage: React.FC = () => {
             >
               Artworks
             </h1>
+
             <div className={cx('artistPage__addBlock')}>
-              <Button
-                theme={theme}
-                variant='text'
-                onClick={() => setShowEditPaint(true)}
-                className={cx('artistPage__addBlock_button')}
-              >
-                <PlusIcon />
-                add picture
-              </Button>
+              {isAuth && (
+                <Button
+                  theme={theme}
+                  variant='text'
+                  onClick={() => setShowEditPaint(true)}
+                  className={cx('artistPage__addBlock_button')}
+                >
+                  <PlusIcon />
+                  add picture
+                </Button>
+              )}
             </div>
+
             {/* eslint-disable-next-line no-nested-ternary */}
             {isLoading ? (
               <Grid>

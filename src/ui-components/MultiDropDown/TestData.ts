@@ -1,4 +1,4 @@
-import { IOption } from '@store/models/testIOptionModel';
+import { IOption } from '@models/testIOptionModel';
 
 export const testData: IOption[] = [
   {

@@ -6,7 +6,7 @@ import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon_large.svg';
 import { ThemeType } from '@context/ThemeContext';
-import { IPaintModel } from '@store/models/PaintModel';
+import { IPaintModel } from '@models/PaintModel';
 
 import styles from './Slider.module.scss';
 import '@splidejs/react-splide/css/core';

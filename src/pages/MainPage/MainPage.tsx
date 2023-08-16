@@ -13,7 +13,7 @@ import { FilterBar } from '@components/FilterBar';
 import { Pagination } from '@components/Pagination';
 import { useAuthContext } from '@context/AuthContext';
 import { useThemeContext } from '@context/ThemeContext';
-import { artistsStaticApi } from '@store/services/ArtistsStaticService';
+import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';
 import { Search } from '@ui-components/Search';
@@ -29,8 +29,12 @@ const MainPage: React.FC = () => {
   const [isShowAdd, setShowAdd] = useState(false);
   const { isAuth } = useAuthContext();
 
-  const { data: artistStatic = [], isLoading } =
-    artistsStaticApi.useFetchArtistsStaticQuery('');
+  const { data: artistStatic = [], isLoading } = artistApi.useFetchArtistsQuery(
+    {
+      isAuth,
+      params: {},
+    }
+  );
 
   const onCloseEditPopUp = () => {
     setShowAdd(!isShowAdd);

@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useMemo, useState } from 'react';
 
-import { IOption } from '@store/models/testIOptionModel';
+import { IOption } from '@models/testIOptionModel';
 
 export type FilterType = {
   genres: IOption[];

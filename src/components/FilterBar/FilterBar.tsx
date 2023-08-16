@@ -4,7 +4,7 @@ import cn from 'classnames/bind';
 
 import { useFilterContext } from '@context/FilterContext';
 import { ThemeType } from '@context/ThemeContext';
-import { IOption } from '@store/models/testIOptionModel';
+import { IOption } from '@models/testIOptionModel';
 import { Button } from '@ui-components/Button';
 import { DropDown } from '@ui-components/DropDown';
 import { Sidebar } from '@ui-components/Sidebar';
