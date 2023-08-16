@@ -1,16 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
-import { artistsStaticApi } from './services/ArtistsStaticService';
+import { apiGallery } from './api';
 
 const rootReducer = combineReducers({
-  [artistsStaticApi.reducerPath]: artistsStaticApi.reducer,
+  [apiGallery.reducerPath]: apiGallery.reducer,
 });
 
 const rootStore = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(artistsStaticApi.middleware),
+    getDefaultMiddleware().concat(apiGallery.middleware),
 });
 
 export const setupStore = () => rootStore;
