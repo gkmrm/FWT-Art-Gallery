@@ -1,6 +1,7 @@
+import { IGenre, IGenreModel, normalizeGenres } from './GenreModel';
 import { IImage, IPaint, IPaintModel, normalizeIPaint } from './PaintModel';
 
-export interface IArtistsStaticById {
+export interface IArtistsById {
   paintings: IPaint[];
   genres: IGenre[];
   _id: string;
@@ -11,23 +12,7 @@ export interface IArtistsStaticById {
   mainPainting: IPaint;
 }
 
-export interface IGenre {
-  _id: string;
-  name: string;
-}
-
-export interface IGenreModel {
-  id: string;
-  name: string;
-}
-
-export const normalizeGenres = (item: IGenre): IGenreModel => ({
-  // eslint-disable-next-line no-underscore-dangle
-  id: item._id,
-  name: item.name,
-});
-
-export interface IArtistsStaticByIdModel {
+export interface IArtistsByIdModel {
   paintings: IPaintModel[];
   genres: IGenreModel[];
   id: string;
@@ -37,9 +22,9 @@ export interface IArtistsStaticByIdModel {
   avatar: IImage;
 }
 
-export const normalizeIArtistStaticById = (
-  item: IArtistsStaticById
-): IArtistsStaticByIdModel => ({
+export const normalizeIArtistById = (
+  item: IArtistsById
+): IArtistsByIdModel => ({
   paintings: item.paintings.map(normalizeIPaint),
   genres: item.genres.map(normalizeGenres),
   // eslint-disable-next-line no-underscore-dangle
