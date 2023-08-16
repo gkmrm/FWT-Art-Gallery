@@ -1,6 +1,6 @@
 import { IImage, IPaint } from './PaintModel';
 
-export interface IArtistsStatic {
+export interface IArtists {
   genres: string[];
   _id: string;
   name: string;
@@ -9,11 +9,29 @@ export interface IArtistsStatic {
   mainPainting: IPaint;
 }
 
-export interface IArtistsStaticModel {
+export interface IArtistsModel {
   id: string;
   title: string;
   subtitle: string;
   paint: IImage;
+}
+
+export interface IArtistsAuth {
+  data: IArtists[];
+  meta: {
+    count: number;
+    pageNumber: number;
+    perPage: number;
+  };
+}
+
+export interface IArtistsParams {
+  sortBy?: string;
+  name?: string;
+  orderBy?: 'asc' | 'desc';
+  perPage?: string;
+  genres?: string[];
+  pageNumber?: string;
 }
 
 export const normalizeDate = (date: string) =>
@@ -22,9 +40,7 @@ export const normalizeDate = (date: string) =>
     .map((item) => new Date(item).getFullYear())
     .join(' - ');
 
-export const normalizeIArtistsStatic = (
-  item: IArtistsStatic
-): IArtistsStaticModel => ({
+export const normalizeIArtists = (item: IArtists): IArtistsModel => ({
   // eslint-disable-next-line no-underscore-dangle
   id: item._id,
   title: item.name,
@@ -32,4 +48,4 @@ export const normalizeIArtistsStatic = (
   paint: item.mainPainting.image,
 });
 
-export default IArtistsStatic;
+export default IArtists;
