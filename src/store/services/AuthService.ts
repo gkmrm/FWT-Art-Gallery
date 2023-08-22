@@ -4,18 +4,19 @@ import {
   RefreshTokenRequest,
 } from '@models/AuthModel';
 
+import { URLS_AUTH } from './URLS';
 import { apiGallery } from '../api';
 
 export const authApi = apiGallery.injectEndpoints({
   endpoints: (build) => ({
     register: build.mutation<AuthResponse, AuthRequest>({
-      query: (data) => ({ method: 'POST', url: '/auth/register', data }),
+      query: (data) => ({ method: 'POST', url: URLS_AUTH.register, data }),
     }),
     login: build.mutation<AuthResponse, AuthRequest>({
-      query: (data) => ({ method: 'POST', url: '/auth/login', data }),
+      query: (data) => ({ method: 'POST', url: URLS_AUTH.login, data }),
     }),
     refresh: build.mutation<AuthResponse, RefreshTokenRequest>({
-      query: (data) => ({ method: 'POST', url: '/auth/refresh', data }),
+      query: (data) => ({ method: 'POST', url: URLS_AUTH.refresh, data }),
     }),
   }),
 });
