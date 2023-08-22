@@ -1,8 +1,9 @@
+import { IId, IIdModel, normalizeIdResponse } from './IdModel';
 import { IImage, IPaint } from './PaintModel';
 
 export interface IArtists {
   genres: string[];
-  _id: string;
+  _id: IId;
   name: string;
   description: string;
   yearsOfLife: string;
@@ -10,7 +11,7 @@ export interface IArtists {
 }
 
 export interface IArtistsModel {
-  id: string;
+  id: IIdModel;
   title: string;
   subtitle: string;
   paint: IImage;
@@ -25,15 +26,6 @@ export interface IArtistsAuth {
   };
 }
 
-export interface IArtistsParams {
-  sortBy?: string;
-  name?: string;
-  orderBy?: 'asc' | 'desc';
-  perPage?: string;
-  genres?: string[];
-  pageNumber?: string;
-}
-
 export const normalizeDate = (date: string) =>
   date
     .split(' – ')
@@ -42,7 +34,7 @@ export const normalizeDate = (date: string) =>
 
 export const normalizeIArtists = (item: IArtists): IArtistsModel => ({
   // eslint-disable-next-line no-underscore-dangle
-  id: item._id,
+  id: normalizeIdResponse(item._id),
   title: item.name,
   subtitle: normalizeDate(item.yearsOfLife),
   paint: item.mainPainting.image,
