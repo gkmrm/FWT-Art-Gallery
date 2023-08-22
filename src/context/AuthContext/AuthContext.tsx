@@ -41,8 +41,8 @@ export const authLocalStorage: Auth = {
   },
 };
 
-const getAuth = (): AuthType => {
-  const authStorage = localStorage.getItem('jwt-access');
+const checkAuth = (): AuthType => {
+  const authStorage = authLocalStorage.get().accessToken;
 
   if (authStorage) {
     return true;
@@ -54,10 +54,9 @@ const getAuth = (): AuthType => {
 type TAuthProvider = React.HTMLAttributes<HTMLDivElement>;
 
 const AuthProvider: React.FC<TAuthProvider> = ({ children }) => {
-  const [isAuth, setAuth] = useState<AuthType>(getAuth);
+  const [isAuth, setAuth] = useState<AuthType>(checkAuth());
 
   const onLogin = () => {
-    console.log('INNNNN');
     setAuth(true);
   };
 

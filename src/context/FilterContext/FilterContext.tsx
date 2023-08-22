@@ -30,9 +30,6 @@ type TFiltersProvider = React.HTMLAttributes<HTMLDivElement>;
 
 export const FilterContext = createContext<FilterProps>({} as FilterProps);
 
-// Данный компонент пока выполняет функцию плейсхолдера,
-// и будет доработан с добавлением запросов и авторизации
-
 const FilterProvider: React.FC<TFiltersProvider> = ({ children }) => {
   const [params, setParams] = useState<FilterType>({
     genres: [],

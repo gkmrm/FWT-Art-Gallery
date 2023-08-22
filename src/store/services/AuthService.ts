@@ -9,7 +9,7 @@ import { apiGallery } from '../api';
 
 export const authApi = apiGallery.injectEndpoints({
   endpoints: (build) => ({
-    register: build.mutation<AuthResponse, AuthRequest>({
+    signup: build.mutation<AuthResponse, AuthRequest>({
       query: (data) => ({ method: 'POST', url: URLS_AUTH.register, data }),
     }),
     login: build.mutation<AuthResponse, AuthRequest>({
