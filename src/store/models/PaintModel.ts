@@ -16,7 +16,7 @@ export interface IImage {
 }
 
 export interface IPaintModel {
-  id: string;
+  id?: string;
   title: string;
   subtitle: string;
   paint: IImage;
