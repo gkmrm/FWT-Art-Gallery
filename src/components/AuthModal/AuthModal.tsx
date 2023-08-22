@@ -11,6 +11,7 @@ import { Link } from '@ui-components/Link';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
 import styles from './AuthModal.module.scss';
+import { useFingerprint } from './useFingerprint';
 
 const cx = cn.bind(styles);
 
@@ -21,7 +22,7 @@ type TAuthModalProps = {
 const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
   const navigate = useNavigate();
   const { theme } = useThemeContext();
-  const { isAuth, onLogin } = useAuthContext();
+  const { onLogin } = useAuthContext();
   const [isReset, setReset] = useState(false);
 
   const modalText = {
@@ -41,24 +42,31 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
 
   const { linkPath, linkText, paragraph, greeting } = modalText[variant];
 
-  const [register, { isSuccess }] = authApi.useRegisterMutation();
+  const fingerprint = useFingerprint();
+
+  const [login, { isSuccess: isSuccessLog }] = authApi.useLoginMutation();
+
+  const [signup, { isSuccess: isSuccessReg }] = authApi.useSignupMutation();
+
+  const onSubmitRegistration = (username: string, password: string) => {
+    signup({ username, password, fingerprint });
+  };
+
+  const onSubmitLogin = (username: string, password: string) => {
+    login({ username, password, fingerprint });
+  };
+
+  const onSubmit = variant === 'login' ? onSubmitLogin : onSubmitRegistration;
 
   const onCloseClick = useCallback(() => navigate(-1), [navigate]);
 
-  const onSubmit = (username: string, password: string) =>
-    register({ username, password });
-
   React.useEffect(() => {
-    if (isSuccess) {
+    if (isSuccessLog || isSuccessReg) {
       onLogin();
       setReset(true);
       onCloseClick();
     }
-
-    if (isAuth) {
-      onCloseClick();
-    }
-  }, [isSuccess, isAuth, onLogin, onCloseClick]);
+  }, [onLogin, onCloseClick, isSuccessLog, isSuccessReg]);
 
   return (
     <ModalWrapper
@@ -94,7 +102,12 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
           >
             {paragraph}
             {/* todo background прокидывать */}
-            <Link theme={theme} to={linkPath} className={cx('authModal__link')}>
+            <Link
+              theme={theme}
+              onClick={onCloseClick}
+              to={linkPath}
+              className={cx('authModal__link')}
+            >
               {linkText}
             </Link>
           </p>
