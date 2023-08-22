@@ -19,7 +19,7 @@ const cx = cn.bind(styles);
 
 const Menu: React.FC<TMenuProps> = ({ theme, ...other }) => {
   const location = useLocation();
-  const { isAuth } = useAuthContext();
+  const { isAuth, onLogout } = useAuthContext();
 
   return (
     <div className={cx('menu', `menu_${theme}`)} {...other}>
@@ -31,7 +31,7 @@ const Menu: React.FC<TMenuProps> = ({ theme, ...other }) => {
               <Button
                 theme={theme}
                 variant='text'
-                onClick={() => console.log('вышли')}
+                onClick={onLogout}
                 className={cx('menu__nav_link')}
               >
                 log out
