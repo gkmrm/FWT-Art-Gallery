@@ -6,8 +6,15 @@ export interface IPaint {
   artist: string;
 }
 
+export interface IPaintModel {
+  id: string;
+  title: string;
+  subtitle: string;
+  paint: IImageModel;
+}
+
 export interface IImage {
-  _id?: string;
+  _id: string;
   src: string;
   webp?: string;
   src2x?: string;
@@ -15,17 +22,29 @@ export interface IImage {
   original?: string;
 }
 
-export interface IPaintModel {
-  id?: string;
-  title: string;
-  subtitle: string;
-  paint: IImage;
+export interface IImageModel {
+  id: string;
+  src: string;
+  webp?: string;
+  src2x?: string;
+  webp2x?: string;
+  original?: string;
 }
+
+export const normalizeIImage = (item: IImage): IImageModel => ({
+  // eslint-disable-next-line no-underscore-dangle
+  id: item._id,
+  src: item.src,
+  webp: item.webp,
+  src2x: item.src2x,
+  webp2x: item.webp2x,
+  original: item.original,
+});
 
 export const normalizeIPaint = (item: IPaint): IPaintModel => ({
   // eslint-disable-next-line no-underscore-dangle
   id: item._id,
   title: item.name,
   subtitle: item.yearOfCreation,
-  paint: item.image,
+  paint: normalizeIImage(item.image),
 });

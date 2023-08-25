@@ -1,27 +1,27 @@
-import {
-  IId,
-  IIdModel,
-  normalizeIdRequest,
-  normalizeIdResponse,
-} from './IdModel';
+import { IOption } from './testIOptionModel';
 
 export interface IGenre {
-  _id: IId;
+  _id: string;
   name: string;
 }
 
 export interface IGenreModel {
-  id: IIdModel;
+  id: string;
   name: string;
 }
 
 export const normalizeGenres = (item: IGenre): IGenreModel => ({
   // eslint-disable-next-line no-underscore-dangle
-  id: normalizeIdResponse(item._id),
+  id: item._id,
   name: item.name,
 });
 
 export const normalizeGenresRequest = (item: IGenreModel): IGenre => ({
-  _id: normalizeIdRequest(item.id),
+  _id: item.id,
   name: item.name,
 });
+
+export const normalizeGenresRequestArray = (items: IGenreModel[]): string[] =>
+  items.map((item) => item.id);
+
+export const normalizeSortBy = (item: IOption) => item.id;

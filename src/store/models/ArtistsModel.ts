@@ -1,43 +1,66 @@
-import { IId, IIdModel, normalizeIdResponse } from './IdModel';
-import { IImage, IPaint } from './PaintModel';
+import { IImageModel, IPaint, normalizeIImage } from './PaintModel';
 
 export interface IArtists {
-  genres: string[];
-  _id: IId;
+  _id: string;
   name: string;
   description: string;
   yearsOfLife: string;
-  mainPainting: IPaint;
+  mainPainting?: IPaint | null;
+  genres: string[];
 }
 
 export interface IArtistsModel {
-  id: IIdModel;
+  id: string;
   title: string;
   subtitle: string;
-  paint: IImage;
+  paint: IImageModel | null;
+  genres: string[];
+}
+
+export interface IArtistsMeta {
+  count: number;
+  pageNumber: number;
+  perPage: number;
 }
 
 export interface IArtistsAuth {
   data: IArtists[];
-  meta: {
-    count: number;
-    pageNumber: number;
-    perPage: number;
-  };
+  meta: IArtistsMeta;
+}
+
+export interface IAristsModelAuth {
+  data: IArtistsModel[];
+  meta: IArtistsMeta;
+}
+
+export interface IArtistsResponse {
+  data: IArtistsModel[];
+  meta: IArtistsMeta | null;
 }
 
 export const normalizeDate = (date: string) =>
   date
-    .split(' – ')
+    .split('–')
     .map((item) => new Date(item).getFullYear())
     .join(' - ');
 
+export const normalizeDateRequset = (date: string) =>
+  date
+    .split('-')
+    .map((item) => new Date(item).getFullYear())
+    .join(' – ');
+
 export const normalizeIArtists = (item: IArtists): IArtistsModel => ({
   // eslint-disable-next-line no-underscore-dangle
-  id: normalizeIdResponse(item._id),
+  id: item._id,
   title: item.name,
   subtitle: normalizeDate(item.yearsOfLife),
-  paint: item.mainPainting.image,
+  paint: item.mainPainting ? normalizeIImage(item.mainPainting.image) : null,
+  genres: item.genres,
 });
 
 export default IArtists;
+
+export const normalizeIdRequest = (id: string) => ({
+  _id: id,
+});
