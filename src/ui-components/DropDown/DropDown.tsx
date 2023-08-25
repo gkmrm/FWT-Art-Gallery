@@ -48,8 +48,11 @@ const DropDown: React.FC<TDropDownProps> = ({
       const filtered = value.filter((item) => item.id !== obj.id);
       onChange(filtered);
     } else {
-      onChange([...value, obj]);
+      onChange([obj]);
     }
+    // else {
+    //   onChange([...value, obj]);
+    // }
   };
 
   useEffect(() => {
