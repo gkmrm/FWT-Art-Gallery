@@ -2,8 +2,10 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 import { apiGallery } from './api';
+import { notificationReducer } from './slices/NotificationSlice';
 
 const rootReducer = combineReducers({
+  notificationReducer,
   [apiGallery.reducerPath]: apiGallery.reducer,
 });
 
