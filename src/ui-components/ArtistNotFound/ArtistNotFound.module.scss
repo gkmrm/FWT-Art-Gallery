@@ -1,0 +1,30 @@
+.notfound {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  font-family: $secondFontFamily;
+  gap: 12px;
+  margin: 0 auto;
+  margin-top: 60px;
+
+  &__title {
+    @include pBaseLight;
+
+    &_light {
+      color: $primaryDarkGrey;
+    }
+    &_dark {
+      color: $primaryLightGrey;
+    }
+
+    &_query {
+      font-weight: $medium;
+    }
+  }
+
+  &__subtitle {
+    @include pSmallLight;
+    color: $secondaryGrey;
+  }
+}
