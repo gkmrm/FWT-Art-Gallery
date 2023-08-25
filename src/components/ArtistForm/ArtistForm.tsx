@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'classnames/bind';
@@ -6,8 +6,11 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { ThemeType } from '@context/ThemeContext';
 import { IGenreModel } from '@models/GenreModel';
-import { IImage } from '@models/PaintModel';
+import { IImageModel } from '@models/PaintModel';
 import artistSchema from '@schemas/artistFormSchema';
+import { normalizeDateRequset } from '@store/models/ArtistsModel';
+import { artistApi } from '@store/services/ArtistsService';
+import { genreApi } from '@store/services/GenresService';
 import { Button } from '@ui-components/Button';
 import { DropZone } from '@ui-components/DropZone';
 import { Input } from '@ui-components/Input';
@@ -23,25 +26,29 @@ export type TArtistFormValues = {
   years: string;
   description: string;
   genres: IGenreModel[];
-  avatar: IImage;
+  avatar: IImageModel | null;
+  id: string;
 };
 
 type TArtistFormProps = {
   theme: ThemeType;
   artistValues?: TArtistFormValues;
+  onClose: () => void;
 };
 
 const defaultEmpty: TArtistFormValues = {
+  id: '',
   name: '',
   years: '',
   description: '',
   genres: [],
-  avatar: { src: '' },
+  avatar: { id: '', src: '' },
 };
 
 const ArtistForm: React.FC<TArtistFormProps> = ({
   theme,
   artistValues = defaultEmpty,
+  onClose,
 }) => {
   const [isDraggable, setDraggable] = useState(false);
 
@@ -60,11 +67,54 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
     defaultValues: artistValues,
   });
 
+  const { data: allGenres = [] } = genreApi.useFetchGenresQuery(null);
+
+  const [createArtist, { isSuccess: isCreateSuccess }] =
+    artistApi.useCreateArtistMutation();
+  const [editArtist, { isSuccess: isEditSuccess }] =
+    artistApi.useEditArtistMutation();
+
+  const isSuccess = isCreateSuccess || isEditSuccess;
+
+  const onCreateArtist = handleSubmit(
+    async ({ name, years, description, genres, avatar }) => {
+      const data = new FormData();
+      data.append('name', name);
+      data.append('yearsOfLife', normalizeDateRequset(years));
+      data.append('description', description);
+      data.append('genres', genres.map((genre) => genre.id).join());
+      data.append('avatar', avatar as unknown as Blob);
+
+      createArtist({ data });
+    }
+  );
+
+  const onEditArtist = handleSubmit(
+    async ({ name, years, description, genres, avatar }) => {
+      const data = new FormData();
+      data.append('name', name);
+      data.append('yearsOfLife', years);
+      data.append('description', description);
+      data.append('genres', genres.map((genre) => genre.id).join());
+      data.append('avatar', avatar as unknown as Blob);
+
+      editArtist({ id: artistValues.id, data });
+    }
+  );
+
+  const onSubmit = artistValues.name === '' ? onCreateArtist : onEditArtist;
+
+  useEffect(() => {
+    if (isSuccess) {
+      onClose();
+    }
+  }, [isSuccess, onClose]);
+
   return (
     <form
       className={cx('form', `form_${theme}`)}
       // eslint-disable-next-line no-console
-      onSubmit={handleSubmit((d) => console.log(d))}
+      onSubmit={handleSubmit(() => onSubmit())}
       onDragOver={handleDragOver}
     >
       <Controller
@@ -81,7 +131,7 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
             idFor='avatar'
             isDraggable={isDraggable}
             onDragLeave={handleDragLeave}
-            initialValue={field.value.src}
+            initialValue={field.value ? field.value.src : undefined}
           />
         )}
       />
@@ -113,6 +163,7 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
               onChange={field.onChange}
               selected={field.value}
               theme={theme}
+              options={allGenres}
               labelName='Genres*'
               errorMessage={errors.genres?.message as string}
             />
