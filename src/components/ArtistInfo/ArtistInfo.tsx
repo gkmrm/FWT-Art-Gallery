@@ -7,7 +7,7 @@ import { Accordion } from '@components/Accordion';
 import { Container } from '@components/Container';
 import { ThemeType } from '@context/ThemeContext';
 import { IGenreModel } from '@models/GenreModel';
-import { IImage } from '@models/PaintModel';
+import { IImageModel } from '@models/PaintModel';
 import { AvatarPlaceholder } from '@ui-components/AvatarPlaceholder';
 import { Genre } from '@ui-components/Genre';
 import { Picture } from '@ui-components/Picture';
@@ -17,7 +17,7 @@ import styles from './ArtistInfo.module.scss';
 const cx = cn.bind(styles);
 
 type TArtistInfoProps = {
-  avatar: IImage | undefined;
+  avatar: IImageModel | null;
   theme: ThemeType;
   name: string;
   year: string;
