@@ -4,7 +4,8 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
 import { ThemeType } from '@context/ThemeContext';
-import { IImage } from '@models/PaintModel';
+import { IImageModel } from '@models/PaintModel';
+import { CardPlaceholder } from '@ui-components/CardPlaceholder';
 import { Link } from '@ui-components/Link';
 import { Picture } from '@ui-components/Picture';
 
@@ -19,7 +20,7 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  image: IImage;
+  image?: IImageModel;
   pathTo?: string;
   theme: ThemeType;
   onClick?: () => void;
@@ -45,7 +46,16 @@ const Card: React.FC<TCardProps> = ({
     >
       {children}
     </div>
-    <Picture {...image} className={cx('card__img')} alt={`paint of ${title}`} />
+    {image ? (
+      <Picture
+        {...image}
+        className={cx('card__img')}
+        alt={`paint of ${title}`}
+      />
+    ) : (
+      <CardPlaceholder />
+    )}
+
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
         <div className={cx('info__textBlock', `info__textBlock_${theme}`)}>
