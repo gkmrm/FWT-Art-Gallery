@@ -16,7 +16,7 @@ const App = () => {
       <Routes location={background || location}>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<MainPage />} />
-          <Route path='/artists/static/:id' element={<ArtistPage />} />
+          <Route path='/artists/:id' element={<ArtistPage />} />
           <Route path='/login' element={<AuthModal variant='login' />} />
           <Route path='/signup' element={<AuthModal variant='signup' />} />
         </Route>
