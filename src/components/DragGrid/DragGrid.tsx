@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import {
   DndContext,
@@ -20,27 +20,41 @@ import {
 import { DragCard } from '@components/DragCard';
 import { PaintCard } from '@components/PaintCard';
 import { ThemeType } from '@context/ThemeContext';
+// import { IArtistsByIdModel } from '@store/models/ArtistByIdModel';
+// import { IArtistsModel } from '@store/models/ArtistsModel';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
+import checkMainPainting from '@utils/functions/checkMainPainting';
 
 type TDragGridProps = {
-  // Todo add Types
-  // array: IArtistsStaticModel[] | IArtistsStaticByIdModel[];
+  // array: IArtistsModel[] | IArtistsByIdModel[];
   array: any[];
+  mainPainting?: string;
+  authorId: string;
   theme: ThemeType;
   variant: 'author' | 'paint';
   onClickCard?: (index: number) => () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const DragGrid: React.FC<TDragGridProps> = ({
+  mainPainting = '',
   array,
   theme,
   variant,
+  authorId,
   onClickCard = () => {},
 }) => {
+  // const checkType = (
+  //   arr: IArtistsModel[] | IArtistsByIdModel[]
+  // ): arr is IArtistsModel[] => !('paintings' in arr[0]);
   const [items, setItems] = useState(array);
   const [activeId, setActiveId] = useState<string | number | null>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
+
+  // const getTypedArr = (arr: IArtistsModel[] | IArtistsByIdModel[]) =>
+  //   checkType(arr) ? arr : arr;
+
+  useEffect(() => setItems(array), [array]);
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
     setActiveId(event.active.id);
@@ -50,7 +64,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
     const { active, over } = event;
 
     if (active.id !== over?.id) {
-      //  eslint-disable-next-line @typescript-eslint/no-shadow
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       setItems((items) => {
         const oldIndex = items.map((i) => i.id).indexOf(active.id as string);
         const newIndex = items.map((i) => i.id).indexOf(over?.id as string);
@@ -58,6 +72,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
         return arrayMove(items, oldIndex, newIndex);
       });
     }
+
     setActiveId(null);
   }, []);
 
@@ -75,18 +90,20 @@ const DragGrid: React.FC<TDragGridProps> = ({
               id={item.id}
               image={item.paint}
               theme={theme}
-              pathTo={`/artists/static/${item.id}`}
+              pathTo={`/artists/${item.id}`}
             />
           </DragCard>
         ))
       : items.map((item, index) => (
           <DragCard id={item.id} key={item.id} theme={theme}>
             <PaintCard
+              isMainPainting={checkMainPainting(item.id, mainPainting)}
+              authorId={authorId}
               key={item.id}
               image={item.paint}
               onClick={onClickCard(index)}
+              paintId={item.id}
               {...item}
-              id={item.id}
               theme={theme}
             />
           </DragCard>
@@ -104,15 +121,15 @@ const DragGrid: React.FC<TDragGridProps> = ({
               id={item.id}
               image={item.paint}
               theme={theme}
-              pathTo={`/artists/static/${item.id}`}
+              pathTo={`/artists/${item.id}`}
             />
           ) : (
             <PaintCard
+              authorId={item.id}
               key={item.id}
               image={item.paint}
               onClick={onClickCard(index)}
               {...item}
-              id={item.id}
               theme={theme}
             />
           )
