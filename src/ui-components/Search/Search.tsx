@@ -20,6 +20,7 @@ type TSearchProps = Omit<
   errorMessage: string;
   values?: string;
   classNameInput?: string;
+  handleReset: () => void;
 };
 
 const Search: React.FC<TSearchProps> = ({
@@ -29,6 +30,7 @@ const Search: React.FC<TSearchProps> = ({
   onChange,
   theme,
   errorMessage,
+  handleReset,
   ...other
 }) => {
   const [value, setValue] = useState(values);
@@ -40,7 +42,8 @@ const Search: React.FC<TSearchProps> = ({
 
   const onClear = () => {
     setValue('');
-    onChange(value);
+    onChange('');
+    handleReset();
   };
 
   return (
