@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames/bind';
 
@@ -8,7 +8,8 @@ import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { useAuthContext } from '@context/AuthContext';
 import { ThemeType } from '@context/ThemeContext';
 import useOutsideClick from '@hooks/useOutsideClick';
-import { IImage } from '@models/PaintModel';
+import { IImageModel } from '@models/PaintModel';
+import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { Card } from '@ui-components/Card';
 import { Popover } from '@ui-components/Popover';
@@ -18,19 +19,24 @@ import styles from './PaintCard.modules.scss';
 const cx = cn.bind(styles);
 
 type TPaintCardProps = {
-  id?: string;
+  isMainPainting: boolean;
+  authorId: string;
+  paintId: string;
   title: string;
   subtitle: string;
   /**
    * Object with image source {string, string...}
    */
-  image: IImage;
+  image: IImageModel;
   pathTo?: string;
   theme: ThemeType;
   onClick?: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const PaintCard: React.FC<TPaintCardProps> = ({
+  isMainPainting,
+  authorId,
+  paintId,
   title,
   subtitle,
   image,
@@ -59,6 +65,19 @@ const PaintCard: React.FC<TPaintCardProps> = ({
 
   useOutsideClick(ref, onClose);
 
+  const [updateMainPaint, { isSuccess }] =
+    artistApi.useUpdateMainPaintMutation();
+
+  const handleChange = useCallback(() => {
+    updateMainPaint({ authorId, paintId });
+  }, [authorId, paintId, updateMainPaint]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      onClose();
+    }
+  }, [isSuccess]);
+
   return (
     <>
       <Card
@@ -66,7 +85,7 @@ const PaintCard: React.FC<TPaintCardProps> = ({
         pathTo={pathTo}
         title={title}
         subtitle={subtitle}
-        image={image}
+        image={image || undefined}
         theme={theme}
         {...other}
       >
@@ -89,13 +108,9 @@ const PaintCard: React.FC<TPaintCardProps> = ({
                       `card__popover_item_${theme}`
                     )}
                     role='presentation'
-                    onClick={() => {
-                      // eslint-disable-next-line no-console
-                      console.log('Cover change');
-                      onClose();
-                    }}
+                    onClick={handleChange}
                   >
-                    Remove cover
+                    {isMainPainting ? 'Remove cover' : 'Make cover'}
                   </li>
                   <li
                     className={cx(
@@ -130,12 +145,16 @@ const PaintCard: React.FC<TPaintCardProps> = ({
         )}
       </Card>
       <DeletePopUp
+        paintId={paintId}
+        authorId={authorId}
         variant='paint'
         isShow={isShowDelete}
         onClose={onCloseDeletePopUp}
         theme={theme}
       />
       <PaintEditPopUp
+        authorId={authorId}
+        paintId={paintId}
         isShow={isShowEdit}
         onClose={onCloseEditPopUp}
         theme={theme}

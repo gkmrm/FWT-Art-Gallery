@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
 
 import { ThemeType } from '@context/ThemeContext';
-import { IImage } from '@models/PaintModel';
+import { IImageModel } from '@models/PaintModel';
 import paintFormSchema from '@schemas/paintFormSchema';
+import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { DropZone } from '@ui-components/DropZone';
 import { Input } from '@ui-components/Input';
@@ -18,20 +19,29 @@ const cx = cn.bind(styles);
 export type TPaintEditValues = {
   name: string;
   years: string;
-  paint: IImage;
+  paint: IImageModel;
 };
 
-type TPaintFormProps = { theme: ThemeType; paintValues?: TPaintEditValues };
+type TPaintFormProps = {
+  theme: ThemeType;
+  paintValues?: TPaintEditValues;
+  paintId: string;
+  authorId: string;
+  onClose: () => void;
+};
 
 const defaultEmpty: TPaintEditValues = {
   name: '',
   years: '',
-  paint: { src: '' },
+  paint: { id: '', src: '' },
 };
 
 const PaintForm: React.FC<TPaintFormProps> = ({
   theme,
   paintValues = defaultEmpty,
+  onClose,
+  paintId,
+  authorId,
 }) => {
   const [isDraggable, setDraggable] = useState(false);
 
@@ -50,11 +60,45 @@ const PaintForm: React.FC<TPaintFormProps> = ({
     defaultValues: paintValues,
   });
 
+  const [editPaint, { isSuccess: isSuccessEditPaint }] =
+    artistApi.useEditPaintMutation();
+
+  const [addPaint, { isSuccess: isSuccessAddPaint }] =
+    artistApi.useAddPaintMutation();
+
+  const isSuccess = isSuccessAddPaint || isSuccessEditPaint;
+
+  useEffect(() => {
+    if (isSuccess) {
+      onClose();
+    }
+  }, [isSuccess, onClose]);
+
+  const onAddPaint = handleSubmit(async ({ name, years, paint }) => {
+    const data = new FormData();
+    data.append('name', name);
+    data.append('yearOfCreation', years);
+    data.append('image', paint as unknown as Blob);
+
+    addPaint({ authorId, data });
+  });
+
+  const onEditPaint = handleSubmit(async ({ name, years, paint }) => {
+    const data = new FormData();
+    data.append('name', name);
+    data.append('yearOfCreation', years);
+    data.append('image', paint as unknown as Blob);
+
+    editPaint({ authorId, paintId, data });
+  });
+
+  const onSubmit = paintValues.name === '' ? onAddPaint : onEditPaint;
+
   return (
     <form
       className={cx('paintForm')}
       // eslint-disable-next-line no-console
-      onSubmit={handleSubmit((d) => console.log(d))}
+      onSubmit={onSubmit}
       onDragOver={handleDragOver}
     >
       <div className={cx('textBlock')}>
