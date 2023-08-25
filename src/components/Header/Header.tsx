@@ -8,6 +8,7 @@ import { ReactComponent as Logo } from '@assets/icons/logo.svg';
 import { ReactComponent as LoupeIcon } from '@assets/icons/search_icon.svg';
 import { Container } from '@components/Container';
 import { Menu } from '@components/Menu';
+import { useFilterContext } from '@context/FilterContext';
 import { useThemeContext } from '@context/ThemeContext';
 import useOutsideClick from '@hooks/useOutsideClick';
 import { Link } from '@ui-components/Link';
@@ -23,14 +24,14 @@ const Header: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState(false);
   const { theme } = useThemeContext();
   const ref = useRef<null | HTMLDivElement>(null);
+  const { filters, setAllFilters } = useFilterContext();
 
   const toggleOpen = () => setOpen(!isOpen);
 
   const onOpen = () => setSearchOpen(true);
 
   const onChange = useCallback((str: string) => {
-    // eslint-disable-next-line no-console
-    console.log(str);
+    setAllFilters({ ...filters, search: str });
   }, []);
 
   const handleToggle = useCallback(() => {
@@ -40,6 +41,10 @@ const Header: React.FC = () => {
   const debounceSearchQuery = _.debounce(onChange, 650);
 
   useOutsideClick(ref, handleToggle);
+
+  const onResetSearch = useCallback(() => {
+    setAllFilters({ ...filters, search: '' });
+  }, [filters, setAllFilters]);
 
   return (
     <header className={cx('header', `header_${theme}`)}>
@@ -78,8 +83,10 @@ const Header: React.FC = () => {
                 })}
                 theme={theme}
                 errorMessage=''
+                values={filters.search}
                 onChange={debounceSearchQuery}
                 classNameInput={cx('header__search_input')}
+                handleReset={onResetSearch}
               />
             </div>
             <BurgerIcon onClick={toggleOpen} className={cx('header__burger')} />
