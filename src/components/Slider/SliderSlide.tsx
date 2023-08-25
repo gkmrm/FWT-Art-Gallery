@@ -20,14 +20,20 @@ import styles from './SliderSlide.module.scss';
 const cx = cn.bind(styles);
 
 type TSliderSlideProps = {
+  isMainPainting: boolean;
+  authorId: string;
   painting: IPaintModel;
   length: number;
   index: number;
   theme: ThemeType;
   onClose: () => void;
+  onChangeCover: (id: string) => void;
 };
 
 const SliderSlide: React.FC<TSliderSlideProps> = ({
+  isMainPainting,
+  onChangeCover,
+  authorId,
   painting,
   length,
   index,
@@ -57,10 +63,10 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
           className={cx('slider__cover')}
           variant='text'
           theme={theme}
-          onClick={() => {}}
+          onClick={() => onChangeCover(painting.id)}
         >
           <ChangePic />
-          make the cover
+          {isMainPainting ? 'Remove the cover' : 'Make the cover'}
         </Button>
       )}
       <div className={cx('infoBlock', `infoBlock_${theme}`)}>
@@ -108,6 +114,8 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
         </div>
       </div>
       <PaintEditPopUp
+        authorId={authorId}
+        paintId={painting.id}
         isShow={isShowEdit}
         onClose={onCloseEditPopUp}
         theme={theme}
@@ -118,6 +126,8 @@ const SliderSlide: React.FC<TSliderSlideProps> = ({
         }}
       />
       <DeletePopUp
+        authorId={authorId}
+        paintId={painting.id}
         variant='paint'
         isShow={isShowDelete}
         onClose={onCloseDeletePopUp}
