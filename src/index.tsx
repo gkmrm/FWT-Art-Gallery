@@ -21,13 +21,13 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <ThemeProvider>
-        <FilterContext>
-          <Provider store={store}>
-            <BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <FilterContext>
               <App />
-            </BrowserRouter>
-          </Provider>
-        </FilterContext>
+            </FilterContext>
+          </BrowserRouter>
+        </Provider>
       </ThemeProvider>
     </AuthProvider>
   </React.StrictMode>
