@@ -2,9 +2,17 @@
   &__wrapper {
     position: relative;
     top: 104px;
+    min-height: 492px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     @include mediaTablet {
       top: 180px;
+    }
+
+    &:last-child {
+      margin-top: 32px;
     }
   }
 
@@ -25,14 +33,14 @@
   }
 
   &__buttons {
-    position: absolute;
-    top: 452px;
+    position: relative;
     left: 20px;
     display: flex;
     gap: 49px;
+    margin-top: 32px;
 
     @include mediaTablet {
-      top: 689px;
+      // top: 689px;
       gap: 157px;
       left: 32px;
     }

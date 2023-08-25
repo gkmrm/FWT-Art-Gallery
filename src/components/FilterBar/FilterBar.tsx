@@ -5,13 +5,17 @@ import cn from 'classnames/bind';
 import { useFilterContext } from '@context/FilterContext';
 import { ThemeType } from '@context/ThemeContext';
 import { IOption } from '@models/testIOptionModel';
-// import { artistApi } from '@store/services/ArtistsService';
+import { IArtistsModel } from '@store/models/ArtistsModel';
+import { IArtistsParamsModel } from '@store/models/FiltersModel';
+import { IGenreModel } from '@store/models/GenreModel';
+import { artistApi } from '@store/services/ArtistsService';
 import { genreApi } from '@store/services/GenresService';
 import { Button } from '@ui-components/Button';
 import { DropDown } from '@ui-components/DropDown';
 import { Sidebar } from '@ui-components/Sidebar';
 
 import styles from './FilterBar.module.scss';
+import optionsSort from './optionsSort';
 
 const cx = cn.bind(styles);
 
@@ -21,34 +25,50 @@ type TFilterBarProps = {
   theme: ThemeType;
 };
 
-const testDataSort: IOption[] = [
-  {
-    id: 'dasdasd',
-    name: 'Recently added',
-  },
-  { id: 'dasdasasdad', name: 'A-Z' },
-  { id: 'dasdas123d', name: 'Z-A' },
-];
-
-// Логика в этом компоненте пока выполняет функцию плейсхолдера,
-// и будет доработана с добавлением запросов и авторизации
-
 const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
-  const { filters, setFilters, onClearFilter } = useFilterContext();
+  const { filters, setAllFilters, onClearFilter } = useFilterContext();
   const [filterGenres, setFilterGenres] = useState<IOption[]>(filters.genres);
   const [filterSort, setFilterSort] = useState<IOption[]>(filters.sortBy);
+  const [filterOrder, setFilterOrder] = useState<IOption[]>(filters.sortBy);
   const [isClear, setClear] = useState(false);
 
-  const { data: genres = [] } = genreApi.useFetchGenresQuery(null);
+  const { data: allGenres = [] } = genreApi.useFetchGenresQuery(null);
+
+  const { data: { data: artistsGenres = [] } = {} } =
+    artistApi.useFetchArtistsQuery({
+      isAuth: true,
+      params: {} as IArtistsParamsModel,
+    });
+
+  const getCurrentGenres = useCallback(
+    (data: IGenreModel[], idGenres: string[]) => {
+      const result: IGenreModel[] = [];
+
+      data.map((item) => idGenres.includes(item.id) && result.push(item));
+
+      return result;
+    },
+    []
+  );
+
+  const getExistingGenres = (data: IArtistsModel[]) =>
+    data.map((item) => item.genres).flat();
+
+  const currentGenres = getCurrentGenres(
+    allGenres,
+    getExistingGenres(artistsGenres)
+  );
 
   const onFilterResults = useCallback(() => {
-    setFilters({
+    setAllFilters({
       genres: filterGenres,
       sortBy: filterSort,
+      orderBy: filterOrder,
+      perPage: 6,
     });
 
     onClose();
-  }, [filterGenres, filterSort, onClose, setFilters]);
+  }, [filterGenres, filterOrder, filterSort, onClose, setAllFilters]);
 
   const onClear = useCallback(() => {
     setFilterGenres([]);
@@ -65,30 +85,39 @@ const FilterBar: React.FC<TFilterBarProps> = ({ isShow, onClose, theme }) => {
         <div className={cx('filterbar__dropdowns')}>
           <DropDown
             isClear={isClear}
-            name='Genres'
+            name='genres'
             values={filters.genres}
             onFilterChange={setFilterGenres}
-            options={genres}
+            options={currentGenres}
             theme={theme}
           />
           <DropDown
             isClear={isClear}
-            name='Sort by'
+            name='sort by'
             values={filters.sortBy}
             onFilterChange={setFilterSort}
-            options={testDataSort}
+            options={optionsSort.sortBy}
+            theme={theme}
+            gridVariant='oneCol'
+          />
+          <DropDown
+            isClear={isClear}
+            name='order by'
+            values={filters.orderBy}
+            onFilterChange={setFilterOrder}
+            options={optionsSort.orderBy}
             theme={theme}
             gridVariant='oneCol'
           />
         </div>
-      </div>
-      <div className={cx('filterbar__buttons')}>
-        <Button variant='text' theme={theme} onClick={onFilterResults}>
-          show the result
-        </Button>
-        <Button variant='text' theme={theme} onClick={onClear}>
-          clear
-        </Button>
+        <div className={cx('filterbar__buttons')}>
+          <Button variant='text' theme={theme} onClick={onFilterResults}>
+            show the result
+          </Button>
+          <Button variant='text' theme={theme} onClick={onClear}>
+            clear
+          </Button>
+        </div>
       </div>
     </Sidebar>
   );
