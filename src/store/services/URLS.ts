@@ -11,17 +11,18 @@ const URLS_ARTIST = {
   artistByIdStatic: (id: string) => `/artists/static/${id}`,
   artistById: (id: string) => `/artists/${id}`,
   editArtist: (id: string) => `/artists/${id}`,
-  deleteArtist: (id: string) => `/artists/${id}`,
-  updateMainPainting: (id: string) => `/artists/${id}/main-painting`,
-  addPaint: (id: string) => `/artists/${id}/paintings`,
-  editPaint: (id: string, paintId: string) =>
-    `/artists/${id}/paintings/${paintId}`,
-  deletePaint: (id: string, paintId: string) =>
-    `/artists/${id}/paintings/${paintId}`,
+  deleteArtist: (authorId: string) => `/artists/${authorId}`,
+  updateMainPainting: (authorId: string) =>
+    `/artists/${authorId}/main-painting`,
+  addPaint: (authorId: string) => `/artists/${authorId}/paintings`,
+  editPaint: (authorId: string, paintId: string) =>
+    `/artists/${authorId}/paintings/${paintId}`,
+  deletePaint: (authorId: string, paintId: string) =>
+    `/artists/${authorId}/paintings/${paintId}`,
 };
 
 const URLS_GENRES = {
-  genres: '/genres',
+  genres: '/genres/static',
 };
 
 export { URLS_AUTH, URLS_ARTIST, URLS_GENRES };
