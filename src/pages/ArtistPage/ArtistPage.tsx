@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import cn from 'classnames/bind';
 import { useParams } from 'react-router-dom';
@@ -9,10 +9,13 @@ import { ArtistInfo } from '@components/ArtistInfo';
 import { Container } from '@components/Container';
 import { ControlBar } from '@components/ControlBar';
 import { DragGrid } from '@components/DragGrid';
+import { Pagination } from '@components/Pagination';
 import { PaintEditPopUp } from '@components/PaintEditPopUp';
 import { Slider } from '@components/Slider';
+import BREAKPOINTS from '@CONSTANTS/BREAKPOINTS';
 import { useAuthContext } from '@context/AuthContext';
 import { useThemeContext } from '@context/ThemeContext';
+import useWindowWidth from '@hooks/useWindowWidth';
 import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { Grid } from '@ui-components/Grid';
@@ -25,6 +28,12 @@ import getIsEqualZero from '@utils/functions/getIsEqualZero';
 import styles from './ArtistPage.module.scss';
 
 const cx = cn.bind(styles);
+
+const PAGINATIONSIZE = {
+  MOBILE: 4,
+  TABLET: 8,
+  DESKTOP: 9,
+};
 
 const ArtistPage: React.FC = () => {
   const { theme } = useThemeContext();
@@ -39,6 +48,35 @@ const ArtistPage: React.FC = () => {
   const [isOpenSlider, setOpenSlider] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isShowEditPaint, setShowEditPaint] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const width = useWindowWidth();
+
+  const getSlicedSize = useCallback(
+    () =>
+      // eslint-disable-next-line no-nested-ternary
+      width < BREAKPOINTS.MIN.TABLET
+        ? PAGINATIONSIZE.MOBILE
+        : width < BREAKPOINTS.MIN.DESKTOP
+        ? PAGINATIONSIZE.TABLET
+        : PAGINATIONSIZE.DESKTOP,
+    [width]
+  );
+
+  const slicedSize = getSlicedSize();
+
+  const slicedPaintings = useMemo(
+    () =>
+      // eslint-disable-next-line no-nested-ternary
+      artist
+        ? isAuth
+          ? artist?.paintings.slice(
+              (currentPage - 1) * slicedSize,
+              (currentPage - 1) * slicedSize + slicedSize
+            )
+          : artist?.paintings
+        : [],
+    [artist, currentPage, isAuth, slicedSize]
+  );
 
   const onClickCard = (index: number) => () => {
     setCurrentIndex(index);
@@ -53,7 +91,13 @@ const ArtistPage: React.FC = () => {
 
   return (
     <div className={cx('artistPage', `artistPage_${theme}`)}>
-      {isLoading ? <Loader theme={theme} /> : ''}
+      {isLoading ? (
+        <div className={cx('artistPage__loader')}>
+          <Loader theme={theme} />
+        </div>
+      ) : (
+        ''
+      )}
       {artist && (
         <>
           <ControlBar theme={theme} artist={artist} />
@@ -74,7 +118,6 @@ const ArtistPage: React.FC = () => {
             >
               Artworks
             </h1>
-
             <div className={cx('artistPage__addBlock')}>
               {isAuth && (
                 <Button
@@ -88,7 +131,6 @@ const ArtistPage: React.FC = () => {
                 </Button>
               )}
             </div>
-
             {/* eslint-disable-next-line no-nested-ternary */}
             {isLoading ? (
               <Grid>
@@ -97,7 +139,7 @@ const ArtistPage: React.FC = () => {
                 ))}
               </Grid>
             ) : isPaintZero ? (
-              <Grid>
+              <Grid className={cx('artistPage__grid')}>
                 <MissPaintCard
                   theme={theme}
                   onClick={() => setShowEditPaint(true)}
@@ -105,10 +147,21 @@ const ArtistPage: React.FC = () => {
               </Grid>
             ) : (
               <DragGrid
-                array={artist?.paintings}
+                mainPainting={artist.mainPaint?.id}
+                className={cx('artistPage__grid')}
+                authorId={artist.id}
+                array={slicedPaintings}
                 theme={theme}
                 variant='paint'
                 onClickCard={onClickCard}
+              />
+            )}
+            {artist.paintings.length > slicedSize && (
+              <Pagination
+                theme={theme}
+                pagesAmount={Math.ceil(artist.paintings.length / slicedSize)}
+                currentPage={currentPage}
+                onChange={setCurrentPage}
               />
             )}
 
@@ -118,9 +171,13 @@ const ArtistPage: React.FC = () => {
             isShow={isShowEditPaint}
             onClose={onClosePaintEditPopUp}
             theme={theme}
+            authorId={artist.id}
+            paintId=''
           />
           {isOpenSlider && (
             <Slider
+              mainPainting={artist.mainPaint?.id}
+              authorId={artist.id}
               theme={theme}
               paintings={artist.paintings}
               isOpen={isOpenSlider}
