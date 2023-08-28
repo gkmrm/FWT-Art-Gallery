@@ -26,24 +26,26 @@ import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import checkMainPainting from '@utils/functions/checkMainPainting';
 
-type TDragGridProps = {
+type TDragGridProps<T> = {
   // array: IArtistsModel[] | IArtistsByIdModel[];
-  array: any[];
+  // Написать обхий главный тип, от которого наследую модели, и T extends главный тип
+  // УБРАТЬ React. заменить нахуй на jquery///
+  array: T[];
   mainPainting?: string;
   authorId: string;
   theme: ThemeType;
   variant: 'author' | 'paint';
-  onClickCard?: (index: number) => () => void;
+  onClickCard?: (index: number) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const DragGrid: React.FC<TDragGridProps> = ({
+const DragGrid = <T,>({
   mainPainting = '',
   array,
   theme,
   variant,
   authorId,
   onClickCard = () => {},
-}) => {
+}: TDragGridProps<T>) => {
   // const checkType = (
   //   arr: IArtistsModel[] | IArtistsByIdModel[]
   // ): arr is IArtistsModel[] => !('paintings' in arr[0]);
