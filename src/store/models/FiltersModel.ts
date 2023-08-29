@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { normalizeGenresRequestArray } from './GenreModel';
-import { IOption } from './testIOptionModel';
+import { IOption } from './OptionModel';
 
 export interface IArtistsParams {
   sortBy?: string;
@@ -41,7 +41,7 @@ export function normalizeParams(
   paramsModel: IArtistsParamsModel
 ): IArtistsParams {
   const normalizedParams: IArtistsParams = {
-    orderBy: 'desc', // Default value if not provided in paramsModel
+    orderBy: 'desc',
   };
 
   if (paramsModel.sortBy && paramsModel.sortBy.length > 0) {
@@ -109,7 +109,7 @@ export function convertFromURLSearchParams(
   urlSearchParams: URLSearchParams
 ): IArtistsParams {
   const convertedParams: IArtistsParams = {
-    orderBy: null, // Default value if not provided in URLSearchParams
+    orderBy: null,
   };
 
   const sortByValue = urlSearchParams.get('sortBy');

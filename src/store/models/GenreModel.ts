@@ -1,4 +1,4 @@
-import { IOption } from './testIOptionModel';
+import { IOption } from './OptionModel';
 
 export interface IGenre {
   _id: string;

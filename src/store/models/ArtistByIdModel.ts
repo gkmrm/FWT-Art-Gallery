@@ -9,10 +9,10 @@ import {
 } from './PaintModel';
 
 export interface IArtistsById {
-  paintings: IPaint[];
-  genres: IGenre[];
   _id: string;
   name: string;
+  paintings: IPaint[];
+  genres: IGenre[];
   description: string;
   yearsOfLife: string;
   avatar: IImage | null;
@@ -20,9 +20,9 @@ export interface IArtistsById {
 }
 
 export interface IArtistsByIdModel {
+  id: string;
   paintings: IPaintModel[];
   genres: IGenreModel[];
-  id: string;
   name: string;
   description: string;
   years: string;
