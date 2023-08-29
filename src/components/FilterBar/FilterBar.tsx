@@ -4,10 +4,10 @@ import cn from 'classnames/bind';
 
 import { useFilterContext } from '@context/FilterContext';
 import { ThemeType } from '@context/ThemeContext';
-import { IOption } from '@models/testIOptionModel';
-import { IArtistsModel } from '@store/models/ArtistsModel';
-import { IArtistsParamsModel } from '@store/models/FiltersModel';
-import { IGenreModel } from '@store/models/GenreModel';
+import { IArtistsModel } from '@models/ArtistsModel';
+import { IArtistsParamsModel } from '@models/FiltersModel';
+import { IGenreModel } from '@models/GenreModel';
+import { IOption } from '@models/OptionModel';
 import { artistApi } from '@store/services/ArtistsService';
 import { genreApi } from '@store/services/GenresService';
 import { Button } from '@ui-components/Button';
