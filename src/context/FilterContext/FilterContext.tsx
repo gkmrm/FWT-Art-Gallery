@@ -8,7 +8,7 @@ import {
   convertToParamsModel,
   convertToURLSearchParams,
   normalizeParams,
-} from '@store/models/FiltersModel';
+} from '@models/FiltersModel';
 
 export interface FilterType extends IArtistsParamsModel {}
 
