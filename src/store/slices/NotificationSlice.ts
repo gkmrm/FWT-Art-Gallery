@@ -1,19 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
+import { IErrorResponse, INotificationSliceState } from '@models/ErrorModel';
 import { apiGallery } from '@store/api';
 import { artistApi } from '@store/services/ArtistsService';
 import { authApi } from '@store/services/AuthService';
 import { genreApi } from '@store/services/GenresService';
-
-export interface IErrorResponse {
-  statusCode: number;
-  message: string;
-  error: string;
-}
-
-interface INotificationSliceState {
-  message: string | null;
-}
 
 const initialState: INotificationSliceState = {
   message: null,
@@ -25,7 +16,7 @@ const notificationSlice = createSlice({
   reducers: {
     deleteNotification(store) {
       // eslint-disable-next-line no-param-reassign
-      store.message = null;
+      store.message = '';
     },
   },
   extraReducers: (builder) => {
@@ -42,7 +33,7 @@ const notificationSlice = createSlice({
       isAnyOf(...matchRejectedEndpoints),
       (state, { payload }) => {
         // eslint-disable-next-line no-param-reassign
-        state.message = (payload as IErrorResponse).message;
+        state.message = (payload as IErrorResponse)?.message;
       }
     );
   },
