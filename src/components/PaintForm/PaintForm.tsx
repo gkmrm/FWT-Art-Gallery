@@ -19,7 +19,7 @@ const cx = cn.bind(styles);
 export type TPaintEditValues = {
   name: string;
   years: string;
-  paint: IImageModel;
+  paint: IImageModel | null;
 };
 
 type TPaintFormProps = {
@@ -97,7 +97,6 @@ const PaintForm: React.FC<TPaintFormProps> = ({
   return (
     <form
       className={cx('paintForm')}
-      // eslint-disable-next-line no-console
       onSubmit={onSubmit}
       onDragOver={handleDragOver}
     >
@@ -130,7 +129,7 @@ const PaintForm: React.FC<TPaintFormProps> = ({
             idFor='paint'
             isDraggable={isDraggable}
             onDragLeave={handleDragLeave}
-            initialValue={field.value.src}
+            initialValue={field.value ? field.value.src : undefined}
           />
         )}
       />
