@@ -1,17 +1,17 @@
 import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '@components/AuthForm';
 import { useAuthContext } from '@context/AuthContext';
 import { useThemeContext } from '@context/ThemeContext';
+import { useFingerprint } from '@hooks/useFingerprint';
 import { authApi } from '@store/services/AuthService';
 import { Link } from '@ui-components/Link';
 import { ModalWrapper } from '@ui-components/ModalWrapper';
 
 import styles from './AuthModal.module.scss';
-import { useFingerprint } from './useFingerprint';
 
 const cx = cn.bind(styles);
 
@@ -20,6 +20,7 @@ type TAuthModalProps = {
 };
 
 const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const { theme } = useThemeContext();
   const { onLogin } = useAuthContext();
@@ -44,9 +45,10 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
 
   const fingerprint = useFingerprint();
 
-  const [login, { isSuccess: isSuccessLog }] = authApi.useLoginMutation();
+  const [login, { isSuccess: isSuccessLogin }] = authApi.useLoginMutation();
 
-  const [signup, { isSuccess: isSuccessReg }] = authApi.useSignupMutation();
+  const [signup, { isSuccess: isSuccessRegister }] =
+    authApi.useSignupMutation();
 
   const onSubmitRegistration = (username: string, password: string) => {
     signup({ username, password, fingerprint });
@@ -58,15 +60,18 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
 
   const onSubmit = variant === 'login' ? onSubmitLogin : onSubmitRegistration;
 
-  const onCloseClick = useCallback(() => navigate(-1), [navigate]);
+  const onCloseClick = useCallback(
+    () => navigate(location.state.background),
+    [location.state.background, navigate]
+  );
 
   React.useEffect(() => {
-    if (isSuccessLog || isSuccessReg) {
+    if (isSuccessLogin || isSuccessRegister) {
       onLogin();
       setReset(true);
       onCloseClick();
     }
-  }, [onLogin, onCloseClick, isSuccessLog, isSuccessReg]);
+  }, [onLogin, onCloseClick, isSuccessLogin, isSuccessRegister]);
 
   return (
     <ModalWrapper
@@ -101,12 +106,11 @@ const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
             )}
           >
             {paragraph}
-            {/* todo background прокидывать */}
             <Link
               theme={theme}
-              onClick={onCloseClick}
-              to={linkPath}
               className={cx('authModal__link')}
+              to={linkPath}
+              state={{ background: location.state.background }}
             >
               {linkText}
             </Link>
