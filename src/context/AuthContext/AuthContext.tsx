@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react';
 
-import { AuthResponse } from '@store/models/AuthModel';
+import { AuthResponse } from '@models/AuthModel';
 
 export type AuthType = boolean;
 
