@@ -78,10 +78,10 @@ const ArtistPage: React.FC = () => {
     [artist, currentPage, isAuth, slicedSize]
   );
 
-  const onClickCard = (index: number) => () => {
+  const onClickCard = useCallback((index: number) => {
     setCurrentIndex(index);
     setOpenSlider(true);
-  };
+  }, []);
 
   const onClosePaintEditPopUp = () => {
     setShowEditPaint(!isShowEditPaint);
@@ -148,12 +148,10 @@ const ArtistPage: React.FC = () => {
             ) : (
               <DragGrid
                 mainPainting={artist.mainPaint?.id}
-                className={cx('artistPage__grid')}
-                authorId={artist.id}
-                array={slicedPaintings}
-                theme={theme}
-                variant='paint'
                 onClickCard={onClickCard}
+                array={slicedPaintings}
+                authorId={artist.id}
+                theme={theme}
               />
             )}
             {artist.paintings.length > slicedSize && (
