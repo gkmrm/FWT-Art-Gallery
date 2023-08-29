@@ -27,7 +27,7 @@ type TPaintCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  image: IImageModel;
+  image: IImageModel | null;
   pathTo?: string;
   theme: ThemeType;
   onClick?: () => void;
@@ -85,7 +85,7 @@ const PaintCard: React.FC<TPaintCardProps> = ({
         pathTo={pathTo}
         title={title}
         subtitle={subtitle}
-        image={image || undefined}
+        image={image}
         theme={theme}
         {...other}
       >
@@ -158,7 +158,11 @@ const PaintCard: React.FC<TPaintCardProps> = ({
         isShow={isShowEdit}
         onClose={onCloseEditPopUp}
         theme={theme}
-        paint={{ name: title, years: subtitle, paint: image }}
+        paint={{
+          name: title,
+          years: subtitle,
+          paint: image,
+        }}
       />
     </>
   );
