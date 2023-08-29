@@ -14,7 +14,7 @@ type TPaintEditPopUpProps = {
   isShow: boolean;
   onClose: () => void;
   theme: ThemeType;
-  paint?: TPaintEditValues;
+  paint?: TPaintEditValues | null;
   authorId: string;
   paintId: string;
 };
@@ -36,7 +36,7 @@ const PaintEditPopUp: React.FC<TPaintEditPopUpProps> = ({
     <div className={cx('popup__inner', `popup__inner_${theme}`)}>
       <PaintForm
         theme={theme}
-        paintValues={paint}
+        paintValues={paint || undefined}
         onClose={onClose}
         paintId={paintId}
         authorId={authorId}
