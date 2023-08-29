@@ -20,7 +20,7 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  image?: IImageModel;
+  image: IImageModel | null;
   pathTo?: string;
   theme: ThemeType;
   onClick?: () => void;
