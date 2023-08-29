@@ -20,47 +20,42 @@ import {
 import { DragCard } from '@components/DragCard';
 import { PaintCard } from '@components/PaintCard';
 import { ThemeType } from '@context/ThemeContext';
-// import { IArtistsByIdModel } from '@store/models/ArtistByIdModel';
-// import { IArtistsModel } from '@store/models/ArtistsModel';
+import { IArtistsModel } from '@models/ArtistsModel';
+import { IPaintModel } from '@models/PaintModel';
 import { Card } from '@ui-components/Card';
 import { Grid } from '@ui-components/Grid';
 import checkMainPainting from '@utils/functions/checkMainPainting';
 
-type TDragGridProps<T> = {
-  // array: IArtistsModel[] | IArtistsByIdModel[];
-  // Написать обхий главный тип, от которого наследую модели, и T extends главный тип
-  // УБРАТЬ React. заменить нахуй на jquery///
-  array: T[];
+type TDragGridProps = {
+  array: IArtistsModel[] | IPaintModel[];
   mainPainting?: string;
-  authorId: string;
+  authorId?: string;
   theme: ThemeType;
-  variant: 'author' | 'paint';
   onClickCard?: (index: number) => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const DragGrid = <T,>({
+const DragGrid: React.FC<TDragGridProps> = ({
   mainPainting = '',
   array,
   theme,
-  variant,
-  authorId,
   onClickCard = () => {},
-}: TDragGridProps<T>) => {
-  // const checkType = (
-  //   arr: IArtistsModel[] | IArtistsByIdModel[]
-  // ): arr is IArtistsModel[] => !('paintings' in arr[0]);
+  authorId = '',
+}) => {
   const [items, setItems] = useState(array);
   const [activeId, setActiveId] = useState<string | number | null>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
-  // const getTypedArr = (arr: IArtistsModel[] | IArtistsByIdModel[]) =>
-  //   checkType(arr) ? arr : arr;
-
   useEffect(() => setItems(array), [array]);
 
-  const handleDragStart = useCallback((event: DragStartEvent) => {
-    setActiveId(event.active.id);
-  }, []);
+  const handleDragStart = useCallback(
+    (event: DragStartEvent) => setActiveId(event.active.id),
+
+    []
+  );
+
+  const checkType = (
+    arr: IArtistsModel[] | IPaintModel[]
+  ): arr is IArtistsModel[] => 'genres' in arr[0];
 
   const handleDragEnd = useCallback((event: DragEndEvent) => {
     const { active, over } = event;
@@ -71,74 +66,66 @@ const DragGrid = <T,>({
         const oldIndex = items.map((i) => i.id).indexOf(active.id as string);
         const newIndex = items.map((i) => i.id).indexOf(over?.id as string);
 
+        if (checkType(items)) {
+          return arrayMove(items, oldIndex, newIndex);
+        }
+
         return arrayMove(items, oldIndex, newIndex);
       });
     }
 
-    setActiveId(null);
+    return setActiveId(null);
   }, []);
 
   const handleDragCancel = useCallback(() => {
     setActiveId(null);
   }, []);
 
-  const grid =
-    variant === 'author'
-      ? items.map((item) => (
-          <DragCard id={item.id} key={item.id} theme={theme}>
-            <Card
-              key={item.id}
-              {...item}
-              id={item.id}
-              image={item.paint}
-              theme={theme}
-              pathTo={`/artists/${item.id}`}
-            />
-          </DragCard>
-        ))
-      : items.map((item, index) => (
-          <DragCard id={item.id} key={item.id} theme={theme}>
-            <PaintCard
-              isMainPainting={checkMainPainting(item.id, mainPainting)}
-              authorId={authorId}
-              key={item.id}
-              image={item.paint}
-              onClick={onClickCard(index)}
-              paintId={item.id}
-              {...item}
-              theme={theme}
-            />
-          </DragCard>
-        ));
-
-  const overlayCard = (
-    <DragCard id={activeId as string} theme={theme}>
-      {items.map((item, index) =>
-        // eslint-disable-next-line no-nested-ternary
-        item.id === activeId ? (
-          variant === 'author' ? (
-            <Card
-              key={item.id}
-              {...item}
-              id={item.id}
-              image={item.paint}
-              theme={theme}
-              pathTo={`/artists/${item.id}`}
-            />
-          ) : (
-            <PaintCard
-              authorId={item.id}
-              key={item.id}
-              image={item.paint}
-              onClick={onClickCard(index)}
-              {...item}
-              theme={theme}
-            />
-          )
-        ) : null
-      )}
+  const cardArtist = (item: IArtistsModel) => (
+    <DragCard id={item.id} key={item.id} theme={theme}>
+      <Card
+        key={item.id}
+        {...item}
+        id={item.id}
+        image={item.paint || null}
+        theme={theme}
+        pathTo={`/artists/${item.id}`}
+      />
     </DragCard>
   );
+
+  const paintCard = (item: IPaintModel, index: number) => (
+    <DragCard id={item.id} key={item.id} theme={theme}>
+      <PaintCard
+        image={item.paint || null}
+        {...item}
+        isMainPainting={checkMainPainting(item.id, mainPainting)}
+        authorId={authorId}
+        key={item.id}
+        paintId={item.id}
+        theme={theme}
+        onClick={() => onClickCard(index)}
+      />
+    </DragCard>
+  );
+
+  const getGrid = (arr: IArtistsModel[] | IPaintModel[]) => {
+    if (checkType(arr)) {
+      return arr.map((item) => cardArtist(item));
+    }
+
+    return arr.map((item, index) => paintCard(item, index));
+  };
+
+  const overlayCard = (arr: IArtistsModel[] | IPaintModel[]) => {
+    if (checkType(arr)) {
+      return arr.map((item) => item.id === activeId && cardArtist(item));
+    }
+
+    return arr.map(
+      (item, index) => item.id === activeId && paintCard(item, index)
+    );
+  };
 
   return (
     <DndContext
@@ -149,9 +136,11 @@ const DragGrid = <T,>({
       onDragCancel={handleDragCancel}
     >
       <SortableContext items={items} strategy={rectSortingStrategy}>
-        <Grid>{grid}</Grid>
+        <Grid>{getGrid(items)}</Grid>
       </SortableContext>
-      <DragOverlay adjustScale>{activeId ? overlayCard : null}</DragOverlay>
+      <DragOverlay adjustScale>
+        {activeId ? overlayCard(items) : null}
+      </DragOverlay>
     </DndContext>
   );
 };
