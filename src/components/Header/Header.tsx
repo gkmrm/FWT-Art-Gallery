@@ -30,9 +30,12 @@ const Header: React.FC = () => {
 
   const onOpen = () => setSearchOpen(true);
 
-  const onChange = useCallback((str: string) => {
-    setAllFilters({ ...filters, search: str });
-  }, []);
+  const onChange = useCallback(
+    (str: string) => {
+      setAllFilters({ ...filters, search: str });
+    },
+    [filters, setAllFilters]
+  );
 
   const handleToggle = useCallback(() => {
     setSearchOpen(false);
@@ -82,7 +85,6 @@ const Header: React.FC = () => {
                   header__search_open: isSearchOpen,
                 })}
                 theme={theme}
-                errorMessage=''
                 values={filters.search}
                 onChange={debounceSearchQuery}
                 classNameInput={cx('header__search_input')}
