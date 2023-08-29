@@ -42,10 +42,6 @@ const MainPage: React.FC = () => {
     setShowAdd(!isShowAdd);
   };
 
-  // todo check this
-  const onOpen = () => setShow(true);
-  const onClose = () => setShow(false);
-
   const onChange = useCallback(
     (str: string) => {
       setAllFilters({ ...filters, search: str });
@@ -88,11 +84,14 @@ const MainPage: React.FC = () => {
                 className={cx('mainPage__search')}
                 theme={theme}
                 values={filters.search}
-                errorMessage=''
                 onChange={debounceSearchQuery}
                 handleReset={onResetSearch}
               />
-              <Button variant='icon' onClick={onOpen} theme={theme}>
+              <Button
+                variant='icon'
+                onClick={() => setShow(true)}
+                theme={theme}
+              >
                 <FilterIcon />
               </Button>
             </div>
@@ -120,12 +119,7 @@ const MainPage: React.FC = () => {
           }
           dataLength={dataLength}
         >
-          <DragGrid
-            array={artists}
-            theme={theme}
-            variant='author'
-            authorId=''
-          />
+          {artists.length >= 1 && <DragGrid array={artists} theme={theme} />}
         </InfiniteScroll>
       </Container>
       <ArtistEditPopUp
@@ -133,7 +127,7 @@ const MainPage: React.FC = () => {
         onClose={onCloseEditPopUp}
         theme={theme}
       />
-      <FilterBar isShow={isShow} onClose={onClose} theme={theme} />
+      <FilterBar isShow={isShow} onClose={() => setShow(false)} theme={theme} />
     </div>
   );
 };
