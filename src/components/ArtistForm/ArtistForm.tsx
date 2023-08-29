@@ -5,10 +5,10 @@ import cn from 'classnames/bind';
 import { Controller, useForm } from 'react-hook-form';
 
 import { ThemeType } from '@context/ThemeContext';
+import { normalizeDateRequset } from '@models/ArtistsModel';
 import { IGenreModel } from '@models/GenreModel';
 import { IImageModel } from '@models/PaintModel';
 import artistSchema from '@schemas/artistFormSchema';
-import { normalizeDateRequset } from '@store/models/ArtistsModel';
 import { artistApi } from '@store/services/ArtistsService';
 import { genreApi } from '@store/services/GenresService';
 import { Button } from '@ui-components/Button';
@@ -113,7 +113,6 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
   return (
     <form
       className={cx('form', `form_${theme}`)}
-      // eslint-disable-next-line no-console
       onSubmit={handleSubmit(() => onSubmit())}
       onDragOver={handleDragOver}
     >
