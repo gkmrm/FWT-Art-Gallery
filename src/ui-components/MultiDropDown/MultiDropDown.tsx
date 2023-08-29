@@ -5,13 +5,12 @@ import cn from 'classnames/bind';
 import { ReactComponent as Arrow } from '@assets/icons/expand_icon.svg';
 import { ThemeType } from '@context/ThemeContext';
 import useOutsideClick from '@hooks/useOutsideClick';
-import { IOption } from '@models/testIOptionModel';
+import { IOption } from '@models/OptionModel';
 import { Checkbox } from '@ui-components/CheckBox';
 import { ErrorMessage } from '@ui-components/ErrorMessage';
 import { Genre } from '@ui-components/Genre';
 
 import styles from './MultiDropDown.module.scss';
-import { testData } from './TestData';
 
 const cx = cn.bind(styles);
 
@@ -19,7 +18,7 @@ type TMultiDropDownProps = {
   theme: ThemeType;
   labelName?: string;
   errorMessage: string;
-  options?: IOption[];
+  options: IOption[];
   selected: IOption[];
   onChange: (selected: IOption[]) => void;
 };
@@ -28,7 +27,7 @@ const MultiDropDown: React.FC<TMultiDropDownProps> = ({
   labelName,
   theme,
   errorMessage,
-  options = testData,
+  options,
   selected,
   onChange,
 }) => {
