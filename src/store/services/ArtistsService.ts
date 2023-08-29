@@ -10,19 +10,12 @@ import {
   normalizeIdRequest,
   IArtistsResponse,
 } from '@models/ArtistsModel';
+import { IArtistsParamsModel, normalizeParams } from '@models/FiltersModel';
+import { IPaint } from '@models/PaintModel';
+import { normalizeMainPaintingRequest } from '@models/RequestsModels';
 import { apiGallery } from '@store/api';
-import {
-  IArtistsParamsModel,
-  normalizeParams,
-} from '@store/models/FiltersModel';
-import { IPaint } from '@store/models/PaintModel';
-import { normalizeMainPaintingRequest } from '@store/models/RequestsModels';
 
 import { URLS_ARTIST } from './URLS';
-
-// const isArtistsType = (
-//   response: IArtists[] | IArtistsAuth
-// ): response is IArtists[] => Array.isArray(response);
 
 export const artistApi = apiGallery
   .enhanceEndpoints({
@@ -42,19 +35,12 @@ export const artistApi = apiGallery
         transformResponse: (
           response: IArtists[] | IArtistsAuth
         ): IArtistsResponse =>
-          'data' in response
+          response && 'data' in response
             ? {
                 data: response.data.map(normalizeIArtists),
                 meta: response.meta,
               }
-            : { data: response.map(normalizeIArtists), meta: null },
-
-        // isArtistsType(response)
-        //   ? response.map(normalizeIArtists)
-        //   : {
-        //       data: response.data.map(normalizeIArtists),
-        //       meta: response.meta,
-        //     },
+            : { data: response?.map(normalizeIArtists), meta: null },
         providesTags: ['Artists'],
       }),
       fetchArtistStaticById: build.query<
