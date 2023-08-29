@@ -10,7 +10,7 @@ export const axiosBaseQuery =
       return await instance(config);
     } catch (axiosError) {
       return {
-        error: (axiosError as AxiosError).response?.data,
+        error: (axiosError as AxiosError)?.response?.data,
       };
     }
   };
