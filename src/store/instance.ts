@@ -30,15 +30,6 @@ export const isExpiredToken = (token: string | null): boolean => {
 
 let refreshTokenPromise: Promise<unknown> | null = null;
 
-const redirectToLogin = () => {
-  if (
-    !window.location.pathname.includes('login') &&
-    !window.location.pathname.includes('register')
-  ) {
-    window.location.pathname = '/login';
-  }
-};
-
 const onRefreshToken = async () => {
   if (refreshTokenPromise) {
     await refreshTokenPromise;
@@ -63,7 +54,6 @@ const onRefreshToken = async () => {
   }
 
   authLocalStorage.remove();
-  redirectToLogin();
 
   return Promise.reject();
 };
