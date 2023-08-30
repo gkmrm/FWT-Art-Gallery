@@ -15,7 +15,7 @@ import styles from './DeletePopUp.module.scss';
 const cx = cn.bind(styles);
 
 type TDeletePopUpProps = {
-  paintId: string;
+  paintId?: string;
   authorId: string;
   isShow: boolean;
   onClose: () => void;
@@ -24,7 +24,7 @@ type TDeletePopUpProps = {
 };
 
 const DeletePopUp: React.FC<TDeletePopUpProps> = ({
-  paintId,
+  paintId = '',
   authorId,
   isShow,
   onClose,

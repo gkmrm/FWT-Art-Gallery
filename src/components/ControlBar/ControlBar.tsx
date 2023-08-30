@@ -66,7 +66,6 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
           </div>
           <DeletePopUp
             authorId={artist.id}
-            paintId=''
             variant='artist'
             isShow={isShowDelete}
             onClose={onCloseDeletePopUp}

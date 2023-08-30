@@ -49,11 +49,10 @@ const DragGrid: React.FC<TDragGridProps> = ({
 
   const handleDragStart = useCallback(
     (event: DragStartEvent) => setActiveId(event.active.id),
-
     []
   );
 
-  const checkType = (
+  const isIArtistsModel = (
     arr: IArtistsModel[] | IPaintModel[]
   ): arr is IArtistsModel[] => 'genres' in arr[0];
 
@@ -66,7 +65,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
         const oldIndex = items.map((i) => i.id).indexOf(active.id as string);
         const newIndex = items.map((i) => i.id).indexOf(over?.id as string);
 
-        if (checkType(items)) {
+        if (isIArtistsModel(items)) {
           return arrayMove(items, oldIndex, newIndex);
         }
 
@@ -109,23 +108,17 @@ const DragGrid: React.FC<TDragGridProps> = ({
     </DragCard>
   );
 
-  const getGrid = (arr: IArtistsModel[] | IPaintModel[]) => {
-    if (checkType(arr)) {
-      return arr.map((item) => cardArtist(item));
-    }
+  const getGrid = (arr: IArtistsModel[] | IPaintModel[]) =>
+    isIArtistsModel(arr)
+      ? arr.map((item) => cardArtist(item))
+      : arr.map((item, index) => paintCard(item, index));
 
-    return arr.map((item, index) => paintCard(item, index));
-  };
-
-  const overlayCard = (arr: IArtistsModel[] | IPaintModel[]) => {
-    if (checkType(arr)) {
-      return arr.map((item) => item.id === activeId && cardArtist(item));
-    }
-
-    return arr.map(
-      (item, index) => item.id === activeId && paintCard(item, index)
-    );
-  };
+  const overlayCard = (arr: IArtistsModel[] | IPaintModel[]) =>
+    isIArtistsModel(arr)
+      ? arr.map((item) => item.id === activeId && cardArtist(item))
+      : arr.map(
+          (item, index) => item.id === activeId && paintCard(item, index)
+        );
 
   return (
     <DndContext

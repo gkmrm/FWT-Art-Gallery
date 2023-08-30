@@ -48,7 +48,6 @@ const ArtistInfo: React.FC<TArtistInfoProps> = ({
             className={cx('artist__avatar_image')}
           />
         )}
-
         <div
           className={cx('artist__avatar_text', `artist__avatar_text_${theme}`)}
         >
