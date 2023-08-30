@@ -102,7 +102,8 @@ const MainPage: React.FC = () => {
         )}
         <InfiniteScroll
           next={onNextPage}
-          hasMore={dataLength - artists.length > 1}
+          dataLength={dataLength}
+          hasMore={dataLength - artists.length >= 1}
           loader={
             isFetching && (
               <Grid className={cx('mainPage__loader')}>
@@ -117,7 +118,6 @@ const MainPage: React.FC = () => {
               </Grid>
             )
           }
-          dataLength={dataLength}
         >
           {artists.length >= 1 && <DragGrid array={artists} theme={theme} />}
         </InfiniteScroll>
