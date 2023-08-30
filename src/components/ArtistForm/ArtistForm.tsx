@@ -69,12 +69,16 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
 
   const { data: allGenres = [] } = genreApi.useFetchGenresQuery(null);
 
-  const [createArtist, { isSuccess: isCreateSuccess }] =
-    artistApi.useCreateArtistMutation();
-  const [editArtist, { isSuccess: isEditSuccess }] =
+  const [
+    createArtist,
+    { isSuccess: isCreateSuccess, isLoading: isLoadingCreate },
+  ] = artistApi.useCreateArtistMutation();
+  const [editArtist, { isSuccess: isEditSuccess, isLoading: isLoadingEdit }] =
     artistApi.useEditArtistMutation();
 
   const isSuccess = isCreateSuccess || isEditSuccess;
+
+  const isLoading = isLoadingCreate || isLoadingEdit;
 
   const onCreateArtist = handleSubmit(
     async ({ name, years, description, genres, avatar }) => {
@@ -175,7 +179,7 @@ const ArtistForm: React.FC<TArtistFormProps> = ({
           theme={theme}
           className={cx('form__button')}
         >
-          SAVE
+          {isLoading ? 'Saving...' : 'SAVE'}
         </Button>
       </div>
     </form>
