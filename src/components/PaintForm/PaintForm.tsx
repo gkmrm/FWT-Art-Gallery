@@ -60,13 +60,17 @@ const PaintForm: React.FC<TPaintFormProps> = ({
     defaultValues: paintValues,
   });
 
-  const [editPaint, { isSuccess: isSuccessEditPaint }] =
-    artistApi.useEditPaintMutation();
+  const [
+    editPaint,
+    { isSuccess: isSuccessEditPaint, isLoading: isLoadingEdit },
+  ] = artistApi.useEditPaintMutation();
 
-  const [addPaint, { isSuccess: isSuccessAddPaint }] =
+  const [addPaint, { isSuccess: isSuccessAddPaint, isLoading: isLoadingAdd }] =
     artistApi.useAddPaintMutation();
 
   const isSuccess = isSuccessAddPaint || isSuccessEditPaint;
+
+  const isLoading = isLoadingAdd || isLoadingEdit;
 
   useEffect(() => {
     if (isSuccess) {
@@ -134,7 +138,7 @@ const PaintForm: React.FC<TPaintFormProps> = ({
         )}
       />
       <Button variant='default' theme={theme} type='submit'>
-        SAVE
+        {isLoading ? 'Saving...' : 'SAVE'}
       </Button>
     </form>
   );
