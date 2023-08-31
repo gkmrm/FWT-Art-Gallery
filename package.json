@@ -2,7 +2,7 @@
   "name": "fwt-gallery-project",
   "version": "0.1.0",
   "private": "false",
-  "homepage": "https://gkmrm.github.io/FWT-Art-Gallery",
+  "homepage": ".",
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/sortable": "^7.0.2",
