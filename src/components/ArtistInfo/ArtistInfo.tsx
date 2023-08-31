@@ -4,8 +4,8 @@ import cn from 'classnames/bind';
 
 import { Container } from '@components/Container';
 import { ThemeType } from '@context/ThemeContext';
-import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
-import { IImage } from '@store/models/PaintModel';
+import { IGenreModel } from '@models/GenreModel';
+import { IImageModel } from '@models/PaintModel';
 import { AvatarPlaceholder } from '@ui-components/AvatarPlaceholder';
 import { Picture } from '@ui-components/Picture';
 
@@ -15,7 +15,7 @@ import ArtistInfoBlock from './ArtistInfoBlock';
 const cx = cn.bind(styles);
 
 type TArtistInfoProps = {
-  avatar: IImage | undefined;
+  avatar: IImageModel | null;
   theme: ThemeType;
   name: string;
   year: string;

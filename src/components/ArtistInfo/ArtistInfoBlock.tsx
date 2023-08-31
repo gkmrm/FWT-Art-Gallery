@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { ReactComponent as Line } from '@assets/icons/textBlockLine.svg';
 import { Accordion } from '@components/Accordion';
 import { ThemeType } from '@context/ThemeContext';
-import { IGenreModel } from '@store/models/ArtistStaticByIdModel';
+import { IGenreModel } from '@models/GenreModel';
 import { Genre } from '@ui-components/Genre';
 
 import styles from './ArtistInfoBlock.module.scss';

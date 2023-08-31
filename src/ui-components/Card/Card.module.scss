@@ -17,7 +17,7 @@
   &:hover,
   &:focus {
     @include mediaDesktop {
-      .card__icon {
+      .card__inner {
         display: block;
       }
     }

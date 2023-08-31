@@ -17,6 +17,14 @@
       padding-top: 30px;
       padding-bottom: 100px;
     }
+
+    &_nonAuth {
+      padding-top: 80px;
+
+      @include mediaTablet {
+        padding-top: 100px;
+      }
+    }
   }
 
   &__control {
@@ -28,7 +36,7 @@
     padding-top: 20px;
 
     @include mediaTablet {
-      padding-top: 16px;
+      padding-top: 18px;
     }
 
     &_button {
@@ -86,6 +94,10 @@
     &_error {
       border: 1px solid $accentError;
     }
+  }
+
+  &__loader {
+    margin-top: 32px;
   }
 
   &__search {

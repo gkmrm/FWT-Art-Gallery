@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { ReactComponent as MinusIcon } from '@assets/icons/minus_icon.svg';
 import { ReactComponent as PlusIcon } from '@assets/icons/plus_icon_large.svg';
 import { ThemeType } from '@context/ThemeContext';
-import { IOption } from '@store/models/testIOptionModel';
+import { IOption } from '@models/OptionModel';
 import { FilterItem } from '@ui-components/FilterItem';
 
 import styles from './DropDown.module.scss';
@@ -48,7 +48,7 @@ const DropDown: React.FC<TDropDownProps> = ({
       const filtered = value.filter((item) => item.id !== obj.id);
       onChange(filtered);
     } else {
-      onChange([...value, obj]);
+      onChange([obj]);
     }
   };
 

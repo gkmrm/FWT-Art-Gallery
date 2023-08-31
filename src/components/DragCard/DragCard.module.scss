@@ -1,11 +1,17 @@
 .drag {
   position: relative;
+  min-height: 230px;
+
+  @include mediaTablet {
+    min-height: 350px;
+  }
 
   &_dragging {
     opacity: 0.3;
   }
 
   @include mediaDesktop {
+    min-height: 260px;
     &:hover,
     &:focus {
       .button {

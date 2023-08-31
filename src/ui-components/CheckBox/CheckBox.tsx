@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
 import cn from 'classnames/bind';
 
@@ -9,9 +9,9 @@ import styles from './CheckBox.module.scss';
 
 const cx = cn.bind(styles);
 
-type TCheckBoxProps = {
+interface TCheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   theme: ThemeType;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+}
 
 const CheckBox: React.FC<TCheckBoxProps> = ({ name, theme, ...others }) => (
   <label htmlFor={name} className={cx('checkbox__wrapper')}>

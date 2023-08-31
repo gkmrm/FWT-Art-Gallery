@@ -31,7 +31,7 @@ const ArtistEditPopUp: React.FC<TArtistEditPopUpProps> = ({
       theme={theme}
     >
       <div className={cx('popup__inner', `popup__inner_${theme}`)}>
-        <ArtistForm theme={theme} artistValues={artist} />
+        <ArtistForm theme={theme} artistValues={artist} onClose={onClose} />
       </div>
     </ModalWrapper>
   );

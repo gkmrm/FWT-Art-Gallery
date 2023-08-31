@@ -4,7 +4,8 @@ import cn from 'classnames/bind';
 
 import { ReactComponent as ArrowCardIcon } from '@assets/icons/arrowIcon.svg';
 import { ThemeType } from '@context/ThemeContext';
-import { IImage } from '@store/models/PaintModel';
+import { IImageModel } from '@models/PaintModel';
+import { CardPlaceholder } from '@ui-components/CardPlaceholder';
 import { Link } from '@ui-components/Link';
 import { Picture } from '@ui-components/Picture';
 
@@ -19,10 +20,9 @@ export type TCardProps = {
   /**
    * Object with image source {string, string...}
    */
-  image: IImage;
+  image: IImageModel | null;
   pathTo?: string;
   theme: ThemeType;
-  inner?: React.ReactNode;
   onClick?: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -32,7 +32,7 @@ const Card: React.FC<TCardProps> = ({
   image,
   pathTo = '',
   theme = 'light',
-  inner,
+  children,
   onClick,
 }) => (
   <Link className={cx('card')} theme={theme} onClick={onClick} to={pathTo}>
@@ -44,9 +44,17 @@ const Card: React.FC<TCardProps> = ({
         e.preventDefault();
       }}
     >
-      {inner}
+      {children}
     </div>
-    <Picture {...image} className={cx('card__img')} alt={`paint of ${title}`} />
+    {image ? (
+      <Picture
+        {...image}
+        className={cx('card__img')}
+        alt={`paint of ${title}`}
+      />
+    ) : (
+      <CardPlaceholder />
+    )}
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
         <div className={cx('info__textBlock', `info__textBlock_${theme}`)}>

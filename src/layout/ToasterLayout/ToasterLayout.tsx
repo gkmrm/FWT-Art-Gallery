@@ -3,7 +3,9 @@ import React, { useCallback, useEffect } from 'react';
 import cn from 'classnames/bind';
 import { toast, Toaster } from 'react-hot-toast';
 
+import { useAppDispatch, useAppSelector } from '@context/redux/redux';
 import { useThemeContext } from '@context/ThemeContext';
+import { notificationActions } from '@store/slices/NotificationSlice';
 import { Toast } from '@ui-components/Toast';
 
 import styles from './Toaster.module.scss';
@@ -13,15 +15,16 @@ const cx = cn.bind(styles);
 const ToasterLayout = () => {
   const { theme } = useThemeContext();
 
+  const dispatch = useAppDispatch();
+  const message = useAppSelector((state) => state.notificationReducer.message);
+
   const handleClose = useCallback(
     (toastId: string) => () => {
-      // eslint-disable-next-line no-console
-      console.log(toastId);
+      dispatch(notificationActions.deleteNotification());
+      toast.dismiss(toastId);
     },
-    []
+    [dispatch]
   );
-
-  const message = 'Something happend';
 
   useEffect(() => {
     if (message) {
@@ -40,8 +43,7 @@ const ToasterLayout = () => {
         }
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleClose, message]);
+  }, [handleClose, message, theme]);
 
   return <Toaster containerClassName={cx('toaster')} />;
 };

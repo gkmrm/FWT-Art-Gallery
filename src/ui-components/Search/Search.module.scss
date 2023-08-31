@@ -54,10 +54,6 @@
     }
   }
 
-  &_error {
-    border: 1px solid $accentError;
-  }
-
   &__icon {
     position: absolute;
     top: 4px;
@@ -79,9 +75,5 @@
     &_dark {
       color: $primaryLightGrey;
     }
-  }
-
-  &__error {
-    bottom: -22px;
   }
 }
