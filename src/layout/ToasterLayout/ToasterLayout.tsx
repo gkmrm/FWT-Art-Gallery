@@ -43,7 +43,7 @@ const ToasterLayout = () => {
         }
       );
     }
-  }, [handleClose, message]);
+  }, [handleClose, message, theme]);
 
   return <Toaster containerClassName={cx('toaster')} />;
 };

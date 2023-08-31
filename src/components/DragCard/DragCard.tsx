@@ -5,7 +5,7 @@ import { CSS } from '@dnd-kit/utilities';
 import cn from 'classnames/bind';
 
 import { ReactComponent as DragIcon } from '@assets/icons/drag_icon.svg';
-import { ThemeType } from '@context/ThemeContext';
+import { useThemeContext } from '@context/ThemeContext';
 import { Button } from '@ui-components/Button';
 
 import styles from './DragCard.module.scss';
@@ -14,15 +14,9 @@ const cx = cn.bind(styles);
 
 type TDragCardProps = {
   id: string;
-  theme: ThemeType;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-const DragCard: React.FC<TDragCardProps> = ({
-  id,
-  children,
-  theme,
-  ...other
-}) => {
+const DragCard: React.FC<TDragCardProps> = ({ id, children, ...other }) => {
   const {
     isDragging,
     attributes,
@@ -31,6 +25,8 @@ const DragCard: React.FC<TDragCardProps> = ({
     transform,
     transition,
   } = useSortable({ id });
+
+  const { theme } = useThemeContext();
 
   const style = {
     transform: CSS.Transform.toString(transform),

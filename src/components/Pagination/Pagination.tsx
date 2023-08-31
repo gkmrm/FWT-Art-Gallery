@@ -43,10 +43,7 @@ const Pagination: React.FC<TPaginationProps> = ({
         />
       </PaginationItem>
       {currentPage >= 3 && (
-        <PaginationItem
-          theme={theme}
-          onClick={() => onChange(currentPage + 1 - currentPage)}
-        >
+        <PaginationItem theme={theme} onClick={() => onChange(1)}>
           1
         </PaginationItem>
       )}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/trash_icon_large.svg';
-import { ThemeType } from '@context/ThemeContext';
+import { useThemeContext } from '@context/ThemeContext';
 import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { Modal } from '@ui-components/Modal';
@@ -19,7 +19,6 @@ type TDeletePopUpProps = {
   authorId: string;
   isShow: boolean;
   onClose: () => void;
-  theme: ThemeType;
   variant: 'paint' | 'artist';
 };
 
@@ -28,9 +27,10 @@ const DeletePopUp: React.FC<TDeletePopUpProps> = ({
   authorId,
   isShow,
   onClose,
-  theme,
   variant,
 }) => {
+  const { theme } = useThemeContext();
+
   const [deleteArtist, { isSuccess: isSuccessDeleteArtist }] =
     artistApi.useDeleteArtistMutation();
   const [deletePaint, { isSuccess: isSuccessDeletePaint }] =

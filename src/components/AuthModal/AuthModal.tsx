@@ -19,27 +19,27 @@ type TAuthModalProps = {
   variant: 'login' | 'signup';
 };
 
+const modalText = {
+  login: {
+    greeting: 'Welcome back',
+    paragraph: "If you don't have an account yet, please ",
+    linkText: 'sign up',
+    linkPath: '/signup',
+  },
+  signup: {
+    greeting: 'Create your profile',
+    paragraph: 'If you already have an account, please ',
+    linkText: 'login',
+    linkPath: '/login',
+  },
+};
+
 const AuthModal: React.FC<TAuthModalProps> = ({ variant }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { theme } = useThemeContext();
   const { onLogin } = useAuthContext();
   const [isReset, setReset] = useState(false);
-
-  const modalText = {
-    login: {
-      greeting: 'Welcome back',
-      paragraph: "If you don't have an account yet, please ",
-      linkText: 'sign up',
-      linkPath: '/signup',
-    },
-    signup: {
-      greeting: 'Create your profile',
-      paragraph: 'If you already have an account, please ',
-      linkText: 'login',
-      linkPath: '/login',
-    },
-  };
 
   const { linkPath, linkText, paragraph, greeting } = modalText[variant];
 

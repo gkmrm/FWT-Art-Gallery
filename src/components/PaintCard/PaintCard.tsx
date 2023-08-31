@@ -52,13 +52,6 @@ const PaintCard: React.FC<TPaintCardProps> = ({
   const [isShowDelete, setShowDelete] = useState(false);
   const [isShowEdit, setShowEdit] = useState(false);
 
-  const onCloseDeletePopUp = () => {
-    setShowDelete(!isShowDelete);
-  };
-  const onCloseEditPopUp = () => {
-    setShowEdit(!isShowEdit);
-  };
-
   const toggleOpen = useCallback(() => setOpen((prev) => !prev), []);
 
   const onClose = () => setOpen(false);
@@ -149,14 +142,13 @@ const PaintCard: React.FC<TPaintCardProps> = ({
         authorId={authorId}
         variant='paint'
         isShow={isShowDelete}
-        onClose={onCloseDeletePopUp}
-        theme={theme}
+        onClose={() => setShowDelete(false)}
       />
       <PaintEditPopUp
         authorId={authorId}
         paintId={paintId}
         isShow={isShowEdit}
-        onClose={onCloseEditPopUp}
+        onClose={() => setShowEdit(false)}
         theme={theme}
         paint={{
           name: title,

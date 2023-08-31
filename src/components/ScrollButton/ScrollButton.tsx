@@ -22,13 +22,8 @@ const ScrollButton = () => {
   };
 
   useEffect(() => {
-    const buttonVisibility = () => {
-      if (window.scrollY > 500) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    };
+    const buttonVisibility = () =>
+      setVisible(window.scrollY > window.outerHeight / 2);
 
     window.addEventListener('scroll', buttonVisibility);
 

@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
-import _ from 'lodash';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { uid } from 'uid';
 
@@ -14,6 +13,7 @@ import { FilterBar } from '@components/FilterBar';
 import { useAuthContext } from '@context/AuthContext';
 import { useFilterContext } from '@context/FilterContext';
 import { useThemeContext } from '@context/ThemeContext';
+import useDebounceSearch from '@hooks/useDebounceSearch';
 import { artistApi } from '@store/services/ArtistsService';
 import { ArtistNotFound } from '@ui-components/ArtistNotFound';
 import { Button } from '@ui-components/Button';
@@ -53,7 +53,7 @@ const MainPage: React.FC = () => {
     setAllFilters({ ...filters, search: '' });
   }, [filters, setAllFilters]);
 
-  const debounceSearchQuery = _.debounce(onChange, 650);
+  const debounceSearchQuery = useDebounceSearch(onChange, 650);
 
   const onNextPage = useCallback(() => {
     setAllFilters({ ...filters, perPage: Number(filters.perPage) + 6 });
@@ -78,6 +78,9 @@ const MainPage: React.FC = () => {
             >
               <PlusIcon />
               Add artist
+            </Button>
+            <Button variant='icon' onClick={() => setShow(true)} theme={theme}>
+              <FilterIcon />
             </Button>
             <div className={cx('mainPage__control_input')}>
               <Search
@@ -122,11 +125,7 @@ const MainPage: React.FC = () => {
           {artists.length >= 1 && <DragGrid array={artists} theme={theme} />}
         </InfiniteScroll>
       </Container>
-      <ArtistEditPopUp
-        isShow={isShowAdd}
-        onClose={onCloseEditPopUp}
-        theme={theme}
-      />
+      <ArtistEditPopUp isShow={isShowAdd} onClose={onCloseEditPopUp} />
       <FilterBar isShow={isShow} onClose={() => setShow(false)} theme={theme} />
     </div>
   );

@@ -26,6 +26,15 @@ export type TSliderProps = {
   currentIndex: number;
 };
 
+const options = {
+  pagination: false,
+  fixedWidth: '100vw',
+  fixedHeight: '100vh',
+  lazyLoad: true,
+  omitEnd: true,
+  type: 'fade',
+};
+
 const Slider: React.FC<TSliderProps> = ({
   mainPainting = '',
   authorId,
@@ -51,12 +60,7 @@ const Slider: React.FC<TSliderProps> = ({
       <RemoveScrollBar />
       <Splide
         options={{
-          pagination: false,
-          fixedWidth: '100vw',
-          fixedHeight: '100vh',
-          lazyLoad: true,
-          omitEnd: true,
-          type: 'fade',
+          ...options,
           start: currentIndex,
         }}
         hasTrack={false}

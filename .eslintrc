@@ -34,7 +34,7 @@
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "@typescript-eslint/no-unused-vars": "error",
     "no-unused-vars": "warn",
-    "import/prefer-default-export": 0,
+    "import/prefer-default-export": "off",
     "import/order": [
       "error",
       {
@@ -64,7 +64,8 @@
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "always", "prev": "*", "next": "export" }
-    ]
+    ],
+    "react/prop-types": 0
   },
   "settings": {
     "react": {

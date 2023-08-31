@@ -81,7 +81,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
   }, []);
 
   const cardArtist = (item: IArtistsModel) => (
-    <DragCard id={item.id} key={item.id} theme={theme}>
+    <DragCard id={item.id} key={item.id}>
       <Card
         key={item.id}
         {...item}
@@ -94,7 +94,7 @@ const DragGrid: React.FC<TDragGridProps> = ({
   );
 
   const paintCard = (item: IPaintModel, index: number) => (
-    <DragCard id={item.id} key={item.id} theme={theme}>
+    <DragCard id={item.id} key={item.id}>
       <PaintCard
         image={item.paint || null}
         {...item}

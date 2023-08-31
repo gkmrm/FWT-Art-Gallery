@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
               className={cx('footer__text_link')}
               to={links.mainSite}
               theme={theme}
-              target='_blanc'
+              target='_blank'
             >
               Framework Team
             </Link>
@@ -42,13 +42,13 @@ const Footer: React.FC = () => {
           <p className={cx('footer__text_name')}>Картавцев Глеб, 2023</p>
         </div>
         <div className={cx('footer__icons')}>
-          <Link theme={theme} to={links.facebook} target='_blanc'>
+          <Link theme={theme} to={links.facebook} target='_blank'>
             <FacebookIcon />
           </Link>
-          <Link to={links.vk} theme={theme} target='_blanc'>
+          <Link to={links.vk} theme={theme} target='_blank'>
             <VkIcon />
           </Link>
-          <Link to={links.instagram} theme={theme} target='_blanc'>
+          <Link to={links.instagram} theme={theme} target='_blank'>
             <InstagramIcon />
           </Link>
         </div>
