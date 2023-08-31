@@ -5,7 +5,7 @@ import cn from 'classnames/bind';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 import { ReactComponent as ArrowIcon } from '@assets/icons/right_arrow_icon_large.svg';
-import { ThemeType } from '@context/ThemeContext';
+import { useThemeContext } from '@context/ThemeContext';
 import { IPaintModel } from '@models/PaintModel';
 import { artistApi } from '@store/services/ArtistsService';
 import checkMainPainting from '@utils/functions/checkMainPainting';
@@ -19,7 +19,6 @@ const cx = cn.bind(styles);
 export type TSliderProps = {
   mainPainting?: string;
   authorId: string;
-  theme: ThemeType;
   paintings: IPaintModel[];
   isOpen: boolean;
   onClose: () => void;
@@ -38,13 +37,14 @@ const options = {
 const Slider: React.FC<TSliderProps> = ({
   mainPainting = '',
   authorId,
-  theme,
   paintings,
   isOpen,
   onClose,
   currentIndex,
 }) => {
   const [updateMainPaint] = artistApi.useUpdateMainPaintMutation();
+
+  const { theme } = useThemeContext();
 
   const handleChange = useCallback(
     (paintId: string) => {
