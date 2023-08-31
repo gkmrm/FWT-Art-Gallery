@@ -38,10 +38,6 @@ const MainPage: React.FC = () => {
       params: filters,
     });
 
-  const onCloseEditPopUp = () => {
-    setShowAdd(!isShowAdd);
-  };
-
   const onChange = useCallback(
     (str: string) => {
       setAllFilters({ ...filters, search: str });
@@ -78,9 +74,6 @@ const MainPage: React.FC = () => {
             >
               <PlusIcon />
               Add artist
-            </Button>
-            <Button variant='icon' onClick={() => setShow(true)} theme={theme}>
-              <FilterIcon />
             </Button>
             <div className={cx('mainPage__control_input')}>
               <Search
@@ -125,7 +118,7 @@ const MainPage: React.FC = () => {
           {artists.length >= 1 && <DragGrid array={artists} theme={theme} />}
         </InfiniteScroll>
       </Container>
-      <ArtistEditPopUp isShow={isShowAdd} onClose={onCloseEditPopUp} />
+      <ArtistEditPopUp isShow={isShowAdd} onClose={() => setShowAdd(false)} />
       <FilterBar isShow={isShow} onClose={() => setShow(false)} theme={theme} />
     </div>
   );
