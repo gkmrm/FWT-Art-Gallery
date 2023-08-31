@@ -28,19 +28,12 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
   const [isShowEdit, setShowEdit] = useState(false);
   const { isAuth } = useAuthContext();
 
-  const onCloseDeletePopUp = () => {
-    setShowDelete(!isShowDelete);
-  };
-  const onCloseEditPopUp = () => {
-    setShowEdit(!isShowEdit);
-  };
-
   return (
     <div className={cx('controlbar')}>
       <Button
         variant='text'
         theme={theme}
-        onClick={() => navigate(-1)}
+        onClick={() => navigate('/')}
         className={cx('controlbar__link_content')}
       >
         <ArrowIcon className={cx('controlbar__link_arrow')} />
@@ -68,13 +61,11 @@ const ControlBar: React.FC<TControlBarProps> = ({ theme, artist }) => {
             authorId={artist.id}
             variant='artist'
             isShow={isShowDelete}
-            onClose={onCloseDeletePopUp}
-            theme={theme}
+            onClose={() => setShowDelete(false)}
           />
           <ArtistEditPopUp
             isShow={isShowEdit}
-            onClose={onCloseEditPopUp}
-            theme={theme}
+            onClose={() => setShowEdit(false)}
             artist={artist}
           />
         </>
