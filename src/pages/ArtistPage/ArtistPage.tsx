@@ -171,7 +171,6 @@ const ArtistPage: React.FC = () => {
             <Slider
               mainPainting={artist.mainPaint?.id}
               authorId={artist.id}
-              theme={theme}
               paintings={artist.paintings}
               isOpen={isOpenSlider}
               onClose={() => setOpenSlider(false)}
