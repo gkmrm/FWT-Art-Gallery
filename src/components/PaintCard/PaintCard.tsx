@@ -90,7 +90,7 @@ const PaintCard: React.FC<TPaintCardProps> = ({
               theme={theme}
               variant='icon'
             >
-              <GearIcon className={cx('s')} />
+              <GearIcon />
             </Button>
             {isOpen && (
               <Popover theme={theme}>
@@ -149,7 +149,6 @@ const PaintCard: React.FC<TPaintCardProps> = ({
         paintId={paintId}
         isShow={isShowEdit}
         onClose={() => setShowEdit(false)}
-        theme={theme}
         paint={{
           name: title,
           years: subtitle,
