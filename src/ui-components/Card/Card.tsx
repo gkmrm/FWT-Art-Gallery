@@ -23,7 +23,6 @@ export type TCardProps = {
   image: IImageModel | null;
   pathTo?: string;
   theme: ThemeType;
-  inner?: React.ReactNode;
   onClick?: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
@@ -33,7 +32,7 @@ const Card: React.FC<TCardProps> = ({
   image,
   pathTo = '',
   theme = 'light',
-  inner,
+  children,
   onClick,
 }) => (
   <Link className={cx('card')} theme={theme} onClick={onClick} to={pathTo}>
@@ -45,7 +44,7 @@ const Card: React.FC<TCardProps> = ({
         e.preventDefault();
       }}
     >
-      {inner}
+      {children}
     </div>
     {image ? (
       <Picture
@@ -56,7 +55,6 @@ const Card: React.FC<TCardProps> = ({
     ) : (
       <CardPlaceholder />
     )}
-
     <div className={cx('card__wrapper')}>
       <div className={cx('info', `info_${theme}`)}>
         <div className={cx('info__textBlock', `info__textBlock_${theme}`)}>
