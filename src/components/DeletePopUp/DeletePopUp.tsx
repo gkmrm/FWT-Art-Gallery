@@ -33,8 +33,10 @@ const DeletePopUp: React.FC<TDeletePopUpProps> = ({
 
   const [deleteArtist, { isSuccess: isSuccessDeleteArtist }] =
     artistApi.useDeleteArtistMutation();
+
   const [deletePaint, { isSuccess: isSuccessDeletePaint }] =
     artistApi.useDeletePaintMutation();
+
   const navigate = useNavigate();
 
   const handleDeleteArtist = useCallback(() => {
@@ -87,7 +89,7 @@ const DeletePopUp: React.FC<TDeletePopUpProps> = ({
           </div>
           <div className={cx('popup__text_description')}>
             You will not be able to recover this
-            {variant === 'artist' ? ' artist' : ' paint'} afterwards.
+            {variant} afterwards.
           </div>
         </div>
         <div className={cx('popup__buttons')}>
