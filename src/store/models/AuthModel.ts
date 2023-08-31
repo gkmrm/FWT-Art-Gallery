@@ -1,21 +1,15 @@
-export interface AuthRequest {
+export interface IAuthRequest {
   username: string;
   password: string;
   fingerprint?: string;
 }
 
-export interface RefreshTokenRequest {
+export interface IRefreshTokenRequest {
   refreshToken: string;
   fingerprint?: string;
 }
 
-export interface AuthResponse {
+export interface IAuthResponse {
   accessToken: string;
   refreshToken: string;
-}
-
-export interface AuthErrorResponse {
-  error: string;
-  message: string;
-  statusCode: number;
 }

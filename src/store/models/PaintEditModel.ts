@@ -9,11 +9,3 @@ export interface IPaintEditRequest {
   yearOfCreation: number;
   image: string;
 }
-
-export const normalizeIPaintRequsest = (
-  item: IPaintEditModel
-): IPaintEditRequest => ({
-  name: item.title,
-  yearOfCreation: parseInt(item.subtitle, 10),
-  image: item.paint,
-});

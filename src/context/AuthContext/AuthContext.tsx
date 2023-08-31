@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react';
 
-import { AuthResponse } from '@models/AuthModel';
+import { IAuthResponse } from '@models/AuthModel';
 
 export type AuthType = boolean;
 
@@ -20,7 +20,7 @@ export const AuthContext = createContext<AuthProps>(authDefaultValue);
 
 interface Auth {
   get: () => { accessToken: string | null; refreshToken: string | null };
-  set: (data: AuthResponse) => void;
+  set: (data: IAuthResponse) => void;
   remove: () => void;
 }
 
@@ -31,7 +31,7 @@ export const authLocalStorage: Auth = {
 
     return { accessToken, refreshToken };
   },
-  set: (data: AuthResponse) => {
+  set: (data: IAuthResponse) => {
     localStorage.setItem('jwt-access', data.accessToken);
     localStorage.setItem('jwt-refresh', data.refreshToken);
   },

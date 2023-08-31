@@ -21,7 +21,4 @@ export const normalizeGenresRequest = (item: IGenreModel): IGenre => ({
   name: item.name,
 });
 
-export const normalizeGenresRequestArray = (items: IGenreModel[]): string[] =>
-  items.map((item) => item.id);
-
 export const normalizeSortBy = (item: IOption) => item.id;

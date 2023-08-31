@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-import { normalizeGenresRequestArray } from './GenreModel';
 import { IOption } from './OptionModel';
 
 export interface IArtistsParams {
@@ -23,23 +22,9 @@ export interface IArtistsParamsModel {
 export type Filters = { genres?: string } & Omit<IArtistsParams, 'genres'> &
   Record<string, string | string[]>;
 
-export const normalizeIArtistParamsRequest = (
-  item: IArtistsParamsModel
-): IArtistsParams => ({
-  sortBy: item.sortBy.map((elem) => elem.id).toString(),
-  orderBy: item.orderBy.map((elem) => elem.id).toString() as
-    | 'asc'
-    | 'desc'
-    | null,
-  name: item.search,
-  genres: normalizeGenresRequestArray(item.genres),
-  perPage: item.perPage.toString(),
-  pageNumber: item.pageNumber,
-});
-
-export function normalizeParams(
+export const normalizeParams = (
   paramsModel: IArtistsParamsModel
-): IArtistsParams {
+): IArtistsParams => {
   const normalizedParams: IArtistsParams = {
     orderBy: 'desc',
   };
@@ -69,11 +54,11 @@ export function normalizeParams(
   }
 
   return normalizedParams;
-}
+};
 
-export function convertToURLSearchParams(
+export const convertToURLSearchParams = (
   params: IArtistsParams
-): URLSearchParams {
+): URLSearchParams => {
   const urlSearchParams = new URLSearchParams();
 
   if (params.sortBy) {
@@ -103,11 +88,11 @@ export function convertToURLSearchParams(
   }
 
   return urlSearchParams;
-}
+};
 
-export function convertFromURLSearchParams(
+export const convertFromURLSearchParams = (
   urlSearchParams: URLSearchParams
-): IArtistsParams {
+): IArtistsParams => {
   const convertedParams: IArtistsParams = {
     orderBy: null,
   };
@@ -143,7 +128,7 @@ export function convertFromURLSearchParams(
   }
 
   return convertedParams;
-}
+};
 
 enum SortOption {
   name = 'name',
@@ -157,9 +142,9 @@ enum OrderOption {
   null = 'null',
 }
 
-export function convertToParamsModel(
+export const convertToParamsModel = (
   params: IArtistsParams
-): IArtistsParamsModel {
+): IArtistsParamsModel => {
   const paramsModel: IArtistsParamsModel = {
     sortBy: params.sortBy
       ? params.sortBy === SortOption.name
@@ -193,4 +178,4 @@ export function convertToParamsModel(
   };
 
   return paramsModel;
-}
+};

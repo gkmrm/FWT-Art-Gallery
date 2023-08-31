@@ -10,7 +10,7 @@ import { authLocalStorage } from '@context/AuthContext/AuthContext';
 import BASE_URL from '@utils/BASE_URL';
 import { getFingerprint } from '@utils/functions/getFingerprint';
 
-import { AuthResponse } from './models/AuthModel';
+import { IAuthResponse } from './models/AuthModel';
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -113,7 +113,7 @@ export const onResponseError = async (
 
 export const onResponse = (response: AxiosResponse): AxiosResponse => {
   if (response.config.url?.includes('auth')) {
-    authLocalStorage.set(response.data as AuthResponse);
+    authLocalStorage.set(response.data as IAuthResponse);
   }
 
   return response;
