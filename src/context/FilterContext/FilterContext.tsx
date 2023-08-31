@@ -1,28 +1,39 @@
 import React, { createContext, useCallback, useMemo, useState } from 'react';
 
-import { IOption } from '@store/models/testIOptionModel';
+import { useSearchParams } from 'react-router-dom';
 
-export type FilterType = {
-  genres: IOption[];
-  sortBy: IOption[];
-  search?: string;
-};
+import {
+  IArtistsParamsModel,
+  convertFromURLSearchParams,
+  convertToParamsModel,
+  convertToURLSearchParams,
+  normalizeParams,
+} from '@models/FiltersModel';
+
+export interface FilterType extends IArtistsParamsModel {}
 
 export type FilterProps = {
   filters: FilterType;
-  setFilters: (filters: FilterType) => void;
+  setAllFilters: (filters: FilterType) => void;
   onClearFilter: () => void;
 };
 
-const defaultFilter = {
-  genres: [],
+const defaultPagination = {
+  perPage: '6',
+  pageNumber: '1',
+};
+
+const defaultFilter: FilterType = {
   sortBy: [],
+  orderBy: [],
   search: '',
+  genres: [],
+  perPage: 6,
 };
 
 export const filterDefaultValue: FilterProps = {
   filters: defaultFilter,
-  setFilters: () => defaultFilter,
+  setAllFilters: () => defaultFilter,
   onClearFilter: () => defaultFilter,
 };
 
@@ -30,21 +41,19 @@ type TFiltersProvider = React.HTMLAttributes<HTMLDivElement>;
 
 export const FilterContext = createContext<FilterProps>({} as FilterProps);
 
-// Данный компонент пока выполняет функцию плейсхолдера,
-// и будет доработан с добавлением запросов и авторизации
-
 const FilterProvider: React.FC<TFiltersProvider> = ({ children }) => {
-  const [params, setParams] = useState<FilterType>({
-    genres: [],
-    sortBy: [],
-    search: '',
-  });
+  const [params, setParams] = useSearchParams();
+  const [filters, setFilters] = useState<FilterType>(
+    convertToParamsModel({
+      ...convertFromURLSearchParams(params),
+      ...defaultPagination,
+    })
+  );
 
-  const filters = params;
-
-  const setFilters = useCallback(
-    (filter: FilterType) => {
-      setParams(filter);
+  const setAllFilters = useCallback(
+    (filtersism: FilterType) => {
+      setFilters(filtersism);
+      setParams(convertToURLSearchParams(normalizeParams(filtersism)));
     },
     [setParams]
   );
@@ -56,10 +65,10 @@ const FilterProvider: React.FC<TFiltersProvider> = ({ children }) => {
   const filterValue = useMemo(
     () => ({
       filters,
-      setFilters,
+      setAllFilters,
       onClearFilter,
     }),
-    [filters, setFilters, onClearFilter]
+    [filters, setAllFilters, onClearFilter]
   );
 
   return (

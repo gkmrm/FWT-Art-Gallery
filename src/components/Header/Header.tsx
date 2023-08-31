@@ -7,6 +7,7 @@ import { ReactComponent as Logo } from '@assets/icons/logo.svg';
 import { ReactComponent as LoupeIcon } from '@assets/icons/search_icon.svg';
 import { Container } from '@components/Container';
 import { Menu } from '@components/Menu';
+import { useFilterContext } from '@context/FilterContext';
 import { useThemeContext } from '@context/ThemeContext';
 import useDebounceSearch from '@hooks/useDebounceSearch';
 import useOutsideClick from '@hooks/useOutsideClick';
@@ -23,15 +24,18 @@ const Header: React.FC = () => {
   const [isSearchOpen, setSearchOpen] = useState(false);
   const { theme } = useThemeContext();
   const ref = useRef<null | HTMLDivElement>(null);
+  const { filters, setAllFilters } = useFilterContext();
 
   const toggleOpen = () => setOpen(!isOpen);
 
   const onOpen = () => setSearchOpen(true);
 
-  const onChange = useCallback((str: string) => {
-    // eslint-disable-next-line no-console
-    console.log(str);
-  }, []);
+  const onChange = useCallback(
+    (str: string) => {
+      setAllFilters({ ...filters, search: str });
+    },
+    [filters, setAllFilters]
+  );
 
   const handleToggle = useCallback(() => {
     setSearchOpen(false);
@@ -40,6 +44,10 @@ const Header: React.FC = () => {
   const debounceSearchQuery = useDebounceSearch(onChange, 650);
 
   useOutsideClick(ref, handleToggle);
+
+  const onResetSearch = useCallback(() => {
+    setAllFilters({ ...filters, search: '' });
+  }, [filters, setAllFilters]);
 
   return (
     <header className={cx('header', `header_${theme}`)}>
@@ -77,9 +85,10 @@ const Header: React.FC = () => {
                   header__search_open: isSearchOpen,
                 })}
                 theme={theme}
-                errorMessage=''
+                values={filters.search}
                 onChange={debounceSearchQuery}
                 classNameInput={cx('header__search_input')}
+                handleReset={onResetSearch}
               />
             </div>
             <BurgerIcon onClick={toggleOpen} className={cx('header__burger')} />

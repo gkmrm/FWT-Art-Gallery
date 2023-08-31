@@ -13,6 +13,13 @@ import styles from './Footer.module.scss';
 
 const cx = cn.bind(styles);
 
+const links = {
+  mainSite: 'https://framework.team',
+  facebook: 'https://www.facebook.com/framework.team',
+  vk: 'https://vk.com/frameworkteam',
+  instagram: 'https://www.instagram.com/framework.team/',
+};
+
 const Footer: React.FC = () => {
   const { theme } = useThemeContext();
 
@@ -25,7 +32,7 @@ const Footer: React.FC = () => {
             <br /> для Frontend-разработчиков от компании{' '}
             <Link
               className={cx('footer__text_link')}
-              to='https://framework.team'
+              to={links.mainSite}
               theme={theme}
               target='_blank'
             >
@@ -35,21 +42,13 @@ const Footer: React.FC = () => {
           <p className={cx('footer__text_name')}>Картавцев Глеб, 2023</p>
         </div>
         <div className={cx('footer__icons')}>
-          <Link
-            theme={theme}
-            to='https://www.facebook.com/framework.team'
-            target='_blank'
-          >
+          <Link theme={theme} to={links.facebook} target='_blank'>
             <FacebookIcon />
           </Link>
-          <Link to='https://vk.com/frameworkteam' theme={theme} target='_blanc'>
+          <Link to={links.vk} theme={theme} target='_blank'>
             <VkIcon />
           </Link>
-          <Link
-            to='https://www.instagram.com/framework.team/'
-            theme={theme}
-            target='_blank'
-          >
+          <Link to={links.instagram} theme={theme} target='_blank'>
             <InstagramIcon />
           </Link>
         </div>

@@ -34,7 +34,10 @@ const Pagination: React.FC<TPaginationProps> = ({
 
   return (
     <div className={cx(className, 'pagination')}>
-      <PaginationItem theme={theme} onClick={() => onChange(currentPage - 1)}>
+      <PaginationItem
+        theme={theme}
+        onClick={() => onChange(currentPage === 1 ? 1 : currentPage - 1)}
+      >
         <ArrowLeft
           className={cx('pagination__arrow', `pagination__arrow_${theme}`)}
         />
@@ -69,7 +72,12 @@ const Pagination: React.FC<TPaginationProps> = ({
           {pagesAmount}
         </PaginationItem>
       )}
-      <PaginationItem theme={theme} onClick={() => onChange(currentPage + 1)}>
+      <PaginationItem
+        theme={theme}
+        onClick={() =>
+          onChange(currentPage === pagesAmount ? pagesAmount : currentPage + 1)
+        }
+      >
         <ArrowRight
           className={cx('pagination__arrow', `pagination__arrow_${theme}`)}
         />

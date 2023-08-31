@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import cn from 'classnames/bind';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as CloseIcon } from '@assets/icons/close_icon.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/trash_icon_large.svg';
 import { useThemeContext } from '@context/ThemeContext';
+import { artistApi } from '@store/services/ArtistsService';
 import { Button } from '@ui-components/Button';
 import { Modal } from '@ui-components/Modal';
 
@@ -13,17 +15,49 @@ import styles from './DeletePopUp.module.scss';
 const cx = cn.bind(styles);
 
 type TDeletePopUpProps = {
+  paintId?: string;
+  authorId: string;
   isShow: boolean;
   onClose: () => void;
   variant: 'paint' | 'artist';
 };
 
 const DeletePopUp: React.FC<TDeletePopUpProps> = ({
+  paintId = '',
+  authorId,
   isShow,
   onClose,
   variant,
 }) => {
   const { theme } = useThemeContext();
+
+  const [deleteArtist, { isSuccess: isSuccessDeleteArtist }] =
+    artistApi.useDeleteArtistMutation();
+  const [deletePaint, { isSuccess: isSuccessDeletePaint }] =
+    artistApi.useDeletePaintMutation();
+  const navigate = useNavigate();
+
+  const handleDeleteArtist = useCallback(() => {
+    deleteArtist({ authorId });
+  }, [authorId, deleteArtist]);
+
+  const handleDeletePaint = useCallback(() => {
+    deletePaint({ authorId, paintId });
+  }, [authorId, deletePaint, paintId]);
+
+  const handleDelete =
+    variant === 'artist' ? handleDeleteArtist : handleDeletePaint;
+
+  useEffect(() => {
+    if (isSuccessDeleteArtist) {
+      onClose();
+      navigate(-1);
+    }
+
+    if (isSuccessDeletePaint) {
+      onClose();
+    }
+  }, [isSuccessDeleteArtist, isSuccessDeletePaint, navigate, onClose]);
 
   return (
     <Modal
@@ -53,16 +87,11 @@ const DeletePopUp: React.FC<TDeletePopUpProps> = ({
           </div>
           <div className={cx('popup__text_description')}>
             You will not be able to recover this
-            {variant} afterwards.
+            {variant === 'artist' ? ' artist' : ' paint'} afterwards.
           </div>
         </div>
         <div className={cx('popup__buttons')}>
-          <Button
-            variant='default'
-            theme={theme}
-            // eslint-disable-next-line no-console
-            onClick={() => console.log('delete')}
-          >
+          <Button variant='default' theme={theme} onClick={handleDelete}>
             delete
           </Button>
           <Button variant='text' theme={theme} onClick={onClose}>

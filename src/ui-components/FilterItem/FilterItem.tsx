@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames/bind';
 
 import { ThemeType } from '@context/ThemeContext';
-import { IOption } from '@store/models/testIOptionModel';
+import { IOption } from '@models/OptionModel';
 
 import styles from './FilterItem.module.scss';
 
